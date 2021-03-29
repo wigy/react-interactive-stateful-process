@@ -12,7 +12,7 @@ module.exports = {
 
   // Where webpack outputs the assets and bundles
   output: {
-    path: paths.build,
+    path: paths.public,
     filename: '[name].[contenthash].js',
     publicPath: '/',
   },
