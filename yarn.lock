@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+interactive-stateful-process@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/interactive-stateful-process/-/interactive-stateful-process-0.0.1.tgz#e02163cfae50a8c4c0c89b5830905cb585defbe3"
+  integrity sha512-RJDF1cPC9PQeNj2P07FLGK0HOxA8DFxr3S/VCD4lkrGzvZJg0ccwxMePa9DadD+W3eW14pCv8hfuQdWvs4RqQQ==
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
