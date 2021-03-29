@@ -1,4 +1,5 @@
-import getOrigin from 'interactive-stateful-process';
-export default function foo() {
-    console.log(getOrigin());
-}
+import { getOrigin } from 'interactive-stateful-process';
+export default {
+    Foo: [100, 200, 300],
+    origin: getOrigin()
+};
