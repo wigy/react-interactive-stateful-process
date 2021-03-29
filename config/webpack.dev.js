@@ -5,7 +5,7 @@ const webpack = require("webpack");
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.js'],
+  entry: [paths.src + '/index.tsx'],
 
   mode: "development",
   target: 'web',
@@ -36,6 +36,9 @@ module.exports = {
       // JavaScript: Use Babel to transpile JavaScript files
       { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
 
+      // Typescript
+      { test: /\.(ts|tsx)$/, exclude: /node_modules/, use: ['ts-loader'] },
+
       // Styles: Inject CSS into the head with source maps
       {
         test: /\.(scss|css)$/,
@@ -55,6 +58,10 @@ module.exports = {
       // Fonts and SVGs: Inline files
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
     ],
+  },
+
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 
   optimization: {
