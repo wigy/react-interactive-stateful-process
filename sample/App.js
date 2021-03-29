@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import getOrigin from 'interactive-stateful-process';
+import { getOrigin } from 'interactive-stateful-process';
 
 class App extends Component {
   render() {
