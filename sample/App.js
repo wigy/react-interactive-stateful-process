@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-class App extends Component {
+import getOrigin from 'interactive-stateful-process';
 
+class App extends Component {
   render() {
+    const o = getOrigin();
+
     return (
       <div>
-        App is Up
+        App is Up! {JSON.stringify(o)}
       </div>
     );
   }

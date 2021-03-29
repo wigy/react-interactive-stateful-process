@@ -23,6 +23,7 @@ module.exports = {
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
       template: paths.public + '/index.html', // template file
+      favicon: null,
       filename: 'index.html', // output file
     }),
   ],
