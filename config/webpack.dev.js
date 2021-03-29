@@ -62,9 +62,6 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      'react-interactive-stateful-process': paths.lib,
-    }
   },
 
   optimization: {

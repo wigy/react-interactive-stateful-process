@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getOrigin } from 'interactive-stateful-process';
-import Foo from 'react-interactive-stateful-process';
+import Foo from '../src/index';
 
 const App = () => {
   const o = getOrigin();

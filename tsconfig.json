@@ -6,10 +6,6 @@
         "moduleResolution": "node",
         "jsx": "react",
         "allowJs": true,
-        "baseUrl": ".",
-        "paths": {
-            "react-interactive-stateful-process": ["src"]
-        },
         "outDir": "./dist"
     },
     "include": [
