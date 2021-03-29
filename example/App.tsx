@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { getOrigin } from 'interactive-stateful-process';
 import Foo from '../src/index';
 
