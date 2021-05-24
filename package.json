@@ -24,7 +24,10 @@
     "react-dom": "^17.0.2"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js"
+    "dev": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js",
+    "lint": "echo \"\\033[0;31mNo linting system for react interactive stateful process yet.\\033[0m\"",
+    "test": "echo \"\\033[0;31mNo testing system for react interactive stateful process yet.\\033[0m\"",
+    "test:ci": "yarn run lint && yarn test"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
