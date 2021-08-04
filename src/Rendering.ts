@@ -15,6 +15,9 @@ export type Renderer<SetupType=Setup, ElementType=Element> = React.FC<RenderingP
 
 /**
  * Registry for element rendering handlers.
+ *
+ * This is a global container to register all rendering handlers. It will have
+ * all standard element renderers registered by default.
  */
 export class RenderingEngine {
 

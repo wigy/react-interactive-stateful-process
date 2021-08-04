@@ -4,6 +4,9 @@ exports.RenderingEngine = void 0;
 const TextElement_1 = require("./Elements/TextElement");
 /**
  * Registry for element rendering handlers.
+ *
+ * This is a global container to register all rendering handlers. It will have
+ * all standard element renderers registered by default.
  */
 class RenderingEngine {
     static register(name, renderer) {
