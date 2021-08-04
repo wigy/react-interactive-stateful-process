@@ -4,9 +4,6 @@ export interface TriggerValues {
     [key: string]: TriggerValue;
 }
 export declare type TriggerName = string;
-/**
- *
- */
 export declare type Trigger = OnChangeTrigger | OnClickTrigger;
 export interface OnChangeTrigger {
     readonly type: 'onChange';
