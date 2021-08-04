@@ -110,7 +110,7 @@
 					<div class="tsd-signature tsd-kind-icon">Action<span class="tsd-signature-symbol">:</span> <a href="interfaces/DebugAction.html" class="tsd-signature-type" data-tsd-kind="Interface">DebugAction</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Actions.ts#L4">Actions.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Actions.ts#L4">Actions.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -120,7 +120,7 @@
 					<div class="tsd-signature tsd-kind-icon">Action<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Triggers.ts#L24">Triggers.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Triggers.ts#L24">Triggers.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -130,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">Element<span class="tsd-signature-symbol">:</span> <a href="interfaces/TextElement.html" class="tsd-signature-type" data-tsd-kind="Interface">TextElement</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Elements/index.ts#L4">Elements/index.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Elements/index.ts#L4">Elements/index.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -140,9 +140,14 @@
 					<div class="tsd-signature tsd-kind-icon">Renderer&lt;SetupType, ElementType&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">React.FC</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#RenderingProps" class="tsd-signature-type" data-tsd-kind="Type alias">RenderingProps</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SetupType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ElementType</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Rendering.ts#L14">Rendering.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Rendering.ts#L29">Rendering.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A function rendering certain type of element providing React Element presentation for it.</p>
+						</div>
+					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -159,9 +164,14 @@
 					<div class="tsd-signature tsd-kind-icon">Renderer<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Rendering.ts#L8">Rendering.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Rendering.ts#L11">Rendering.ts:11</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Readability helper to specify that a string is being used as a renderer name.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="RenderingProps" class="tsd-anchor"></a>
@@ -169,9 +179,25 @@
 					<div class="tsd-signature tsd-kind-icon">Rendering<wbr>Props&lt;SetupType, ElementType&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementType</span><span class="tsd-signature-symbol">; </span>setup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SetupType</span><span class="tsd-signature-symbol">; </span>values<span class="tsd-signature-symbol">: </span><a href="interfaces/TriggerValues.html" class="tsd-signature-type" data-tsd-kind="Interface">TriggerValues</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Rendering.ts#L9">Rendering.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Rendering.ts#L20">Rendering.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A parameter collection used when rendering element.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>property</dt>
+							<dd><p>element Actual top level element to render.</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>values A set of values to edit associated with the rendering process.</p>
+							</dd>
+							<dt>property</dt>
+							<dd><p>setup Global configuration for the rendering system.</p>
+							</dd>
+						</dl>
+					</div>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
@@ -202,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">Trigger<span class="tsd-signature-symbol">:</span> <a href="interfaces/OnChangeTrigger.html" class="tsd-signature-type" data-tsd-kind="Interface">OnChangeTrigger</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/OnClickTrigger.html" class="tsd-signature-type" data-tsd-kind="Interface">OnClickTrigger</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Triggers.ts#L11">Triggers.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Triggers.ts#L11">Triggers.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,7 +238,7 @@
 					<div class="tsd-signature tsd-kind-icon">Trigger<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Triggers.ts#L9">Triggers.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Triggers.ts#L9">Triggers.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -222,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">Trigger<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="modules.html#TriggerValue" class="tsd-signature-type" data-tsd-kind="Type alias">TriggerValue</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/TriggerValues.html" class="tsd-signature-type" data-tsd-kind="Interface">TriggerValues</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Triggers.ts#L4">Triggers.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Triggers.ts#L4">Triggers.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +261,7 @@
 					<div class="tsd-signature tsd-kind-icon">Text<wbr>Renderer<span class="tsd-signature-symbol">:</span> <a href="modules.html#Renderer" class="tsd-signature-type" data-tsd-kind="Type alias">Renderer</a><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/1e29dd6/src/Elements/TextElement.tsx#L9">Elements/TextElement.tsx:9</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/5c29fac/src/Elements/TextElement.tsx#L9">Elements/TextElement.tsx:9</a></li>
 						</ul>
 					</aside>
 				</section>

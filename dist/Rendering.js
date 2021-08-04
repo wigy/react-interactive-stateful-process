@@ -9,12 +9,23 @@ const TextElement_1 = require("./Elements/TextElement");
  * all standard element renderers registered by default.
  */
 class RenderingEngine {
+    /**
+     * Register a handler for an element type.
+     * @param name
+     * @param renderer
+     * @returns Old handler if there was any.
+     */
     static register(name, renderer) {
         const old = RenderingEngine.renderers[name] || null;
         // Not too nice but need to force custom types into registry as well.
         RenderingEngine.renderers[name] = renderer;
         return old;
     }
+    /**
+     * Find the registered renderer for the given properties and call the renderer if found.
+     * @param props
+     * @returns Elements.
+     */
     static render(props) {
         const { element } = props;
         if (!RenderingEngine.renderers[element.type]) {
