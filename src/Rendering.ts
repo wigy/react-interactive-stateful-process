@@ -4,6 +4,8 @@ import { TriggerValues } from "./Triggers"
 
 import { Element } from "./Elements"
 import { TextRenderer } from "./Elements/TextElement"
+import { FlatRenderer } from "./Elements/FlatElement"
+import { ButtonRenderer } from "./Elements/ButtonElement"
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.
@@ -66,3 +68,5 @@ export class RenderingEngine {
 }
 
 RenderingEngine.register('text', TextRenderer)
+RenderingEngine.register('flat', FlatRenderer)
+RenderingEngine.register('button', ButtonRenderer)

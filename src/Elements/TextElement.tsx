@@ -1,9 +1,17 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
 
-export interface TextElement {
+/**
+ * A text editing element.
+ */
+ export interface TextElement {
   readonly type: string
+}
+
+// eslint-disable-next-line
+export function isTextElement(object: any): object is TextElement {
+  return object.type === 'text'
 }
 
 export const TextRenderer: Renderer = (props: RenderingProps) => {
