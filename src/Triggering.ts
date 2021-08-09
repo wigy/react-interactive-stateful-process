@@ -24,13 +24,13 @@ import { ActionResult } from "./Actions"
 }
 
 const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
-  // TODO: What do we have here?
+  // TODO: What do we have here? Docs.
   return new Promise(() => 'OK')
 }
 TriggerEngine.register('onChange', onChangeTriggerHandler)
 
 const passThroughTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
-  // TODO: What do we have here?
+  // TODO: What do we have here? Docs.
   return new Promise(() => 'OK')
 }
 TriggerEngine.register('onClick', passThroughTriggerHandler)
