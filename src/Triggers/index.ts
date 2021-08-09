@@ -1,4 +1,4 @@
-import { RenderingProps } from "./Rendering"
+import { RenderingProps } from "../Rendering"
 
 // TODO: Docs and doc building.
 export type TriggerValue = string | number | null | TriggerValue[] | TriggerValues
