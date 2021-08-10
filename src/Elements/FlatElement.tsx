@@ -9,7 +9,6 @@ export interface FlatElement extends ContainerElement {
   readonly type: 'flat'
 }
 
-// eslint-disable-next-line
 export function isContainerElement(object: any): object is ContainerElement {
   return 'elements' in object
 }

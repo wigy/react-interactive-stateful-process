@@ -12,6 +12,12 @@ export class ActionEngine {
 
   private static actions: { [key: string]: ActionHandler} = {}
 
+  /**
+   * Add a handler for the given action.
+   * @param name
+   * @param handler
+   * @returns The old registered handler if there was any.
+   */
   static register<SetupType=Setup, ElementType=Element>(name: ActionName, handler: ActionHandler<SetupType, ElementType>): ActionHandler | null {
     const old = ActionEngine.actions[name] || null
     // Not too nice but need to force custom types into registry as well.
@@ -19,6 +25,11 @@ export class ActionEngine {
     return old
   }
 
+  /**
+   * Construct a result indicating a failure in action execution.
+   * @param message Reason for the failure.
+   * @returns A result object.
+   */
   static async fail(message: string): ActionResult {
     return {
       success: false,
@@ -26,6 +37,16 @@ export class ActionEngine {
     }
   }
 
+  /**
+   * Processor for a triggered action on the given element.
+   * @param trigger
+   * @param props
+   * @returns The element in the `props` is checked for action definitions.
+   * If there is no actions defined, the result is success. If there is a single
+   * action, it is executed and the resulting value is returned. If there is
+   * an array of actions, all of them are executed. If any of them fails, the
+   * result is failure. Otherwise success.
+   */
   static async handle(trigger: Trigger, props: RenderingProps): ActionResult {
     const { element } = props
     // Element has no actions defined.
