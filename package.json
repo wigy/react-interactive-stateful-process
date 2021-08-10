@@ -24,8 +24,8 @@
   "scripts": {
     "demo": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js",
     "dev": "tsc -w",
-    "doc": "rm -fr doc/* && typedoc --out doc src/index.ts",
-    "doc:watch": "rm -fr doc/* && typedoc --out doc --watch src/index.ts",
+    "doc": "rm -fr doc/* && typedoc --out doc src/*.ts src/*/*.ts src/*/*/*.ts src/*.tsx src/*/*.tsx src/*/*/*.tsx",
+    "doc:watch": "rm -fr doc/* && typedoc --out doc --watch src/*.ts src/*/*.ts src/*/*/*.ts src/*.tsx src/*/*.tsx src/*/*/*.tsx",
     "start": "npm run build",
     "build": "rm -rf dist/* && tsc && yarn run doc",
     "lint": "echo \"\\033[0;31mNo linting system for react interactive stateful process yet.\\033[0m\"",
