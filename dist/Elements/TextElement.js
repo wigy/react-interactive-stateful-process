@@ -6,11 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextRenderer = exports.isTextElement = void 0;
 const react_1 = __importDefault(require("react"));
 const core_1 = require("@material-ui/core");
-// eslint-disable-next-line
 function isTextElement(object) {
     return object.type === 'text';
 }
 exports.isTextElement = isTextElement;
+/**
+ * Rendering for text editing element.
+ */
 const TextRenderer = (props) => {
     const { element } = props;
     return react_1.default.createElement(core_1.TextField, { label: "label", value: "value", error: false, autoFocus: true, fullWidth: true, onChange: (e) => {

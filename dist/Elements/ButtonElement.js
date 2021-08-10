@@ -14,7 +14,6 @@ const ButtonRenderer = (props) => {
     return react_1.default.createElement(core_1.Button, { variant: "outlined", onClick: () => console.log('TODO: Click') }, element.label);
 };
 exports.ButtonRenderer = ButtonRenderer;
-// eslint-disable-next-line
 function isButtonElement(object) {
     return object.type === 'button';
 }

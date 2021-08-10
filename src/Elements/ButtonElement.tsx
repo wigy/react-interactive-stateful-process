@@ -1,12 +1,13 @@
 import React, { ReactElement } from 'react'
 import { Button } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
+import { ActiveElement } from './ActiveElement'
 
 /**
  * An element activating an action when clicked.
  */
-export interface ButtonElement extends Element {
-  readonly type: 'button'
+export interface ButtonElement extends ActiveElement {
+  readonly type: string
   label: string
 }
 
@@ -23,7 +24,6 @@ export const ButtonRenderer: Renderer = (props: RenderingProps) => {
     </Button>
 }
 
-// eslint-disable-next-line
 export function isButtonElement(object: any): object is ButtonElement {
   return object.type === 'button'
 }

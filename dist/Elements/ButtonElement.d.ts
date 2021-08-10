@@ -1,9 +1,10 @@
 import { Renderer } from "../Rendering";
+import { ActiveElement } from './ActiveElement';
 /**
  * An element activating an action when clicked.
  */
-export interface ButtonElement extends Element {
-    readonly type: 'button';
+export interface ButtonElement extends ActiveElement {
+    readonly type: string;
     label: string;
 }
 export declare const ButtonRenderer: Renderer;
