@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FlatRenderer = exports.isContainerElement = void 0;
 const react_1 = __importDefault(require("react"));
 const Rendering_1 = require("../Rendering");
-// eslint-disable-next-line
 function isContainerElement(object) {
     return 'elements' in object;
 }

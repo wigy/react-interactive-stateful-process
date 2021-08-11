@@ -9,21 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.debugActionHandler = void 0;
-const ActiveElement_1 = require("../Elements/ActiveElement");
+exports.postActionHandler = void 0;
 /**
- * Handler that just prints the content of the trigger, the element and current values to the console.
+ * A handler doing POST request with the selected all all values to the configured URL.
  * @param trigger
  * @param props
  * @returns
  */
-const debugActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () {
+const postActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () {
     const { element } = props;
-    if (ActiveElement_1.isActiveElement(element)) {
-        console.log('Action:', element.actions[trigger.type]);
-        console.log('Element:', element);
-        console.log('Values:', props.values);
-    }
-    return { success: true }; // TODO: Format of response?
+    console.log('TODO: POST', props.values);
+    return { success: true };
 });
-exports.debugActionHandler = debugActionHandler;
+exports.postActionHandler = postActionHandler;
