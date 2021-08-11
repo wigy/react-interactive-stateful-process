@@ -11,6 +11,12 @@ import { ActionEngine } from "./ActionEngine"
 
   private static triggers: { [key: string]: TriggerHandler} = {}
 
+  /**
+   * Add a trigger handler function to the registry.
+   * @param name Name of the trigger.
+   * @param handler Function executing trigger handling.
+   * @returns
+   */
   static register(name: TriggerName, handler: TriggerHandler): TriggerHandler | null {
     const old = TriggerEngine.triggers[name] || null
     TriggerEngine.triggers[name] = handler
@@ -25,6 +31,12 @@ import { ActionEngine } from "./ActionEngine"
   }
 }
 
+/**
+ * A handler changing the value in the rendering props before passing the trigger to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
 const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   const { element } = props
   if (isNamedElement(element)) {
@@ -36,6 +48,12 @@ const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props:
 }
 TriggerEngine.register('onChange', onChangeTriggerHandler)
 
+/**
+ * A default handler that passes trigger as is to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
 const passThroughTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   return ActionEngine.handle(trigger, props)
 }

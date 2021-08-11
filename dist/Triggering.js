@@ -16,6 +16,12 @@ const ActionEngine_1 = require("./ActionEngine");
  * Registry for internal event trigger handlers.
  */
 class TriggerEngine {
+    /**
+     * Add a trigger handler function to the registry.
+     * @param name Name of the trigger.
+     * @param handler Function executing trigger handling.
+     * @returns
+     */
     static register(name, handler) {
         const old = TriggerEngine.triggers[name] || null;
         TriggerEngine.triggers[name] = handler;
@@ -32,6 +38,12 @@ class TriggerEngine {
 }
 exports.TriggerEngine = TriggerEngine;
 TriggerEngine.triggers = {};
+/**
+ * A handler changing the value in the rendering props before passing the trigger to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
 const onChangeTriggerHandler = (trigger, props) => {
     const { element } = props;
     if (NamedElement_1.isNamedElement(element)) {
@@ -42,6 +54,12 @@ const onChangeTriggerHandler = (trigger, props) => {
     return ActionEngine_1.ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`);
 };
 TriggerEngine.register('onChange', onChangeTriggerHandler);
+/**
+ * A default handler that passes trigger as is to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
 const passThroughTriggerHandler = (trigger, props) => {
     return ActionEngine_1.ActionEngine.handle(trigger, props);
 };

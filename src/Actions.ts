@@ -22,15 +22,25 @@ export interface Actions {
   [key: string]: Action | Action[]
 }
 
-export interface SuccessgulActionResult {
+/**
+ * A result retuned by the action handler.
+ */
+export type ActionResult = Promise<SuccessgulActionResult | FailedActionResult>
+
+/**
+ * A successful result retuned by the action handler.
+ */
+ export interface SuccessgulActionResult {
   success: true
 }
+
+/**
+ * A failure result retuned by the action handler.
+ */
 export interface FailedActionResult {
   success: false
   message: string
 }
-
-export type ActionResult = Promise<SuccessgulActionResult | FailedActionResult>
 
 /**
  * A function processing an action.
