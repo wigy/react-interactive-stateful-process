@@ -7,7 +7,7 @@ exports.FlatRenderer = exports.isContainerElement = void 0;
 const react_1 = __importDefault(require("react"));
 const Rendering_1 = require("../Rendering");
 function isContainerElement(object) {
-    return 'elements' in object;
+    return object.type === 'flat';
 }
 exports.isContainerElement = isContainerElement;
 const FlatRenderer = (props) => {

@@ -8,7 +8,7 @@ import { Element } from './index'
  */
 export interface ActiveElement<SetupType=Setup, ElementType=Element, TriggerType=Trigger> {
   readonly type: string
-  actionHandler: ActionHandler<SetupType, ElementType, TriggerType>
+  actionHandler?: ActionHandler<SetupType, ElementType, TriggerType>
   actions: Actions
   label?: string
 }
