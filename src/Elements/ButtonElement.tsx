@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
 import { ActiveElement } from './ActiveElement'
@@ -20,8 +21,7 @@ export const ButtonRenderer: Renderer = (props: RenderingProps) => {
   if (!isButtonElement(element)) {
     return <></>
   }
-  // const { t } = useTranslation()
-  const t = (s) => s // TODO: Add translation.
+  const { t } = useTranslation()
   const label = t(`label-${element.label}`)
   return <Button
       variant="outlined"

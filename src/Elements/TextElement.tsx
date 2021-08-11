@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
 import { ActiveElement } from "./ActiveElement"
@@ -23,8 +24,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
   if (!isTextElement(element)) {
     return <></>
   }
-  // const { t } = useTranslation()
-  const t = (s) => s // TODO: Add translation.
+  const { t } = useTranslation()
   const label = element.label ? element.label : t(`label-${element.name}`)
   const [value, setValue] = React.useState(element.value)
   return <TextField
