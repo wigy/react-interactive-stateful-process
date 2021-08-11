@@ -1,6 +1,7 @@
 import { Setup } from '../Setup';
 import { Actions, ActionHandler } from '../Actions';
 import { Trigger } from '../Triggers';
+import { Element } from './index';
 /**
  * Generic interface for all elements that can define action handlers.
  */

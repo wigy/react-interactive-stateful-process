@@ -24,6 +24,6 @@ const debugActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0,
         console.log('Element:', element);
         console.log('Values:', props.values);
     }
-    return { success: true }; // TODO: Format of response?
+    return { success: true };
 });
 exports.debugActionHandler = debugActionHandler;

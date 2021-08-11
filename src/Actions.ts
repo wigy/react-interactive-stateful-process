@@ -1,6 +1,6 @@
 import { DebugAction } from "./Actions/Debug"
 import { PostAction } from "./Actions/Post"
-import { ActiveElement } from "./Elements/ActiveElement"
+import { Element } from "./Elements/index"
 import { RenderingProps } from "./Rendering"
 import { Setup } from "./Setup"
 import { Trigger } from "./Triggers"
@@ -22,11 +22,19 @@ export interface Actions {
   [key: string]: Action | Action[]
 }
 
-export type ActionResult = Promise<any> /* TODO: What do we have here? */
+export interface SuccessgulActionResult {
+  success: true
+}
+export interface FailedActionResult {
+  success: false
+  message: string
+}
+
+export type ActionResult = Promise<SuccessgulActionResult | FailedActionResult>
 
 /**
  * A function processing an action.
  */
-export interface ActionHandler<SetupType=Setup, ElementType=ActiveElement, TriggerType=Trigger> {
+export interface ActionHandler<SetupType=Setup, ElementType=Element, TriggerType=Trigger> {
   (trigger: TriggerType, props: RenderingProps<SetupType, ElementType>): ActionResult
 }

@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Setup } from "./Setup"
 import { TriggerValues } from "./Triggers"
-
-import { Element } from "./Elements"
+import { Element } from "./Elements/index"
 import { TextRenderer } from "./Elements/TextElement"
 import { FlatRenderer } from "./Elements/FlatElement"
 import { ButtonRenderer } from "./Elements/ButtonElement"

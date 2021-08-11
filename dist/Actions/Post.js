@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postActionHandler = void 0;
+const ActiveElement_1 = require("../Elements/ActiveElement");
 /**
  * A handler doing POST request with the selected all all values to the configured URL.
  * @param trigger
@@ -18,7 +19,9 @@ exports.postActionHandler = void 0;
  */
 const postActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () {
     const { element } = props;
-    console.log('TODO: POST', props.values);
+    if (ActiveElement_1.isActiveElement(element)) {
+        console.log('TODO: POST', props.values);
+    }
     return { success: true };
 });
 exports.postActionHandler = postActionHandler;

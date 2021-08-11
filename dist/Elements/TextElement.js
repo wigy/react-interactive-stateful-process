@@ -15,8 +15,16 @@ exports.isTextElement = isTextElement;
  */
 const TextRenderer = (props) => {
     const { element } = props;
-    return react_1.default.createElement(core_1.TextField, { label: "label", value: "value", error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
-            console.log('TODO: Handle actions');
+    if (!isTextElement(element)) {
+        return react_1.default.createElement(react_1.default.Fragment, null);
+    }
+    // const { t } = useTranslation()
+    const t = (s) => s; // TODO: Add translation.
+    const label = element.label ? element.label : t(`label-${element.name}`);
+    const [value, setValue] = react_1.default.useState(element.value);
+    return react_1.default.createElement(core_1.TextField, { label: label, value: value, error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
+            setValue(e.target.value);
+            element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
         }, onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null, onFocus: () => null });
 };
 exports.TextRenderer = TextRenderer;

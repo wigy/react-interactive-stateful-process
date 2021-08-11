@@ -1,4 +1,5 @@
 import { ActionHandler } from '../Actions'
+import { isActiveElement } from '../Elements/ActiveElement'
 import { RenderingProps } from '../Rendering'
 import { Trigger } from '../Triggers'
 
@@ -17,6 +18,8 @@ import { Trigger } from '../Triggers'
  */
 export const postActionHandler: ActionHandler = async (trigger: Trigger, props: RenderingProps) => {
   const { element } = props
-  console.log('TODO: POST', props.values)
+  if (isActiveElement(element)) {
+    console.log('TODO: POST', props.values)
+  }
   return { success: true }
 }

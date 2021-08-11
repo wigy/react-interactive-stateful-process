@@ -23,5 +23,5 @@ export const debugActionHandler: ActionHandler = async (trigger: Trigger, props:
     console.log('Element:', element)
     console.log('Values:', props.values)
   }
-  return { success: true } // TODO: Format of response?
+  return { success: true }
 }

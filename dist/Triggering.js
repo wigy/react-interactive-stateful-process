@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TriggerEngine = void 0;
+const NamedElement_1 = require("./Elements/NamedElement");
+const ActionEngine_1 = require("./ActionEngine");
 /**
  * Registry for internal event trigger handlers.
  */
@@ -31,12 +33,16 @@ class TriggerEngine {
 exports.TriggerEngine = TriggerEngine;
 TriggerEngine.triggers = {};
 const onChangeTriggerHandler = (trigger, props) => {
-    // TODO: What do we have here? Docs.
-    return new Promise(() => 'OK');
+    const { element } = props;
+    if (NamedElement_1.isNamedElement(element)) {
+        element.value = trigger.value;
+        props.values[trigger.name] = trigger.value;
+        return ActionEngine_1.ActionEngine.handle(trigger, props);
+    }
+    return ActionEngine_1.ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`);
 };
 TriggerEngine.register('onChange', onChangeTriggerHandler);
 const passThroughTriggerHandler = (trigger, props) => {
-    // TODO: What do we have here? Docs.
-    return new Promise(() => 'OK');
+    return ActionEngine_1.ActionEngine.handle(trigger, props);
 };
 TriggerEngine.register('onClick', passThroughTriggerHandler);

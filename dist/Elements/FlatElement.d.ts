@@ -1,5 +1,5 @@
 import { Renderer } from "../Rendering";
-import { ContainerElement } from '../Elements';
+import { ContainerElement } from './ContainerElement';
 /**
  * A simple element container rendering each contained element one by one in DIV.
  */

@@ -1,6 +1,8 @@
 import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger } from "./Triggers"
 import { RenderingProps } from "./Rendering"
 import { ActionResult } from "./Actions"
+import { isNamedElement } from "./Elements/NamedElement"
+import { ActionEngine } from "./ActionEngine"
 
 /**
  * Registry for internal event trigger handlers.
@@ -24,13 +26,17 @@ import { ActionResult } from "./Actions"
 }
 
 const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
-  // TODO: What do we have here? Docs.
-  return new Promise(() => 'OK')
+  const { element } = props
+  if (isNamedElement(element)) {
+    element.value = trigger.value
+    props.values[trigger.name] = trigger.value
+    return ActionEngine.handle(trigger, props)
+  }
+  return ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`)
 }
 TriggerEngine.register('onChange', onChangeTriggerHandler)
 
 const passThroughTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
-  // TODO: What do we have here? Docs.
-  return new Promise(() => 'OK')
+  return ActionEngine.handle(trigger, props)
 }
 TriggerEngine.register('onClick', passThroughTriggerHandler)

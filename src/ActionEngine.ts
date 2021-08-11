@@ -4,6 +4,7 @@ import { Setup } from './Setup'
 import { Trigger } from './Triggers'
 import { Element } from './Elements/index'
 import { debugActionHandler } from './Actions/Debug'
+import { postActionHandler } from './Actions/Post'
 
 /**
  * Registry and call API for action handlers.
@@ -83,3 +84,4 @@ export class ActionEngine {
 }
 
 ActionEngine.register('debug', debugActionHandler)
+ActionEngine.register('post', postActionHandler)

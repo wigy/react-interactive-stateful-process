@@ -1,6 +1,7 @@
 import React from 'react'
 import { Renderer, RenderingEngine, RenderingProps } from "../Rendering"
-import { Element, ContainerElement } from '../Elements'
+import { Element } from './index'
+import { ContainerElement } from './ContainerElement'
 
 /**
  * A simple element container rendering each contained element one by one in DIV.

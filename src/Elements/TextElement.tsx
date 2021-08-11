@@ -2,11 +2,12 @@ import React from 'react'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
 import { ActiveElement } from "./ActiveElement"
+import { NamedElement } from "./NamedElement"
 
 /**
  * A text editing element.
  */
- export interface TextElement extends ActiveElement {
+ export interface TextElement extends ActiveElement, NamedElement {
   readonly type: string
 }
 
@@ -19,14 +20,22 @@ export function isTextElement(object: any): object is TextElement {
  */
 export const TextRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
+  if (!isTextElement(element)) {
+    return <></>
+  }
+  // const { t } = useTranslation()
+  const t = (s) => s // TODO: Add translation.
+  const label = element.label ? element.label : t(`label-${element.name}`)
+  const [value, setValue] = React.useState(element.value)
   return <TextField
-    label="label"
-    value="value"
+    label={label}
+    value={value}
     error={false}
     autoFocus
     fullWidth
     onChange={(e) => {
-      console.log('TODO: Handle actions')
+      setValue(e.target.value)
+      element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
     }}
     onKeyPress={() => null}
     onKeyUp={() => null}

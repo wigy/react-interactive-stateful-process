@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Setup } from "./Setup";
 import { TriggerValues } from "./Triggers";
-import { Element } from "./Elements";
+import { Element } from "./Elements/index";
 /**
  * Readability helper to specify that a string is being used as a renderer name.
  */
