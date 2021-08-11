@@ -1,6 +1,6 @@
 import { TriggerValue } from "../Triggers";
 /**
- * An element that has a name and value.
+ * An element that has a name and a value.
  */
 export interface NamedElement {
     readonly type: string;
