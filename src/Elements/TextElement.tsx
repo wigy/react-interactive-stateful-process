@@ -35,7 +35,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
     fullWidth
     onChange={(e) => {
       setValue(e.target.value)
-      element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
+      if (element.actionHandler) element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
     }}
     onKeyPress={() => null}
     onKeyUp={() => null}

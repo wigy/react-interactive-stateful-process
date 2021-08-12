@@ -30,7 +30,7 @@
     "build": "rm -rf dist/* && tsc && yarn run doc",
     "lint": "echo \"\\033[0;31mNo linting system for react interactive stateful process yet.\\033[0m\"",
     "test": "echo \"\\033[0;31mNo testing system for react interactive stateful process yet.\\033[0m\"",
-    "test:ci": "yarn run lint && yarn test"
+    "test:ci": "yarn install && yarn run lint && yarn test"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -59,6 +59,8 @@
   },
   "peerDependencies": {
     "@material-ui/core": "^4.12.1",
+    "mobx": "^6.3.0",
+    "mobx-react": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.8.15"

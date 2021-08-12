@@ -1,3 +1,5 @@
+import React from 'react'
+import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './Rendering'
 import { Element } from './Elements/index'
 import { isNamedElement } from './Elements/NamedElement'
@@ -10,7 +12,7 @@ import { TriggerEngine } from './Triggering'
  * @param props
  * @returns Completely controlled display section.
  */
- export const RISP: React.FC<RenderingProps> = /* observer */((props: RenderingProps) => {
+ export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) => {
 
   const { values, element } = props
 

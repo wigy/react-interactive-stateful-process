@@ -54,7 +54,7 @@ TriggerEngine.register('onChange', onChangeTriggerHandler)
  * @param props
  * @returns
  */
-const passThroughTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
+const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: RenderingProps) => {
   return ActionEngine.handle(trigger, props)
 }
 TriggerEngine.register('onClick', passThroughTriggerHandler)
