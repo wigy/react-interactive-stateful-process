@@ -97,7 +97,6 @@ const App = observer(() => {
     ]
   }
 
-  // TODO: Observables do not cause change in TextElement.
   return (
     <Paper style={{ padding: '1rem' }} elevation={4}>
       App is Up!
