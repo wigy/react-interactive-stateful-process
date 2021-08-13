@@ -31,5 +31,5 @@ export declare class ActionEngine {
      * an array of actions, all of them are executed. If any of them fails, the
      * result is failure. Otherwise success.
      */
-    static handle(trigger: Trigger, props: RenderingProps): ActionResult;
+    static handle<TriggerType extends Trigger = Trigger>(trigger: TriggerType, props: RenderingProps): ActionResult;
 }

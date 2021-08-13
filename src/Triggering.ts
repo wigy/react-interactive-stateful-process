@@ -17,10 +17,11 @@ import { ActionEngine } from "./ActionEngine"
    * @param handler Function executing trigger handling.
    * @returns
    */
-  static register(name: TriggerName, handler: TriggerHandler): TriggerHandler | null {
+  static register<TriggerType=Trigger>(name: TriggerName, handler: TriggerHandler<TriggerType>): TriggerHandler<TriggerType> | null {
     const old = TriggerEngine.triggers[name] || null
-    TriggerEngine.triggers[name] = handler
-    return old
+    // Not too nice but need to force custom types into registry as well.
+    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Trigger>
+    return old as unknown as TriggerHandler<TriggerType>
   }
 
   static async handle(trigger: Trigger, props: RenderingProps): ActionResult {

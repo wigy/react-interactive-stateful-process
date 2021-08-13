@@ -24,6 +24,7 @@ class TriggerEngine {
      */
     static register(name, handler) {
         const old = TriggerEngine.triggers[name] || null;
+        // Not too nice but need to force custom types into registry as well.
         TriggerEngine.triggers[name] = handler;
         return old;
     }

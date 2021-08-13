@@ -48,7 +48,7 @@ export class ActionEngine {
    * an array of actions, all of them are executed. If any of them fails, the
    * result is failure. Otherwise success.
    */
-  static async handle(trigger: Trigger, props: RenderingProps): ActionResult {
+  static async handle<TriggerType extends Trigger=Trigger>(trigger: TriggerType, props: RenderingProps): ActionResult {
     const { element } = props
     // Element has no actions defined.
     if (! ('actions' in element) || element.actions === undefined) {

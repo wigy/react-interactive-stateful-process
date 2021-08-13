@@ -12,6 +12,6 @@ export declare class TriggerEngine {
      * @param handler Function executing trigger handling.
      * @returns
      */
-    static register(name: TriggerName, handler: TriggerHandler): TriggerHandler | null;
+    static register<TriggerType = Trigger>(name: TriggerName, handler: TriggerHandler<TriggerType>): TriggerHandler<TriggerType> | null;
     static handle(trigger: Trigger, props: RenderingProps): ActionResult;
 }

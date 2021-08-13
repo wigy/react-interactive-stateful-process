@@ -6,7 +6,7 @@ import { RenderingProps } from './Rendering'
  * For example user interaction on UI component. Triggers are mapped to the
  * action handlers when used in RISP.
  */
-export type Trigger = OnChangeTrigger | OnClickTrigger
+export type Trigger = OnChangeTrigger | OnClickTrigger | { readonly type: string }
 
 /**
  * This trigger is activated, when value of an input is changed.
@@ -27,8 +27,8 @@ export interface OnClickTrigger {
 /**
  * The handler function is a function converting the trigger data to the action result.
  */
-export interface TriggerHandler {
-  (trigger: Trigger, props: RenderingProps): ActionResult
+export interface TriggerHandler<TriggerType=Trigger> {
+  (trigger: TriggerType, props: RenderingProps): ActionResult
 }
 
 /**
