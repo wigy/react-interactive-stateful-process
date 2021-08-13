@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx'
 import { ActionName, ActionResult, ActionHandler } from './Actions'
 import { RenderingProps } from './Rendering'
 import { Setup } from './Setup'
@@ -59,11 +60,15 @@ export class ActionEngine {
       return { success: true }
     }
     // Helper to run action.
-    const runAction = (action, trigger, props) => {
+    const runAction = async (action, trigger, props) => {
       if (!ActionEngine.actions[action.type]) {
         throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`)
       }
-      return ActionEngine.actions[action.type](trigger, props)
+      let ret
+      runInAction(async () => {
+        ret = await ActionEngine.actions[action.type](trigger, props)
+      })
+      return ret
     }
 
     // Find handler for the given type.

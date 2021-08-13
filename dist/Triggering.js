@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TriggerEngine = void 0;
+const mobx_1 = require("mobx");
 const NamedElement_1 = require("./Elements/NamedElement");
 const ActionEngine_1 = require("./ActionEngine");
 /**
@@ -33,7 +34,11 @@ class TriggerEngine {
             if (!TriggerEngine.triggers[trigger.type]) {
                 throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`);
             }
-            return TriggerEngine.triggers[trigger.type](trigger, props);
+            let ret;
+            mobx_1.runInAction(() => {
+                ret = TriggerEngine.triggers[trigger.type](trigger, props);
+            });
+            return ret;
         });
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { observable } from 'mobx'
+import { observable, runInAction } from 'mobx'
 import { Paper } from '@material-ui/core'
 import { RISP } from '../src/RISP';
 import { ViewElement } from '../src/Elements/ViewElement';
@@ -102,9 +102,9 @@ const App = observer(() => {
       App is Up!
       <br />
       <RISP element={element} values={values} setup={setup}/>
-      <button onClick={() => { values.a = ''; values.b = ''}}>RESET</button>
-      <button onClick={() => { values.a = 'ABCDE' }}>CHANGE A</button>
-      <button onClick={() => { values.b = 'FGHIJ' }}>CHANGE B</button>
+      <button onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</button>
+      <button onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</button>
+      <button onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</button>
     </Paper>
   );
 })

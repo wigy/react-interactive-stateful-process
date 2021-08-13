@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx'
 import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger } from "./Triggers"
 import { RenderingProps } from "./Rendering"
 import { ActionResult } from "./Actions"
@@ -28,7 +29,11 @@ import { ActionEngine } from "./ActionEngine"
     if (!TriggerEngine.triggers[trigger.type]) {
       throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`)
     }
-    return TriggerEngine.triggers[trigger.type](trigger, props)
+    let ret
+    runInAction(() => {
+      ret = TriggerEngine.triggers[trigger.type](trigger, props)
+    })
+    return ret
   }
 }
 

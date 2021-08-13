@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActionEngine = void 0;
+const mobx_1 = require("mobx");
 const Debug_1 = require("./Actions/Debug");
 const Post_1 = require("./Actions/Post");
 /**
@@ -63,12 +64,16 @@ class ActionEngine {
                 return { success: true };
             }
             // Helper to run action.
-            const runAction = (action, trigger, props) => {
+            const runAction = (action, trigger, props) => __awaiter(this, void 0, void 0, function* () {
                 if (!ActionEngine.actions[action.type]) {
                     throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`);
                 }
-                return ActionEngine.actions[action.type](trigger, props);
-            };
+                let ret;
+                mobx_1.runInAction(() => __awaiter(this, void 0, void 0, function* () {
+                    ret = yield ActionEngine.actions[action.type](trigger, props);
+                }));
+                return ret;
+            });
             // Find handler for the given type.
             const action = element.actions[trigger.type];
             if (Array.isArray(action)) {

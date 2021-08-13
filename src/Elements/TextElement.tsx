@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
 import { ActiveElement } from "./ActiveElement"
-import { isNamedElement, NamedElement } from "./NamedElement"
+import { NamedElement } from "./NamedElement"
 
 /**
  * A text editing element.
