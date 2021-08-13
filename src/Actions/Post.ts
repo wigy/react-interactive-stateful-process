@@ -17,8 +17,11 @@ import { Trigger } from '../Triggers'
  * @returns
  */
 export const postActionHandler: ActionHandler = async (trigger: Trigger, props: RenderingProps) => {
-  const { element } = props
+  const { element, setup } = props
   if (isActiveElement(element)) {
+    if (!setup.postUrl) {
+      throw new Error(`Cannot use POST action when setup does not define 'postUrl'.`)
+    }
     console.log('TODO: POST', props.values)
   }
   return { success: true }

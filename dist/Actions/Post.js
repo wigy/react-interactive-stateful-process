@@ -18,8 +18,11 @@ const ActiveElement_1 = require("../Elements/ActiveElement");
  * @returns
  */
 const postActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () {
-    const { element } = props;
+    const { element, setup } = props;
     if (ActiveElement_1.isActiveElement(element)) {
+        if (!setup.postUrl) {
+            throw new Error(`Cannot use POST action when setup does not define 'postUrl'.`);
+        }
         console.log('TODO: POST', props.values);
     }
     return { success: true };

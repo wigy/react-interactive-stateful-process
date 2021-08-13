@@ -1,4 +1,5 @@
 import React from 'react';
+import { observable } from 'mobx'
 import { Paper } from '@material-ui/core'
 import { RISP } from '../src/RISP';
 import { ViewElement } from '../src/Elements/ViewElement';
@@ -10,6 +11,7 @@ import { Trigger, TriggerHandler, TriggerValues } from '../src/Triggers';
 import { ActionEngine } from '../src/ActionEngine';
 import { ActionHandler } from '../src/Actions';
 import { Element } from '../src/Elements/index';
+import { observer } from 'mobx-react';
 
 // Example of custom triggers, elements and action handlers.
 // Setup:
@@ -54,16 +56,16 @@ const customActionHandler: ActionHandler<CustomSetup, CustomElement> = async (tr
 }
 ActionEngine.register('custom', customActionHandler)
 
-const App = () => {
+const App = observer(() => {
 
   const setup: CustomSetup = {
     sample: 999
   }
 
-  const values: TriggerValues = {
-    a: '999',
+  let values: TriggerValues = observable({
+    a: '',
     b: ''
-  }
+  })
 
   // TODO: Cannot define yet element type smoothly here. Need to reorganize types a bit.
   const element = {
@@ -95,13 +97,17 @@ const App = () => {
     ]
   }
 
+  // TODO: Observables do not cause change in TextElement.
   return (
     <Paper style={{ padding: '1rem' }} elevation={4}>
       App is Up!
       <br />
       <RISP element={element} values={values} setup={setup}/>
+      <button onClick={() => { values.a = ''; values.b = ''}}>RESET</button>
+      <button onClick={() => { values.a = 'ABCDE' }}>CHANGE A</button>
+      <button onClick={() => { values.b = 'FGHIJ' }}>CHANGE B</button>
     </Paper>
   );
-}
+})
 
 export default App;
