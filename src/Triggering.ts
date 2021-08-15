@@ -4,6 +4,7 @@ import { RenderingProps } from "./Rendering"
 import { Action, ActionResult } from "./Actions"
 import { isNamedElement } from "./Elements/NamedElement"
 import { ActionEngine } from "./ActionEngine"
+import { isActiveElement } from './Elements/ActiveElement'
 
 /**
  * Registry for internal event trigger handlers.
@@ -18,11 +19,11 @@ import { ActionEngine } from "./ActionEngine"
    * @param handler Function executing trigger handling.
    * @returns
    */
-  static register<TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<TriggerType, ActionType>): TriggerHandler<TriggerType, ActionType> | null {
+  static register<TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<TriggerType>): TriggerHandler<TriggerType> | null {
     const old = TriggerEngine.triggers[name] || null
     // Not too nice but need to force custom types into registry as well.
     TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Trigger>
-    return old as unknown as TriggerHandler<TriggerType, ActionType>
+    return old as unknown as TriggerHandler<TriggerType>
   }
 
   /**
@@ -32,23 +33,13 @@ import { ActionEngine } from "./ActionEngine"
    * @param props
    * @returns
    */
-  static async handle(trigger: Trigger, action: Action | Action[] | undefined, props: RenderingProps): ActionResult {
+  static async handle(trigger: Trigger, props: RenderingProps): ActionResult {
     if (!TriggerEngine.triggers[trigger.type]) {
       throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`)
     }
-    if (!action) {
-      return ActionEngine.fail('No action defined.')
-    }
     let ret
-    runInAction(async () => {
-      if (Array.isArray(action)) {
-        ret = []
-        for (const act of action) {
-          ret.push(await TriggerEngine.triggers[trigger.type](trigger, act, props))
-        }
-      } else {
-        ret = await TriggerEngine.triggers[trigger.type](trigger, action, props)
-      }
+    runInAction(() => {
+        ret = TriggerEngine.triggers[trigger.type](trigger, props)
     })
     return ret
   }
@@ -60,12 +51,14 @@ import { ActionEngine } from "./ActionEngine"
  * @param props
  * @returns
  */
-const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, action: Action, props: RenderingProps) => {
+const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   const { element } = props
   if (isNamedElement(element)) {
     element.value = trigger.value
     props.values[trigger.name] = trigger.value
-    return ActionEngine.handle(action, props)
+    if (isActiveElement(element)) {
+      return ActionEngine.handle(element.actions[trigger.type], props)
+    }
   }
   return ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`)
 }
@@ -77,7 +70,11 @@ TriggerEngine.register('onChange', onChangeTriggerHandler)
  * @param props
  * @returns
  */
-const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, action: Action, props: RenderingProps) => {
-  return ActionEngine.handle(action, props)
+const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: RenderingProps) => {
+  const { element } = props
+  if (isActiveElement(element)) {
+    return ActionEngine.handle(element.actions[trigger.type], props)
+  }
+  return ActionEngine.success()
 }
 TriggerEngine.register('onClick', passThroughTriggerHandler)

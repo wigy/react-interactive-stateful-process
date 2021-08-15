@@ -31,10 +31,20 @@ export class ActionEngine {
    * @param message Reason for the failure.
    * @returns A result object.
    */
-  static async fail(message: string): ActionResult {
+   static async fail(message: string): ActionResult {
     return {
       success: false,
       message
+    }
+  }
+
+  /**
+   * Return success result from action.
+   * @returns
+   */
+  static async success(): ActionResult {
+    return {
+      success: true
     }
   }
 
@@ -48,7 +58,7 @@ export class ActionEngine {
    * an array of actions, all of them are executed. If any of them fails, the
    * result is failure. Otherwise success.
    */
-  static async handle<ActionType extends Action=Action>(action: ActionType, props: RenderingProps): ActionResult {
+  static async handle<ActionType extends Action=Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
     // Helper to run action.
     const runAction = async (action, props) => {
       if (!ActionEngine.actions[action.type]) {

@@ -13,6 +13,7 @@ exports.TriggerEngine = void 0;
 const mobx_1 = require("mobx");
 const NamedElement_1 = require("./Elements/NamedElement");
 const ActionEngine_1 = require("./ActionEngine");
+const ActiveElement_1 = require("./Elements/ActiveElement");
 /**
  * Registry for internal event trigger handlers.
  */
@@ -36,26 +37,15 @@ class TriggerEngine {
      * @param props
      * @returns
      */
-    static handle(trigger, action, props) {
+    static handle(trigger, props) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!TriggerEngine.triggers[trigger.type]) {
                 throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`);
             }
-            if (!action) {
-                return ActionEngine_1.ActionEngine.fail('No action defined.');
-            }
             let ret;
-            mobx_1.runInAction(() => __awaiter(this, void 0, void 0, function* () {
-                if (Array.isArray(action)) {
-                    ret = [];
-                    for (const act of action) {
-                        ret.push(yield TriggerEngine.triggers[trigger.type](trigger, act, props));
-                    }
-                }
-                else {
-                    ret = yield TriggerEngine.triggers[trigger.type](trigger, action, props);
-                }
-            }));
+            mobx_1.runInAction(() => {
+                ret = TriggerEngine.triggers[trigger.type](trigger, props);
+            });
             return ret;
         });
     }
@@ -68,12 +58,14 @@ TriggerEngine.triggers = {};
  * @param props
  * @returns
  */
-const onChangeTriggerHandler = (trigger, action, props) => {
+const onChangeTriggerHandler = (trigger, props) => {
     const { element } = props;
     if (NamedElement_1.isNamedElement(element)) {
         element.value = trigger.value;
         props.values[trigger.name] = trigger.value;
-        return ActionEngine_1.ActionEngine.handle(action, props);
+        if (ActiveElement_1.isActiveElement(element)) {
+            return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+        }
     }
     return ActionEngine_1.ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`);
 };
@@ -84,7 +76,11 @@ TriggerEngine.register('onChange', onChangeTriggerHandler);
  * @param props
  * @returns
  */
-const passThroughTriggerHandler = (trigger, action, props) => {
-    return ActionEngine_1.ActionEngine.handle(action, props);
+const passThroughTriggerHandler = (trigger, props) => {
+    const { element } = props;
+    if (ActiveElement_1.isActiveElement(element)) {
+        return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+    }
+    return ActionEngine_1.ActionEngine.success();
 };
 TriggerEngine.register('onClick', passThroughTriggerHandler);

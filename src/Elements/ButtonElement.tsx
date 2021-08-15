@@ -25,7 +25,7 @@ export const ButtonRenderer: Renderer = (props: RenderingProps) => {
   const label = t(`label-${element.label}`)
   return <Button
       variant="outlined"
-      onClick={() => { element.triggerHandler({ type: 'onClick' }, element.actions.onClick, props)} }
+      onClick={() => { element.triggerHandler({ type: 'onClick' }, props)} }
     >
       {label}
     </Button>

@@ -40,7 +40,7 @@ exports.RISP = mobx_react_1.observer((props) => {
         }
         // Connect action handlers.
         if (ActiveElement_1.isActiveElement(element)) {
-            element.triggerHandler = (trigger, action, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, action, props); });
+            element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
         }
         if (ContainerElement_1.isContainerElement(element)) {
             for (const e of element.elements) {

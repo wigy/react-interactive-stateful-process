@@ -43,6 +43,17 @@ class ActionEngine {
         });
     }
     /**
+     * Return success result from action.
+     * @returns
+     */
+    static success() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return {
+                success: true
+            };
+        });
+    }
+    /**
      * Processor for a triggered action on the given element.
      * @param trigger
      * @param props

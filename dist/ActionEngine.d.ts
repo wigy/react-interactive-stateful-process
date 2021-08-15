@@ -21,6 +21,11 @@ export declare class ActionEngine {
      */
     static fail(message: string): ActionResult;
     /**
+     * Return success result from action.
+     * @returns
+     */
+    static success(): ActionResult;
+    /**
      * Processor for a triggered action on the given element.
      * @param trigger
      * @param props
@@ -30,5 +35,5 @@ export declare class ActionEngine {
      * an array of actions, all of them are executed. If any of them fails, the
      * result is failure. Otherwise success.
      */
-    static handle<ActionType extends Action = Action>(action: ActionType, props: RenderingProps): ActionResult;
+    static handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult;
 }
