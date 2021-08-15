@@ -35,7 +35,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
     autoFocus
     fullWidth
     onChange={(e) => {
-      if (element.actionHandler) element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
+      element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, element.actions.onChange, props)
     }}
     onKeyPress={() => null}
     onKeyUp={() => null}

@@ -1,8 +1,7 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler } from './Actions'
+import { ActionName, ActionResult, ActionHandler, Action } from './Actions'
 import { RenderingProps } from './Rendering'
 import { Setup } from './Setup'
-import { Trigger } from './Triggers'
 import { Element } from './Elements/index'
 import { debugActionHandler } from './Actions/Debug'
 import { postActionHandler } from './Actions/Post'
@@ -49,41 +48,31 @@ export class ActionEngine {
    * an array of actions, all of them are executed. If any of them fails, the
    * result is failure. Otherwise success.
    */
-  static async handle<TriggerType extends Trigger=Trigger>(trigger: TriggerType, props: RenderingProps): ActionResult {
-    const { element } = props
-    // Element has no actions defined.
-    if (! ('actions' in element) || element.actions === undefined) {
-      return { success: true }
-    }
-    // Element has no action handler for the triggered event.
-    if (!element.actions[trigger.type]) {
-      return { success: true }
-    }
+  static async handle<ActionType extends Action=Action>(action: ActionType, props: RenderingProps): ActionResult {
     // Helper to run action.
-    const runAction = async (action, trigger, props) => {
+    const runAction = async (action, props) => {
       if (!ActionEngine.actions[action.type]) {
         throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`)
       }
       let ret
       runInAction(async () => {
-        ret = await ActionEngine.actions[action.type](trigger, props)
+        ret = await ActionEngine.actions[action.type](action, props)
       })
       return ret
     }
 
     // Find handler for the given type.
-    const action = element.actions[trigger.type]
     if (Array.isArray(action)) {
       const messages: string[] = []
       for ( let i = 0; i < action.length; i++) {
-        const result = await runAction(action[i], trigger, props)
+        const result = await runAction(action[i], props)
         if (!result.success) {
           messages.push(result.message)
         }
       }
       return messages.length ? { success: false, message: messages.join('\n') } : { success: true }
     } else {
-      return runAction(action, trigger, props)
+      return runAction(action, props)
     }
   }
 }

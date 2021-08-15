@@ -17,12 +17,12 @@ const ActiveElement_1 = require("../Elements/ActiveElement");
  * @param props
  * @returns
  */
-const debugActionHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () {
-    const { element } = props;
+const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
+    const { element, values } = props;
     if (ActiveElement_1.isActiveElement(element)) {
-        console.log('Action:', element.actions[trigger.type]);
+        console.log('Action:', action);
         console.log('Element:', element);
-        console.log('Values:', props.values);
+        console.log('Values:', values);
     }
     return { success: true };
 });

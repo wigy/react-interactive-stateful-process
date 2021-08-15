@@ -1,7 +1,6 @@
-import { ActionHandler } from '../Actions'
+import { Action, ActionHandler } from '../Actions'
 import { isActiveElement } from '../Elements/ActiveElement'
 import { RenderingProps } from '../Rendering'
-import { Trigger } from '../Triggers'
 
 /**
  * Payload of `post` action.
@@ -16,13 +15,13 @@ import { Trigger } from '../Triggers'
  * @param props
  * @returns
  */
-export const postActionHandler: ActionHandler = async (trigger: Trigger, props: RenderingProps) => {
-  const { element, setup } = props
+export const postActionHandler: ActionHandler = async (action: Action, props: RenderingProps) => {
+  const { element, setup, values } = props
   if (isActiveElement(element)) {
     if (!setup.postUrl) {
       throw new Error(`Cannot use POST action when setup does not define 'postUrl'.`)
     }
-    console.log('TODO: POST', props.values)
+    console.log('TODO: POST', values)
   }
   return { success: true }
 }

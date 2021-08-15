@@ -1,13 +1,14 @@
 import { Setup } from '../Setup';
-import { Actions, ActionHandler } from '../Actions';
-import { Trigger } from '../Triggers';
+import { Actions } from '../Actions';
 import { Element } from './index';
+import { TriggerHandler, Trigger } from '../Triggers';
 /**
  * Generic interface for all elements that can define action handlers.
+ * TODO: Remove unused template types.
  */
 export interface ActiveElement<SetupType = Setup, ElementType = Element, TriggerType = Trigger> {
     readonly type: string;
-    actionHandler?: ActionHandler<SetupType, ElementType, TriggerType>;
+    triggerHandler: TriggerHandler<TriggerType>;
     actions: Actions;
     label?: string;
 }

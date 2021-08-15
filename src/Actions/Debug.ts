@@ -1,6 +1,5 @@
-import { ActionHandler } from '../Actions'
+import { Action, ActionHandler } from '../Actions'
 import { RenderingProps } from '../Rendering'
-import { Trigger } from '../Triggers'
 import { isActiveElement } from '../Elements/ActiveElement'
 
 /**
@@ -16,12 +15,12 @@ export interface DebugAction {
  * @param props
  * @returns
  */
-export const debugActionHandler: ActionHandler = async (trigger: Trigger, props: RenderingProps) => {
-  const { element } = props
+export const debugActionHandler: ActionHandler = async (action: Action, props: RenderingProps) => {
+  const { element, values } = props
   if (isActiveElement(element)) {
-    console.log('Action:', element.actions[trigger.type])
+    console.log('Action:', action)
     console.log('Element:', element)
-    console.log('Values:', props.values)
+    console.log('Values:', values)
   }
   return { success: true }
 }

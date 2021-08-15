@@ -18,7 +18,6 @@ const ButtonRenderer = (props) => {
     }
     const { t } = react_i18next_1.useTranslation();
     const label = t(`label-${element.label}`);
-    return react_1.default.createElement(core_1.Button, { variant: "outlined", onClick: () => { if (element.actionHandler)
-            element.actionHandler({ type: 'onClick' }, props); } }, label);
+    return react_1.default.createElement(core_1.Button, { variant: "outlined", onClick: () => { element.triggerHandler({ type: 'onClick' }, element.actions.onClick, props); } }, label);
 };
 exports.ButtonRenderer = ButtonRenderer;

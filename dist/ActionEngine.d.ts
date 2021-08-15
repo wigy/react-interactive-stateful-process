@@ -1,7 +1,6 @@
-import { ActionName, ActionResult, ActionHandler } from './Actions';
+import { ActionName, ActionResult, ActionHandler, Action } from './Actions';
 import { RenderingProps } from './Rendering';
 import { Setup } from './Setup';
-import { Trigger } from './Triggers';
 import { Element } from './Elements/index';
 /**
  * Registry and call API for action handlers.
@@ -31,5 +30,5 @@ export declare class ActionEngine {
      * an array of actions, all of them are executed. If any of them fails, the
      * result is failure. Otherwise success.
      */
-    static handle<TriggerType extends Trigger = Trigger>(trigger: TriggerType, props: RenderingProps): ActionResult;
+    static handle<ActionType extends Action = Action>(action: ActionType, props: RenderingProps): ActionResult;
 }

@@ -1,4 +1,4 @@
-import { ActionResult } from './Actions';
+import { Action, ActionResult } from './Actions';
 import { RenderingProps } from './Rendering';
 /**
  * A trigger is a data packet initiated by some activity in the application.
@@ -24,9 +24,10 @@ export interface OnClickTrigger {
 }
 /**
  * The handler function is a function converting the trigger data to the action result.
+ * TODO: action parameter can be deducted from props.element.actions[trigger.type]
  */
-export interface TriggerHandler<TriggerType = Trigger> {
-    (trigger: TriggerType, props: RenderingProps): ActionResult;
+export interface TriggerHandler<TriggerType = Trigger, ActionType = Action> {
+    (trigger: TriggerType, action: ActionType | ActionType[] | undefined, props: RenderingProps): ActionResult;
 }
 /**
  * A single payload that the trigger can have, i.e. tigger data.

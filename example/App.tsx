@@ -9,7 +9,7 @@ import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering';
 import { TriggerEngine } from '../src/Triggering';
 import { Trigger, TriggerHandler, TriggerValues } from '../src/Triggers';
 import { ActionEngine } from '../src/ActionEngine';
-import { ActionHandler } from '../src/Actions';
+import { Action, ActionHandler } from '../src/Actions';
 import { Element } from '../src/Elements/index';
 import { observer } from 'mobx-react';
 
@@ -22,7 +22,7 @@ export interface OnCustomTrigger {
   readonly type: 'onCustom'
   message: string
 }
-const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
+const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCustomTrigger, action: Action | Action[] | undefined, props: RenderingProps) => {
   console.log('We activated onCustom trigger!')
   // Nothing to do. Just pass it to action handler.
   return ActionEngine.handle(trigger, props)
@@ -42,14 +42,14 @@ const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingPr
   const { element, values } = props
   return <>
     <br/>
-    <button onClick={() => { if (element.actionHandler) element.actionHandler({ type: 'onCustom', message: 'We do it right!' }, props)}}>Custom</button><br/>
+    <button onClick={() => { element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, element.actions.onClick, props)}}>Custom</button><br/>
     Values: <pre>{JSON.stringify(values, null, 2)}</pre>
   </>
 }
 RenderingEngine.register('custom', CustomRenderer)
 
 // Action:
-const customActionHandler: ActionHandler<CustomSetup, CustomElement> = async (trigger: Trigger, props: RenderingProps<CustomSetup, CustomElement>) => {
+const customActionHandler: ActionHandler<CustomSetup, CustomElement> = async (action: Action, props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element } = props
   console.log('Custom action handled with data', element.data)
   return { success: true }

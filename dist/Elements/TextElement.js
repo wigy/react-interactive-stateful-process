@@ -22,8 +22,7 @@ const TextRenderer = (props) => {
     const { t } = react_i18next_1.useTranslation();
     const label = element.label ? element.label : t(`label-${element.name}`);
     return react_1.default.createElement(core_1.TextField, { label: label, value: element.value, error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
-            if (element.actionHandler)
-                element.actionHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
+            element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, element.actions.onChange, props);
         }, onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null, onFocus: () => null });
 };
 exports.TextRenderer = TextRenderer;

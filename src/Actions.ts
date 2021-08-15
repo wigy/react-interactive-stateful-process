@@ -3,7 +3,6 @@ import { PostAction } from "./Actions/Post"
 import { Element } from "./Elements/index"
 import { RenderingProps } from "./Rendering"
 import { Setup } from "./Setup"
-import { Trigger } from "./Triggers"
 
 /**
  * Readability helper to specify that a string is being used as a trigger name.
@@ -45,6 +44,6 @@ export interface FailedActionResult {
 /**
  * A function processing an action.
  */
-export interface ActionHandler<SetupType=Setup, ElementType=Element, TriggerType=Trigger> {
-  (trigger: TriggerType, props: RenderingProps<SetupType, ElementType>): ActionResult
+export interface ActionHandler<SetupType=Setup, ElementType=Element, ActionType=Action> {
+  (action: ActionType, props: RenderingProps<SetupType, ElementType>): ActionResult
 }

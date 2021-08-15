@@ -28,7 +28,7 @@ import { TriggerEngine } from './Triggering'
       }
       // Connect action handlers.
       if (isActiveElement(element)) {
-        element.actionHandler = async (trigger, props) => TriggerEngine.handle(trigger, props)
+        element.triggerHandler = async (trigger, action, props) => TriggerEngine.handle(trigger, action, props)
       }
 
       if (isContainerElement(element)) {

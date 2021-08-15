@@ -52,34 +52,24 @@ class ActionEngine {
      * an array of actions, all of them are executed. If any of them fails, the
      * result is failure. Otherwise success.
      */
-    static handle(trigger, props) {
+    static handle(action, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { element } = props;
-            // Element has no actions defined.
-            if (!('actions' in element) || element.actions === undefined) {
-                return { success: true };
-            }
-            // Element has no action handler for the triggered event.
-            if (!element.actions[trigger.type]) {
-                return { success: true };
-            }
             // Helper to run action.
-            const runAction = (action, trigger, props) => __awaiter(this, void 0, void 0, function* () {
+            const runAction = (action, props) => __awaiter(this, void 0, void 0, function* () {
                 if (!ActionEngine.actions[action.type]) {
                     throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`);
                 }
                 let ret;
                 mobx_1.runInAction(() => __awaiter(this, void 0, void 0, function* () {
-                    ret = yield ActionEngine.actions[action.type](trigger, props);
+                    ret = yield ActionEngine.actions[action.type](action, props);
                 }));
                 return ret;
             });
             // Find handler for the given type.
-            const action = element.actions[trigger.type];
             if (Array.isArray(action)) {
                 const messages = [];
                 for (let i = 0; i < action.length; i++) {
-                    const result = yield runAction(action[i], trigger, props);
+                    const result = yield runAction(action[i], props);
                     if (!result.success) {
                         messages.push(result.message);
                     }
@@ -87,7 +77,7 @@ class ActionEngine {
                 return messages.length ? { success: false, message: messages.join('\n') } : { success: true };
             }
             else {
-                return runAction(action, trigger, props);
+                return runAction(action, props);
             }
         });
     }
