@@ -71,7 +71,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Generic interface for all elements that can define action handlers.</p>
+						<p>Generic interface for all elements that can define action handlers.
+						TODO: Remove unused template types.</p>
 					</div>
 				</div>
 			</section>
@@ -112,9 +113,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Elements_ActiveElement.ActiveElement.html#actionHandler" class="tsd-kind-icon">action<wbr>Handler</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Elements_ActiveElement.ActiveElement.html#actions" class="tsd-kind-icon">actions</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Elements_ActiveElement.ActiveElement.html#label" class="tsd-kind-icon">label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Elements_ActiveElement.ActiveElement.html#triggerHandler" class="tsd-kind-icon">trigger<wbr>Handler</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="Elements_ActiveElement.ActiveElement.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
@@ -124,22 +125,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="actionHandler" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> action<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">action<wbr>Handler<span class="tsd-signature-symbol">:</span> <a href="Actions.ActionHandler.html" class="tsd-signature-type" data-tsd-kind="Interface">ActionHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SetupType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ElementType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TriggerType</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/3d3981a/src/Elements/ActiveElement.ts#L11">Elements/ActiveElement.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="actions" class="tsd-anchor"></a>
 					<h3>actions</h3>
 					<div class="tsd-signature tsd-kind-icon">actions<span class="tsd-signature-symbol">:</span> <a href="Actions.Actions-1.html" class="tsd-signature-type" data-tsd-kind="Interface">Actions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/3d3981a/src/Elements/ActiveElement.ts#L12">Elements/ActiveElement.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/71c5983/src/Elements/ActiveElement.ts#L13">Elements/ActiveElement.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +140,17 @@
 					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/3d3981a/src/Elements/ActiveElement.ts#L13">Elements/ActiveElement.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/71c5983/src/Elements/ActiveElement.ts#L14">Elements/ActiveElement.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="triggerHandler" class="tsd-anchor"></a>
+					<h3>trigger<wbr>Handler</h3>
+					<div class="tsd-signature tsd-kind-icon">trigger<wbr>Handler<span class="tsd-signature-symbol">:</span> <a href="Triggers.TriggerHandler.html" class="tsd-signature-type" data-tsd-kind="Interface">TriggerHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TriggerType</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/71c5983/src/Elements/ActiveElement.ts#L12">Elements/ActiveElement.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -159,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/3d3981a/src/Elements/ActiveElement.ts#L10">Elements/ActiveElement.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/71c5983/src/Elements/ActiveElement.ts#L11">Elements/ActiveElement.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,13 +239,13 @@
 						<a href="Elements_ActiveElement.ActiveElement.html" class="tsd-kind-icon">Active<wbr>Element</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="Elements_ActiveElement.ActiveElement.html#actionHandler" class="tsd-kind-icon">action<wbr>Handler</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="Elements_ActiveElement.ActiveElement.html#actions" class="tsd-kind-icon">actions</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="Elements_ActiveElement.ActiveElement.html#label" class="tsd-kind-icon">label</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="Elements_ActiveElement.ActiveElement.html#triggerHandler" class="tsd-kind-icon">trigger<wbr>Handler</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="Elements_ActiveElement.ActiveElement.html#type" class="tsd-kind-icon">type</a>
