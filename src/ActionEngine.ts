@@ -19,7 +19,7 @@ export class ActionEngine {
    * @param handler
    * @returns The old registered handler if there was any.
    */
-  static register<SetupType=Setup, ElementType=Element>(name: ActionName, handler: ActionHandler<SetupType, ElementType>): ActionHandler | null {
+  static register<SetupType=Setup, ElementType=Element, ActionType=Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null {
     const old = ActionEngine.actions[name] || null
     // Not too nice but need to force custom types into registry as well.
     ActionEngine.actions[name] = handler as unknown as ActionHandler

@@ -13,7 +13,7 @@ export declare class ActionEngine {
      * @param handler
      * @returns The old registered handler if there was any.
      */
-    static register<SetupType = Setup, ElementType = Element>(name: ActionName, handler: ActionHandler<SetupType, ElementType>): ActionHandler | null;
+    static register<SetupType = Setup, ElementType = Element, ActionType = Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null;
     /**
      * Construct a result indicating a failure in action execution.
      * @param message Reason for the failure.
