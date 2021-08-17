@@ -27,7 +27,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
 
   const { t } = useTranslation()
   const label = element.label ? element.label : t(`label-${element.name}`)
-  const [value, setValue] = React.useState(element.value)
+  const [value, setValue] = React.useState(props.values[element.name] || '')
 
   return <TextField
     label={label}
