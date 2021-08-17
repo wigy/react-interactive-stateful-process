@@ -27,14 +27,16 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
 
   const { t } = useTranslation()
   const label = element.label ? element.label : t(`label-${element.name}`)
+  const [value, setValue] = React.useState(element.value)
 
   return <TextField
     label={label}
-    value={element.value}
+    value={value}
     error={false}
     autoFocus
     fullWidth
     onChange={(e) => {
+      setValue(e.target.value)
       element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
     }}
     onKeyPress={() => null}

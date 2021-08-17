@@ -3,7 +3,7 @@ import { observable, runInAction } from 'mobx'
 import { Paper } from '@material-ui/core'
 import { RISP } from '../src/RISP';
 import { ViewElement } from '../src/Elements/ViewElement';
-import { ActiveElement } from '../src/Elements/ActiveElement';
+import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement';
 import { Setup } from '../src/Setup';
 import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering';
 import { TriggerEngine } from '../src/Triggering';
@@ -22,10 +22,13 @@ export interface OnCustomTrigger {
   readonly type: 'onCustom'
   message: string
 }
-const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCustomTrigger, action: Action | Action[] | undefined, props: RenderingProps) => {
+const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
   console.log('We activated onCustom trigger!')
   // Nothing to do. Just pass it to action handler.
-  return ActionEngine.handle(trigger, props)
+  if (isActiveElement(props.element)) {
+    return ActionEngine.handle(props.element.actions[trigger.type], props)
+  }
+  return ActionEngine.success()
 }
 TriggerEngine.register('onCustom', onCustomTriggerHandler)
 
@@ -40,9 +43,11 @@ type CustomElement = ViewElement<
 
 const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element, values } = props
+  // TODO: Pass templates via trigger handler to deeper in order to fix this.
+  const standardProps = props as unknown as  RenderingProps<Setup, Element>
   return <>
     <br/>
-    <button onClick={() => { element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, element.actions.onClick, props)}}>Custom</button><br/>
+    <button onClick={() => { element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</button><br/>
     Values: <pre>{JSON.stringify(values, null, 2)}</pre>
   </>
 }

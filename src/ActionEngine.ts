@@ -59,6 +59,9 @@ export class ActionEngine {
    * result is failure. Otherwise success.
    */
   static async handle<ActionType extends Action=Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
+    if (!action) {
+      throw new Error(`Action engine called without action.`)
+    }
     // Helper to run action.
     const runAction = async (action, props) => {
       if (!ActionEngine.actions[action.type]) {

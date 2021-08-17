@@ -39,7 +39,7 @@ import { isActiveElement } from './Elements/ActiveElement'
     }
     let ret
     runInAction(() => {
-        ret = TriggerEngine.triggers[trigger.type](trigger, props)
+      ret = TriggerEngine.triggers[trigger.type](trigger, props)
     })
     return ret
   }
@@ -56,8 +56,10 @@ const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props:
   if (isNamedElement(element)) {
     element.value = trigger.value
     props.values[trigger.name] = trigger.value
-    if (isActiveElement(element)) {
+    if (isActiveElement(element) && element.actions[trigger.type]) {
       return ActionEngine.handle(element.actions[trigger.type], props)
+    } else {
+      return ActionEngine.success()
     }
   }
   return ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`)
@@ -72,9 +74,11 @@ TriggerEngine.register('onChange', onChangeTriggerHandler)
  */
 const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: RenderingProps) => {
   const { element } = props
-  if (isActiveElement(element)) {
+  if (isActiveElement(element) && element.actions[trigger.type]) {
     return ActionEngine.handle(element.actions[trigger.type], props)
+  } else {
+    return ActionEngine.handle(trigger as Action, props)
   }
-  return ActionEngine.success()
 }
 TriggerEngine.register('onClick', passThroughTriggerHandler)
+TriggerEngine.register('default', passThroughTriggerHandler)

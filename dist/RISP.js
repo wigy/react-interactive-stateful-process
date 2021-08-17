@@ -17,11 +17,14 @@ const react_1 = __importDefault(require("react"));
 const mobx_react_1 = require("mobx-react");
 const Rendering_1 = require("./Rendering");
 const NamedElement_1 = require("./Elements/NamedElement");
-const ActiveElement_1 = require("./Elements/ActiveElement");
 const ContainerElement_1 = require("./Elements/ContainerElement");
 const Triggering_1 = require("./Triggering");
 /**
  * This is the main entry point for dynamical rendereding.
+ *
+ * It is very important to add unique `key` attribute if using various instances. Otherwise the
+ * different number of hooks in different renderings can throw errors in React.
+ *
  * @param props
  * @returns Completely controlled display section.
  */
@@ -38,10 +41,8 @@ exports.RISP = mobx_react_1.observer((props) => {
                 element.value = null;
             }
         }
-        // Connect action handlers.
-        if (ActiveElement_1.isActiveElement(element)) {
-            element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
-        }
+        // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
+        element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
         if (ContainerElement_1.isContainerElement(element)) {
             for (const e of element.elements) {
                 prepare(e);

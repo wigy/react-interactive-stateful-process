@@ -65,6 +65,9 @@ class ActionEngine {
      */
     static handle(action, props) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (!action) {
+                throw new Error(`Action engine called without action.`);
+            }
             // Helper to run action.
             const runAction = (action, props) => __awaiter(this, void 0, void 0, function* () {
                 if (!ActionEngine.actions[action.type]) {

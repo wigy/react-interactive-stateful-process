@@ -63,8 +63,11 @@ const onChangeTriggerHandler = (trigger, props) => {
     if (NamedElement_1.isNamedElement(element)) {
         element.value = trigger.value;
         props.values[trigger.name] = trigger.value;
-        if (ActiveElement_1.isActiveElement(element)) {
+        if (ActiveElement_1.isActiveElement(element) && element.actions[trigger.type]) {
             return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+        }
+        else {
+            return ActionEngine_1.ActionEngine.success();
         }
     }
     return ActionEngine_1.ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`);
@@ -78,9 +81,12 @@ TriggerEngine.register('onChange', onChangeTriggerHandler);
  */
 const passThroughTriggerHandler = (trigger, props) => {
     const { element } = props;
-    if (ActiveElement_1.isActiveElement(element)) {
+    if (ActiveElement_1.isActiveElement(element) && element.actions[trigger.type]) {
         return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
     }
-    return ActionEngine_1.ActionEngine.success();
+    else {
+        return ActionEngine_1.ActionEngine.handle(trigger, props);
+    }
 };
 TriggerEngine.register('onClick', passThroughTriggerHandler);
+TriggerEngine.register('default', passThroughTriggerHandler);
