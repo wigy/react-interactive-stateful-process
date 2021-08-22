@@ -1,6 +1,8 @@
 import { TriggerName, TriggerHandler, Trigger } from "./Triggers";
 import { RenderingProps } from "./Rendering";
 import { Action, ActionResult } from "./Actions";
+import { Setup } from './Setup';
+import { Element } from './Elements/index';
 /**
  * Registry for internal event trigger handlers.
  */
@@ -12,7 +14,7 @@ export declare class TriggerEngine {
      * @param handler Function executing trigger handling.
      * @returns
      */
-    static register<TriggerType = Trigger, ActionType = Action>(name: TriggerName, handler: TriggerHandler<TriggerType>): TriggerHandler<TriggerType> | null;
+    static register<SetupType = Setup, ElementType = Element, TriggerType = Trigger, ActionType = Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null;
     /**
      * Handler for triggered actions.
      * @param trigger Trigger data.

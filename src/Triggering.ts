@@ -5,6 +5,8 @@ import { Action, ActionResult } from "./Actions"
 import { isNamedElement } from "./Elements/NamedElement"
 import { ActionEngine } from "./ActionEngine"
 import { isActiveElement } from './Elements/ActiveElement'
+import { Setup } from './Setup'
+import { Element } from './Elements/index'
 
 /**
  * Registry for internal event trigger handlers.
@@ -19,11 +21,11 @@ import { isActiveElement } from './Elements/ActiveElement'
    * @param handler Function executing trigger handling.
    * @returns
    */
-  static register<TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<TriggerType>): TriggerHandler<TriggerType> | null {
+  static register<SetupType=Setup, ElementType=Element, TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null {
     const old = TriggerEngine.triggers[name] || null
     // Not too nice but need to force custom types into registry as well.
-    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Trigger>
-    return old as unknown as TriggerHandler<TriggerType>
+    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Setup, Element, Trigger>
+    return old as unknown as TriggerHandler<SetupType, ElementType, TriggerType>
   }
 
   /**

@@ -22,7 +22,7 @@ export interface OnCustomTrigger {
   readonly type: 'onCustom'
   message: string
 }
-const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
+const onCustomTriggerHandler: TriggerHandler<CustomSetup, Element, OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
   console.log('We activated onCustom trigger!')
   // Nothing to do. Just pass it to action handler.
   if (isActiveElement(props.element)) {
@@ -30,7 +30,7 @@ const onCustomTriggerHandler: TriggerHandler<OnCustomTrigger> = (trigger: OnCust
   }
   return ActionEngine.success()
 }
-TriggerEngine.register('onCustom', onCustomTriggerHandler)
+TriggerEngine.register<CustomSetup, Element, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
 
 // Element:
 type CustomElement = ViewElement<
@@ -43,8 +43,7 @@ type CustomElement = ViewElement<
 
 const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element, values } = props
-  // TODO: Pass templates via trigger handler to deeper in order to fix this.
-  const standardProps = props as unknown as  RenderingProps<Setup, Element>
+  const standardProps = props
   return <>
     <br/>
     <button onClick={() => { element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</button><br/>
