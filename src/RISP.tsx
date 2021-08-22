@@ -24,10 +24,8 @@ import { TriggerEngine } from './Triggering'
   const prepare = (element: Element) => {
       // Named components have values.
       if (isNamedElement(element)) {
-        if (values[element.name] !== undefined) {
-          element.value = values[element.name]
-        } else {
-          element.value = null
+        if (values[element.name] === undefined) {
+          values[element.name] = element.defaultValue || null
         }
       }
       // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().

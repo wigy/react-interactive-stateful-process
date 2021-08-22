@@ -6,7 +6,7 @@ import { TriggerValue } from "../Triggers";
 export interface NamedElement {
   readonly type: string
   name: string
-  value: TriggerValue
+  defaultValue?: TriggerValue
   label?: string
 }
 

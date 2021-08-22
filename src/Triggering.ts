@@ -54,7 +54,6 @@ import { isActiveElement } from './Elements/ActiveElement'
 const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   const { element } = props
   if (isNamedElement(element)) {
-    element.value = trigger.value
     props.values[trigger.name] = trigger.value
     if (isActiveElement(element) && element.actions[trigger.type]) {
       return ActionEngine.handle(element.actions[trigger.type], props)

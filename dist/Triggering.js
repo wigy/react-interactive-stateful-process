@@ -61,7 +61,6 @@ TriggerEngine.triggers = {};
 const onChangeTriggerHandler = (trigger, props) => {
     const { element } = props;
     if (NamedElement_1.isNamedElement(element)) {
-        element.value = trigger.value;
         props.values[trigger.name] = trigger.value;
         if (ActiveElement_1.isActiveElement(element) && element.actions[trigger.type]) {
             return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
