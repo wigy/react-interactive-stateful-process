@@ -24,7 +24,7 @@ const TextRenderer = (props) => {
     const [value, setValue] = react_1.default.useState(props.values[element.name] || '');
     return react_1.default.createElement(core_1.TextField, { label: label, value: value, error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
             setValue(e.target.value);
-            element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
+            element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
         }, onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null, onFocus: () => null });
 };
 exports.TextRenderer = TextRenderer;

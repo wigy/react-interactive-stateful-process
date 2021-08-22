@@ -7,11 +7,12 @@ import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement';
 import { Setup } from '../src/Setup';
 import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering';
 import { TriggerEngine } from '../src/Triggering';
-import { Trigger, TriggerHandler, TriggerValues } from '../src/Triggers';
+import { TriggerHandler, TriggerValues } from '../src/Triggers';
 import { ActionEngine } from '../src/ActionEngine';
-import { Action, ActionHandler } from '../src/Actions';
+import { ActionHandler } from '../src/Actions';
 import { Element } from '../src/Elements/index';
 import { observer } from 'mobx-react';
+import { FlatElement } from '../src/Elements/FlatElement';
 
 // Example of custom triggers, elements and action handlers.
 // Setup:
@@ -39,21 +40,24 @@ type CustomElement = ViewElement<
     b: number,
     c: number
   }
-> & ActiveElement<CustomSetup, CustomElement, OnCustomTrigger> & { readonly type: 'custom' }
+> & ActiveElement<CustomSetup, CustomElement, OnCustomTrigger, CustomAction> & { readonly type: 'custom' }
 
 const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element, values } = props
   const standardProps = props
   return <>
     <br/>
-    <button onClick={() => { element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</button><br/>
+    <button onClick={() => { element.triggerHandler && element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</button><br/>
     Values: <pre>{JSON.stringify(values, null, 2)}</pre>
   </>
 }
 RenderingEngine.register('custom', CustomRenderer)
 
 // Action:
-const customActionHandler: ActionHandler<CustomSetup, CustomElement> = async (action: Action, props: RenderingProps<CustomSetup, CustomElement>) => {
+interface CustomAction {
+  readonly type: 'custom'
+}
+const customActionHandler: ActionHandler<CustomSetup, CustomElement, CustomAction> = async (action: CustomAction, props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element } = props
   console.log('Custom action handled with data', element.data)
   return { success: true }
@@ -71,23 +75,20 @@ const App = observer(() => {
     b: ''
   })
 
-  // TODO: Cannot define yet element type smoothly here. Need to reorganize types a bit.
-  const element = {
+  const element: FlatElement<CustomElement | Element> = {
     type: 'flat',
     elements: [
       {
         type: 'text',
         actions: {},
         label: 'First value',
-        name: 'a',
-        value: ''
+        name: 'a'
       },
       {
         type: 'text',
         actions: {},
         label: 'Second value',
-        name: 'b',
-        value: ''
+        name: 'b'
       },
       {
         type: 'custom',
@@ -96,7 +97,7 @@ const App = observer(() => {
         },
         actions: {
           onCustom: { type: 'custom' }
-        },
+        }
       }
     ]
   }

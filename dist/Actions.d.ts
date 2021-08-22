@@ -14,8 +14,8 @@ export declare type Action = DebugAction | PostAction;
 /**
  * An action definition collection.
  */
-export interface Actions {
-    [key: string]: Action | Action[];
+export interface Actions<ActionType = Action> {
+    [key: string]: ActionType | ActionType[];
 }
 /**
  * A result retuned by the action handler.
