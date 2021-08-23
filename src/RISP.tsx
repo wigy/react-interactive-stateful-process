@@ -39,7 +39,6 @@ import { TriggerEngine } from './Triggering'
   }
   prepare(element)
 
-  // TODO: We have full redraw when one component is changed.
   const ret = RenderingEngine.render(props)
   if (ret === null) {
     return <></>

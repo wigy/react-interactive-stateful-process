@@ -47,7 +47,6 @@ exports.RISP = mobx_react_1.observer((props) => {
         }
     };
     prepare(element);
-    // TODO: We have full redraw when one component is changed.
     const ret = Rendering_1.RenderingEngine.render(props);
     if (ret === null) {
         return react_1.default.createElement(react_1.default.Fragment, null);
