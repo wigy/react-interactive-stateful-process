@@ -9,22 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postActionHandler = void 0;
+exports.patchActionHandler = exports.isPatchAction = void 0;
 const ActiveElement_1 = require("../Elements/ActiveElement");
+function isPatchAction(object) {
+    return 'url' in object && object.type === 'patch';
+}
+exports.isPatchAction = isPatchAction;
 /**
- * A handler doing POST request with the selected all all values to the configured URL.
+ * A handler doing PATCH request with the selected all all values to the configured URL.
  * @param trigger
  * @param props
  * @returns
  */
-const postActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
+const patchActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
     const { element, setup, values } = props;
     if (ActiveElement_1.isActiveElement(element)) {
         if (!setup.baseUrl) {
-            throw new Error(`Cannot use POST action when setup does not define 'baseUrl'.`);
+            throw new Error(`Cannot use patch action when setup does not define 'baseUrl'.`);
         }
-        console.log('TODO: POST', values);
+        if (!isPatchAction(action)) {
+            throw new Error(`Invalid action ${JSON.stringify(action)} for patch handler received.`);
+        }
+        const url = `${setup.baseUrl.replace(/\/$/, '')}/${action.url.replace(/^\//, '')}`;
+        console.log('TODO: Patch', url, values);
     }
     return { success: true };
 });
-exports.postActionHandler = postActionHandler;
+exports.patchActionHandler = patchActionHandler;

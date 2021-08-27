@@ -7,6 +7,7 @@ import { RenderingProps } from '../Rendering'
  */
  export interface PostAction {
   readonly type: 'post'
+  url: string
 }
 
 /**
@@ -18,8 +19,8 @@ import { RenderingProps } from '../Rendering'
 export const postActionHandler: ActionHandler = async (action: Action, props: RenderingProps) => {
   const { element, setup, values } = props
   if (isActiveElement(element)) {
-    if (!setup.postUrl) {
-      throw new Error(`Cannot use POST action when setup does not define 'postUrl'.`)
+    if (!setup.baseUrl) {
+      throw new Error(`Cannot use POST action when setup does not define 'baseUrl'.`)
     }
     console.log('TODO: POST', values)
   }

@@ -4,6 +4,7 @@ import { ActionHandler } from '../Actions';
  */
 export interface PostAction {
     readonly type: 'post';
+    url: string;
 }
 /**
  * A handler doing POST request with the selected all all values to the configured URL.
