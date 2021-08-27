@@ -5,6 +5,7 @@ import { Element } from "./Elements/index"
 import { TextRenderer } from "./Elements/TextElement"
 import { FlatRenderer } from "./Elements/FlatElement"
 import { ButtonRenderer } from "./Elements/ButtonElement"
+import { BooleanRenderer } from './Elements/BooleanElement'
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.
@@ -66,6 +67,7 @@ export class RenderingEngine {
   }
 }
 
+RenderingEngine.register('boolean', BooleanRenderer)
 RenderingEngine.register('text', TextRenderer)
 RenderingEngine.register('flat', FlatRenderer)
 RenderingEngine.register('button', ButtonRenderer)

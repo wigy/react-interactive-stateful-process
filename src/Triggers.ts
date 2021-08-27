@@ -36,7 +36,7 @@ export interface TriggerHandler<SetupType=Setup, ElementType=Element, TriggerTyp
 /**
  * A single payload that the trigger can have, i.e. tigger data.
  */
-export type TriggerValue = string | number | null | TriggerValue[] | TriggerValues
+export type TriggerValue = string | number | boolean | null | TriggerValue[] | TriggerValues
 
 /**
  * A map of names to trigger values.
