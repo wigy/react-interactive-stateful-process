@@ -19,7 +19,7 @@ const BooleanRenderer = (props) => {
     if (!isBooleanElement(element)) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
-    const { t } = react_i18next_1.useTranslation();
+    const { t } = (0, react_i18next_1.useTranslation)();
     const label = element.label ? element.label : t(`label-${element.name}`);
     const [value, setValue] = react_1.default.useState(props.values[element.name] || '');
     return react_1.default.createElement(core_1.FormControlLabel, { control: react_1.default.createElement(core_1.Checkbox, { checked: !!value, onChange: (e) => {

@@ -8,7 +8,7 @@ const NamedElement_1 = require("./Elements/NamedElement");
  * @param element
  */
 function elementNames(element) {
-    if (ContainerElement_1.isContainerElement(element)) {
+    if ((0, ContainerElement_1.isContainerElement)(element)) {
         const vars = new Set();
         for (const sub of element.elements) {
             for (const name of elementNames(sub)) {
@@ -17,7 +17,7 @@ function elementNames(element) {
         }
         return vars;
     }
-    else if (NamedElement_1.isNamedElement(element)) {
+    else if ((0, NamedElement_1.isNamedElement)(element)) {
         return new Set([element.name]);
     }
     return new Set();

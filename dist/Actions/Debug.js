@@ -19,7 +19,7 @@ const ActiveElement_1 = require("../Elements/ActiveElement");
  */
 const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
     const { element, values } = props;
-    if (ActiveElement_1.isActiveElement(element)) {
+    if ((0, ActiveElement_1.isActiveElement)(element)) {
         console.log('Action:', action);
         console.log('Element:', element);
         console.log('Values:', values);

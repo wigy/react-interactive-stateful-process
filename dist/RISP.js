@@ -28,19 +28,19 @@ const Triggering_1 = require("./Triggering");
  * @param props
  * @returns Completely controlled display section.
  */
-exports.RISP = mobx_react_1.observer((props) => {
+exports.RISP = (0, mobx_react_1.observer)((props) => {
     const { values, element } = props;
     // Fill in appropriate fields for elements.
     const prepare = (element) => {
         // Named components have values.
-        if (NamedElement_1.isNamedElement(element)) {
+        if ((0, NamedElement_1.isNamedElement)(element)) {
             if (values[element.name] === undefined) {
                 values[element.name] = element.defaultValue || null;
             }
         }
         // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
         element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
-        if (ContainerElement_1.isContainerElement(element)) {
+        if ((0, ContainerElement_1.isContainerElement)(element)) {
             for (const e of element.elements) {
                 prepare(e);
             }

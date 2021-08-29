@@ -73,7 +73,7 @@ class ActionEngine {
                     throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`);
                 }
                 let ret;
-                mobx_1.runInAction(() => __awaiter(this, void 0, void 0, function* () {
+                (0, mobx_1.runInAction)(() => __awaiter(this, void 0, void 0, function* () {
                     ret = yield ActionEngine.actions[action.type](action, props);
                 }));
                 return ret;

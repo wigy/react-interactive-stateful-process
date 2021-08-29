@@ -16,7 +16,7 @@ const ButtonRenderer = (props) => {
     if (!isButtonElement(element)) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
-    const { t } = react_i18next_1.useTranslation();
+    const { t } = (0, react_i18next_1.useTranslation)();
     const label = t(`label-${element.label}`);
     return react_1.default.createElement(core_1.Button, { variant: "outlined", onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } }, label);
 };

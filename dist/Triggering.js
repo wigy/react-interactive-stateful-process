@@ -43,7 +43,7 @@ class TriggerEngine {
                 throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`);
             }
             let ret;
-            mobx_1.runInAction(() => {
+            (0, mobx_1.runInAction)(() => {
                 ret = TriggerEngine.triggers[trigger.type](trigger, props);
             });
             return ret;
@@ -60,9 +60,9 @@ TriggerEngine.triggers = {};
  */
 const onChangeTriggerHandler = (trigger, props) => {
     const { element } = props;
-    if (NamedElement_1.isNamedElement(element)) {
+    if ((0, NamedElement_1.isNamedElement)(element)) {
         props.values[trigger.name] = trigger.value;
-        if (ActiveElement_1.isActiveElement(element) && element.actions[trigger.type]) {
+        if ((0, ActiveElement_1.isActiveElement)(element) && element.actions[trigger.type]) {
             return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
         }
         else {
@@ -80,7 +80,7 @@ TriggerEngine.register('onChange', onChangeTriggerHandler);
  */
 const passThroughTriggerHandler = (trigger, props) => {
     const { element } = props;
-    if (ActiveElement_1.isActiveElement(element) && element.actions[trigger.type]) {
+    if ((0, ActiveElement_1.isActiveElement)(element) && element.actions[trigger.type]) {
         return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
     }
     else {
