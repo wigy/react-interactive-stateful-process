@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postActionHandler = void 0;
 const ActiveElement_1 = require("../Elements/ActiveElement");
 /**
- * A handler doing POST request with the selected all all values to the configured URL.
+ * A handler doing POST request with the selected or all values to the configured URL.
  * @param trigger
  * @param props
  * @returns

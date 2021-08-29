@@ -7,7 +7,7 @@ export interface PostAction {
     url: string;
 }
 /**
- * A handler doing POST request with the selected all all values to the configured URL.
+ * A handler doing POST request with the selected or all values to the configured URL.
  * @param trigger
  * @param props
  * @returns

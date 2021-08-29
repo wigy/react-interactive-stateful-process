@@ -1,5 +1,4 @@
 import { DebugAction } from "./Actions/Debug"
-import { PostAction } from "./Actions/Post"
 import { Element } from "./Elements/index"
 import { RenderingProps } from "./Rendering"
 import { Setup } from "./Setup"
@@ -12,7 +11,7 @@ export type ActionName = string
 /**
  * Payload for the action execution.
  */
-export type Action = DebugAction | PostAction
+export type Action = DebugAction
 
 /**
  * An action definition collection.

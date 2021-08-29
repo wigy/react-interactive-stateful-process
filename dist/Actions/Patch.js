@@ -16,7 +16,7 @@ function isPatchAction(object) {
 }
 exports.isPatchAction = isPatchAction;
 /**
- * A handler doing PATCH request with the selected all all values to the configured URL.
+ * A handler doing PATCH request with the selected or all values to the configured URL.
  * @param trigger
  * @param props
  * @returns

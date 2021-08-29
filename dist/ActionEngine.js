@@ -12,8 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActionEngine = void 0;
 const mobx_1 = require("mobx");
 const Debug_1 = require("./Actions/Debug");
-const Post_1 = require("./Actions/Post");
-const Patch_1 = require("./Actions/Patch");
 /**
  * Registry and call API for action handlers.
  */
@@ -100,5 +98,3 @@ class ActionEngine {
 exports.ActionEngine = ActionEngine;
 ActionEngine.actions = {};
 ActionEngine.register('debug', Debug_1.debugActionHandler);
-ActionEngine.register('post', Post_1.postActionHandler);
-ActionEngine.register('patch', Patch_1.patchActionHandler);

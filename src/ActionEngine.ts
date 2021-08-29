@@ -4,8 +4,6 @@ import { RenderingProps } from './Rendering'
 import { Setup } from './Setup'
 import { Element } from './Elements/index'
 import { debugActionHandler } from './Actions/Debug'
-import { postActionHandler } from './Actions/Post'
-import { patchActionHandler } from './Actions/Patch'
 
 /**
  * Registry and call API for action handlers.
@@ -92,5 +90,3 @@ export class ActionEngine {
 }
 
 ActionEngine.register('debug', debugActionHandler)
-ActionEngine.register('post', postActionHandler)
-ActionEngine.register('patch', patchActionHandler)
