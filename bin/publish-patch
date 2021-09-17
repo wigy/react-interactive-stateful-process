@@ -5,6 +5,6 @@ FILE=`dirname "${BASH_SOURCE[0]}"`/..
 ROOT=`readlink -f "$FILE"`
 
 yarn version --patch
-git push --tags
+git push --tags -f
 git push
 npm publish
