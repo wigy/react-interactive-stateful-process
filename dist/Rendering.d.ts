@@ -1,0 +1,46 @@
+import React, { ReactElement } from 'react';
+import { Setup } from "./Setup";
+import { TriggerValues } from "./Triggers";
+import { Element } from "./Elements/index";
+/**
+ * Readability helper to specify that a string is being used as a renderer name.
+ */
+export declare type RendererName = string;
+/**
+ * A parameter collection used when rendering element.
+ *
+ * @property element Actual top level element to render.
+ * @property values A set of values to edit associated with the rendering process.
+ * @property setup Global configuration for the rendering system.
+ */
+export declare type RenderingProps<SetupType = Setup, ElementType = Element> = {
+    element: ElementType;
+    values: TriggerValues;
+    setup: SetupType;
+};
+/**
+ * A function rendering certain type of element providing React Element presentation for it.
+ */
+export declare type Renderer<SetupType = Setup, ElementType = Element> = React.FC<RenderingProps<SetupType, ElementType>>;
+/**
+ * Registry for element rendering handlers.
+ *
+ * This is a global container to register all rendering handlers. It will have
+ * all standard element renderers registered by default.
+ */
+export declare class RenderingEngine {
+    private static renderers;
+    /**
+     * Register a handler for an element type.
+     * @param name
+     * @param renderer
+     * @returns Old handler if there was any.
+     */
+    static register<SetupType = Setup, ElementType = Element>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null;
+    /**
+     * Find the registered renderer for the given properties and call the renderer if found.
+     * @param props
+     * @returns Elements.
+     */
+    static render(props: RenderingProps): ReactElement | null;
+}
