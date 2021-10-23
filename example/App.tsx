@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { observable, runInAction } from 'mobx'
 import { Button, Paper, TextField, Typography } from '@material-ui/core'
 import { RISP } from '../src/RISP'
@@ -14,6 +15,8 @@ import { Element } from '../src/Elements/index'
 import { observer } from 'mobx-react'
 import { FlatElement } from '../src/Elements/FlatElement'
 import { FileUploader } from '../src/Components'
+
+const API = 'http://localhost:3302/api/isp'
 
 // Example of custom triggers, elements and action handlers.
 // Setup:
@@ -106,6 +109,12 @@ const App = observer(() => {
     ]
   }
 
+  const onUpload = async (files) => {
+    console.log('Uploading', files.map(f => f.name));
+    const resp = await axios.post(API, { files }).catch(err => console.error(err))
+    console.log('=>', resp)
+  }
+
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
   return (
     <>
@@ -118,7 +127,7 @@ const App = observer(() => {
       </Paper>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Uploading</Typography>
-        <FileUploader onUpload={(files) => console.log(files)} color="primary" variant="contained"/>
+        <FileUploader onUpload={(files) => onUpload(files)} color="primary" variant="contained"/>
       </Paper>
     </>
   )
