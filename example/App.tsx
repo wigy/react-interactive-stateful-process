@@ -18,6 +18,8 @@ import { FileUploader } from '../src/Components'
 
 const API = 'http://localhost:3302/api/isp'
 
+// TODO: Split the stuff to separate demo components.
+
 // Example of custom triggers, elements and action handlers.
 // Setup:
 type CustomSetup = Setup & { sample: number }
