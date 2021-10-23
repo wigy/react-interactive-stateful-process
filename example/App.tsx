@@ -1,6 +1,6 @@
 import React from 'react';
 import { observable, runInAction } from 'mobx'
-import { Paper } from '@material-ui/core'
+import { Button, Paper, Typography } from '@material-ui/core'
 import { RISP } from '../src/RISP';
 import { ViewElement } from '../src/Elements/ViewElement';
 import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement';
@@ -47,7 +47,7 @@ const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingPr
   const standardProps = props
   return <>
     <br/>
-    <button onClick={() => { element.triggerHandler && element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</button><br/>
+    <Button variant="outlined" onClick={() => { element.triggerHandler && element.triggerHandler({ type: 'onCustom', message: 'We do it right!' }, standardProps)}}>Custom</Button><br/>
     Values: <pre>{JSON.stringify(values, null, 2)}</pre>
   </>
 }
@@ -64,6 +64,9 @@ const customActionHandler: ActionHandler<CustomSetup, CustomElement, CustomActio
 }
 ActionEngine.register('custom', customActionHandler)
 
+/**
+ * Sample application.
+ */
 const App = observer(() => {
 
   const setup: CustomSetup = {
@@ -103,14 +106,18 @@ const App = observer(() => {
   }
 
   return (
-    <Paper style={{ padding: '1rem' }} elevation={4}>
-      App is Up!
-      <br />
-      <RISP element={element} values={values} setup={setup}/>
-      <button onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</button>
-      <button onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</button>
-      <button onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</button>
-    </Paper>
+    <>
+      <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
+        <Typography className="text" variant="h3">Some Elements</Typography>
+        <RISP key="demo1" element={element} values={values} setup={setup}/>
+        <Button variant="outlined" onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</Button>
+      </Paper>
+      <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
+        <Typography className="text" variant="h3">Uploading</Typography>
+      </Paper>
+    </>
   );
 })
 
