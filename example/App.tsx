@@ -1,6 +1,6 @@
 import React from 'react';
 import { observable, runInAction } from 'mobx'
-import { Button, Paper, Typography } from '@material-ui/core'
+import { Button, Paper, TextField, Typography } from '@material-ui/core'
 import { RISP } from '../src/RISP';
 import { ViewElement } from '../src/Elements/ViewElement';
 import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement';
@@ -105,6 +105,35 @@ const App = observer(() => {
     ]
   }
 
+  const getFileFromInput = (file: File): Promise<any> => {
+    return new Promise(function (resolve, reject) {
+        const reader = new FileReader();
+        reader.onerror = reject;
+        reader.onload = function () { resolve(reader.result); };
+        reader.readAsBinaryString(file); // here the file can be read in different way Text, DataUrl, ArrayBuffer
+    });
+  }
+
+  const manageUploadedFile = (binary: String, file: File) => {
+    // do what you need with your file (fetch POST, ect ....)
+    console.log(`The file size is ${binary.length}`);
+    console.log(`The file name is ${file.name}`);
+    console.log(binary);
+  }
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    Array.from(event.target.files).forEach(file=> {
+      getFileFromInput(file as File)
+          .then((binary) => {
+              manageUploadedFile(binary, file as File);
+          }).catch(function (reason) {
+              console.log(`Error during upload ${reason}`);
+              event.target.value = ''; // to allow upload of same file if error occurs
+          });
+    })
+  }
+
+  // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
   return (
     <>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
@@ -116,6 +145,7 @@ const App = observer(() => {
       </Paper>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Uploading</Typography>
+        <input type="file" multiple={true} onChange={(e) => onFileChange(e)}/>
       </Paper>
     </>
   );
