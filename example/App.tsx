@@ -13,7 +13,7 @@ import { ActionHandler } from '../src/Actions'
 import { Element } from '../src/Elements/index'
 import { observer } from 'mobx-react'
 import { FlatElement } from '../src/Elements/FlatElement'
-import { encode } from 'base64-arraybuffer'
+import { FileUploader } from '../src/Components'
 
 // Example of custom triggers, elements and action handlers.
 // Setup:
@@ -106,40 +106,6 @@ const App = observer(() => {
     ]
   }
 
-  // TODO: Refine all this code as a general purpose component.
-
-  let uploads: { name: string, encoding: string, data: string}[] = []
-
-  const getFileFromInput = (file: File): Promise<any> => {
-    return new Promise(function (resolve, reject) {
-        const reader = new FileReader()
-        reader.onerror = reject
-        reader.onload = function () { resolve(reader.result) }
-        reader.readAsArrayBuffer(file)
-    })
-  }
-
-  const manageUploadedFile = (binary: Buffer, file: File) => {
-    uploads.push({
-      name: file.name,
-      encoding: 'base64',
-      data: encode(binary)
-    })
-  }
-
-  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    uploads = []
-    Array.from(event.target.files).forEach(file=> {
-      getFileFromInput(file as File)
-          .then((binary) => {
-              manageUploadedFile(binary, file as File)
-          }).catch(function (reason) {
-              console.log(`Error during upload ${reason}`)
-              event.target.value = ''
-          })
-    })
-  }
-
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
   return (
     <>
@@ -152,12 +118,7 @@ const App = observer(() => {
       </Paper>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Uploading</Typography>
-        <input id="file-uploader-input" type="file" multiple hidden onChange={(e) => onFileChange(e)}/>
-        <label htmlFor="file-uploader-input">
-          <Button component="span" color="primary" variant="contained" >
-            Upload
-          </Button>
-        </label>
+        <FileUploader onUpload={(files) => console.log(files)} />
       </Paper>
     </>
   )
