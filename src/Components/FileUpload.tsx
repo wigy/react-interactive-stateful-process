@@ -32,6 +32,14 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
   let uploads: FileUploadData[] = []
 
   /**
+   * Helper to find out if we do base64 encoding or just pass it as a text.
+   * @param file
+   */
+  const isBinary = (file: File): boolean => {
+    return !file.type.startsWith('text/')
+  }
+
+  /**
    * Helper to read a selected file in.
    * @param file
    * @returns
@@ -51,12 +59,23 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
    * @param file
    */
   const collectUploadedFile = (binary: ArrayBuffer, file: File): void => {
-    uploads.push({
-      name: file.name,
-      mimeType: file.type,
-      encoding: 'base64',
-      data: encode(binary)
-    })
+    if (isBinary(file)) {
+      uploads.push({
+        name: file.name,
+        mimeType: file.type,
+        encoding: 'base64',
+        data: encode(binary)
+      })
+    } else {
+      const decoder = new TextDecoder("utf-8");
+      uploads.push({
+        name: file.name,
+        mimeType: file.type,
+        encoding: 'utf-8',
+        data: decoder.decode(binary)
+      })
+    }
+    console.log(uploads);
   }
 
   /**
