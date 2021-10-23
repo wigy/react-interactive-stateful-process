@@ -8,7 +8,7 @@ import { Trans } from 'react-i18next'
  */
 export type FileUploadData = {
   name: string,
-  mimeType: string,
+  type: string,
   encoding: string,
   data: string
 }
@@ -32,14 +32,6 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
   let uploads: FileUploadData[] = []
 
   /**
-   * Helper to find out if we do base64 encoding or just pass it as a text.
-   * @param file
-   */
-  const isBinary = (file: File): boolean => {
-    return !file.type.startsWith('text/')
-  }
-
-  /**
    * Helper to read a selected file in.
    * @param file
    * @returns
@@ -59,23 +51,12 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
    * @param file
    */
   const collectUploadedFile = (binary: ArrayBuffer, file: File): void => {
-    if (isBinary(file)) {
-      uploads.push({
-        name: file.name,
-        mimeType: file.type,
-        encoding: 'base64',
-        data: encode(binary)
-      })
-    } else {
-      const decoder = new TextDecoder("utf-8");
-      uploads.push({
-        name: file.name,
-        mimeType: file.type,
-        encoding: 'utf-8',
-        data: decoder.decode(binary)
-      })
-    }
-    console.log(uploads);
+    uploads.push({
+      name: file.name,
+      type: file.type,
+      encoding: 'base64',
+      data: encode(binary)
+    })
   }
 
   /**
@@ -87,12 +68,12 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
     for (const file of Array.from(event.target.files)) {
       const binary = await readFileFromInput(file as File).catch(function (reason) {
         console.log(`Error during upload ${reason}`)
-        event.target.value = ''
         return null
       })
       if (binary) {
         collectUploadedFile(binary, file as File)
       }
+      event.target.value = ''
     }
     props.onUpload(uploads)
   }
