@@ -1,18 +1,19 @@
-import React from 'react';
+import React from 'react'
 import { observable, runInAction } from 'mobx'
 import { Button, Paper, TextField, Typography } from '@material-ui/core'
-import { RISP } from '../src/RISP';
-import { ViewElement } from '../src/Elements/ViewElement';
-import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement';
-import { Setup } from '../src/Setup';
-import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering';
-import { TriggerEngine } from '../src/Triggering';
-import { TriggerHandler, TriggerValues } from '../src/Triggers';
-import { ActionEngine } from '../src/ActionEngine';
-import { ActionHandler } from '../src/Actions';
-import { Element } from '../src/Elements/index';
-import { observer } from 'mobx-react';
-import { FlatElement } from '../src/Elements/FlatElement';
+import { RISP } from '../src/RISP'
+import { ViewElement } from '../src/Elements/ViewElement'
+import { ActiveElement, isActiveElement } from '../src/Elements/ActiveElement'
+import { Setup } from '../src/Setup'
+import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering'
+import { TriggerEngine } from '../src/Triggering'
+import { TriggerHandler, TriggerValues } from '../src/Triggers'
+import { ActionEngine } from '../src/ActionEngine'
+import { ActionHandler } from '../src/Actions'
+import { Element } from '../src/Elements/index'
+import { observer } from 'mobx-react'
+import { FlatElement } from '../src/Elements/FlatElement'
+import { encode } from 'base64-arraybuffer'
 
 // Example of custom triggers, elements and action handlers.
 // Setup:
@@ -105,31 +106,37 @@ const App = observer(() => {
     ]
   }
 
+  // TODO: Refine all this code as a general purpose component.
+
+  let uploads: { name: string, encoding: string, data: string}[] = []
+
   const getFileFromInput = (file: File): Promise<any> => {
     return new Promise(function (resolve, reject) {
-        const reader = new FileReader();
-        reader.onerror = reject;
-        reader.onload = function () { resolve(reader.result); };
-        reader.readAsBinaryString(file); // here the file can be read in different way Text, DataUrl, ArrayBuffer
-    });
+        const reader = new FileReader()
+        reader.onerror = reject
+        reader.onload = function () { resolve(reader.result) }
+        reader.readAsArrayBuffer(file)
+    })
   }
 
-  const manageUploadedFile = (binary: String, file: File) => {
-    // do what you need with your file (fetch POST, ect ....)
-    console.log(`The file size is ${binary.length}`);
-    console.log(`The file name is ${file.name}`);
-    console.log(binary);
+  const manageUploadedFile = (binary: Buffer, file: File) => {
+    uploads.push({
+      name: file.name,
+      encoding: 'base64',
+      data: encode(binary)
+    })
   }
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    uploads = []
     Array.from(event.target.files).forEach(file=> {
       getFileFromInput(file as File)
           .then((binary) => {
-              manageUploadedFile(binary, file as File);
+              manageUploadedFile(binary, file as File)
           }).catch(function (reason) {
-              console.log(`Error during upload ${reason}`);
-              event.target.value = ''; // to allow upload of same file if error occurs
-          });
+              console.log(`Error during upload ${reason}`)
+              event.target.value = ''
+          })
     })
   }
 
@@ -145,10 +152,15 @@ const App = observer(() => {
       </Paper>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Uploading</Typography>
-        <input type="file" multiple={true} onChange={(e) => onFileChange(e)}/>
+        <input id="file-uploader-input" type="file" multiple hidden onChange={(e) => onFileChange(e)}/>
+        <label htmlFor="file-uploader-input">
+          <Button component="span" color="primary" variant="contained" >
+            Upload
+          </Button>
+        </label>
       </Paper>
     </>
-  );
+  )
 })
 
 export default App;

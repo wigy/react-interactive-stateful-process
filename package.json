@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "base64-arraybuffer": "^1.0.1",
     "interactive-stateful-process": "^0.0.1"
   },
   "scripts": {
