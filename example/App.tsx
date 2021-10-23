@@ -118,7 +118,7 @@ const App = observer(() => {
       </Paper>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Uploading</Typography>
-        <FileUploader onUpload={(files) => console.log(files)} />
+        <FileUploader onUpload={(files) => console.log(files)} color="primary" variant="contained"/>
       </Paper>
     </>
   )

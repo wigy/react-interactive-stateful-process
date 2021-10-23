@@ -1,6 +1,7 @@
 import React from 'react'
 import { encode } from 'base64-arraybuffer'
 import { Button } from '@material-ui/core'
+import { Trans } from 'react-i18next'
 
 /**
  * Format of the returned file data from the file uploader component.
@@ -13,10 +14,20 @@ export type FileUploadData = {
 }
 
 /**
+ * Props for the fileuploader.
+ */
+export type FileUploaderProps = {
+  onUpload: (files: FileUploadData[]) => void,
+  multiple?: boolean,
+  color?: "inherit" | "primary" | "secondary" | "default",
+  variant?: "text" | "outlined" | "contained"
+}
+
+/**
  * An file uploader utility.
  * @param props.onUpload A function handling the resulting file upload data.
  */
-export const FileUploader = (props: { onUpload: (files: FileUploadData[]) => void }): React.Element => {
+export const FileUploader = (props: FileUploaderProps): React.Element => {
 
   let uploads: FileUploadData[] = []
 
@@ -69,10 +80,10 @@ export const FileUploader = (props: { onUpload: (files: FileUploadData[]) => voi
 
   return (
     <>
-      <input id="file-uploader-input" type="file" multiple hidden onChange={(e) => onFileChange(e)}/>
+      <input id="file-uploader-input" type="file" multiple={!!props.multiple} hidden onChange={(e) => onFileChange(e)}/>
       <label htmlFor="file-uploader-input">
-        <Button component="span" color="primary" variant="contained" >
-          Upload
+        <Button component="span" color={props.color} variant={props.variant} >
+          <Trans>Upload</Trans>
         </Button>
       </label>
     </>
