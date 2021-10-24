@@ -1,5 +1,6 @@
 export * from './ActionEngine';
 export * from './Actions';
+export * from './Components';
 export * from './Elements';
 export * from './Elements/ActiveElement';
 export * from './Elements/ContainerElement';
