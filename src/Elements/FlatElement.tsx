@@ -10,13 +10,13 @@ export interface FlatElement<ElementType=Element> extends ContainerElement<Eleme
   readonly type: string
 }
 
-export function isContainerElement(object: any): object is ContainerElement {
+export function isFlatElement(object: any): object is FlatElement {
   return object.type === 'flat'
 }
 
 export const FlatRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
-  if (!isContainerElement(element)) {
+  if (!isFlatElement(element)) {
     return <></>
   }
   return <>{element.elements.map((element: Element, idx) => <div key={idx}>{RenderingEngine.render({ values: props.values, setup: props.setup, element })}</div>)}</>
