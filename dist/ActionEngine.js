@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ActionEngine = void 0;
+exports.debugActionHandler = exports.ActionEngine = void 0;
 const mobx_1 = require("mobx");
-const Debug_1 = require("./Actions/Debug");
+const interactive_stateful_process_1 = require("interactive-stateful-process");
 /**
  * Registry and call API for action handlers.
  */
@@ -97,4 +97,20 @@ class ActionEngine {
 }
 exports.ActionEngine = ActionEngine;
 ActionEngine.actions = {};
-ActionEngine.register('debug', Debug_1.debugActionHandler);
+/**
+ * Handler that just prints the content of the trigger, the element and current values to the console.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
+    const { element, values } = props;
+    if ((0, interactive_stateful_process_1.isActiveElement)(element)) {
+        console.log('Action:', action);
+        console.log('Element:', element);
+        console.log('Values:', values);
+    }
+    return { success: true };
+});
+exports.debugActionHandler = debugActionHandler;
+ActionEngine.register('debug', exports.debugActionHandler);

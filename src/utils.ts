@@ -1,6 +1,4 @@
-import { isContainerElement } from "./Elements/ContainerElement";
-import { Element } from "./Elements/index";
-import { isNamedElement } from "./Elements/NamedElement";
+import { Element, isContainerElement, isNamedElement } from "interactive-stateful-process"
 
 /**
  * Collect all names defined in the element structure.

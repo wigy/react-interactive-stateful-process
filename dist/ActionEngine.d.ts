@@ -1,7 +1,5 @@
-import { ActionName, ActionResult, ActionHandler, Action } from './Actions';
+import { ActionName, ActionResult, ActionHandler, Action, Setup, Element } from 'interactive-stateful-process';
 import { RenderingProps } from './Rendering';
-import { Setup } from './Setup';
-import { Element } from './Elements/index';
 /**
  * Registry and call API for action handlers.
  */
@@ -37,3 +35,10 @@ export declare class ActionEngine {
      */
     static handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult;
 }
+/**
+ * Handler that just prints the content of the trigger, the element and current values to the console.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export declare const debugActionHandler: ActionHandler;

@@ -1,8 +1,6 @@
-import { TriggerName, TriggerHandler, Trigger } from "./Triggers";
+import { TriggerName, TriggerHandler, Trigger, Setup } from "interactive-stateful-process";
 import { RenderingProps } from "./Rendering";
-import { Action, ActionResult } from "./Actions";
-import { Setup } from './Setup';
-import { Element } from './Elements/index';
+import { Element, Action, ActionResult } from 'interactive-stateful-process';
 /**
  * Registry for internal event trigger handlers.
  */

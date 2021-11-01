@@ -1,9 +1,6 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler, Action } from './Actions'
+import { ActionName, ActionResult, ActionHandler, Action, Setup, Element, isActiveElement } from 'interactive-stateful-process'
 import { RenderingProps } from './Rendering'
-import { Setup } from './Setup'
-import { Element } from './Elements/index'
-import { debugActionHandler } from './Actions/Debug'
 
 /**
  * Registry and call API for action handlers.
@@ -87,6 +84,22 @@ export class ActionEngine {
       return runAction(action, props)
     }
   }
+}
+
+/**
+ * Handler that just prints the content of the trigger, the element and current values to the console.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export const debugActionHandler: ActionHandler = async (action: Action, props: RenderingProps) => {
+  const { element, values } = props
+  if (isActiveElement(element)) {
+    console.log('Action:', action)
+    console.log('Element:', element)
+    console.log('Values:', values)
+  }
+  return { success: true }
 }
 
 ActionEngine.register('debug', debugActionHandler)

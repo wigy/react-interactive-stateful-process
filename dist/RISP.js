@@ -16,9 +16,8 @@ exports.RISP = void 0;
 const react_1 = __importDefault(require("react"));
 const mobx_react_1 = require("mobx-react");
 const Rendering_1 = require("./Rendering");
-const NamedElement_1 = require("./Elements/NamedElement");
-const ContainerElement_1 = require("./Elements/ContainerElement");
 const Triggering_1 = require("./Triggering");
+const interactive_stateful_process_1 = require("interactive-stateful-process");
 /**
  * This is the main entry point for dynamical rendereding.
  *
@@ -33,14 +32,14 @@ exports.RISP = (0, mobx_react_1.observer)((props) => {
     // Fill in appropriate fields for elements.
     const prepare = (element) => {
         // Named components have values.
-        if ((0, NamedElement_1.isNamedElement)(element)) {
+        if ((0, interactive_stateful_process_1.isNamedElement)(element)) {
             if (values[element.name] === undefined) {
                 values[element.name] = element.defaultValue || null;
             }
         }
         // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
         element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
-        if ((0, ContainerElement_1.isContainerElement)(element)) {
+        if ((0, interactive_stateful_process_1.isContainerElement)(element)) {
             for (const e of element.elements) {
                 prepare(e);
             }

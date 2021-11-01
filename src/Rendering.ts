@@ -1,11 +1,9 @@
 import React, { ReactElement } from 'react'
-import { Setup } from "./Setup"
-import { TriggerValues } from "./Triggers"
-import { Element } from "./Elements/index"
 import { TextRenderer } from "./Elements/TextElement"
 import { FlatRenderer } from "./Elements/FlatElement"
 import { ButtonRenderer } from "./Elements/ButtonElement"
 import { BooleanRenderer } from './Elements/BooleanElement'
+import { TriggerValues, Element, Setup } from 'interactive-stateful-process'
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.

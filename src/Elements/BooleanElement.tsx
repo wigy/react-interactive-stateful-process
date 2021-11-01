@@ -2,19 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormControlLabel, Checkbox } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { ActiveElement } from "./ActiveElement"
-import { NamedElement } from "./NamedElement"
-
-/**
- * A boolean toggle element.
- */
- export interface BooleanElement extends ActiveElement, NamedElement {
-  readonly type: string
-}
-
-export function isBooleanElement(object: any): object is BooleanElement {
-  return object.type === 'boolean'
-}
+import { isBooleanElement } from 'interactive-stateful-process'
 
 /**
  * Rendering for boolean toggle element.

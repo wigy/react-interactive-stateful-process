@@ -2,19 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { ActiveElement } from './ActiveElement'
-
-/**
- * An element activating an action when clicked.
- */
-export interface ButtonElement extends ActiveElement {
-  readonly type: 'string'
-  label: string
-}
-
-export function isButtonElement(object: any): object is ButtonElement {
-  return object.type === 'button'
-}
+import { isButtonElement } from 'interactive-stateful-process'
 
 export const ButtonRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props

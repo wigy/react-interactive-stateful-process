@@ -1,12 +1,8 @@
 import { runInAction } from 'mobx'
-import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger } from "./Triggers"
+import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement } from "interactive-stateful-process"
 import { RenderingProps } from "./Rendering"
-import { Action, ActionResult } from "./Actions"
-import { isNamedElement } from "./Elements/NamedElement"
 import { ActionEngine } from "./ActionEngine"
-import { isActiveElement } from './Elements/ActiveElement'
-import { Setup } from './Setup'
-import { Element } from './Elements/index'
+import { Element, Action, ActionResult } from 'interactive-stateful-process'
 
 /**
  * Registry for internal event trigger handlers.

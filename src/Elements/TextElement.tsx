@@ -2,19 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { ActiveElement } from "./ActiveElement"
-import { NamedElement } from "./NamedElement"
-
-/**
- * A text editing element.
- */
- export interface TextElement extends ActiveElement, NamedElement {
-  readonly type: string
-}
-
-export function isTextElement(object: any): object is TextElement {
-  return object.type === 'text'
-}
+import { isTextElement } from 'interactive-stateful-process'
 
 /**
  * Rendering for text editing element.

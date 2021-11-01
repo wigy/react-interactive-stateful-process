@@ -1,4 +1,4 @@
-import { Element } from "./Elements/index";
+import { Element } from "interactive-stateful-process";
 /**
  * Collect all names defined in the element structure.
  * @param element
