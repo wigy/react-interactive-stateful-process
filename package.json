@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "base64-arraybuffer": "^1.0.1",
-    "interactive-stateful-process": "^1.2.1"
+    "interactive-stateful-process": "^1.2.2"
   },
   "scripts": {
     "demo": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js",

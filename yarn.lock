@@ -3118,10 +3118,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-stateful-process@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/interactive-stateful-process/-/interactive-stateful-process-1.2.1.tgz#58a4acee724a915d2402e4293170a48e2e673bfb"
-  integrity sha512-cld9253iQzidL2/f/4PDqjyKUUiHhEnL3u8DLL2bABaf4BUNWjcO5uoC/OUPXm3k7cuqTHysdCDdkQwE9jPsLg==
+interactive-stateful-process@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/interactive-stateful-process/-/interactive-stateful-process-1.2.2.tgz#be9a95d4330dcd0bed896c9a928b6390a34e175b"
+  integrity sha512-XiUqUwMj5IVW4dzYzTUwBGheXwe0o9m1TT+NoZHpZ2hy3kzKDVmUCZo2syl/3jMDD01r6BCldn7CkyKKC7ezjw==
   dependencies:
     chardet "^1.4.0"
     clone "^2.1.2"
