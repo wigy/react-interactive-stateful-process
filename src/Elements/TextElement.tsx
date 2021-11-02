@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { TextField } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { isTextElement } from 'interactive-stateful-process'
+import { isTextElement } from 'interactive-elements'
 
 /**
  * Rendering for text editing element.

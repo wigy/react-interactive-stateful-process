@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { isButtonElement } from 'interactive-stateful-process'
+import { isButtonElement } from 'interactive-elements'
 
 export const ButtonRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props

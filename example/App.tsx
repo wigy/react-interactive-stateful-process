@@ -8,7 +8,7 @@ import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
 import { observer } from 'mobx-react'
 import { FileUploader } from '../src/Components'
-import { ActionHandler, ActiveElement, Element, FlatElement, isActiveElement, Setup, TriggerHandler, TriggerValues, ViewElement } from 'interactive-stateful-process'
+import { ActionHandler, ActiveElement, Element, FlatElement, isActiveElement, Setup, TriggerHandler, TriggerValues, ViewElement } from 'interactive-elements'
 
 const API = 'http://localhost:3302/api/isp'
 

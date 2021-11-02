@@ -3,7 +3,7 @@ import { TextRenderer } from "./Elements/TextElement"
 import { FlatRenderer } from "./Elements/FlatElement"
 import { ButtonRenderer } from "./Elements/ButtonElement"
 import { BooleanRenderer } from './Elements/BooleanElement'
-import { TriggerValues, Element, Setup } from 'interactive-stateful-process'
+import { TriggerValues, Element, Setup } from 'interactive-elements'
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.

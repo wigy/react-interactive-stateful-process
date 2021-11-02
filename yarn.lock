@@ -3118,15 +3118,21 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-stateful-process@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/interactive-stateful-process/-/interactive-stateful-process-1.2.2.tgz#be9a95d4330dcd0bed896c9a928b6390a34e175b"
-  integrity sha512-XiUqUwMj5IVW4dzYzTUwBGheXwe0o9m1TT+NoZHpZ2hy3kzKDVmUCZo2syl/3jMDD01r6BCldn7CkyKKC7ezjw==
+interactive-elements@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.2.tgz#875773921b44bcb56c91bfddff096ad251323cd0"
+  integrity sha512-RWj9KO/co/KlRRTd8byEfN4WrWULUx2wweQcz8l3CKxI18uAoyqJyDpq2ekZG6WvgJYz2Id5aEBpW1w4c0xM+A==
+
+interactive-stateful-process@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/interactive-stateful-process/-/interactive-stateful-process-1.2.3.tgz#7f2999d26964b4b2a16cc06059776163eabbefbd"
+  integrity sha512-konXL5KZgYJAhd5Wh6N7x0KbOo3ZeJsWiUD76A9cvY7JqLVnMfsH+LQ04l7nYC0htEknN0XP4Guwe4NsnllirA==
   dependencies:
     chardet "^1.4.0"
     clone "^2.1.2"
     csv-parse "^4.16.3"
     express "^4.17.1"
+    interactive-elements "^1.0.2"
     knex "^0.95.11"
     pg "^8.7.1"
     ts-opaque "^3.0.1"
