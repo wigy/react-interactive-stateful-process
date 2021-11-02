@@ -32,7 +32,7 @@
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
     "base64-arraybuffer": "^1.0.1",
-    "interactive-elements": "^1.0.3"
+    "interactive-elements": "^1.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

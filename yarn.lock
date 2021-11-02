@@ -3097,10 +3097,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.2.tgz#875773921b44bcb56c91bfddff096ad251323cd0"
-  integrity sha512-RWj9KO/co/KlRRTd8byEfN4WrWULUx2wweQcz8l3CKxI18uAoyqJyDpq2ekZG6WvgJYz2Id5aEBpW1w4c0xM+A==
+interactive-elements@^1.0.4:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.3.tgz#dee569deffb8c38810f9d0a941e0edbcab928f52"
+  integrity sha512-12OS4p1uZWb73zPq+RwbmN9qNMSEDHMr3hupdqSh23kls7dr2mZGGkH7LTqmbvdJsbRZxulCXgMpFzUuM4s+kw==
 
 internal-ip@^4.3.0:
   version "4.3.0"
