@@ -4,7 +4,8 @@ import { Trans } from 'react-i18next'
 import { useAxios } from './useAxios'
 
 export type ProcessListProps = {
-  api: string
+  api: string,
+  onClick?: (id: number) => void
 }
 
 export const ProcessList = (props: ProcessListProps): React.Element => {
@@ -25,7 +26,7 @@ export const ProcessList = (props: ProcessListProps): React.Element => {
         <TableBody>
         {
           processes.map(process => (
-            <TableRow>
+            <TableRow onClick={() => { props.onClick && props.onClick(process.id) }}>
               <TableCell>{process.created}</TableCell>
               <TableCell>{process.name}</TableCell>
               <TableCell>{process.status}</TableCell>

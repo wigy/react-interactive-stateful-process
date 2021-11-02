@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { observable, runInAction } from 'mobx'
 import { Button, Paper, TextField, Typography } from '@material-ui/core'
@@ -11,6 +11,7 @@ import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
 import { RenderingEngine } from '../src/Rendering'
 import { ProcessList } from '../src/Components/ProcessList'
+import { ProcessView } from '../src/Components/ProcessView'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -66,6 +67,9 @@ const App = observer(() => {
   }
 
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
+
+  const [ processId, setProcessId ] = useState(null)
+
   return (
     <>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
@@ -75,7 +79,8 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Processes</Typography>
-        <ProcessList api={API}/>
+        {processId && <ProcessView api={API} id={processId} />}
+        {!processId && <ProcessList api={API} onClick={id => setProcessId(id)}/>}
       </Paper>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
