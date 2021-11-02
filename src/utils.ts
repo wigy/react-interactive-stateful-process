@@ -1,10 +1,10 @@
-import { Element, isContainerElement, isNamedElement } from "interactive-elements"
+import { InteractiveElement, isContainerElement, isNamedElement } from "interactive-elements"
 
 /**
  * Collect all names defined in the element structure.
  * @param element
  */
-function elementNames(element: Element) {
+function elementNames(element: InteractiveElement) {
   if (isContainerElement(element)) {
     const vars = new Set()
     for (const sub of element.elements) {

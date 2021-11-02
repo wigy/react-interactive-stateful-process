@@ -2,7 +2,7 @@ import { runInAction } from 'mobx'
 import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement } from "interactive-elements"
 import { RenderingProps } from "./Rendering"
 import { ActionEngine } from "./ActionEngine"
-import { Element, Action, ActionResult } from 'interactive-elements'
+import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
 
 /**
  * Registry for internal event trigger handlers.
@@ -17,10 +17,10 @@ import { Element, Action, ActionResult } from 'interactive-elements'
    * @param handler Function executing trigger handling.
    * @returns
    */
-  static register<SetupType=Setup, ElementType=Element, TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null {
+  static register<SetupType=Setup, ElementType=InteractiveElement, TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null {
     const old = TriggerEngine.triggers[name] || null
     // Not too nice but need to force custom types into registry as well.
-    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Setup, Element, Trigger>
+    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Setup, InteractiveElement, Trigger>
     return old as unknown as TriggerHandler<SetupType, ElementType, TriggerType>
   }
 

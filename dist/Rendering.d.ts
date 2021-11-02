@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { TriggerValues, Element, Setup } from 'interactive-elements';
+import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements';
 /**
  * Readability helper to specify that a string is being used as a renderer name.
  */
@@ -11,7 +11,7 @@ export declare type RendererName = string;
  * @property values A set of values to edit associated with the rendering process.
  * @property setup Global configuration for the rendering system.
  */
-export declare type RenderingProps<SetupType = Setup, ElementType = Element> = {
+export declare type RenderingProps<SetupType = Setup, ElementType = InteractiveElement> = {
     element: ElementType;
     values: TriggerValues;
     setup: SetupType;
@@ -19,7 +19,7 @@ export declare type RenderingProps<SetupType = Setup, ElementType = Element> = {
 /**
  * A function rendering certain type of element providing React Element presentation for it.
  */
-export declare type Renderer<SetupType = Setup, ElementType = Element> = React.FC<RenderingProps<SetupType, ElementType>>;
+export declare type Renderer<SetupType = Setup, ElementType = InteractiveElement> = React.FC<RenderingProps<SetupType, ElementType>>;
 /**
  * Registry for element rendering handlers.
  *
@@ -34,7 +34,7 @@ export declare class RenderingEngine {
      * @param renderer
      * @returns Old handler if there was any.
      */
-    static register<SetupType = Setup, ElementType = Element>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null;
+    static register<SetupType = Setup, ElementType = InteractiveElement>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null;
     /**
      * Find the registered renderer for the given properties and call the renderer if found.
      * @param props

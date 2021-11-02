@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './Rendering'
 import { TriggerEngine } from './Triggering'
-import { Element, ActiveElement, isContainerElement, isNamedElement } from 'interactive-elements'
+import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement } from 'interactive-elements'
 
 /**
  * This is the main entry point for dynamical rendereding.
@@ -18,7 +18,7 @@ import { Element, ActiveElement, isContainerElement, isNamedElement } from 'inte
   const { values, element } = props
 
   // Fill in appropriate fields for elements.
-  const prepare = (element: Element) => {
+  const prepare = (element: InteractiveElement) => {
       // Named components have values.
       if (isNamedElement(element)) {
         if (values[element.name] === undefined) {

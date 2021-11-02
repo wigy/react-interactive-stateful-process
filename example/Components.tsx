@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core'
 import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering'
 import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
-import { ActionHandler, ActiveElement, Element, isActiveElement, Setup, TriggerHandler, ViewElement } from 'interactive-elements'
+import { ActionHandler, ActiveElement, InteractiveElement, isActiveElement, Setup, TriggerHandler, ViewElement } from 'interactive-elements'
 
 // Example of custom triggers, elements and action handlers.
 
@@ -15,7 +15,7 @@ export interface OnCustomTrigger {
   readonly type: 'onCustom'
   message: string
 }
-export const onCustomTriggerHandler: TriggerHandler<CustomSetup, Element, OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
+export const onCustomTriggerHandler: TriggerHandler<CustomSetup, InteractiveElement, OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
   console.log('We activated onCustom trigger!')
   // Nothing to do. Just pass it to action handler.
   if (isActiveElement(props.element)) {

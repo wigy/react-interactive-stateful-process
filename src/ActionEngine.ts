@@ -1,5 +1,5 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler, Action, Setup, Element, isActiveElement } from 'interactive-elements'
+import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement } from 'interactive-elements'
 import { RenderingProps } from './Rendering'
 
 /**
@@ -15,7 +15,7 @@ export class ActionEngine {
    * @param handler
    * @returns The old registered handler if there was any.
    */
-  static register<SetupType=Setup, ElementType=Element, ActionType=Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null {
+  static register<SetupType=Setup, ElementType=InteractiveElement, ActionType=Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null {
     const old = ActionEngine.actions[name] || null
     // Not too nice but need to force custom types into registry as well.
     ActionEngine.actions[name] = handler as unknown as ActionHandler

@@ -3,7 +3,7 @@ import { TextRenderer } from "./Elements/TextElement"
 import { FlatRenderer } from "./Elements/FlatElement"
 import { ButtonRenderer } from "./Elements/ButtonElement"
 import { BooleanRenderer } from './Elements/BooleanElement'
-import { TriggerValues, Element, Setup } from 'interactive-elements'
+import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements'
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.
@@ -17,7 +17,7 @@ export type RendererName = string
  * @property values A set of values to edit associated with the rendering process.
  * @property setup Global configuration for the rendering system.
  */
-export type RenderingProps<SetupType=Setup, ElementType=Element> = {
+export type RenderingProps<SetupType=Setup, ElementType=InteractiveElement> = {
   element: ElementType,
   values: TriggerValues,
   setup: SetupType
@@ -26,7 +26,7 @@ export type RenderingProps<SetupType=Setup, ElementType=Element> = {
 /**
  * A function rendering certain type of element providing React Element presentation for it.
  */
-export type Renderer<SetupType=Setup, ElementType=Element> = React.FC<RenderingProps<SetupType, ElementType>>
+export type Renderer<SetupType=Setup, ElementType=InteractiveElement> = React.FC<RenderingProps<SetupType, ElementType>>
 
 /**
  * Registry for element rendering handlers.
@@ -44,7 +44,7 @@ export class RenderingEngine {
    * @param renderer
    * @returns Old handler if there was any.
    */
-  static register<SetupType=Setup, ElementType=Element>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null {
+  static register<SetupType=Setup, ElementType=InteractiveElement>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null {
     const old = RenderingEngine.renderers[name] || null
     // Not too nice but need to force custom types into registry as well.
     RenderingEngine.renderers[name] = renderer as unknown as Renderer

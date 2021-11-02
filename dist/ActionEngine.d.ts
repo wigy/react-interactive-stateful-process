@@ -1,4 +1,4 @@
-import { ActionName, ActionResult, ActionHandler, Action, Setup, Element } from 'interactive-elements';
+import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement } from 'interactive-elements';
 import { RenderingProps } from './Rendering';
 /**
  * Registry and call API for action handlers.
@@ -11,7 +11,7 @@ export declare class ActionEngine {
      * @param handler
      * @returns The old registered handler if there was any.
      */
-    static register<SetupType = Setup, ElementType = Element, ActionType = Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null;
+    static register<SetupType = Setup, ElementType = InteractiveElement, ActionType = Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null;
     /**
      * Construct a result indicating a failure in action execution.
      * @param message Reason for the failure.

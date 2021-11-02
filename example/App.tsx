@@ -5,7 +5,7 @@ import { Button, Paper, TextField, Typography } from '@material-ui/core'
 import { RISP } from '../src/RISP'
 import { observer } from 'mobx-react'
 import { FileUploader } from '../src/Components'
-import { Element, FlatElement, TriggerValues } from 'interactive-elements'
+import { InteractiveElement, FlatElement, TriggerValues } from 'interactive-elements'
 import { customActionHandler, CustomElement, CustomRenderer, CustomSetup, OnCustomTrigger, onCustomTriggerHandler } from './Components'
 import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
@@ -15,7 +15,7 @@ import { ProcessView } from '../src/Components/ProcessView'
 
 const API = 'http://localhost:3302/api/isp'
 
-TriggerEngine.register<CustomSetup, Element, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
+TriggerEngine.register<CustomSetup, InteractiveElement, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
 RenderingEngine.register('custom', CustomRenderer)
 ActionEngine.register('custom', customActionHandler)
 
@@ -33,7 +33,7 @@ const App = observer(() => {
     b: ''
   })
 
-  const element: FlatElement<CustomElement | Element> = {
+  const element: FlatElement<CustomElement | InteractiveElement> = {
     type: 'flat',
     elements: [
       {
