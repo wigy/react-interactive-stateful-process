@@ -115,15 +115,20 @@ const App = observer(() => {
   return (
     <>
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
-        <Typography className="text" variant="h3">Some Elements</Typography>
+        <Typography className="text" variant="h3">Upload Tester</Typography>
+        <FileUploader onUpload={(files) => onUpload(files)} color="primary" variant="contained"/>
+      </Paper>
+
+      <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
+        <Typography className="text" variant="h3">Processes</Typography>
+      </Paper>
+
+      <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
+        <Typography className="text" variant="h3">Element Test Dashboard</Typography>
         <RISP key="demo1" element={element} values={values} setup={setup}/>
         <Button variant="outlined" onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</Button>
-      </Paper>
-      <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
-        <Typography className="text" variant="h3">Uploading</Typography>
-        <FileUploader onUpload={(files) => onUpload(files)} color="primary" variant="contained"/>
       </Paper>
     </>
   )
