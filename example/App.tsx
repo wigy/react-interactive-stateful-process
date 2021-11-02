@@ -10,6 +10,7 @@ import { customActionHandler, CustomElement, CustomRenderer, CustomSetup, OnCust
 import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
 import { RenderingEngine } from '../src/Rendering'
+import { ProcessList } from '../src/Components/ProcessList'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -74,6 +75,7 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Processes</Typography>
+        <ProcessList api={API}/>
       </Paper>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
