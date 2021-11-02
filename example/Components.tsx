@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button } from '@material-ui/core'
 import { Renderer, RenderingEngine, RenderingProps } from '../src/Rendering'
 import { TriggerEngine } from '../src/Triggering'
@@ -14,7 +15,7 @@ export interface OnCustomTrigger {
   readonly type: 'onCustom'
   message: string
 }
-const onCustomTriggerHandler: TriggerHandler<CustomSetup, Element, OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
+export const onCustomTriggerHandler: TriggerHandler<CustomSetup, Element, OnCustomTrigger> = (trigger: OnCustomTrigger, props: RenderingProps) => {
   console.log('We activated onCustom trigger!')
   // Nothing to do. Just pass it to action handler.
   if (isActiveElement(props.element)) {
@@ -22,7 +23,6 @@ const onCustomTriggerHandler: TriggerHandler<CustomSetup, Element, OnCustomTrigg
   }
   return ActionEngine.success()
 }
-TriggerEngine.register<CustomSetup, Element, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
 
 // Element:
 export type CustomElement = ViewElement<
@@ -33,7 +33,7 @@ export type CustomElement = ViewElement<
   }
 > & ActiveElement<CustomSetup, CustomElement, OnCustomTrigger, CustomAction> & { readonly type: 'custom' }
 
-const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingProps<CustomSetup, CustomElement>) => {
+export const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element, values } = props
   const standardProps = props
   return <>
@@ -42,15 +42,13 @@ const CustomRenderer: Renderer<CustomSetup, CustomElement> = (props: RenderingPr
     Values: <pre>{JSON.stringify(values, null, 2)}</pre>
   </>
 }
-RenderingEngine.register('custom', CustomRenderer)
 
 // Action:
 export interface CustomAction {
   readonly type: 'custom'
 }
-const customActionHandler: ActionHandler<CustomSetup, CustomElement, CustomAction> = async (action: CustomAction, props: RenderingProps<CustomSetup, CustomElement>) => {
+export const customActionHandler: ActionHandler<CustomSetup, CustomElement, CustomAction> = async (action: CustomAction, props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element } = props
   console.log('Custom action handled with data', element.data)
   return { success: true }
 }
-ActionEngine.register('custom', customActionHandler)

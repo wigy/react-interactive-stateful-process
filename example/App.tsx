@@ -6,9 +6,16 @@ import { RISP } from '../src/RISP'
 import { observer } from 'mobx-react'
 import { FileUploader } from '../src/Components'
 import { Element, FlatElement, TriggerValues } from 'interactive-elements'
-import { CustomElement, CustomSetup } from './Components'
+import { customActionHandler, CustomElement, CustomRenderer, CustomSetup, OnCustomTrigger, onCustomTriggerHandler } from './Components'
+import { TriggerEngine } from '../src/Triggering'
+import { ActionEngine } from '../src/ActionEngine'
+import { RenderingEngine } from '../src/Rendering'
 
 const API = 'http://localhost:3302/api/isp'
+
+TriggerEngine.register<CustomSetup, Element, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
+RenderingEngine.register('custom', CustomRenderer)
+ActionEngine.register('custom', customActionHandler)
 
 /**
  * Sample application.
