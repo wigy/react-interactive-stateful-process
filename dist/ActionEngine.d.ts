@@ -1,4 +1,4 @@
-import { ActionName, ActionResult, ActionHandler, Action, Setup, Element } from 'interactive-stateful-process';
+import { ActionName, ActionResult, ActionHandler, Action, Setup, Element } from 'interactive-elements';
 import { RenderingProps } from './Rendering';
 /**
  * Registry and call API for action handlers.

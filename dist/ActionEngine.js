@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.debugActionHandler = exports.ActionEngine = void 0;
 const mobx_1 = require("mobx");
-const interactive_stateful_process_1 = require("interactive-stateful-process");
+const interactive_elements_1 = require("interactive-elements");
 /**
  * Registry and call API for action handlers.
  */
@@ -105,7 +105,7 @@ ActionEngine.actions = {};
  */
 const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
     const { element, values } = props;
-    if ((0, interactive_stateful_process_1.isActiveElement)(element)) {
+    if ((0, interactive_elements_1.isActiveElement)(element)) {
         console.log('Action:', action);
         console.log('Element:', element);
         console.log('Values:', values);

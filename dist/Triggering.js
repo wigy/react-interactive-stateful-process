@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TriggerEngine = void 0;
 const mobx_1 = require("mobx");
-const interactive_stateful_process_1 = require("interactive-stateful-process");
+const interactive_elements_1 = require("interactive-elements");
 const ActionEngine_1 = require("./ActionEngine");
 /**
  * Registry for internal event trigger handlers.
@@ -59,9 +59,9 @@ TriggerEngine.triggers = {};
  */
 const onChangeTriggerHandler = (trigger, props) => {
     const { element } = props;
-    if ((0, interactive_stateful_process_1.isNamedElement)(element)) {
+    if ((0, interactive_elements_1.isNamedElement)(element)) {
         props.values[trigger.name] = trigger.value;
-        if ((0, interactive_stateful_process_1.isActiveElement)(element) && element.actions[trigger.type]) {
+        if ((0, interactive_elements_1.isActiveElement)(element) && element.actions[trigger.type]) {
             return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
         }
         else {
@@ -79,7 +79,7 @@ TriggerEngine.register('onChange', onChangeTriggerHandler);
  */
 const passThroughTriggerHandler = (trigger, props) => {
     const { element } = props;
-    if ((0, interactive_stateful_process_1.isActiveElement)(element) && element.actions[trigger.type]) {
+    if ((0, interactive_elements_1.isActiveElement)(element) && element.actions[trigger.type]) {
         return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
     }
     else {

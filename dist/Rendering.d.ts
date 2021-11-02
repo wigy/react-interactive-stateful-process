@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { TriggerValues, Element, Setup } from 'interactive-stateful-process';
+import { TriggerValues, Element, Setup } from 'interactive-elements';
 /**
  * Readability helper to specify that a string is being used as a renderer name.
  */
