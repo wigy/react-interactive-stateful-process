@@ -18,11 +18,6 @@
       "@babel/plugin-transform-runtime"
     ]
   },
-  "dependencies": {
-    "base64-arraybuffer": "^1.0.1",
-    "interactive-elements": "^1.0.2",
-    "interactive-stateful-process": "^1.2.3"
-  },
   "scripts": {
     "demo": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js",
     "dev": "tsc -w",
@@ -33,6 +28,10 @@
     "lint": "echo \"\\033[0;31mNo linting system for react interactive stateful process yet.\\033[0m\"",
     "test": "echo \"\\033[0;31mNo testing system for react interactive stateful process yet.\\033[0m\"",
     "test:ci": "yarn install && yarn run lint && yarn test"
+  },
+  "dependencies": {
+    "base64-arraybuffer": "^1.0.1",
+    "interactive-elements": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -54,7 +53,6 @@
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^8.1.0",
-    "tty-browserify": "^0.0.1",
     "typedoc": "^0.21.5",
     "typescript": "^4.3.5",
     "webpack": "^5.28.0",

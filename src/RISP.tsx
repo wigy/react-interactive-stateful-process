@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './Rendering'
 import { TriggerEngine } from './Triggering'
-import { Element, ActiveElement, isContainerElement, isNamedElement } from 'interactive-stateful-process'
+import { Element, ActiveElement, isContainerElement, isNamedElement } from 'interactive-elements'
 
 /**
  * This is the main entry point for dynamical rendereding.

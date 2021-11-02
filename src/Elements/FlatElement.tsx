@@ -1,6 +1,6 @@
 import React from 'react'
 import { Renderer, RenderingEngine, RenderingProps } from "../Rendering"
-import { Element, isFlatElement } from 'interactive-stateful-process'
+import { Element, isFlatElement } from 'interactive-elements'
 
 export const FlatRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props

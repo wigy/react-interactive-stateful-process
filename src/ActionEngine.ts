@@ -1,5 +1,5 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler, Action, Setup, Element, isActiveElement } from 'interactive-stateful-process'
+import { ActionName, ActionResult, ActionHandler, Action, Setup, Element, isActiveElement } from 'interactive-elements'
 import { RenderingProps } from './Rendering'
 
 /**

@@ -1,4 +1,4 @@
-import { Element, isContainerElement, isNamedElement } from "interactive-stateful-process"
+import { Element, isContainerElement, isNamedElement } from "interactive-elements"
 
 /**
  * Collect all names defined in the element structure.

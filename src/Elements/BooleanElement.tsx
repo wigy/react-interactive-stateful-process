@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormControlLabel, Checkbox } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
-import { isBooleanElement } from 'interactive-stateful-process'
+import { isBooleanElement } from 'interactive-elements'
 
 /**
  * Rendering for boolean toggle element.

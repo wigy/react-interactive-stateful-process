@@ -1,5 +1,5 @@
 import { runInAction } from 'mobx'
-import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement } from "interactive-stateful-process"
+import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement } from "interactive-elements"
 import { RenderingProps } from "./Rendering"
 import { ActionEngine } from "./ActionEngine"
 import { Element, Action, ActionResult } from 'interactive-elements'
