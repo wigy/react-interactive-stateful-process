@@ -1,6 +1,7 @@
 import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
+import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 
 export type ProcessListProps = {
@@ -29,7 +30,7 @@ export const ProcessList = (props: ProcessListProps): React.Element => {
             <TableRow onClick={() => { props.onClick && props.onClick(process.id) }}>
               <TableCell>{process.created}</TableCell>
               <TableCell>{process.name}</TableCell>
-              <TableCell>{process.status}</TableCell>
+              <TableCell><ProcessStatusIcon status={process.status}/></TableCell>
             </TableRow>
           ))
         }

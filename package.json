@@ -30,6 +30,7 @@
     "test:ci": "yarn install && yarn run lint && yarn test"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "base64-arraybuffer": "^1.0.1",
     "interactive-elements": "^1.0.2"
   },
