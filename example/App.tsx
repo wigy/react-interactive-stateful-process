@@ -68,7 +68,7 @@ const App = observer(() => {
 
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
 
-  const [ processId, setProcessId ] = useState(null)
+  const [ processId, setProcessId ] = useState(7)
 
   return (
     <>

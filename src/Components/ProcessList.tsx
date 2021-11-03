@@ -19,6 +19,7 @@ export const ProcessList = (props: ProcessListProps): React.Element => {
       <Table className="ProcessTable">
         <TableHead>
           <TableRow>
+            <TableCell variant="head" align="left"><Trans>#</Trans></TableCell>
             <TableCell variant="head" align="left"><Trans>Date</Trans></TableCell>
             <TableCell variant="head" align="left"><Trans>Process Name</Trans></TableCell>
             <TableCell variant="head" align="left"><Trans>Status</Trans></TableCell>
@@ -27,7 +28,8 @@ export const ProcessList = (props: ProcessListProps): React.Element => {
         <TableBody>
         {
           processes.map(process => (
-            <TableRow onClick={() => { props.onClick && props.onClick(process.id) }}>
+            <TableRow key={process.id} onClick={() => { props.onClick && props.onClick(process.id) }}>
+              <TableCell>{process.id}</TableCell>
               <TableCell>{process.created}</TableCell>
               <TableCell>{process.name}</TableCell>
               <TableCell><ProcessStatusIcon status={process.status}/></TableCell>
