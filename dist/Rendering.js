@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RenderingEngine = void 0;
-const TextElement_1 = require("./Elements/TextElement");
-const FlatElement_1 = require("./Elements/FlatElement");
-const ButtonElement_1 = require("./Elements/ButtonElement");
-const BooleanElement_1 = require("./Elements/BooleanElement");
 /**
  * Registry for element rendering handlers.
  *
@@ -39,7 +35,3 @@ class RenderingEngine {
 }
 exports.RenderingEngine = RenderingEngine;
 RenderingEngine.renderers = {};
-RenderingEngine.register('boolean', BooleanElement_1.BooleanRenderer);
-RenderingEngine.register('text', TextElement_1.TextRenderer);
-RenderingEngine.register('flat', FlatElement_1.FlatRenderer);
-RenderingEngine.register('button', ButtonElement_1.ButtonRenderer);

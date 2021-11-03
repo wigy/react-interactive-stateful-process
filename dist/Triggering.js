@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TriggerEngine = void 0;
+exports.passThroughTriggerHandler = exports.onChangeTriggerHandler = exports.TriggerEngine = void 0;
 const mobx_1 = require("mobx");
 const interactive_elements_1 = require("interactive-elements");
 const ActionEngine_1 = require("./ActionEngine");
@@ -70,7 +70,7 @@ const onChangeTriggerHandler = (trigger, props) => {
     }
     return ActionEngine_1.ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`);
 };
-TriggerEngine.register('onChange', onChangeTriggerHandler);
+exports.onChangeTriggerHandler = onChangeTriggerHandler;
 /**
  * A default handler that passes trigger as is to the action handler.
  * @param trigger
@@ -86,5 +86,4 @@ const passThroughTriggerHandler = (trigger, props) => {
         return ActionEngine_1.ActionEngine.handle(trigger, props);
     }
 };
-TriggerEngine.register('onClick', passThroughTriggerHandler);
-TriggerEngine.register('default', passThroughTriggerHandler);
+exports.passThroughTriggerHandler = passThroughTriggerHandler;

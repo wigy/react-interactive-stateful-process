@@ -49,7 +49,7 @@ import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
  * @param props
  * @returns
  */
-const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
+ export const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   const { element } = props
   if (isNamedElement(element)) {
     props.values[trigger.name] = trigger.value
@@ -61,7 +61,6 @@ const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props:
   }
   return ActionEngine.fail(`The element ${JSON.stringify(element)} is not compatible with onChange.`)
 }
-TriggerEngine.register('onChange', onChangeTriggerHandler)
 
 /**
  * A default handler that passes trigger as is to the action handler.
@@ -69,7 +68,7 @@ TriggerEngine.register('onChange', onChangeTriggerHandler)
  * @param props
  * @returns
  */
-const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: RenderingProps) => {
+export const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: RenderingProps) => {
   const { element } = props
   if (isActiveElement(element) && element.actions[trigger.type]) {
     return ActionEngine.handle(element.actions[trigger.type], props)
@@ -77,5 +76,3 @@ const passThroughTriggerHandler: TriggerHandler = (trigger: Trigger, props: Rend
     return ActionEngine.handle(trigger as Action, props)
   }
 }
-TriggerEngine.register('onClick', passThroughTriggerHandler)
-TriggerEngine.register('default', passThroughTriggerHandler)

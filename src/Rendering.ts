@@ -64,8 +64,3 @@ export class RenderingEngine {
     return RenderingEngine.renderers[element.type](props)
   }
 }
-
-RenderingEngine.register('boolean', BooleanRenderer)
-RenderingEngine.register('text', TextRenderer)
-RenderingEngine.register('flat', FlatRenderer)
-RenderingEngine.register('button', ButtonRenderer)

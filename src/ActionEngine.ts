@@ -101,5 +101,3 @@ export const debugActionHandler: ActionHandler = async (action: Action, props: R
   }
   return { success: true }
 }
-
-ActionEngine.register('debug', debugActionHandler)

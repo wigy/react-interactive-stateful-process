@@ -113,4 +113,3 @@ const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, 
     return { success: true };
 });
 exports.debugActionHandler = debugActionHandler;
-ActionEngine.register('debug', exports.debugActionHandler);

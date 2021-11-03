@@ -22,3 +22,17 @@ export declare class TriggerEngine {
      */
     static handle(trigger: Trigger, props: RenderingProps): ActionResult;
 }
+/**
+ * A handler changing the value in the rendering props before passing the trigger to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export declare const onChangeTriggerHandler: TriggerHandler;
+/**
+ * A default handler that passes trigger as is to the action handler.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export declare const passThroughTriggerHandler: TriggerHandler;
