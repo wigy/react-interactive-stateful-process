@@ -1,20 +1,19 @@
-import { useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import axios from 'axios'
 
-export type AxiosProps = {
+export type AxiosProps<Type> = {
   url: string,
-  receiver: (data) => {}
+  receiver: Dispatch<SetStateAction<Type>>
 }
 
 /**
  * Helper hook to call API using axios.
  * @param props
  */
-export const useAxios = (props: AxiosProps) => {
-  useEffect(async () => {
-    const resp = await axios.get(props.url).catch(err => console.error('Axios:', err))
-    if (resp) {
-      props.receiver(resp.data)
-    }
+export function useAxios<Type>(props: AxiosProps<Type>) {
+  useEffect(() => {
+    axios.get(props.url)
+      .then(resp => props.receiver(resp.data as Type))
+      .catch(err => console.error('Axios:', err))
   }, [props.url])
 }

@@ -55,15 +55,17 @@ const FileUploader = (props) => {
      */
     const onFileChange = (event) => __awaiter(void 0, void 0, void 0, function* () {
         uploads = [];
-        for (const file of Array.from(event.target.files)) {
-            const binary = yield readFileFromInput(file).catch(function (reason) {
-                console.log(`Error during upload ${reason}`);
-                return null;
-            });
-            if (binary) {
-                collectUploadedFile(binary, file);
+        if (event.target.files) {
+            for (const file of Array.from(event.target.files)) {
+                const binary = yield readFileFromInput(file).catch(function (reason) {
+                    console.log(`Error during upload ${reason}`);
+                    return null;
+                });
+                if (binary) {
+                    collectUploadedFile(binary, file);
+                }
+                event.target.value = '';
             }
-            event.target.value = '';
         }
         props.onUpload(uploads);
     });

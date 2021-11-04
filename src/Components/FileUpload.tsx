@@ -27,7 +27,7 @@ export type FileUploaderProps = {
  * An file uploader utility.
  * @param props.onUpload A function handling the resulting file upload data.
  */
-export const FileUploader = (props: FileUploaderProps): React.Element => {
+export const FileUploader = (props: FileUploaderProps): JSX.Element => {
 
   let uploads: FileUploadData[] = []
 
@@ -65,15 +65,17 @@ export const FileUploader = (props: FileUploaderProps): React.Element => {
    */
   const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     uploads = []
-    for (const file of Array.from(event.target.files)) {
-      const binary = await readFileFromInput(file as File).catch(function (reason) {
-        console.log(`Error during upload ${reason}`)
-        return null
-      })
-      if (binary) {
-        collectUploadedFile(binary, file as File)
+    if (event.target.files) {
+      for (const file of Array.from(event.target.files)) {
+        const binary = await readFileFromInput(file as File).catch(function (reason) {
+          console.log(`Error during upload ${reason}`)
+          return null
+        })
+        if (binary) {
+          collectUploadedFile(binary, file as File)
+        }
+        event.target.value = ''
       }
-      event.target.value = ''
     }
     props.onUpload(uploads)
   }

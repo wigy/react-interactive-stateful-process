@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export declare enum ProcessStatus {
     INCOMPLETE = "INCOMPLETE",
     WAITING = "WAITING",

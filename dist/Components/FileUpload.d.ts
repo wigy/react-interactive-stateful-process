@@ -20,4 +20,4 @@ export declare type FileUploaderProps = {
  * An file uploader utility.
  * @param props.onUpload A function handling the resulting file upload data.
  */
-export declare const FileUploader: (props: FileUploaderProps) => any;
+export declare const FileUploader: (props: FileUploaderProps) => JSX.Element;

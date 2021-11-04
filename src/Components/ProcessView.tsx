@@ -3,15 +3,16 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
+import { GetApiResponse } from 'interactive-elements'
 
 export type ProcessViewProps = {
   api: string
   id: number
 }
 
-export const ProcessView = (props: ProcessViewProps): React.Element => {
+export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
-  const [process, setProcess] = useState(null)
+  const [process, setProcess] = useState<GetApiResponse | null>(null)
   useAxios({ url: `${props.api}/${props.id}`, receiver: setProcess })
   const theme = useTheme()
 

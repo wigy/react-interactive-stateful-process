@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormControlLabel, Checkbox } from '@material-ui/core'
 import { Renderer, RenderingProps } from "../Rendering"
@@ -15,7 +15,7 @@ export const BooleanRenderer: Renderer = (props: RenderingProps) => {
 
   const { t } = useTranslation()
   const label = element.label ? element.label : t(`label-${element.name}`)
-  const [value, setValue] = React.useState(props.values[element.name] || '')
+  const [value, setValue] = useState<boolean | null>(props.values[element.name] as boolean || null)
 
   return <FormControlLabel
     control={

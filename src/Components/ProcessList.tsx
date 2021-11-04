@@ -1,17 +1,18 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
+import { GetApiResponse, ID } from 'interactive-elements'
 
 export type ProcessListProps = {
   api: string,
-  onClick?: (id: number) => void
+  onClick?: (id: ID) => void
 }
 
-export const ProcessList = (props: ProcessListProps): React.Element => {
+export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
-  const [processes, setProcesses] = useState([])
+  const [processes, setProcesses] = useState<GetApiResponse[]>([])
   useAxios({ url: `${props.api}`, receiver: setProcesses })
 
   return (

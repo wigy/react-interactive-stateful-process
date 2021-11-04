@@ -1,5 +1,6 @@
+import { ID } from 'interactive-elements';
 export declare type ProcessListProps = {
     api: string;
-    onClick?: (id: number) => void;
+    onClick?: (id: ID) => void;
 };
-export declare const ProcessList: (props: ProcessListProps) => any;
+export declare const ProcessList: (props: ProcessListProps) => JSX.Element;
