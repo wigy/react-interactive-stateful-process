@@ -80,6 +80,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="Rendering.html#Renderer" class="tsd-kind-icon">Renderer</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="Rendering.html#RendererName" class="tsd-kind-icon">Renderer<wbr>Name</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="Rendering.html#RendererRegistry" class="tsd-kind-icon">Renderer<wbr>Registry</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter"><a href="Rendering.html#RenderingProps" class="tsd-kind-icon">Rendering<wbr>Props</a></li>
 							</ul>
 						</section>
@@ -94,7 +95,7 @@
 					<div class="tsd-signature tsd-kind-icon">Renderer&lt;SetupType, ElementType&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">React.FC</span><span class="tsd-signature-symbol">&lt;</span><a href="Rendering.html#RenderingProps" class="tsd-signature-type" data-tsd-kind="Type alias">RenderingProps</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SetupType</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">ElementType</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/0b0a7e6/src/Rendering.ts#L29">Rendering.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/50cbb25/src/Rendering.ts#L25">Rendering.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -118,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">Renderer<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/0b0a7e6/src/Rendering.ts#L11">Rendering.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/50cbb25/src/Rendering.ts#L7">Rendering.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -127,13 +128,36 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="RendererRegistry" class="tsd-anchor"></a>
+					<h3>Renderer<wbr>Registry</h3>
+					<div class="tsd-signature tsd-kind-icon">Renderer<wbr>Registry<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/50cbb25/src/Rendering.ts#L30">Rendering.ts:30</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Registry where all renderers has been stored.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="Rendering.html#Renderer" class="tsd-signature-type" data-tsd-kind="Type alias">Renderer</a></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
 					<a name="RenderingProps" class="tsd-anchor"></a>
 					<h3>Rendering<wbr>Props</h3>
 					<div class="tsd-signature tsd-kind-icon">Rendering<wbr>Props&lt;SetupType, ElementType&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementType</span><span class="tsd-signature-symbol">; </span>setup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SetupType</span><span class="tsd-signature-symbol">; </span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TriggerValues</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/0b0a7e6/src/Rendering.ts#L20">Rendering.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/wigy/react-interactive-stateful-process/blob/50cbb25/src/Rendering.ts#L16">Rendering.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,6 +274,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
 						<a href="Rendering.html#RendererName" class="tsd-kind-icon">Renderer<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="Rendering.html#RendererRegistry" class="tsd-kind-icon">Renderer<wbr>Registry</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="Rendering.html#RenderingProps" class="tsd-kind-icon">Rendering<wbr>Props</a>

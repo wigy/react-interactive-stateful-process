@@ -5,11 +5,19 @@ import { ActionEngine } from "./ActionEngine"
 import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
 
 /**
+ * Registry where all trigger handlers has been stored.
+ */
+export type TriggerHandlerRegistry = { [key: string]: TriggerHandler }
+declare global {
+  var TriggerEngineHandlers: TriggerHandlerRegistry
+}
+declare var TriggerEngineHandlers
+global.TriggerEngineHandlers = {}
+
+/**
  * Registry for internal event trigger handlers.
  */
- export class TriggerEngine {
-
-  private static triggers: { [key: string]: TriggerHandler} = {}
+export class TriggerEngine {
 
   /**
    * Add a trigger handler function to the registry.
@@ -17,10 +25,10 @@ import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
    * @param handler Function executing trigger handling.
    * @returns
    */
-  static register<SetupType=Setup, ElementType=InteractiveElement, TriggerType=Trigger, ActionType=Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null {
-    const old = TriggerEngine.triggers[name] || null
+  static register<SetupType = Setup, ElementType = InteractiveElement, TriggerType = Trigger, ActionType = Action>(name: TriggerName, handler: TriggerHandler<SetupType, ElementType, TriggerType>): TriggerHandler<SetupType, ElementType, TriggerType> | null {
+    const old = TriggerEngineHandlers[name] || null
     // Not too nice but need to force custom types into registry as well.
-    TriggerEngine.triggers[name] = handler as unknown as TriggerHandler<Setup, InteractiveElement, Trigger>
+    TriggerEngineHandlers[name] = handler as unknown as TriggerHandler<Setup, InteractiveElement, Trigger>
     return old as unknown as TriggerHandler<SetupType, ElementType, TriggerType>
   }
 
@@ -32,12 +40,12 @@ import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
    * @returns
    */
   static async handle(trigger: Trigger, props: RenderingProps): ActionResult {
-    if (!TriggerEngine.triggers[trigger.type]) {
+    if (!TriggerEngineHandlers[trigger.type]) {
       throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`)
     }
     let ret
     runInAction(() => {
-      ret = TriggerEngine.triggers[trigger.type](trigger, props)
+      ret = TriggerEngineHandlers[trigger.type](trigger, props)
     })
     return ret
   }
@@ -49,7 +57,7 @@ import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
  * @param props
  * @returns
  */
- export const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
+export const onChangeTriggerHandler: TriggerHandler = (trigger: OnChangeTrigger, props: RenderingProps) => {
   const { element } = props
   if (isNamedElement(element)) {
     props.values[trigger.name] = trigger.value

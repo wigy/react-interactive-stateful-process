@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RenderingEngine = void 0;
+global.RenderingEngineRenderers = {};
 /**
  * Registry for element rendering handlers.
  *
@@ -15,9 +16,9 @@ class RenderingEngine {
      * @returns Old handler if there was any.
      */
     static register(name, renderer) {
-        const old = RenderingEngine.renderers[name] || null;
+        const old = RenderingEngineRenderers[name] || null;
         // Not too nice but need to force custom types into registry as well.
-        RenderingEngine.renderers[name] = renderer;
+        RenderingEngineRenderers[name] = renderer;
         return old;
     }
     /**
@@ -27,11 +28,10 @@ class RenderingEngine {
      */
     static render(props) {
         const { element } = props;
-        if (!RenderingEngine.renderers[element.type]) {
+        if (!RenderingEngineRenderers[element.type]) {
             throw new Error(`There is no registered renderer for type '${element.type}'.`);
         }
-        return RenderingEngine.renderers[element.type](props);
+        return RenderingEngineRenderers[element.type](props);
     }
 }
 exports.RenderingEngine = RenderingEngine;
-RenderingEngine.renderers = {};

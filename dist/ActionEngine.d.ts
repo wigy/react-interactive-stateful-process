@@ -1,10 +1,18 @@
 import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement } from 'interactive-elements';
 import { RenderingProps } from './Rendering';
 /**
+ * Registry where all action handlers has been stored.
+ */
+export declare type ActionHandlerRegistry = {
+    [key: string]: ActionHandler;
+};
+declare global {
+    var ActionEngineHandlers: ActionHandlerRegistry;
+}
+/**
  * Registry and call API for action handlers.
  */
 export declare class ActionEngine {
-    private static actions;
     /**
      * Add a handler for the given action.
      * @param name

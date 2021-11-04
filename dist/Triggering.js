@@ -13,6 +13,7 @@ exports.passThroughTriggerHandler = exports.onChangeTriggerHandler = exports.Tri
 const mobx_1 = require("mobx");
 const interactive_elements_1 = require("interactive-elements");
 const ActionEngine_1 = require("./ActionEngine");
+global.TriggerEngineHandlers = {};
 /**
  * Registry for internal event trigger handlers.
  */
@@ -24,9 +25,9 @@ class TriggerEngine {
      * @returns
      */
     static register(name, handler) {
-        const old = TriggerEngine.triggers[name] || null;
+        const old = TriggerEngineHandlers[name] || null;
         // Not too nice but need to force custom types into registry as well.
-        TriggerEngine.triggers[name] = handler;
+        TriggerEngineHandlers[name] = handler;
         return old;
     }
     /**
@@ -38,19 +39,18 @@ class TriggerEngine {
      */
     static handle(trigger, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!TriggerEngine.triggers[trigger.type]) {
+            if (!TriggerEngineHandlers[trigger.type]) {
                 throw new Error(`There is no trigger handler for trigger type '${trigger.type}'.`);
             }
             let ret;
             (0, mobx_1.runInAction)(() => {
-                ret = TriggerEngine.triggers[trigger.type](trigger, props);
+                ret = TriggerEngineHandlers[trigger.type](trigger, props);
             });
             return ret;
         });
     }
 }
 exports.TriggerEngine = TriggerEngine;
-TriggerEngine.triggers = {};
 /**
  * A handler changing the value in the rendering props before passing the trigger to the action handler.
  * @param trigger

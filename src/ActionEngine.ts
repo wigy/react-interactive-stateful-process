@@ -3,11 +3,19 @@ import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElem
 import { RenderingProps } from './Rendering'
 
 /**
+ * Registry where all action handlers has been stored.
+ */
+export type ActionHandlerRegistry = { [key: string]: ActionHandler }
+declare global {
+  var ActionEngineHandlers: ActionHandlerRegistry
+}
+declare var ActionEngineHandlers
+global.ActionEngineHandlers = {}
+
+/**
  * Registry and call API for action handlers.
  */
 export class ActionEngine {
-
-  private static actions: { [key: string]: ActionHandler} = {}
 
   /**
    * Add a handler for the given action.
@@ -15,10 +23,10 @@ export class ActionEngine {
    * @param handler
    * @returns The old registered handler if there was any.
    */
-  static register<SetupType=Setup, ElementType=InteractiveElement, ActionType=Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null {
-    const old = ActionEngine.actions[name] || null
+  static register<SetupType = Setup, ElementType = InteractiveElement, ActionType = Action>(name: ActionName, handler: ActionHandler<SetupType, ElementType, ActionType>): ActionHandler | null {
+    const old = ActionEngineHandlers[name] || null
     // Not too nice but need to force custom types into registry as well.
-    ActionEngine.actions[name] = handler as unknown as ActionHandler
+    ActionEngineHandlers[name] = handler as unknown as ActionHandler
     return old
   }
 
@@ -27,7 +35,7 @@ export class ActionEngine {
    * @param message Reason for the failure.
    * @returns A result object.
    */
-   static async fail(message: string): ActionResult {
+  static async fail(message: string): ActionResult {
     return {
       success: false,
       message
@@ -54,18 +62,18 @@ export class ActionEngine {
    * an array of actions, all of them are executed. If any of them fails, the
    * result is failure. Otherwise success.
    */
-  static async handle<ActionType extends Action=Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
+  static async handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
     if (!action) {
       throw new Error(`Action engine called without action.`)
     }
     // Helper to run action.
     const runAction = async (action, props) => {
-      if (!ActionEngine.actions[action.type]) {
+      if (!ActionEngineHandlers[action.type]) {
         throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`)
       }
       let ret
       runInAction(async () => {
-        ret = await ActionEngine.actions[action.type](action, props)
+        ret = await ActionEngineHandlers[action.type](action, props)
       })
       return ret
     }
@@ -73,7 +81,7 @@ export class ActionEngine {
     // Find handler for the given type.
     if (Array.isArray(action)) {
       const messages: string[] = []
-      for ( let i = 0; i < action.length; i++) {
+      for (let i = 0; i < action.length; i++) {
         const result = await runAction(action[i], props)
         if (!result.success) {
           messages.push(result.message)

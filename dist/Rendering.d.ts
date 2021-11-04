@@ -21,13 +21,21 @@ export declare type RenderingProps<SetupType = Setup, ElementType = InteractiveE
  */
 export declare type Renderer<SetupType = Setup, ElementType = InteractiveElement> = React.FC<RenderingProps<SetupType, ElementType>>;
 /**
+ * Registry where all renderers has been stored.
+ */
+export declare type RendererRegistry = {
+    [key: string]: Renderer;
+};
+declare global {
+    var RenderingEngineRenderers: RendererRegistry;
+}
+/**
  * Registry for element rendering handlers.
  *
  * This is a global container to register all rendering handlers. It will have
  * all standard element renderers registered by default.
  */
 export declare class RenderingEngine {
-    private static renderers;
     /**
      * Register a handler for an element type.
      * @param name

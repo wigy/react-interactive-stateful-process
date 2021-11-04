@@ -1,8 +1,4 @@
 import React, { ReactElement } from 'react'
-import { TextRenderer } from "./Elements/TextElement"
-import { FlatRenderer } from "./Elements/FlatElement"
-import { ButtonRenderer } from "./Elements/ButtonElement"
-import { BooleanRenderer } from './Elements/BooleanElement'
 import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements'
 
 /**
@@ -29,14 +25,22 @@ export type RenderingProps<SetupType=Setup, ElementType=InteractiveElement> = {
 export type Renderer<SetupType=Setup, ElementType=InteractiveElement> = React.FC<RenderingProps<SetupType, ElementType>>
 
 /**
+ * Registry where all renderers has been stored.
+ */
+export type RendererRegistry = { [key: string]: Renderer}
+declare global {
+  var RenderingEngineRenderers: RendererRegistry
+}
+declare var RenderingEngineRenderers
+global.RenderingEngineRenderers = {}
+
+/**
  * Registry for element rendering handlers.
  *
  * This is a global container to register all rendering handlers. It will have
  * all standard element renderers registered by default.
  */
 export class RenderingEngine {
-
-  private static renderers: { [key: string]: Renderer} = {}
 
   /**
    * Register a handler for an element type.
@@ -45,9 +49,9 @@ export class RenderingEngine {
    * @returns Old handler if there was any.
    */
   static register<SetupType=Setup, ElementType=InteractiveElement>(name: RendererName, renderer: Renderer<SetupType, ElementType>): Renderer | null {
-    const old = RenderingEngine.renderers[name] || null
+    const old = RenderingEngineRenderers[name] || null
     // Not too nice but need to force custom types into registry as well.
-    RenderingEngine.renderers[name] = renderer as unknown as Renderer
+    RenderingEngineRenderers[name] = renderer as unknown as Renderer
     return old
   }
 
@@ -58,9 +62,9 @@ export class RenderingEngine {
    */
   static render(props: RenderingProps): ReactElement | null {
     const { element } = props
-    if (!RenderingEngine.renderers[element.type]) {
+    if (!RenderingEngineRenderers[element.type]) {
       throw new Error(`There is no registered renderer for type '${element.type}'.`)
     }
-    return RenderingEngine.renderers[element.type](props)
+    return RenderingEngineRenderers[element.type](props)
   }
 }

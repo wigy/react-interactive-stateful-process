@@ -2,10 +2,18 @@ import { TriggerName, TriggerHandler, Trigger, Setup } from "interactive-element
 import { RenderingProps } from "./Rendering";
 import { InteractiveElement, Action, ActionResult } from 'interactive-elements';
 /**
+ * Registry where all trigger handlers has been stored.
+ */
+export declare type TriggerHandlerRegistry = {
+    [key: string]: TriggerHandler;
+};
+declare global {
+    var TriggerEngineHandlers: TriggerHandlerRegistry;
+}
+/**
  * Registry for internal event trigger handlers.
  */
 export declare class TriggerEngine {
-    private static triggers;
     /**
      * Add a trigger handler function to the registry.
      * @param name Name of the trigger.

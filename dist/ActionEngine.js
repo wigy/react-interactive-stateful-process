@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.debugActionHandler = exports.ActionEngine = void 0;
 const mobx_1 = require("mobx");
 const interactive_elements_1 = require("interactive-elements");
+global.ActionEngineHandlers = {};
 /**
  * Registry and call API for action handlers.
  */
@@ -23,9 +24,9 @@ class ActionEngine {
      * @returns The old registered handler if there was any.
      */
     static register(name, handler) {
-        const old = ActionEngine.actions[name] || null;
+        const old = ActionEngineHandlers[name] || null;
         // Not too nice but need to force custom types into registry as well.
-        ActionEngine.actions[name] = handler;
+        ActionEngineHandlers[name] = handler;
         return old;
     }
     /**
@@ -69,12 +70,12 @@ class ActionEngine {
             }
             // Helper to run action.
             const runAction = (action, props) => __awaiter(this, void 0, void 0, function* () {
-                if (!ActionEngine.actions[action.type]) {
+                if (!ActionEngineHandlers[action.type]) {
                     throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`);
                 }
                 let ret;
                 (0, mobx_1.runInAction)(() => __awaiter(this, void 0, void 0, function* () {
-                    ret = yield ActionEngine.actions[action.type](action, props);
+                    ret = yield ActionEngineHandlers[action.type](action, props);
                 }));
                 return ret;
             });
@@ -96,7 +97,6 @@ class ActionEngine {
     }
 }
 exports.ActionEngine = ActionEngine;
-ActionEngine.actions = {};
 /**
  * Handler that just prints the content of the trigger, the element and current values to the console.
  * @param trigger
