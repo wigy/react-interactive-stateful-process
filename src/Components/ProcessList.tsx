@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
-import { GetApiResponse, ID } from 'interactive-elements'
+import { GetAllProcessesApiResponse, ID } from 'interactive-elements'
 
 export type ProcessListProps = {
   api: string,
@@ -12,7 +12,7 @@ export type ProcessListProps = {
 
 export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
-  const [processes, setProcesses] = useState<GetApiResponse[]>([])
+  const [processes, setProcesses] = useState<GetAllProcessesApiResponse>([])
   useAxios({ url: `${props.api}`, receiver: setProcesses })
 
   return (

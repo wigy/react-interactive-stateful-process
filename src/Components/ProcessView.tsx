@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
-import { GetApiResponse } from 'interactive-elements'
+import { GetOneProcessResponse } from 'interactive-elements'
 import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 export type ProcessViewProps = {
@@ -15,7 +15,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   const theme = useTheme()
 
-  const [process, setProcess] = useState<GetApiResponse | null>(null)
+  const [process, setProcess] = useState<GetOneProcessResponse | null>(null)
   const [step, setStep] = useState<number | null>(null)
 
   useAxios({ url: `${props.api}/${props.id}`, receiver: setProcess })
