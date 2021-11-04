@@ -6,46 +6,26 @@ import { useAxios } from './useAxios'
 import { GetOneProcessResponse } from 'interactive-elements'
 import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
-export type ProcessStepProps = {
-  api: string
-  proccessId: number
-  index: number
-}
-
-export const ProcessStep = (props: ProcessStepProps): JSX.Element => {
-  const [step, setStep] = useState<number | null>(null)
-
-  useAxios({ url: `${props.api}/${props.proccessId}/steps/${props.index}`, receiver: setStep })
-
-  console.log(step);
-  return <>STEP</>
-}
-
 export type ProcessViewProps = {
   api: string
-  proccessId: number
+  id: number
 }
 
-/**
- * A viewer for single process with step browsing capabilities.
- * @param props
- * @returns
- */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   const theme = useTheme()
 
   const [process, setProcess] = useState<GetOneProcessResponse | null>(null)
+  const [step, setStep] = useState<number | null>(null)
 
-  useAxios({ url: `${props.api}/${props.proccessId}`, receiver: setProcess })
+  useAxios({ url: `${props.api}/${props.id}`, receiver: setProcess })
 
   console.log(process);
 
   if (!process) return <></>
 
-  const [step, setStep] = useState<number | null>(null)
-  const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : 0
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps > 1
+  const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
 
   const onPreviousStep = () => {
     setStep(currentStep - 1)
@@ -72,7 +52,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
             <TableCell align="right">
               <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
               <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
-              {canChangeStep && currentStep !== null ? currentStep + 1 : <>&emdash;</>}
+              {canChangeStep ? currentStep + 1 : <>&emdash;</>}
               </Fab>
               <Fab disabled={!canChangeStep || !process.steps || currentStep === process.steps - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
             </TableCell>
