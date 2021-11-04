@@ -5,7 +5,7 @@ import { Button, Paper, Typography } from '@material-ui/core'
 import { RISP } from '../src/RISP'
 import { observer } from 'mobx-react'
 import { FileUploader } from '../src/Components'
-import { InteractiveElement, FlatElement, TriggerValues } from 'interactive-elements'
+import { InteractiveElement, FlatElement, TriggerValues, ID } from 'interactive-elements'
 import { customActionHandler, CustomElement, CustomRenderer, CustomSetup, OnCustomTrigger, onCustomTriggerHandler } from './Components'
 import { TriggerEngine } from '../src/Triggering'
 import { ActionEngine } from '../src/ActionEngine'
@@ -68,7 +68,7 @@ const App = observer(() => {
 
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
 
-  const [ processId, setProcessId ] = useState(7)
+  const [ processId, setProcessId ] = useState<ID>(1)
 
   return (
     <>
@@ -85,7 +85,7 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Element Test Dashboard</Typography>
-        <RISP key="demo1" element={element} values={values} setup={setup}/>
+        <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
         <Button variant="outlined" onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</Button>
