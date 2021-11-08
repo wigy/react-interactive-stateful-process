@@ -1,4 +1,3 @@
-/// <reference types="react" />
 /**
  * Format of the returned file data from the file uploader component.
  */

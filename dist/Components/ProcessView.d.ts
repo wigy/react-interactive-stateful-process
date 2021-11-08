@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export declare type ProcessViewProps = {
     api: string;
     id: number;
