@@ -3201,10 +3201,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.10.tgz#bb14fad98ff1cecb93f025788022fc3b9e9c586d"
-  integrity sha512-CLAzAOwsGCFQzrW9/55J2XOy+GXunDxRnVrj1E5oX8a8GQXX8mnMWLdsOsTeCDfHyoK8cQKuHNA8Fz+CrFo57Q==
+interactive-elements@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.11.tgz#c8f939016e03a30b55637ccca30a333e44ad6ca2"
+  integrity sha512-ZLYHbUlJjsx7pmUIza/Ae6T+y5qVvgC692GiBMXkpZj19OhDNGAL+m+jJfIfu9RROFMC56gOu5N+MQ3TUZ0awA==
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -5848,6 +5848,11 @@ type-is@~1.6.17, type-is@~1.6.18:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.24"
+
+typedoc-plugin-missing-exports@^0.22.4:
+  version "0.22.4"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-missing-exports/-/typedoc-plugin-missing-exports-0.22.4.tgz#22a2cf10c0dc1724460c5ba9c81ae66c60a3658e"
+  integrity sha512-NRagPFyh8Oma5E7rR8534x4d8GQ/87Tp3WYfBJcxradPjXTZ4D2MXD5eHfG98DQCMqYrb+CRZnvO4iaGaqQC7w==
 
 typedoc@0.22.6:
   version "0.22.6"
