@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export type AxiosProps<Type> = {
   url: string,
+  token?: string,
   receiver: Dispatch<SetStateAction<Type>>
 }
 
@@ -12,7 +13,11 @@ export type AxiosProps<Type> = {
  */
 export function useAxios<Type>(props: AxiosProps<Type>) {
   useEffect(() => {
-    axios.get(props.url)
+    const headers: { Authorization?: string } = {}
+    if (props.token) {
+      headers.Authorization = `Bearer ${props.token}`
+    }
+    axios({ method: 'GET', url: props.url, headers })
       .then(resp => props.receiver(resp.data as Type))
       .catch(err => console.error('Axios:', err))
   }, [props.url])

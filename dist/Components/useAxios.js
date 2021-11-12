@@ -12,7 +12,11 @@ const axios_1 = __importDefault(require("axios"));
  */
 function useAxios(props) {
     (0, react_1.useEffect)(() => {
-        axios_1.default.get(props.url)
+        const headers = {};
+        if (props.token) {
+            headers.Authorization = `Bearer ${props.token}`;
+        }
+        (0, axios_1.default)({ method: 'GET', url: props.url, headers })
             .then(resp => props.receiver(resp.data))
             .catch(err => console.error('Axios:', err));
     }, [props.url]);

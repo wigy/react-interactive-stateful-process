@@ -27,7 +27,7 @@ const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
 const ProcessList = (props) => {
     const [processes, setProcesses] = (0, react_1.useState)([]);
-    (0, useAxios_1.useAxios)({ url: `${props.api}`, receiver: setProcesses });
+    (0, useAxios_1.useAxios)({ url: `${props.api}`, token: props.token, receiver: setProcesses });
     return (react_1.default.createElement(core_1.TableContainer, null,
         react_1.default.createElement(core_1.Table, { className: "ProcessTable" },
             react_1.default.createElement(core_1.TableHead, null,

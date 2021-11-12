@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 export declare type AxiosProps<Type> = {
     url: string;
+    token?: string;
     receiver: Dispatch<SetStateAction<Type>>;
 };
 /**

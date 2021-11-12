@@ -7,13 +7,14 @@ import { GetAllProcessesApiResponse, ID } from 'interactive-elements'
 
 export type ProcessListProps = {
   api: string,
+  token?: string,
   onClick?: (id: ID) => void
 }
 
 export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
   const [processes, setProcesses] = useState<GetAllProcessesApiResponse>([])
-  useAxios({ url: `${props.api}`, receiver: setProcesses })
+  useAxios({ url: `${props.api}`, token: props.token, receiver: setProcesses })
 
   return (
     <TableContainer>

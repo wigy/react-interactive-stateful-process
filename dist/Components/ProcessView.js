@@ -29,8 +29,7 @@ const ProcessView = (props) => {
     const theme = (0, core_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [step, setStep] = (0, react_1.useState)(null);
-    (0, useAxios_1.useAxios)({ url: `${props.api}/${props.id}`, receiver: setProcess });
-    console.log(process);
+    (0, useAxios_1.useAxios)({ url: `${props.api}/${props.id}`, token: props.token, receiver: setProcess });
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps > 1;
@@ -58,7 +57,7 @@ const ProcessView = (props) => {
                     react_1.default.createElement(core_1.TableCell, { align: "right" },
                         react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: onPreviousStep },
                             react_1.default.createElement(icons_1.NavigateBefore, null)),
-                        react_1.default.createElement(core_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "&emdash;")),
+                        react_1.default.createElement(core_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
                         react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || !process.steps || currentStep === process.steps - 1, color: "secondary", "aria-label": "previous", onClick: onNextStep },
                             react_1.default.createElement(icons_1.NavigateNext, null))))))));
 };
