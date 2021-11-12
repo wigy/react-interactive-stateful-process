@@ -38,10 +38,10 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     <TableContainer>
       <Table className="ProcessTable">
         <TableHead>
-          <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
-            <TableCell variant="head" align="left">{process.id}</TableCell>
-            <TableCell variant="head" align="left">{process.created}</TableCell>
-            <TableCell variant="head" align="left">{process.name}</TableCell>
+          <TableRow style={{ backgroundColor: theme.palette.secondary.main, color: 'red' }}>
+            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.id}</TableCell>
+            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.created}</TableCell>
+            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.name}</TableCell>
             <TableCell variant="head" align="right"><ProcessStatusIcon status={process.status}/></TableCell>
           </TableRow>
         </TableHead>
