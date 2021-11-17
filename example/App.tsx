@@ -79,7 +79,7 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Processes</Typography>
-        {processId && <ProcessView api={API} id={processId} />}
+        {processId && <ProcessView api={API} id={processId} onBack={() => setProcessId(null)}/>}
         {!processId && <ProcessList api={API} onClick={id => setProcessId(id)}/>}
       </Paper>
 

@@ -1,15 +1,16 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem, useTheme, Fab } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem, useTheme, Fab, IconButton } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { GetOneProcessResponse } from 'interactive-elements'
-import { NavigateBefore, NavigateNext } from '@material-ui/icons'
+import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 export type ProcessViewProps = {
   api: string
   token?: string
   id: number
+  onBack?: () => void
 }
 
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
@@ -34,11 +35,16 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     setStep(currentStep + 1)
   }
 
+  const onBack = () => {
+    props.onBack && props.onBack()
+  }
+
   return (
     <TableContainer>
       <Table className="ProcessTable">
         <TableHead>
           <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
+            <TableCell variant="head"><IconButton onClick={() => onBack()}><ArrowBackOutlined /></IconButton></TableCell>
             <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.id}</TableCell>
             <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.created}</TableCell>
             <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.name}</TableCell>
@@ -47,6 +53,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         </TableHead>
         <TableBody>
           <TableRow>
+            <TableCell></TableCell>
             <TableCell colSpan={3} align="left">TODO: Configuration {JSON.stringify(process.config)}</TableCell>
             <TableCell align="right">
               <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
