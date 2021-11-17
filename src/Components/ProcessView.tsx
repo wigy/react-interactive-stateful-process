@@ -69,7 +69,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
               {canChangeStep ? currentStep + 1 : <>—</>}
               </Fab>
-              <Fab disabled={!canChangeStep || !process.steps || currentStep === process.steps - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
+              <Fab disabled={!canChangeStep || currentStep === process.steps - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
             </TableCell>
           </TableRow>
         </TableBody>
