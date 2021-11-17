@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ProcessConfig } from 'interactive-elements'
+import { Trans } from 'react-i18next'
 import { useAxios } from './useAxios'
 
 export type DefaultStepViewProps = {
@@ -15,13 +15,31 @@ export type DefaultStepViewProps = {
  */
 export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
-  const [step, setStep] = useState<number | null>(null)
+  const [step, setStep] = useState<any | null>(null) // TODO: Define type.
 
   useAxios({ url: `${props.api}/${props.step}`, token: props.token, receiver: setStep })
-  // TODO: Is there anything except warning we can display by default?
+
+  if (!step) {
+    return <></>
+  }
+
+  const started = new Date(step.started).getTime()
+  const finished = new Date(step.finished).getTime()
+
   return (
     <div>
-      {JSON.stringify(step)}
+      <Trans>Process ID</Trans>: {step.processId}
+      &nbsp;
+      <Trans>Step</Trans>: {step.number + 1}
+      &nbsp;
+      <Trans>Handler</Trans>: {step.handler}
+      &nbsp;
+      <Trans>Started</Trans>: {step.started}
+      &nbsp;
+      <Trans>Duration</Trans>: {(finished - started)}ms
+    <pre>
+      {JSON.stringify(step, null, 2)}
+    </pre>
     </div>
   )
 }

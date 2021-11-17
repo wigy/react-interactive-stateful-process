@@ -78,7 +78,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           {
             hasSteps &&
             <TableRow>
-              <TableCell colSpan={5} align="center"><StepView api={`${props.api}/${props.id}/step`} token={props.token} step={currentStep}/></TableCell>
+              <TableCell colSpan={5} align="left"><StepView api={`${props.api}/${props.id}/step`} token={props.token} step={currentStep}/></TableCell>
             </TableRow>
           }
         </TableBody>
