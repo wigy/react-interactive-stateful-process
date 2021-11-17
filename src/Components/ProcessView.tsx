@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
-import { GetOneProcessResponse } from 'interactive-elements'
+import { DefaultConfigView } from './DefaultConfigView'
+import { GetOneProcessResponse, ProcessConfig } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 export type ProcessViewProps = {
@@ -11,8 +12,14 @@ export type ProcessViewProps = {
   token?: string
   id: number
   onBack?: () => void
+  configView?: (config: ProcessConfig) => JSX.Element
 }
 
+/**
+ * A viewer for process steps.
+ * @param props
+ * @returns
+ */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   const theme = useTheme()
@@ -39,6 +46,8 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     props.onBack && props.onBack()
   }
 
+  const ConfigView = props.configView || DefaultConfigView
+
   return (
     <TableContainer>
       <Table className="ProcessTable">
@@ -54,7 +63,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         <TableBody>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell colSpan={3} align="left">TODO: Configuration {JSON.stringify(process.config)}</TableCell>
+            <TableCell colSpan={3} align="left">{<ConfigView config={process.config}/>}</TableCell>
             <TableCell align="right">
               <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
               <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>

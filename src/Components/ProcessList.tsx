@@ -11,6 +11,11 @@ export type ProcessListProps = {
   onClick?: (id: ID) => void
 }
 
+/**
+ * A table view for a list of processes collected from the given API.
+ * @param props
+ * @returns
+ */
 export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
   const [processes, setProcesses] = useState<GetAllProcessesApiResponse>([])
