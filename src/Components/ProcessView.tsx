@@ -4,6 +4,7 @@ import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView } from './DefaultConfigView'
+import { DefaultStepView } from './DefaultStepView'
 import { GetOneProcessResponse, ProcessConfig } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 
@@ -33,6 +34,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps > 1
   const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
+  const hasSteps = process.currentStep !== undefined && process.steps > 0
 
   const onPreviousStep = () => {
     setStep(currentStep - 1)
@@ -47,6 +49,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   }
 
   const ConfigView = props.configView || DefaultConfigView
+  const StepView = DefaultStepView
 
   return (
     <TableContainer>
@@ -72,6 +75,12 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               <Fab disabled={!canChangeStep || currentStep === process.steps - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
             </TableCell>
           </TableRow>
+          {
+            hasSteps &&
+            <TableRow>
+              <TableCell colSpan={5} align="center"><StepView api={`${props.api}/${props.id}/step`} token={props.token} step={currentStep}/></TableCell>
+            </TableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>
