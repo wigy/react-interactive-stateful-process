@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useAxios } from './useAxios'
@@ -28,6 +29,7 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
   return (
     <div>
+      <Typography variant="body2">
       <Trans>Process ID</Trans>: {step.processId}
       &nbsp;
       <Trans>Step</Trans>: {step.number + 1}
@@ -37,9 +39,10 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
       <Trans>Started</Trans>: {step.started}
       &nbsp;
       <Trans>Duration</Trans>: {(finished - started)}ms
-    <pre>
-      {JSON.stringify(step, null, 2)}
-    </pre>
+      </Typography>
+      <pre>
+        {JSON.stringify(step, null, 2)}
+      </pre>
     </div>
   )
 }
