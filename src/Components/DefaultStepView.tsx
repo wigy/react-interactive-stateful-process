@@ -1,3 +1,4 @@
+import { GetOneStepResponse } from 'interactive-elements'
 import { Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -16,7 +17,7 @@ export type DefaultStepViewProps = {
  */
 export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
-  const [step, setStep] = useState<any | null>(null) // TODO: Define type.
+  const [step, setStep] = useState<GetOneStepResponse | null>(null)
 
   useAxios({ url: `${props.api}/${props.step}`, token: props.token, receiver: setStep })
 
@@ -30,15 +31,15 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
   return (
     <div>
       <Typography variant="body2">
-      <Trans>Process ID</Trans>: {step.processId}
+      <Trans><strong>Process ID</strong></Trans>: {step.processId}
       &nbsp;
-      <Trans>Step</Trans>: {step.number + 1}
+      <Trans><strong>Step</strong></Trans>: {step.number + 1}
       &nbsp;
-      <Trans>Handler</Trans>: {step.handler}
+      <Trans><strong>Handler</strong></Trans>: {step.handler}
       &nbsp;
-      <Trans>Started</Trans>: {step.started}
+      <Trans><strong>Started</strong></Trans>: {step.started}
       &nbsp;
-      <Trans>Duration</Trans>: {(finished - started)}ms
+      <Trans><strong>Duration</strong></Trans>: {(finished - started)}ms
       </Typography>
       <pre>
         {JSON.stringify(step, null, 2)}
