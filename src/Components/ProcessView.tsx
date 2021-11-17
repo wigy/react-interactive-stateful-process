@@ -4,8 +4,8 @@ import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView } from './DefaultConfigView'
-import { DefaultStepView } from './DefaultStepView'
-import { GetOneProcessResponse, ProcessConfig } from 'interactive-elements'
+import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
+import { GetOneProcessResponse, GetOneStepResponse, ProcessConfig } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 export type ProcessViewProps = {
@@ -14,6 +14,11 @@ export type ProcessViewProps = {
   id: number
   onBack?: () => void
   configView?: (config: ProcessConfig) => JSX.Element
+  stepView?: (props: DefaultStepViewProps) => JSX.Element
+  summaryView?: (summary: Record<string, unknown> | null) => JSX.Element // TODO: Remove optional nulls.
+  directionsView?: (directions: Record<string, unknown> | null) => JSX.Element
+  actionView?: (action: Record<string, unknown> | null) => JSX.Element
+  stateView?: (state: Record<string, unknown> | null) => JSX.Element
 }
 
 /**
@@ -22,6 +27,8 @@ export type ProcessViewProps = {
  * @returns
  */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
+
+  const { summaryView, directionsView, actionView, stateView } = props
 
   const theme = useTheme()
 
@@ -49,7 +56,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   }
 
   const ConfigView = props.configView || DefaultConfigView
-  const StepView = DefaultStepView
+  const StepView = props.stepView || DefaultStepView
 
   return (
     <TableContainer>
@@ -78,7 +85,16 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           {
             hasSteps &&
             <TableRow>
-              <TableCell colSpan={5} align="left"><StepView api={`${props.api}/${props.id}/step`} token={props.token} step={currentStep}/></TableCell>
+              <TableCell colSpan={5} align="left">
+                <StepView
+                  api={`${props.api}/${props.id}/step`}
+                  token={props.token}
+                  step={currentStep}
+                  summaryView={summaryView}
+                  directionsView={directionsView}
+                  actionView={actionView}
+                  stateView={stateView}/>
+              </TableCell>
             </TableRow>
           }
         </TableBody>

@@ -1,13 +1,19 @@
 import { GetOneStepResponse } from 'interactive-elements'
-import { Typography } from '@material-ui/core'
 import React, { useState } from 'react'
-import { Trans } from 'react-i18next'
 import { useAxios } from './useAxios'
+import { DefaultSummaryView } from './DefaultSummaryView'
+import { DefaultDirectionsView } from './DefaultDirectionsView'
+import { DefaultActionView } from './DefaultActionView'
+import { DefaultStateView } from './DefaultStateView'
 
 export type DefaultStepViewProps = {
   api: string
   token?: string
   step: number
+  summaryView?: (summary: Record<string, unknown> | null) => JSX.Element
+  directionsView?: (directions: Record<string, unknown> | null) => JSX.Element
+  actionView?: (action: Record<string, unknown> | null) => JSX.Element
+  stateView?: (state: Record<string, unknown> | null) => JSX.Element
 }
 
 /**
@@ -25,25 +31,17 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
     return <></>
   }
 
-  const started = new Date(step.started).getTime()
-  const finished = new Date(step.finished).getTime()
+  const SummaryView = props.summaryView || DefaultSummaryView
+  const DirectionsView = props.directionsView || DefaultDirectionsView
+  const ActionView = props.actionView || DefaultActionView
+  const StateView = props.stateView || DefaultStateView
 
   return (
     <div>
-      <Typography variant="body2">
-      <Trans><strong>Process ID</strong></Trans>: {step.processId}
-      &nbsp;
-      <Trans><strong>Step</strong></Trans>: {step.number + 1}
-      &nbsp;
-      <Trans><strong>Handler</strong></Trans>: {step.handler}
-      &nbsp;
-      <Trans><strong>Started</strong></Trans>: {step.started}
-      &nbsp;
-      <Trans><strong>Duration</strong></Trans>: {(finished - started)}ms
-      </Typography>
-      <pre>
-        {JSON.stringify(step, null, 2)}
-      </pre>
+      <SummaryView step={step} />
+      <DirectionsView directions={step.directions} />
+      <ActionView action={step.action} />
+      <StateView state={step.state} />
     </div>
   )
 }
