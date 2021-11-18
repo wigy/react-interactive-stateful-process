@@ -5,15 +5,19 @@ import { DefaultSummaryView } from './DefaultSummaryView'
 import { DefaultDirectionsView } from './DefaultDirectionsView'
 import { DefaultActionView } from './DefaultActionView'
 import { DefaultStateView } from './DefaultStateView'
+import { DefaultStateViewProps } from './DefaultStateView'
+import { DefaultDirectionsViewProps } from './DefaultDirectionsView'
+import { DefaultSummaryViewProps } from './DefaultSummaryView'
+import { DefaultActionViewProps } from './DefaultActionView'
 
 export type DefaultStepViewProps = {
   api: string
   token?: string
   step: number
-  summaryView?: (summary: Record<string, unknown>) => JSX.Element
-  directionsView?: (directions: Record<string, unknown>) => JSX.Element
-  actionView?: (action: Record<string, unknown>) => JSX.Element
-  stateView?: (state: Record<string, unknown>) => JSX.Element
+  summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
+  directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element
+  actionView?: (props: DefaultActionViewProps) => JSX.Element
+  stateView?: (props: DefaultStateViewProps) => JSX.Element
 }
 
 /**

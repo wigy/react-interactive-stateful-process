@@ -12,6 +12,7 @@ import { ActionEngine } from '../src/ActionEngine'
 import { RenderingEngine } from '../src/Rendering'
 import { ProcessList } from '../src/Components/ProcessList'
 import { ProcessView } from '../src/Components/ProcessView'
+import { ImportStateView } from '../src/Components/ImportStateView'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -79,8 +80,16 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Processes</Typography>
-        {processId && <ProcessView api={API} id={processId} onBack={() => setProcessId(null)}/>}
-        {!processId && <ProcessList api={API} onClick={id => setProcessId(id)}/>}
+        {processId && <ProcessView
+          api={API}
+          id={processId}
+          stateView={ImportStateView}
+          onBack={() => setProcessId(null)}
+        />}
+        {!processId && <ProcessList
+          api={API}
+          onClick={id => setProcessId(id)}
+        />}
       </Paper>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
