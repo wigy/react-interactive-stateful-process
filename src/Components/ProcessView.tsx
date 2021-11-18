@@ -15,10 +15,10 @@ export type ProcessViewProps = {
   onBack?: () => void
   configView?: (config: ProcessConfig) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
-  summaryView?: (summary: Record<string, unknown> | null) => JSX.Element // TODO: Remove optional nulls.
-  directionsView?: (directions: Record<string, unknown> | null) => JSX.Element
-  actionView?: (action: Record<string, unknown> | null) => JSX.Element
-  stateView?: (state: Record<string, unknown> | null) => JSX.Element
+  summaryView?: (summary: Record<string, unknown>) => JSX.Element
+  directionsView?: (directions: Record<string, unknown>) => JSX.Element
+  actionView?: (action: Record<string, unknown>) => JSX.Element
+  stateView?: (state: Record<string, unknown>) => JSX.Element
 }
 
 /**

@@ -10,10 +10,10 @@ export type DefaultStepViewProps = {
   api: string
   token?: string
   step: number
-  summaryView?: (summary: Record<string, unknown> | null) => JSX.Element
-  directionsView?: (directions: Record<string, unknown> | null) => JSX.Element
-  actionView?: (action: Record<string, unknown> | null) => JSX.Element
-  stateView?: (state: Record<string, unknown> | null) => JSX.Element
+  summaryView?: (summary: Record<string, unknown>) => JSX.Element
+  directionsView?: (directions: Record<string, unknown>) => JSX.Element
+  actionView?: (action: Record<string, unknown>) => JSX.Element
+  stateView?: (state: Record<string, unknown>) => JSX.Element
 }
 
 /**
@@ -39,9 +39,9 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
   return (
     <div>
       <SummaryView step={step} />
-      <DirectionsView directions={step.directions} />
-      <ActionView action={step.action} />
-      <StateView state={step.state} />
+      {step.directions && <DirectionsView directions={step.directions} />}
+      {step.action && <ActionView action={step.action} />}
+      {step.state && <StateView state={step.state} />}
     </div>
   )
 }
