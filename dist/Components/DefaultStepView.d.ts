@@ -1,24 +1,19 @@
-import { DefaultStepViewProps } from './DefaultStepView';
-import { ProcessConfig } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 import { DefaultActionViewProps } from './DefaultActionView';
-export declare type ProcessViewProps = {
+export declare type DefaultStepViewProps = {
     api: string;
     token?: string;
-    id: number;
-    onBack?: () => void;
-    configView?: (config: ProcessConfig) => JSX.Element;
-    stepView?: (props: DefaultStepViewProps) => JSX.Element;
+    step: number;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element;
     actionView?: (props: DefaultActionViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
 };
 /**
- * A viewer for process steps.
+ * Default viewer for a process configuration displaying names and values as is on one single line.
  * @param props
  * @returns
  */
-export declare const ProcessView: (props: ProcessViewProps) => JSX.Element;
+export declare const DefaultStepView: (props: DefaultStepViewProps) => JSX.Element;

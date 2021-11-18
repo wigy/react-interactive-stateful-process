@@ -25,6 +25,11 @@ const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
 const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
+/**
+ * A table view for a list of processes collected from the given API.
+ * @param props
+ * @returns
+ */
 const ProcessList = (props) => {
     const [processes, setProcesses] = (0, react_1.useState)([]);
     (0, useAxios_1.useAxios)({ url: `${props.api}`, token: props.token, receiver: setProcesses });
