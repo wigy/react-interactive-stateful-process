@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
-import { DefaultConfigView } from './DefaultConfigView'
+import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
 import { GetOneProcessResponse, GetOneStepResponse, ProcessConfig } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
@@ -11,13 +11,14 @@ import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultActionViewProps } from './DefaultActionView'
+import { DefaultErrorView } from './DefaultErrorView'
 
 export type ProcessViewProps = {
   api: string
   token?: string
   id: number
   onBack?: () => void
-  configView?: (config: ProcessConfig) => JSX.Element
+  configView?: (config: DefaultConfigViewProps) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element
@@ -61,10 +62,11 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   const ConfigView = props.configView || DefaultConfigView
   const StepView = props.stepView || DefaultStepView
+  const ErrorView = DefaultErrorView
 
   return (
     <TableContainer>
-      <Table className="ProcessTable">
+      <Table className="ProcessTable" size="small">
         <TableHead>
           <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
             <TableCell variant="head"><IconButton onClick={() => onBack()}><ArrowBackOutlined /></IconButton></TableCell>
@@ -77,7 +79,10 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         <TableBody>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell colSpan={3} align="left">{<ConfigView config={process.config}/>}</TableCell>
+            <TableCell colSpan={3} align="left">
+              {process.config && <ConfigView config={process.config}/>}
+              {process.error && <ErrorView error={process.error}/>}
+            </TableCell>
             <TableCell align="right">
               <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
               <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>

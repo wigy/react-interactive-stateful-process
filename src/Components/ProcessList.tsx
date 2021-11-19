@@ -23,7 +23,7 @@ export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
   return (
     <TableContainer>
-      <Table className="ProcessTable">
+      <Table className="ProcessTable" size="small">
         <TableHead>
           <TableRow>
             <TableCell variant="head" align="left"><Trans>#</Trans></TableCell>

@@ -1,5 +1,5 @@
+import { DefaultConfigViewProps } from './DefaultConfigView';
 import { DefaultStepViewProps } from './DefaultStepView';
-import { ProcessConfig } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
@@ -9,7 +9,7 @@ export declare type ProcessViewProps = {
     token?: string;
     id: number;
     onBack?: () => void;
-    configView?: (config: ProcessConfig) => JSX.Element;
+    configView?: (config: DefaultConfigViewProps) => JSX.Element;
     stepView?: (props: DefaultStepViewProps) => JSX.Element;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element;

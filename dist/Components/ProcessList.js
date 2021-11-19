@@ -34,7 +34,7 @@ const ProcessList = (props) => {
     const [processes, setProcesses] = (0, react_1.useState)([]);
     (0, useAxios_1.useAxios)({ url: `${props.api}`, token: props.token, receiver: setProcesses });
     return (react_1.default.createElement(core_1.TableContainer, null,
-        react_1.default.createElement(core_1.Table, { className: "ProcessTable" },
+        react_1.default.createElement(core_1.Table, { className: "ProcessTable", size: "small" },
             react_1.default.createElement(core_1.TableHead, null,
                 react_1.default.createElement(core_1.TableRow, null,
                     react_1.default.createElement(core_1.TableCell, { variant: "head", align: "left" },

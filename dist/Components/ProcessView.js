@@ -27,6 +27,7 @@ const useAxios_1 = require("./useAxios");
 const DefaultConfigView_1 = require("./DefaultConfigView");
 const DefaultStepView_1 = require("./DefaultStepView");
 const icons_1 = require("@material-ui/icons");
+const DefaultErrorView_1 = require("./DefaultErrorView");
 /**
  * A viewer for process steps.
  * @param props
@@ -54,8 +55,9 @@ const ProcessView = (props) => {
     };
     const ConfigView = props.configView || DefaultConfigView_1.DefaultConfigView;
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
+    const ErrorView = DefaultErrorView_1.DefaultErrorView;
     return (react_1.default.createElement(core_1.TableContainer, null,
-        react_1.default.createElement(core_1.Table, { className: "ProcessTable" },
+        react_1.default.createElement(core_1.Table, { className: "ProcessTable", size: "small" },
             react_1.default.createElement(core_1.TableHead, null,
                 react_1.default.createElement(core_1.TableRow, { style: { backgroundColor: theme.palette.secondary.main } },
                     react_1.default.createElement(core_1.TableCell, { variant: "head" },
@@ -69,7 +71,9 @@ const ProcessView = (props) => {
             react_1.default.createElement(core_1.TableBody, null,
                 react_1.default.createElement(core_1.TableRow, null,
                     react_1.default.createElement(core_1.TableCell, null),
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 3, align: "left" }, react_1.default.createElement(ConfigView, { config: process.config })),
+                    react_1.default.createElement(core_1.TableCell, { colSpan: 3, align: "left" },
+                        process.config && react_1.default.createElement(ConfigView, { config: process.config }),
+                        process.error && react_1.default.createElement(ErrorView, { error: process.error })),
                     react_1.default.createElement(core_1.TableCell, { align: "right" },
                         react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: onPreviousStep },
                             react_1.default.createElement(icons_1.NavigateBefore, null)),
