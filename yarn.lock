@@ -3201,10 +3201,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.12.tgz#8f8c1e114fd7bec94a0cef50aed28e5f1a60f0bd"
-  integrity sha512-TeXahM7WNlK3OS91fAIsMsQ06T56Ttfum2hMOTgBXB8QnJEmxxU/6/Kg83XnbhFAQieAHNg0/FJlYnSvWKEOfw==
+interactive-elements@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.13.tgz#6163ac5d3d0b08dfab50229ce29778f9c4f5dc16"
+  integrity sha512-c0+R7sufwUpubFTaMxYgM5DvjVYDNjNEnHiDxBwDM/rJqDggPmEuVzDTvy8MWeKlh0oO8EiN65u7s1Y6n1ASZA==
 
 internal-ip@^4.3.0:
   version "4.3.0"
