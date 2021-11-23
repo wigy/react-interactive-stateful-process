@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem, useTheme, Fab, IconButton } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem, useTheme, Fab, IconButton, Stepper, Step, StepLabel } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
@@ -44,9 +44,9 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
   if (!process) return <></>
 
-  const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps > 1
+  const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
-  const hasSteps = process.currentStep !== undefined && process.steps > 0
+  const hasSteps = process.currentStep !== undefined && process.steps.length > 0
 
   const onPreviousStep = () => {
     setStep(currentStep - 1)
@@ -63,6 +63,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const ConfigView = props.configView || DefaultConfigView
   const StepView = props.stepView || DefaultStepView
   const ErrorView = DefaultErrorView
+  const operations = process.steps.map(step => step.action ? JSON.stringify(step.action) : '')
 
   return (
     <TableContainer>
@@ -74,13 +75,32 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                 <ArrowBackOutlined style={{ color: theme.palette.secondary.contrastText }}/>
               </IconButton>
             </TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.id}</TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.created}</TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.name}</TableCell>
-            <TableCell variant="head" align="right"><ProcessStatusIcon status={process.status}/></TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+              {process.id}
+            </TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+              {process.created}
+            </TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+              {process.name}
+            </TableCell>
+            <TableCell variant="head" align="right">
+              <ProcessStatusIcon status={process.status}/>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
+          <TableRow>
+            <TableCell colSpan={5}>
+              <Stepper activeStep={currentStep}>
+                {operations.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </TableCell>
+          </TableRow>
           <TableRow>
             <TableCell></TableCell>
             <TableCell colSpan={3} align="left">
@@ -88,11 +108,13 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               {process.error && <ErrorView error={process.error}/>}
             </TableCell>
             <TableCell align="right">
-              <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
-              <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
-              {canChangeStep ? currentStep + 1 : <>—</>}
-              </Fab>
-              <Fab disabled={!canChangeStep || currentStep === process.steps - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
+              <Typography noWrap>
+                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
+                <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
+                {canChangeStep ? currentStep + 1 : <>—</>}
+                </Fab>
+                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
+              </Typography>
             </TableCell>
           </TableRow>
           {
