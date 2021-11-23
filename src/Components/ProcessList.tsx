@@ -36,7 +36,7 @@ export const ProcessList = (props: ProcessListProps): JSX.Element => {
         {
           processes.map(process => (
             <TableRow key={process.id} onClick={() => { props.onClick && props.onClick(process.id) }}>
-              <TableCell>{process.id}</TableCell>
+              <TableCell>ID {process.id}</TableCell>
               <TableCell>{process.created}</TableCell>
               <TableCell>{process.name}</TableCell>
               <TableCell><ProcessStatusIcon status={process.status}/></TableCell>
