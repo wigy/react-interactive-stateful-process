@@ -62,7 +62,7 @@ const ProcessView = (props) => {
                 react_1.default.createElement(core_1.TableRow, { style: { backgroundColor: theme.palette.secondary.main } },
                     react_1.default.createElement(core_1.TableCell, { variant: "head" },
                         react_1.default.createElement(core_1.IconButton, { onClick: () => onBack() },
-                            react_1.default.createElement(icons_1.ArrowBackOutlined, null))),
+                            react_1.default.createElement(icons_1.ArrowBackOutlined, { style: { color: theme.palette.secondary.contrastText } }))),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.id),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.created),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.name),
