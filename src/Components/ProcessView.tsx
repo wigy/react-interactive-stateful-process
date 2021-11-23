@@ -70,9 +70,9 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         <TableHead>
           <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
             <TableCell variant="head"><IconButton onClick={() => onBack()}><ArrowBackOutlined /></IconButton></TableCell>
-            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.id}</TableCell>
-            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.created}</TableCell>
-            <TableCell variant="head" style={{color: theme.palette.text.secondary}} align="left">{process.name}</TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.id}</TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.created}</TableCell>
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">{process.name}</TableCell>
             <TableCell variant="head" align="right"><ProcessStatusIcon status={process.status}/></TableCell>
           </TableRow>
         </TableHead>
