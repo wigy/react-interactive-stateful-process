@@ -49,7 +49,7 @@ const actionStepLabel = (action) => {
  * @returns
  */
 const ProcessView = (props) => {
-    const { summaryView, directionsView, stateView } = props;
+    const { summaryView, stateView } = props;
     const theme = (0, core_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [step, setStep] = (0, react_1.useState)(null);
@@ -105,6 +105,6 @@ const ProcessView = (props) => {
                 hasSteps &&
                     react_1.default.createElement(core_1.TableRow, null,
                         react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left" },
-                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, summaryView: summaryView, directionsView: directionsView, stateView: stateView })))))));
+                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, summaryView: summaryView, stateView: stateView })))))));
 };
 exports.ProcessView = ProcessView;

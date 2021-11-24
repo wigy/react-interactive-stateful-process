@@ -8,7 +8,6 @@ import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
 import { GetOneProcessResponse, isImportAction } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 import { DefaultStateViewProps } from './DefaultStateView'
-import { DefaultDirectionsViewProps } from './DefaultDirectionsView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultErrorView } from './DefaultErrorView'
 
@@ -20,7 +19,6 @@ export type ProcessViewProps = {
   configView?: (config: DefaultConfigViewProps) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
-  directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
 }
 
@@ -46,7 +44,7 @@ const actionStepLabel = (action: unknown): string => {
  */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
-  const { summaryView, directionsView, stateView } = props
+  const { summaryView, stateView } = props
 
   const theme = useTheme()
 
@@ -139,7 +137,6 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   token={props.token}
                   step={currentStep}
                   summaryView={summaryView}
-                  directionsView={directionsView}
                   stateView={stateView}/>
               </TableCell>
             </TableRow>

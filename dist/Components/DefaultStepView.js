@@ -23,7 +23,6 @@ exports.DefaultStepView = void 0;
 const react_1 = __importStar(require("react"));
 const useAxios_1 = require("./useAxios");
 const DefaultSummaryView_1 = require("./DefaultSummaryView");
-const DefaultDirectionsView_1 = require("./DefaultDirectionsView");
 const DefaultStateView_1 = require("./DefaultStateView");
 /**
  * Default viewer for a process configuration displaying names and values as is on one single line.
@@ -37,11 +36,9 @@ const DefaultStepView = (props) => {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
     const SummaryView = props.summaryView || DefaultSummaryView_1.DefaultSummaryView;
-    const DirectionsView = props.directionsView || DefaultDirectionsView_1.DefaultDirectionsView;
     const StateView = props.stateView || DefaultStateView_1.DefaultStateView;
     return (react_1.default.createElement("div", null,
         react_1.default.createElement(SummaryView, { step: step }),
-        step.directions && react_1.default.createElement(DirectionsView, { directions: step.directions }),
         step.state && react_1.default.createElement(StateView, { state: step.state })));
 };
 exports.DefaultStepView = DefaultStepView;

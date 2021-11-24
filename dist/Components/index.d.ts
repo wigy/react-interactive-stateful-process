@@ -1,4 +1,3 @@
-export * from './DefaultDirectionsView';
 export * from './DefaultStateView';
 export * from './DefaultSummaryView';
 export * from './ImportFile';
