@@ -117,15 +117,16 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   </Step>
                 ))}
               </Stepper>
+              {process.config && <ConfigView config={process.config}/>}
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell></TableCell>
+            <TableCell>
+            </TableCell>
             <TableCell colSpan={3} align="left">
-              {process.config && <ConfigView config={process.config}/>}
               {process.error && <ErrorView error={process.error}/>}
             </TableCell>
-            <TableCell align="right">
+            <TableCell>
             </TableCell>
           </TableRow>
           {
