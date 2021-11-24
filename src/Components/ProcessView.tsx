@@ -91,7 +91,16 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell colSpan={5}>
+            <TableCell colSpan={2}>
+              <Typography noWrap>
+                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
+                <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
+                {canChangeStep ? currentStep + 1 : <>—</>}
+                </Fab>
+                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
+              </Typography>
+            </TableCell>
+            <TableCell colSpan={3}>
               <Stepper activeStep={currentStep}>
                 {operations.map((label) => (
                   <Step key={label}>
@@ -108,13 +117,6 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               {process.error && <ErrorView error={process.error}/>}
             </TableCell>
             <TableCell align="right">
-              <Typography noWrap>
-                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
-                <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
-                {canChangeStep ? currentStep + 1 : <>—</>}
-                </Fab>
-                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
-              </Typography>
             </TableCell>
           </TableRow>
           {
