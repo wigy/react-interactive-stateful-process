@@ -1,4 +1,3 @@
-export * from './DefaultActionView';
 export * from './DefaultDirectionsView';
 export * from './DefaultStateView';
 export * from './DefaultSummaryView';
