@@ -26,8 +26,23 @@ const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
 const DefaultConfigView_1 = require("./DefaultConfigView");
 const DefaultStepView_1 = require("./DefaultStepView");
+const interactive_elements_1 = require("interactive-elements");
 const icons_1 = require("@material-ui/icons");
 const DefaultErrorView_1 = require("./DefaultErrorView");
+/**
+ * Construct a text for action taken.
+ * @param action
+ * @returns
+ */
+const actionStepLabel = (action) => {
+    if (action === null) {
+        return '';
+    }
+    if ((0, interactive_elements_1.isImportAction)(action)) {
+        return action.op;
+    }
+    return JSON.stringify(action);
+};
 /**
  * A viewer for process steps.
  * @param props
@@ -44,11 +59,8 @@ const ProcessView = (props) => {
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step;
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
-    const onPreviousStep = () => {
-        setStep(currentStep - 1);
-    };
-    const onNextStep = () => {
-        setStep(currentStep + 1);
+    const onChangeStep = (n) => {
+        setStep(n);
     };
     const onBack = () => {
         props.onBack && props.onBack();
@@ -56,15 +68,18 @@ const ProcessView = (props) => {
     const ConfigView = props.configView || DefaultConfigView_1.DefaultConfigView;
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
     const ErrorView = DefaultErrorView_1.DefaultErrorView;
-    const operations = process.steps.map(step => step.action ? JSON.stringify(step.action) : '');
+    // TODO: Translations.
+    const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)));
     return (react_1.default.createElement(core_1.TableContainer, null,
         react_1.default.createElement(core_1.Table, { className: "ProcessTable", size: "small" },
             react_1.default.createElement(core_1.TableHead, null,
                 react_1.default.createElement(core_1.TableRow, { style: { backgroundColor: theme.palette.secondary.main } },
-                    react_1.default.createElement(core_1.TableCell, { variant: "head" },
+                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText } },
                         react_1.default.createElement(core_1.IconButton, { onClick: () => onBack() },
-                            react_1.default.createElement(icons_1.ArrowBackOutlined, { style: { color: theme.palette.secondary.contrastText } }))),
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.id),
+                            react_1.default.createElement(icons_1.ArrowBackOutlined, { style: { color: theme.palette.secondary.contrastText } })),
+                        "# ",
+                        process.id),
+                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.created),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.name),
                     react_1.default.createElement(core_1.TableCell, { variant: "head", align: "right" },
@@ -72,15 +87,15 @@ const ProcessView = (props) => {
             react_1.default.createElement(core_1.TableBody, null,
                 react_1.default.createElement(core_1.TableRow, null,
                     react_1.default.createElement(core_1.TableCell, { colSpan: 2 },
-                        react_1.default.createElement(core_1.Typography, { noWrap: true },
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: onPreviousStep },
+                        react_1.default.createElement(core_1.Typography, null,
+                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep - 1) },
                                 react_1.default.createElement(icons_1.NavigateBefore, null)),
                             react_1.default.createElement(core_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "previous", onClick: onNextStep },
+                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep + 1) },
                                 react_1.default.createElement(icons_1.NavigateNext, null)))),
                     react_1.default.createElement(core_1.TableCell, { colSpan: 3 },
-                        react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label) => (react_1.default.createElement(core_1.Step, { key: label },
-                            react_1.default.createElement(core_1.StepLabel, null, label))))))),
+                        react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(core_1.Step, { key: label },
+                            react_1.default.createElement(core_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
                 react_1.default.createElement(core_1.TableRow, null,
                     react_1.default.createElement(core_1.TableCell, null),
                     react_1.default.createElement(core_1.TableCell, { colSpan: 3, align: "left" },

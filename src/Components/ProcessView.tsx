@@ -1,11 +1,11 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, TextField, MenuItem, useTheme, Fab, IconButton, Stepper, Step, StepLabel } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, useTheme, Fab, IconButton, Stepper, Step, StepLabel } from '@material-ui/core'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, GetOneStepResponse, ProcessConfig } from 'interactive-elements'
+import { GetOneProcessResponse, isImportAction } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView'
@@ -24,6 +24,21 @@ export type ProcessViewProps = {
   directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element
   actionView?: (props: DefaultActionViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
+}
+
+/**
+ * Construct a text for action taken.
+ * @param action
+ * @returns
+ */
+const actionStepLabel = (action: unknown): string => {
+  if (action === null) {
+    return ''
+  }
+  if (isImportAction(action)) {
+    return action.op
+  }
+  return JSON.stringify(action)
 }
 
 /**
@@ -48,12 +63,8 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
 
-  const onPreviousStep = () => {
-    setStep(currentStep - 1)
-  }
-
-  const onNextStep = () => {
-    setStep(currentStep + 1)
+  const onChangeStep = (n: number) => {
+    setStep(n)
   }
 
   const onBack = () => {
@@ -63,20 +74,22 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const ConfigView = props.configView || DefaultConfigView
   const StepView = props.stepView || DefaultStepView
   const ErrorView = DefaultErrorView
-  const operations = process.steps.map(step => step.action ? JSON.stringify(step.action) : '')
+
+  // TODO: Translations.
+  const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)))
 
   return (
     <TableContainer>
       <Table className="ProcessTable" size="small">
         <TableHead>
           <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
-            <TableCell variant="head">
+            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} >
               <IconButton onClick={() => onBack()}>
                 <ArrowBackOutlined style={{ color: theme.palette.secondary.contrastText }}/>
               </IconButton>
+              # {process.id}
             </TableCell>
             <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
-              {process.id}
             </TableCell>
             <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
               {process.created}
@@ -92,19 +105,19 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
         <TableBody>
           <TableRow>
             <TableCell colSpan={2}>
-              <Typography noWrap>
-                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={onPreviousStep}><NavigateBefore /></Fab>
+              <Typography>
+                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={() => onChangeStep(currentStep - 1)}><NavigateBefore /></Fab>
                 <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
                 {canChangeStep ? currentStep + 1 : <>—</>}
                 </Fab>
-                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="previous" onClick={onNextStep}><NavigateNext /></Fab>
+                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="next" onClick={() => onChangeStep(currentStep + 1)}><NavigateNext /></Fab>
               </Typography>
             </TableCell>
             <TableCell colSpan={3}>
               <Stepper activeStep={currentStep}>
-                {operations.map((label) => (
+                {operations.map((label, idx) => (
                   <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
+                    <StepLabel onClick={() => onChangeStep(idx)}>{label}</StepLabel>
                   </Step>
                 ))}
               </Stepper>
