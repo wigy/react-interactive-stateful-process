@@ -3,12 +3,10 @@ import React, { useState } from 'react'
 import { useAxios } from './useAxios'
 import { DefaultSummaryView } from './DefaultSummaryView'
 import { DefaultDirectionsView } from './DefaultDirectionsView'
-import { DefaultActionView } from './DefaultActionView'
 import { DefaultStateView } from './DefaultStateView'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
-import { DefaultActionViewProps } from './DefaultActionView'
 
 export type DefaultStepViewProps = {
   api: string
@@ -16,7 +14,6 @@ export type DefaultStepViewProps = {
   step: number
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element
-  actionView?: (props: DefaultActionViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
 }
 
@@ -37,14 +34,12 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
   const SummaryView = props.summaryView || DefaultSummaryView
   const DirectionsView = props.directionsView || DefaultDirectionsView
-  const ActionView = props.actionView || DefaultActionView
   const StateView = props.stateView || DefaultStateView
 
   return (
     <div>
       <SummaryView step={step} />
       {step.directions && <DirectionsView directions={step.directions} />}
-      {step.action && <ActionView action={step.action} />}
       {step.state && <StateView state={step.state} />}
     </div>
   )

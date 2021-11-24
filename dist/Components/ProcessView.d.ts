@@ -3,7 +3,6 @@ import { DefaultStepViewProps } from './DefaultStepView';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
-import { DefaultActionViewProps } from './DefaultActionView';
 export declare type ProcessViewProps = {
     api: string;
     token?: string;
@@ -13,7 +12,6 @@ export declare type ProcessViewProps = {
     stepView?: (props: DefaultStepViewProps) => JSX.Element;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element;
-    actionView?: (props: DefaultActionViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
 };
 /**

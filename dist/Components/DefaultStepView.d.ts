@@ -1,14 +1,12 @@
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultDirectionsViewProps } from './DefaultDirectionsView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
-import { DefaultActionViewProps } from './DefaultActionView';
 export declare type DefaultStepViewProps = {
     api: string;
     token?: string;
     step: number;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     directionsView?: (props: DefaultDirectionsViewProps) => JSX.Element;
-    actionView?: (props: DefaultActionViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
 };
 /**
