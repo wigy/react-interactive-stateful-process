@@ -146,9 +146,15 @@ function axiosRequst(method, action, props) {
             let error;
             (0, axios_1.default)(call).catch(err => error = err);
             if (error) {
+                if (setup.errorMessage && action.errorMessage) {
+                    setup.errorMessage(action.errorMessage);
+                }
                 return { success: false, message: `PATCH ${url} failed: ${error}.` };
             }
             else {
+                if (setup.successMessage && action.successMessage) {
+                    setup.successMessage(action.successMessage);
+                }
                 return { success: true };
             }
         }
