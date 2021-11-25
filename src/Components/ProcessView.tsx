@@ -5,7 +5,7 @@ import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, InteractiveElement, isImportAction } from 'interactive-elements'
+import { GetOneProcessResponse, InteractiveElement, isImportAction, Setup } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -16,6 +16,7 @@ export type ProcessViewProps = {
   api: string
   token?: string
   id: number
+  setup?: Setup
   onBack?: () => void
   configView?: (config: DefaultConfigViewProps) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
@@ -129,7 +130,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               {process.error && <ErrorView error={process.error}/>}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
-                <RISP key="directions" element={process.steps[currentStep].directions.element as InteractiveElement} values={{}} setup={{}}/>
+                <RISP key="directions" element={process.steps[currentStep].directions.element as InteractiveElement} values={{}} setup={props.setup || { baseUrl: `${props.api}/${process.id}` }}/>
               </>}
             </TableCell>
           </TableRow>

@@ -106,7 +106,7 @@ const ProcessView = (props) => {
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
-                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: {} })))),
+                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: props.setup || { baseUrl: `${props.api}/${process.id}` } })))),
                 hasSteps &&
                     react_1.default.createElement(core_1.TableRow, null,
                         react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left" },
