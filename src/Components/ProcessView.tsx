@@ -5,11 +5,12 @@ import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, isImportAction } from 'interactive-elements'
+import { GetOneProcessResponse, InteractiveElement, isImportAction } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultErrorView } from './DefaultErrorView'
+import { RISP } from '../RISP'
 
 export type ProcessViewProps = {
   api: string
@@ -58,6 +59,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
+  const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
 
   const onChangeStep = (n: number) => {
     setStep(n)
@@ -120,11 +122,15 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>
+            <TableCell style={{ verticalAlign: 'top' }}>
               {process.config && <ConfigView config={process.config}/>}
             </TableCell>
-            <TableCell colSpan={4} align="left">
+            <TableCell colSpan={4} align="left" style={{ verticalAlign: 'top' }}>
               {process.error && <ErrorView error={process.error}/>}
+              {needAnswers && <>
+                <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
+                <RISP key="directions" element={process.steps[currentStep].directions.element as InteractiveElement} values={{}} setup={{}}/>
+              </>}
             </TableCell>
           </TableRow>
           {

@@ -54,9 +54,9 @@ export const DefaultConfigView = (props: DefaultConfigViewProps): JSX.Element =>
     }
   }
   return (
-    <div>
+    <>
       <Typography variant="subtitle1"><Trans>Configuration</Trans></Typography>
-        {render(props.config)}
-    </div>
+      {render(props.config)}
+    </>
   )
 }

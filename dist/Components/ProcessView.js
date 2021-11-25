@@ -22,6 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessView = void 0;
 const core_1 = require("@material-ui/core");
 const react_1 = __importStar(require("react"));
+const react_i18next_1 = require("react-i18next");
 const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
 const DefaultConfigView_1 = require("./DefaultConfigView");
@@ -29,6 +30,7 @@ const DefaultStepView_1 = require("./DefaultStepView");
 const interactive_elements_1 = require("interactive-elements");
 const icons_1 = require("@material-ui/icons");
 const DefaultErrorView_1 = require("./DefaultErrorView");
+const RISP_1 = require("../RISP");
 /**
  * Construct a text for action taken.
  * @param action
@@ -59,6 +61,7 @@ const ProcessView = (props) => {
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step;
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
+    const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
     const onChangeStep = (n) => {
         setStep(n);
     };
@@ -97,8 +100,13 @@ const ProcessView = (props) => {
                         react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(core_1.Step, { key: label },
                             react_1.default.createElement(core_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
                 react_1.default.createElement(core_1.TableRow, null,
-                    react_1.default.createElement(core_1.TableCell, null, process.config && react_1.default.createElement(ConfigView, { config: process.config })),
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 4, align: "left" }, process.error && react_1.default.createElement(ErrorView, { error: process.error }))),
+                    react_1.default.createElement(core_1.TableCell, { style: { verticalAlign: 'top' } }, process.config && react_1.default.createElement(ConfigView, { config: process.config })),
+                    react_1.default.createElement(core_1.TableCell, { colSpan: 4, align: "left", style: { verticalAlign: 'top' } },
+                        process.error && react_1.default.createElement(ErrorView, { error: process.error }),
+                        needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
+                                react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
+                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: {} })))),
                 hasSteps &&
                     react_1.default.createElement(core_1.TableRow, null,
                         react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left" },

@@ -43,7 +43,7 @@ const DefaultConfigView = (props) => {
                 return react_1.default.createElement(react_1.default.Fragment, null, JSON.stringify(obj));
         }
     };
-    return (react_1.default.createElement("div", null,
+    return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
             react_1.default.createElement(react_i18next_1.Trans, null, "Configuration")),
         render(props.config)));
