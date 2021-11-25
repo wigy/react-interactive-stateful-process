@@ -29,7 +29,7 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
       &nbsp;
       <Trans><strong>Started</strong></Trans>: {step.started}
       &nbsp;
-      <Trans><strong>Duration</strong></Trans>: {(finished - started)}ms
+      <Trans><strong>Duration</strong></Trans>: {finished ? `${finished - started}ms` : '—'}
     </Typography>
   )
 }

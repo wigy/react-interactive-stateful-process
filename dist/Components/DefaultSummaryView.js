@@ -40,7 +40,6 @@ const DefaultSummaryView = (props) => {
         react_1.default.createElement(react_i18next_1.Trans, null,
             react_1.default.createElement("strong", null, "Duration")),
         ": ",
-        (finished - started),
-        "ms"));
+        finished ? `${finished - started}ms` : '—'));
 };
 exports.DefaultSummaryView = DefaultSummaryView;
