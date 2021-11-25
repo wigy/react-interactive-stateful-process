@@ -1,4 +1,4 @@
-import { ActionEngine, BooleanRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, onChangeTriggerHandler, passThroughTriggerHandler, RenderingEngine, TextRenderer, TriggerEngine } from '..'
+import { ActionEngine, BooleanRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, onChangeTriggerHandler, passThroughTriggerHandler, patchActionHandler, postActionHandler, RenderingEngine, TextRenderer, TriggerEngine } from '..'
 
 /**
  * Register all renderers and action handlers.
@@ -11,6 +11,8 @@ export const RISPProvider = ({ children }) => {
   RenderingEngine.register('button', ButtonRenderer)
 
   ActionEngine.register('debug', debugActionHandler)
+  ActionEngine.register('patch', patchActionHandler)
+  ActionEngine.register('post', postActionHandler)
 
   TriggerEngine.register('onChange', onChangeTriggerHandler)
   TriggerEngine.register('onClick', passThroughTriggerHandler)

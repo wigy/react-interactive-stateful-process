@@ -1,6 +1,7 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement } from 'interactive-elements'
+import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement, PatchAction, isPatchAction, PostAction, isPostAction } from 'interactive-elements'
 import { RenderingProps } from './Rendering'
+import axios from 'axios'
 
 /**
  * Registry where all action handlers has been stored.
@@ -108,4 +109,63 @@ export const debugActionHandler: ActionHandler = async (action: Action, props: R
     console.log('Values:', values)
   }
   return { success: true }
+}
+
+/**
+ * Helper to process Axios requests.
+ * @param method
+ * @param action
+ * @param props
+ * @returns
+ */
+async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostAction, props: RenderingProps): ActionResult {
+  const { element, setup, values } = props
+  if (isActiveElement(element)) {
+    if (!setup.baseUrl) {
+      throw new Error(`Cannot use ${method} action when setup does not define 'baseUrl'.`)
+    }
+
+    const url = `${setup.baseUrl.replace(/\/$/, '')}/${action.url.replace(/^\//, '')}`
+    const call = {
+      method,
+      url,
+      data: values,
+      headers: {}
+    }
+    if (setup.token) {
+      call.headers = {
+        Authorization: `Bearer ${setup.token}`
+      }
+    }
+
+    let error
+    axios(call).catch(err => error = err)
+
+    if (error) {
+      return { success: false, message: `PATCH ${url} failed: ${error}.` }
+    } else {
+      return { success: true }
+    }
+  }
+  return { success: true }
+}
+
+/**
+ * A handler doing PATCH request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export const patchActionHandler: ActionHandler = async (action: PatchAction, props: RenderingProps) => {
+  return axiosRequst('PATCH', action, props)
+}
+
+/**
+ * A handler doing POST request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+ export const postActionHandler: ActionHandler = async (action: PostAction, props: RenderingProps) => {
+  return axiosRequst('POST', action, props)
 }

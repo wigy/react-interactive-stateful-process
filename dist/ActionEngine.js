@@ -8,10 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.debugActionHandler = exports.ActionEngine = void 0;
+exports.postActionHandler = exports.patchActionHandler = exports.debugActionHandler = exports.ActionEngine = void 0;
 const mobx_1 = require("mobx");
 const interactive_elements_1 = require("interactive-elements");
+const axios_1 = __importDefault(require("axios"));
 global.ActionEngineHandlers = {};
 /**
  * Registry and call API for action handlers.
@@ -113,3 +117,61 @@ const debugActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, 
     return { success: true };
 });
 exports.debugActionHandler = debugActionHandler;
+/**
+ * Helper to process Axios requests.
+ * @param method
+ * @param action
+ * @param props
+ * @returns
+ */
+function axiosRequst(method, action, props) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { element, setup, values } = props;
+        if ((0, interactive_elements_1.isActiveElement)(element)) {
+            if (!setup.baseUrl) {
+                throw new Error(`Cannot use ${method} action when setup does not define 'baseUrl'.`);
+            }
+            const url = `${setup.baseUrl.replace(/\/$/, '')}/${action.url.replace(/^\//, '')}`;
+            const call = {
+                method,
+                url,
+                data: values,
+                headers: {}
+            };
+            if (setup.token) {
+                call.headers = {
+                    Authorization: `Bearer ${setup.token}`
+                };
+            }
+            let error;
+            (0, axios_1.default)(call).catch(err => error = err);
+            if (error) {
+                return { success: false, message: `PATCH ${url} failed: ${error}.` };
+            }
+            else {
+                return { success: true };
+            }
+        }
+        return { success: true };
+    });
+}
+/**
+ * A handler doing PATCH request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+const patchActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
+    return axiosRequst('PATCH', action, props);
+});
+exports.patchActionHandler = patchActionHandler;
+/**
+ * A handler doing POST request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+const postActionHandler = (action, props) => __awaiter(void 0, void 0, void 0, function* () {
+    return axiosRequst('POST', action, props);
+});
+exports.postActionHandler = postActionHandler;

@@ -50,3 +50,17 @@ export declare class ActionEngine {
  * @returns
  */
 export declare const debugActionHandler: ActionHandler;
+/**
+ * A handler doing PATCH request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export declare const patchActionHandler: ActionHandler;
+/**
+ * A handler doing POST request with the selected or all values to the configured URL.
+ * @param trigger
+ * @param props
+ * @returns
+ */
+export declare const postActionHandler: ActionHandler;
