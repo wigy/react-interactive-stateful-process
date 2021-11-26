@@ -5,7 +5,7 @@ import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, InteractiveElement, isImportAction, Setup } from 'interactive-elements'
+import { GetOneProcessResponse, InteractiveElement, isImportActionConf, isImportActionOp, Setup } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -33,8 +33,11 @@ const actionStepLabel = (action: unknown): string => {
   if (action === null) {
     return ''
   }
-  if (isImportAction(action)) {
+  if (isImportActionOp(action)) {
     return action.op
+  }
+  if (isImportActionConf(action)) {
+    return 'configure'
   }
   return JSON.stringify(action)
 }
