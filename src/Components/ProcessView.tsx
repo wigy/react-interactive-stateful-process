@@ -16,8 +16,10 @@ export type ProcessViewProps = {
   api: string
   token?: string
   id: number
+  step?: number
   setup?: Setup
   onBack?: () => void
+  onChangeStep?: (step: number) => void
   configView?: (config: DefaultConfigViewProps) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
@@ -61,11 +63,18 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   if (!process) return <></>
 
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
-  const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step
+  let currentStep: number | undefined = undefined
+  if (props.step !== undefined && props.step !== null) {
+    currentStep = props.step
+  }
+  if (currentStep === null || currentStep === undefined) {
+    currentStep = process.currentStep !== undefined ? process.currentStep : 0
+  }
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
   const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
 
   const onChangeStep = (n: number) => {
+    props.onChangeStep && props.onChangeStep(n)
     setStep(n)
   }
 
@@ -108,11 +117,28 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           <TableRow>
             <TableCell colSpan={2}>
               <Typography>
-                <Fab disabled={!canChangeStep || currentStep === 0} color="secondary" aria-label="previous" onClick={() => onChangeStep(currentStep - 1)}><NavigateBefore /></Fab>
-                <Fab disabled style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}>
-                {canChangeStep ? currentStep + 1 : <>—</>}
+                <Fab
+                  disabled={!canChangeStep || currentStep === 0}
+                  color="secondary"
+                  aria-label="previous"
+                  onClick={() => onChangeStep(currentStep !== undefined ? currentStep - 1 : 0)}
+                  >
+                    <NavigateBefore />
                 </Fab>
-                <Fab disabled={!canChangeStep || currentStep === process.steps.length - 1} color="secondary" aria-label="next" onClick={() => onChangeStep(currentStep + 1)}><NavigateNext /></Fab>
+                <Fab
+                  disabled
+                  style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}
+                  >
+                    {canChangeStep ? currentStep + 1 : <>—</>}
+                </Fab>
+                <Fab
+                  disabled={!canChangeStep || currentStep === process.steps.length - 1}
+                  color="secondary"
+                  aria-label="next"
+                  onClick={() => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0)}
+                  >
+                    <NavigateNext />
+                  </Fab>
               </Typography>
             </TableCell>
             <TableCell colSpan={3}>

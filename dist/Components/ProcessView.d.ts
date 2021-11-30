@@ -7,8 +7,10 @@ export declare type ProcessViewProps = {
     api: string;
     token?: string;
     id: number;
+    step?: number;
     setup?: Setup;
     onBack?: () => void;
+    onChangeStep?: (step: number) => void;
     configView?: (config: DefaultConfigViewProps) => JSX.Element;
     stepView?: (props: DefaultStepViewProps) => JSX.Element;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;

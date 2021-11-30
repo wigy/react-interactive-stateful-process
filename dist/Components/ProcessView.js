@@ -62,10 +62,17 @@ const ProcessView = (props) => {
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
-    const currentStep = step === null ? (process.currentStep !== undefined ? process.currentStep : 0) : step;
+    let currentStep = undefined;
+    if (props.step !== undefined && props.step !== null) {
+        currentStep = props.step;
+    }
+    if (currentStep === null || currentStep === undefined) {
+        currentStep = process.currentStep !== undefined ? process.currentStep : 0;
+    }
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
     const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
     const onChangeStep = (n) => {
+        props.onChangeStep && props.onChangeStep(n);
         setStep(n);
     };
     const onBack = () => {
@@ -94,10 +101,10 @@ const ProcessView = (props) => {
                 react_1.default.createElement(core_1.TableRow, null,
                     react_1.default.createElement(core_1.TableCell, { colSpan: 2 },
                         react_1.default.createElement(core_1.Typography, null,
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep - 1) },
+                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep !== undefined ? currentStep - 1 : 0) },
                                 react_1.default.createElement(icons_1.NavigateBefore, null)),
                             react_1.default.createElement(core_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep + 1) },
+                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
                                 react_1.default.createElement(icons_1.NavigateNext, null)))),
                     react_1.default.createElement(core_1.TableCell, { colSpan: 3 },
                         react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(core_1.Step, { key: idx },
