@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
-import { DefaultConfigView, DefaultConfigViewProps } from './DefaultConfigView'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
 import { GetOneProcessResponse, InteractiveElement, isImportActionConf, isImportActionOp, Setup } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@material-ui/icons'
@@ -20,7 +19,6 @@ export type ProcessViewProps = {
   setup?: Setup
   onBack?: () => void
   onChangeStep?: (step: number) => void
-  configView?: (config: DefaultConfigViewProps) => JSX.Element
   stepView?: (props: DefaultStepViewProps) => JSX.Element
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
@@ -82,7 +80,6 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     props.onBack && props.onBack()
   }
 
-  const ConfigView = props.configView || DefaultConfigView
   const StepView = props.stepView || DefaultStepView
   const ErrorView = DefaultErrorView
 
@@ -152,10 +149,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell style={{ verticalAlign: 'top' }}>
-              {process.config && <ConfigView config={process.config}/>}
-            </TableCell>
-            <TableCell colSpan={4} align="left" style={{ verticalAlign: 'top' }}>
+            <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
               {process.error && <ErrorView error={process.error}/>}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
