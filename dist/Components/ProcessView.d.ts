@@ -1,4 +1,3 @@
-import { DefaultConfigViewProps } from './DefaultConfigView';
 import { DefaultStepViewProps } from './DefaultStepView';
 import { Setup } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
@@ -11,7 +10,6 @@ export declare type ProcessViewProps = {
     setup?: Setup;
     onBack?: () => void;
     onChangeStep?: (step: number) => void;
-    configView?: (config: DefaultConfigViewProps) => JSX.Element;
     stepView?: (props: DefaultStepViewProps) => JSX.Element;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;

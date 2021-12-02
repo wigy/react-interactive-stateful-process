@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements';
 /**
  * Readability helper to specify that a string is being used as a renderer name.
@@ -48,5 +48,5 @@ export declare class RenderingEngine {
      * @param props
      * @returns Elements.
      */
-    static render(props: RenderingProps): ReactElement | null;
+    static render(props: RenderingProps): JSX.Element | null;
 }

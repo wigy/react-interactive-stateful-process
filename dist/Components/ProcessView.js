@@ -25,7 +25,6 @@ const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
 const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
-const DefaultConfigView_1 = require("./DefaultConfigView");
 const DefaultStepView_1 = require("./DefaultStepView");
 const interactive_elements_1 = require("interactive-elements");
 const icons_1 = require("@material-ui/icons");
@@ -78,7 +77,6 @@ const ProcessView = (props) => {
     const onBack = () => {
         props.onBack && props.onBack();
     };
-    const ConfigView = props.configView || DefaultConfigView_1.DefaultConfigView;
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
     const ErrorView = DefaultErrorView_1.DefaultErrorView;
     // TODO: Translations.
@@ -110,8 +108,7 @@ const ProcessView = (props) => {
                         react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(core_1.Step, { key: idx },
                             react_1.default.createElement(core_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
                 react_1.default.createElement(core_1.TableRow, null,
-                    react_1.default.createElement(core_1.TableCell, { style: { verticalAlign: 'top' } }, process.config && react_1.default.createElement(ConfigView, { config: process.config })),
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 4, align: "left", style: { verticalAlign: 'top' } },
+                    react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },

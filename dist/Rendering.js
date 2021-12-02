@@ -1,6 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RenderingEngine = void 0;
+const react_1 = __importDefault(require("react"));
+const core_1 = require("@material-ui/core");
 global.RenderingEngineRenderers = {};
 /**
  * Registry for element rendering handlers.
@@ -29,7 +34,8 @@ class RenderingEngine {
     static render(props) {
         const { element } = props;
         if (!RenderingEngineRenderers[element.type]) {
-            throw new Error(`There is no registered renderer for type '${element.type}'.`);
+            console.error(`There is no registered renderer for type '${element.type}'.`);
+            return react_1.default.createElement(core_1.Typography, { color: "error" }, JSON.stringify(element));
         }
         return RenderingEngineRenderers[element.type](props);
     }
