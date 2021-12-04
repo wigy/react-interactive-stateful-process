@@ -37,7 +37,7 @@ const actionStepLabel = (action: unknown): string => {
     return action.op
   }
   if (isImportActionConf(action)) {
-    return 'configure'
+    return 'configuring'
   }
   return JSON.stringify(action)
 }
