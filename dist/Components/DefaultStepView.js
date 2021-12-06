@@ -41,6 +41,6 @@ const DefaultStepView = (props) => {
     const ResultView = props.resultView || DefaultResultView_1.DefaultResultView;
     return (react_1.default.createElement("div", null,
         react_1.default.createElement(SummaryView, { step: step, process: props.process }),
-        step.state && react_1.default.createElement(StateView, { state: step.state, resultView: ResultView })));
+        step.state && react_1.default.createElement(StateView, { config: props.process.config, state: step.state, resultView: ResultView })));
 };
 exports.DefaultStepView = DefaultStepView;

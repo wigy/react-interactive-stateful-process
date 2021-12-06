@@ -39,7 +39,7 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
   return (
     <div>
       <SummaryView step={step} process={props.process} />
-      {step.state && <StateView state={step.state} resultView={ResultView}/>}
+      {step.state && <StateView config={props.process.config} state={step.state} resultView={ResultView}/>}
     </div>
   )
 }

@@ -1,8 +1,10 @@
+import { ProcessConfig } from 'interactive-elements'
 import React from 'react'
 import { DefaultResultViewProps } from './DefaultResultView'
 
 export type DefaultStateViewProps = {
   state: Record<string, unknown> | null
+  config: ProcessConfig
   resultView: (props: DefaultResultViewProps) => JSX.Element
 }
 
@@ -22,6 +24,6 @@ export const DefaultStateView = (props: DefaultStateViewProps): JSX.Element => {
     <pre>
       {JSON.stringify(props.state, null, 2)}
     </pre>
-    { props.state.result && <ResultView result={props.state.result}/>}
+    { props.state.result && <ResultView config={props.config} result={props.state.result}/>}
   </>
 }

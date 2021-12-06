@@ -1,11 +1,12 @@
 import { ExpandLess, ExpandMore} from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Link, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@mui/material'
-import { SegmentId, TextFileLine } from 'interactive-elements'
+import { ProcessConfig, SegmentId, TextFileLine } from 'interactive-elements'
 import React, { useState } from 'react'
 import { ConfigView } from '.';
 import { DefaultResultViewProps } from './DefaultResultView';
 
 export type ImportLineProps = {
+  config: ProcessConfig
   lineNumber: number
   columns: Record<string, string>
   text: string
@@ -57,7 +58,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell id={props.result ? `segment-${segmentId}` : undefined}>
-            <ResultView result={props.result} />
+            <ResultView config={props.config} result={props.result} />
           </TableCell>
           <TableCell></TableCell>
         </TableRow>
@@ -67,6 +68,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
 }
 
 export type ImportFileProps = {
+  config: ProcessConfig
   name: string
   lines: TextFileLine[]
   result?: Record<SegmentId, unknown>
@@ -119,6 +121,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
 
                 return <ImportLine
                   key={line.line}
+                  config={props.config}
                   segmentId={line.segmentId}
                   result={isLast && line.segmentId && props.result ? props.result[line.segmentId] : undefined}
                   resultView={props.resultView}

@@ -62,7 +62,7 @@ const ImportLine = (props) => {
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, { id: props.result ? `segment-${segmentId}` : undefined },
-                    react_1.default.createElement(ResultView, { result: props.result })),
+                    react_1.default.createElement(ResultView, { config: props.config, result: props.result })),
                 react_1.default.createElement(material_1.TableCell, null))));
 };
 exports.ImportLine = ImportLine;
@@ -103,7 +103,7 @@ const ImportFile = (props) => {
                         }
                         // Add result if last of the segment.
                         const isLast = (idx === props.lines.length - 1) || line.segmentId !== props.lines[idx + 1].segmentId;
-                        return react_1.default.createElement(exports.ImportLine, { key: line.line, segmentId: line.segmentId, result: isLast && line.segmentId && props.result ? props.result[line.segmentId] : undefined, resultView: props.resultView, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
+                        return react_1.default.createElement(exports.ImportLine, { key: line.line, config: props.config, segmentId: line.segmentId, result: isLast && line.segmentId && props.result ? props.result[line.segmentId] : undefined, resultView: props.resultView, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
                     })))))));
 };
 exports.ImportFile = ImportFile;

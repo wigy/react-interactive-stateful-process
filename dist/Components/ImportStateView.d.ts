@@ -1,6 +1,8 @@
+import { ProcessConfig } from 'interactive-elements';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type ImportStateViewProps = {
     state: Record<string, unknown>;
+    config: ProcessConfig;
     resultView: (props: DefaultResultViewProps) => JSX.Element;
 };
 /**

@@ -1,6 +1,7 @@
-import { SegmentId, TextFileLine } from 'interactive-elements';
+import { ProcessConfig, SegmentId, TextFileLine } from 'interactive-elements';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type ImportLineProps = {
+    config: ProcessConfig;
     lineNumber: number;
     columns: Record<string, string>;
     text: string;
@@ -16,6 +17,7 @@ export declare type ImportLineProps = {
  */
 export declare const ImportLine: (props: ImportLineProps) => JSX.Element;
 export declare type ImportFileProps = {
+    config: ProcessConfig;
     name: string;
     lines: TextFileLine[];
     result?: Record<SegmentId, unknown>;

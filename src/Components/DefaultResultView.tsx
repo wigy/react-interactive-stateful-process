@@ -1,6 +1,8 @@
+import { ProcessConfig } from 'interactive-elements'
 import React from 'react'
 
 export type DefaultResultViewProps = {
+  config: ProcessConfig
   result: unknown
 }
 

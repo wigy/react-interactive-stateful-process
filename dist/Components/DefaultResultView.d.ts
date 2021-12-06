@@ -1,4 +1,6 @@
+import { ProcessConfig } from 'interactive-elements';
 export declare type DefaultResultViewProps = {
+    config: ProcessConfig;
     result: unknown;
 };
 /**
