@@ -117,6 +117,6 @@ const ProcessView = (props) => {
                 hasSteps &&
                     react_1.default.createElement(core_1.TableRow, null,
                         react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left" },
-                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, summaryView: summaryView, stateView: stateView })))))));
+                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView })))))));
 };
 exports.ProcessView = ProcessView;

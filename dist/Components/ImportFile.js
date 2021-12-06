@@ -48,7 +48,7 @@ const ImportLine = (props) => {
             react_1.default.createElement(core_1.TableCell, null),
             react_1.default.createElement(core_1.TableCell, null),
             react_1.default.createElement(core_1.TableCell, null,
-                segmentId && react_1.default.createElement(core_1.Typography, { style: { color } },
+                segmentId && react_1.default.createElement(core_1.Typography, { style: { color: 'white', backgroundColor: color } },
                     "Segment ID: ",
                     segmentId),
                 react_1.default.createElement(_1.ConfigView, { config: columns })),

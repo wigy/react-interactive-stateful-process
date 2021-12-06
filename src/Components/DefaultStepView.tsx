@@ -1,4 +1,4 @@
-import { GetOneStepResponse } from 'interactive-elements'
+import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
 import React, { useState } from 'react'
 import { useAxios } from './useAxios'
 import { DefaultSummaryView } from './DefaultSummaryView'
@@ -10,6 +10,7 @@ export type DefaultStepViewProps = {
   api: string
   token?: string
   step: number
+  process: GetOneProcessResponse
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
 }
@@ -34,7 +35,7 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
   return (
     <div>
-      <SummaryView step={step} />
+      <SummaryView step={step} process={props.process} />
       {step.state && <StateView state={step.state} />}
     </div>
   )

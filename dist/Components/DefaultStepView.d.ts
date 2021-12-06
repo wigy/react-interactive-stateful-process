@@ -1,9 +1,11 @@
+import { GetOneProcessResponse } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 export declare type DefaultStepViewProps = {
     api: string;
     token?: string;
     step: number;
+    process: GetOneProcessResponse;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
 };

@@ -38,7 +38,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell>
-            { segmentId && <Typography style={{ color }}>Segment ID: {segmentId}</Typography> }
+            { segmentId && <Typography style={{ color: 'white', backgroundColor: color }}>Segment ID: {segmentId}</Typography> }
             <ConfigView config={columns}/>
           </TableCell>
           <TableCell></TableCell>

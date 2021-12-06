@@ -165,6 +165,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   api={`${props.api}/${props.id}/step`}
                   token={props.token}
                   step={currentStep}
+                  process={process}
                   summaryView={summaryView}
                   stateView={stateView}/>
               </TableCell>

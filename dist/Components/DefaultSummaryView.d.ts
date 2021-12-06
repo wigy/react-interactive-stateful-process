@@ -1,6 +1,7 @@
-import { GetOneStepResponse } from 'interactive-elements';
+import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements';
 export declare type DefaultSummaryViewProps = {
     step: GetOneStepResponse;
+    process: GetOneProcessResponse;
 };
 /**
  * Default viewer for a process step summary information.
