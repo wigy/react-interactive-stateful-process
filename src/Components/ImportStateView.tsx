@@ -1,9 +1,11 @@
 import React from 'react'
-import { ImportState, isImportState } from 'interactive-elements'
+import { ImportState, isImportState, SegmentId } from 'interactive-elements'
 import { ImportFile, ImportFileProps } from './ImportFile'
+import { DefaultResultViewProps } from './DefaultResultView'
 
 export type ImportStateViewProps = {
   state: Record<string, unknown>
+  resultView: (props: DefaultResultViewProps) => JSX.Element
 }
 
 /**
@@ -26,12 +28,14 @@ export const ImportStateView = (props: ImportStateViewProps): JSX.Element => {
 
   Object.keys(state.files).forEach(name => files.push({
     name,
-    lines: state.files[name].lines
+    lines: state.files[name].lines,
+    resultView: props.resultView
   }))
 
+  const results = state.results ? state.results as Record<SegmentId, unknown> : undefined
   return (
     <div>
-      {files.map(file => <ImportFile key={file.name} name={file.name} lines={file.lines} />)}
+      {files.map(file => <ImportFile key={file.name} resultView={props.resultView} results={results} name={file.name} lines={file.lines} />)}
     </div>
   )
 }

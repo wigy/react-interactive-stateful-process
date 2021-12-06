@@ -1,5 +1,7 @@
+import { DefaultResultViewProps } from './DefaultResultView';
 export declare type ImportStateViewProps = {
     state: Record<string, unknown>;
+    resultView: (props: DefaultResultViewProps) => JSX.Element;
 };
 /**
  * Simple JSON display for state.

@@ -5,6 +5,7 @@ import { DefaultSummaryView } from './DefaultSummaryView'
 import { DefaultStateView } from './DefaultStateView'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
+import { DefaultResultView, DefaultResultViewProps } from './DefaultResultView'
 
 export type DefaultStepViewProps = {
   api: string
@@ -13,6 +14,7 @@ export type DefaultStepViewProps = {
   process: GetOneProcessResponse
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
+  resultView?: (props: DefaultResultViewProps) => JSX.Element
 }
 
 /**
@@ -32,11 +34,12 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
   const SummaryView = props.summaryView || DefaultSummaryView
   const StateView = props.stateView || DefaultStateView
+  const ResultView = props.resultView || DefaultResultView
 
   return (
     <div>
       <SummaryView step={step} process={props.process} />
-      {step.state && <StateView state={step.state} />}
+      {step.state && <StateView state={step.state} resultView={ResultView}/>}
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import { ExpandLess, ExpandMore} from '@mui/icons-material';
-import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@mui/material'
-import { TextFileLine } from 'interactive-elements'
+import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Link, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@mui/material'
+import { SegmentId, TextFileLine } from 'interactive-elements'
 import React, { useState } from 'react'
 import { ConfigView } from '.';
+import { DefaultResultViewProps } from './DefaultResultView';
 
 export type ImportLineProps = {
   lineNumber: number
@@ -10,6 +11,8 @@ export type ImportLineProps = {
   text: string
   segmentId?: string
   color?: string
+  result?: unknown
+  resultView: (props: DefaultResultViewProps) => JSX.Element
 }
 
 /**
@@ -19,6 +22,7 @@ export type ImportLineProps = {
  */
 export const ImportLine = (props: ImportLineProps): JSX.Element => {
   const { segmentId, lineNumber, color, text, columns } = props
+  const ResultView = props.resultView
   const hasColumns = Object.keys(columns).length > 0
   const [open, setOpen] = useState<boolean>(false)
 
@@ -33,18 +37,31 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
           { hasColumns && open && <IconButton size="small" onClick={() => setOpen(false)}><ExpandLess/></IconButton> }
         </TableCell>
       </TableRow>
-      { open && hasColumns && (
+      { open && hasColumns &&
         <TableRow>
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell>
-            { segmentId && <Typography style={{ color: 'white', backgroundColor: color }}>Segment ID: {segmentId}</Typography> }
+            { segmentId &&
+              <Link href={`#segment-${segmentId}`}>
+                <Typography style={{ color: 'white', backgroundColor: color }}>Segment ID: {segmentId}</Typography>
+              </Link>
+            }
             <ConfigView config={columns}/>
           </TableCell>
           <TableCell></TableCell>
         </TableRow>
-      )
-    }
+      }
+      { props.result &&
+        <TableRow>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
+          <TableCell id={props.result ? `segment-${segmentId}` : undefined}>
+            <ResultView result={props.result} />
+          </TableCell>
+          <TableCell></TableCell>
+        </TableRow>
+      }
     </>
   )
 }
@@ -52,6 +69,8 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
 export type ImportFileProps = {
   name: string
   lines: TextFileLine[]
+  results?: Record<SegmentId, unknown>
+  resultView: (props: DefaultResultViewProps) => JSX.Element
 }
 
 /**
@@ -85,8 +104,9 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
         <TableContainer component={Paper}>
           <Table size="small">
             <TableBody>
-              {props.lines.map(line => {
+              {props.lines.map((line, idx) => {
                 let color: string | undefined = undefined
+                // Establish segment color.
                 if (line.segmentId) {
                   if (segementNumbers[line.segmentId] === undefined) {
                     segementNumbers[line.segmentId] = segmentIds.size
@@ -94,7 +114,19 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
                   }
                   color = colors[segementNumbers[line.segmentId] % colors.length]
                 }
-                return <ImportLine key={line.line} segmentId={line.segmentId} lineNumber={line.line + 1} columns={line.columns} color={color} text={line.text} />
+                // Add results if last of the segment.
+                const isLast = (idx === props.lines.length - 1) || line.segmentId !== props.lines[idx + 1].segmentId
+
+                return <ImportLine
+                  key={line.line}
+                  segmentId={line.segmentId}
+                  result={isLast && line.segmentId && props.results ? props.results[line.segmentId] : undefined}
+                  resultView={props.resultView}
+                  lineNumber={line.line + 1}
+                  columns={line.columns}
+                  color={color}
+                  text={line.text}
+                />
               })}
             </TableBody>
           </Table>

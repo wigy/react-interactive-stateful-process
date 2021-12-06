@@ -9,6 +9,7 @@ import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-mate
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultErrorView } from './DefaultErrorView'
+import { DefaultResultViewProps } from './DefaultResultView'
 import { RISP } from '../RISP'
 
 export type ProcessViewProps = {
@@ -22,6 +23,7 @@ export type ProcessViewProps = {
   stepView?: (props: DefaultStepViewProps) => JSX.Element
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
+  resultView?: (props: DefaultResultViewProps) => JSX.Element
 }
 
 /**
@@ -49,7 +51,7 @@ const actionStepLabel = (action: unknown): string => {
  */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
-  const { summaryView, stateView } = props
+  const { summaryView, stateView, resultView } = props
 
   const theme = useTheme()
 
@@ -167,7 +169,9 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   step={currentStep}
                   process={process}
                   summaryView={summaryView}
-                  stateView={stateView}/>
+                  stateView={stateView}
+                  resultView={resultView}
+                />
               </TableCell>
             </TableRow>
           }

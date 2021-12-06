@@ -31,6 +31,7 @@ const _1 = require(".");
  */
 const ImportLine = (props) => {
     const { segmentId, lineNumber, color, text, columns } = props;
+    const ResultView = props.resultView;
     const hasColumns = Object.keys(columns).length > 0;
     const [open, setOpen] = (0, react_1.useState)(false);
     return (react_1.default.createElement(react_1.default.Fragment, null,
@@ -44,15 +45,25 @@ const ImportLine = (props) => {
                     react_1.default.createElement(icons_material_1.ExpandMore, null)),
                 hasColumns && open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(false) },
                     react_1.default.createElement(icons_material_1.ExpandLess, null)))),
-        open && hasColumns && (react_1.default.createElement(material_1.TableRow, null,
-            react_1.default.createElement(material_1.TableCell, null),
-            react_1.default.createElement(material_1.TableCell, null),
-            react_1.default.createElement(material_1.TableCell, null,
-                segmentId && react_1.default.createElement(material_1.Typography, { style: { color: 'white', backgroundColor: color } },
-                    "Segment ID: ",
-                    segmentId),
-                react_1.default.createElement(_1.ConfigView, { config: columns })),
-            react_1.default.createElement(material_1.TableCell, null)))));
+        open && hasColumns &&
+            react_1.default.createElement(material_1.TableRow, null,
+                react_1.default.createElement(material_1.TableCell, null),
+                react_1.default.createElement(material_1.TableCell, null),
+                react_1.default.createElement(material_1.TableCell, null,
+                    segmentId &&
+                        react_1.default.createElement(material_1.Link, { href: `#segment-${segmentId}` },
+                            react_1.default.createElement(material_1.Typography, { style: { color: 'white', backgroundColor: color } },
+                                "Segment ID: ",
+                                segmentId)),
+                    react_1.default.createElement(_1.ConfigView, { config: columns })),
+                react_1.default.createElement(material_1.TableCell, null)),
+        props.result &&
+            react_1.default.createElement(material_1.TableRow, null,
+                react_1.default.createElement(material_1.TableCell, null),
+                react_1.default.createElement(material_1.TableCell, null),
+                react_1.default.createElement(material_1.TableCell, { id: props.result ? `segment-${segmentId}` : undefined },
+                    react_1.default.createElement(ResultView, { result: props.result })),
+                react_1.default.createElement(material_1.TableCell, null))));
 };
 exports.ImportLine = ImportLine;
 /**
@@ -80,8 +91,9 @@ const ImportFile = (props) => {
         react_1.default.createElement(material_1.AccordionDetails, null,
             react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper },
                 react_1.default.createElement(material_1.Table, { size: "small" },
-                    react_1.default.createElement(material_1.TableBody, null, props.lines.map(line => {
+                    react_1.default.createElement(material_1.TableBody, null, props.lines.map((line, idx) => {
                         let color = undefined;
+                        // Establish segment color.
                         if (line.segmentId) {
                             if (segementNumbers[line.segmentId] === undefined) {
                                 segementNumbers[line.segmentId] = segmentIds.size;
@@ -89,7 +101,9 @@ const ImportFile = (props) => {
                             }
                             color = colors[segementNumbers[line.segmentId] % colors.length];
                         }
-                        return react_1.default.createElement(exports.ImportLine, { key: line.line, segmentId: line.segmentId, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
+                        // Add results if last of the segment.
+                        const isLast = (idx === props.lines.length - 1) || line.segmentId !== props.lines[idx + 1].segmentId;
+                        return react_1.default.createElement(exports.ImportLine, { key: line.line, segmentId: line.segmentId, result: isLast && line.segmentId && props.results ? props.results[line.segmentId] : undefined, resultView: props.resultView, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
                     })))))));
 };
 exports.ImportFile = ImportFile;

@@ -23,8 +23,10 @@ const ImportStateView = (props) => {
     const files = [];
     Object.keys(state.files).forEach(name => files.push({
         name,
-        lines: state.files[name].lines
+        lines: state.files[name].lines,
+        resultView: props.resultView
     }));
-    return (react_1.default.createElement("div", null, files.map(file => react_1.default.createElement(ImportFile_1.ImportFile, { key: file.name, name: file.name, lines: file.lines }))));
+    const results = state.results ? state.results : undefined;
+    return (react_1.default.createElement("div", null, files.map(file => react_1.default.createElement(ImportFile_1.ImportFile, { key: file.name, resultView: props.resultView, results: results, name: file.name, lines: file.lines }))));
 };
 exports.ImportStateView = ImportStateView;
