@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BooleanRenderer = void 0;
 const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
-const core_1 = require("@material-ui/core");
+const material_1 = require("@mui/material");
 const interactive_elements_1 = require("interactive-elements");
 /**
  * Rendering for boolean toggle element.
@@ -35,7 +35,7 @@ const BooleanRenderer = (props) => {
     const { t } = (0, react_i18next_1.useTranslation)();
     const label = element.label ? element.label : t(`label-${element.name}`);
     const [value, setValue] = (0, react_1.useState)(props.values[element.name] || null);
-    return react_1.default.createElement(core_1.FormControlLabel, { control: react_1.default.createElement(core_1.Checkbox, { checked: !!value, onChange: (e) => {
+    return react_1.default.createElement(material_1.FormControlLabel, { control: react_1.default.createElement(material_1.Checkbox, { checked: !!value, onChange: (e) => {
                 setValue(e.target.checked);
                 element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: !!e.target.checked }, props);
             }, name: element.name, indeterminate: value === undefined || value === null }), label: label });

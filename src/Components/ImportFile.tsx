@@ -1,5 +1,5 @@
-import { ExpandLess, ExpandMore} from '@material-ui/icons';
-import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@material-ui/core'
+import { ExpandLess, ExpandMore} from '@mui/icons-material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@mui/material'
 import { TextFileLine } from 'interactive-elements'
 import React, { useState } from 'react'
 import { ConfigView } from '.';

@@ -1,8 +1,8 @@
 import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
-import { Card, CardContent, IconButton, Typography } from '@material-ui/core'
+import { Card, CardContent, IconButton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Settings } from '@material-ui/icons'
+import { Settings } from '@mui/icons-material'
 import { ConfigView } from '.'
 
 export type DefaultSummaryViewProps = {

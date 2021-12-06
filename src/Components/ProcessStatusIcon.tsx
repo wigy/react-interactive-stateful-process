@@ -1,7 +1,7 @@
 import React from 'react'
-import { Warning, CheckCircleOutline, Timer, ErrorOutline, HourglassEmpty, Help } from '@material-ui/icons'
-import { Typography } from '@material-ui/core'
-import { red, green, blue } from '@material-ui/core/colors'
+import { Warning, CheckCircleOutline, Timer, ErrorOutline, HourglassEmpty, Help } from '@mui/icons-material'
+import { Typography } from '@mui/material'
+import { red, green, blue } from '@mui/material/colors'
 
 export enum ProcessStatus {
   INCOMPLETE = "INCOMPLETE",

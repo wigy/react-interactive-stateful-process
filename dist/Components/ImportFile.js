@@ -20,8 +20,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImportFile = exports.ImportLine = void 0;
-const icons_1 = require("@material-ui/icons");
-const core_1 = require("@material-ui/core");
+const icons_material_1 = require("@mui/icons-material");
+const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const _1 = require(".");
 /**
@@ -34,25 +34,25 @@ const ImportLine = (props) => {
     const hasColumns = Object.keys(columns).length > 0;
     const [open, setOpen] = (0, react_1.useState)(false);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(core_1.TableRow, { onClick: () => setOpen(!open) },
-            react_1.default.createElement(core_1.TableCell, null, lineNumber),
-            react_1.default.createElement(core_1.TableCell, { style: { backgroundColor: color } }),
-            react_1.default.createElement(core_1.TableCell, null,
-                react_1.default.createElement(core_1.Box, { sx: { fontFamily: 'Monospace' } }, text)),
-            react_1.default.createElement(core_1.TableCell, null,
-                hasColumns && !open && react_1.default.createElement(core_1.IconButton, { size: "small", onClick: () => setOpen(true) },
-                    react_1.default.createElement(icons_1.ExpandMore, null)),
-                hasColumns && open && react_1.default.createElement(core_1.IconButton, { size: "small", onClick: () => setOpen(false) },
-                    react_1.default.createElement(icons_1.ExpandLess, null)))),
-        open && hasColumns && (react_1.default.createElement(core_1.TableRow, null,
-            react_1.default.createElement(core_1.TableCell, null),
-            react_1.default.createElement(core_1.TableCell, null),
-            react_1.default.createElement(core_1.TableCell, null,
-                segmentId && react_1.default.createElement(core_1.Typography, { style: { color: 'white', backgroundColor: color } },
+        react_1.default.createElement(material_1.TableRow, { onClick: () => setOpen(!open) },
+            react_1.default.createElement(material_1.TableCell, null, lineNumber),
+            react_1.default.createElement(material_1.TableCell, { style: { backgroundColor: color } }),
+            react_1.default.createElement(material_1.TableCell, null,
+                react_1.default.createElement(material_1.Box, { sx: { fontFamily: 'Monospace' } }, text)),
+            react_1.default.createElement(material_1.TableCell, null,
+                hasColumns && !open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(true) },
+                    react_1.default.createElement(icons_material_1.ExpandMore, null)),
+                hasColumns && open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(false) },
+                    react_1.default.createElement(icons_material_1.ExpandLess, null)))),
+        open && hasColumns && (react_1.default.createElement(material_1.TableRow, null,
+            react_1.default.createElement(material_1.TableCell, null),
+            react_1.default.createElement(material_1.TableCell, null),
+            react_1.default.createElement(material_1.TableCell, null,
+                segmentId && react_1.default.createElement(material_1.Typography, { style: { color: 'white', backgroundColor: color } },
                     "Segment ID: ",
                     segmentId),
                 react_1.default.createElement(_1.ConfigView, { config: columns })),
-            react_1.default.createElement(core_1.TableCell, null)))));
+            react_1.default.createElement(material_1.TableCell, null)))));
 };
 exports.ImportLine = ImportLine;
 /**
@@ -62,7 +62,7 @@ exports.ImportLine = ImportLine;
  */
 const ImportFile = (props) => {
     const [expanded, setExpanded] = react_1.default.useState(true);
-    const { palette } = (0, core_1.useTheme)();
+    const { palette } = (0, material_1.useTheme)();
     const colors = [
         palette.primary.dark,
         palette.secondary.light,
@@ -73,14 +73,14 @@ const ImportFile = (props) => {
     ];
     const segmentIds = new Set();
     const segementNumbers = {};
-    return (react_1.default.createElement(core_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded) },
-        react_1.default.createElement(core_1.AccordionSummary, { expandIcon: react_1.default.createElement(icons_1.ExpandMore, null), id: `File ${props.name}` },
-            react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
+    return (react_1.default.createElement(material_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded) },
+        react_1.default.createElement(material_1.AccordionSummary, { expandIcon: react_1.default.createElement(icons_material_1.ExpandMore, null), id: `File ${props.name}` },
+            react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                 react_1.default.createElement("strong", null, props.name))),
-        react_1.default.createElement(core_1.AccordionDetails, null,
-            react_1.default.createElement(core_1.TableContainer, { component: core_1.Paper },
-                react_1.default.createElement(core_1.Table, { size: "small" },
-                    react_1.default.createElement(core_1.TableBody, null, props.lines.map(line => {
+        react_1.default.createElement(material_1.AccordionDetails, null,
+            react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper },
+                react_1.default.createElement(material_1.Table, { size: "small" },
+                    react_1.default.createElement(material_1.TableBody, null, props.lines.map(line => {
                         let color = undefined;
                         if (line.segmentId) {
                             if (segementNumbers[line.segmentId] === undefined) {

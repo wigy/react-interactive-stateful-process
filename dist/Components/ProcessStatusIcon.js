@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessStatusIcon = exports.ProcessStatus = void 0;
 const react_1 = __importDefault(require("react"));
-const icons_1 = require("@material-ui/icons");
-const core_1 = require("@material-ui/core");
-const colors_1 = require("@material-ui/core/colors");
+const icons_material_1 = require("@mui/icons-material");
+const material_1 = require("@mui/material");
+const colors_1 = require("@mui/material/colors");
 var ProcessStatus;
 (function (ProcessStatus) {
     ProcessStatus["INCOMPLETE"] = "INCOMPLETE";
@@ -29,22 +29,22 @@ const ProcessStatusIcon = (props) => {
     };
     switch (props.status) {
         case 'FAILED':
-            return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.red } },
-                react_1.default.createElement(icons_1.ErrorOutline, null));
+            return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.red } },
+                react_1.default.createElement(icons_material_1.ErrorOutline, null));
         case 'WAITING':
-            return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.blue } },
-                react_1.default.createElement(icons_1.Timer, null));
+            return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.blue } },
+                react_1.default.createElement(icons_material_1.Timer, null));
         case 'SUCCEEDED':
-            return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.green } },
-                react_1.default.createElement(icons_1.CheckCircleOutline, null));
+            return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.green } },
+                react_1.default.createElement(icons_material_1.CheckCircleOutline, null));
         case 'CRASHED':
-            return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.red } },
-                react_1.default.createElement(icons_1.Warning, null));
+            return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.red } },
+                react_1.default.createElement(icons_material_1.Warning, null));
         case 'INCOMPLETE':
-            return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.blue } },
-                react_1.default.createElement(icons_1.HourglassEmpty, null));
+            return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.blue } },
+                react_1.default.createElement(icons_material_1.HourglassEmpty, null));
     }
-    return react_1.default.createElement(core_1.Typography, { title: props.status, style: { color: colors.red } },
-        react_1.default.createElement(icons_1.Help, null));
+    return react_1.default.createElement(material_1.Typography, { title: props.status, style: { color: colors.red } },
+        react_1.default.createElement(icons_material_1.Help, null));
 };
 exports.ProcessStatusIcon = ProcessStatusIcon;

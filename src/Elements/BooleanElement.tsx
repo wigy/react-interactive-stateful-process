@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FormControlLabel, Checkbox } from '@material-ui/core'
+import { FormControlLabel, Checkbox } from '@mui/material'
 import { Renderer, RenderingProps } from "../Rendering"
 import { isBooleanElement } from 'interactive-elements'
 

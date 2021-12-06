@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConfigView = void 0;
 const react_1 = __importDefault(require("react"));
-const core_1 = require("@material-ui/core");
+const material_1 = require("@mui/material");
 const react_i18next_1 = require("react-i18next");
 /**
  * Default viewer for a process configuration displaying names and values as is on one single line.
@@ -44,7 +44,7 @@ const ConfigView = (props) => {
         }
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        props.title && react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
+        props.title && react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
             react_1.default.createElement(react_i18next_1.Trans, null, props.title)),
         render(props.config)));
 };

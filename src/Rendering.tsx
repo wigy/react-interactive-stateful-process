@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 
 /**
  * Readability helper to specify that a string is being used as a renderer name.

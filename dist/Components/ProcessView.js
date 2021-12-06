@@ -20,14 +20,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProcessView = void 0;
-const core_1 = require("@material-ui/core");
+const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
 const ProcessStatusIcon_1 = require("./ProcessStatusIcon");
 const useAxios_1 = require("./useAxios");
 const DefaultStepView_1 = require("./DefaultStepView");
 const interactive_elements_1 = require("interactive-elements");
-const icons_1 = require("@material-ui/icons");
+const icons_material_1 = require("@mui/icons-material");
 const DefaultErrorView_1 = require("./DefaultErrorView");
 const RISP_1 = require("../RISP");
 /**
@@ -54,7 +54,7 @@ const actionStepLabel = (action) => {
  */
 const ProcessView = (props) => {
     const { summaryView, stateView } = props;
-    const theme = (0, core_1.useTheme)();
+    const theme = (0, material_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [step, setStep] = (0, react_1.useState)(null);
     (0, useAxios_1.useAxios)({ url: `${props.api}/${props.id}`, token: props.token, receiver: setProcess });
@@ -81,42 +81,42 @@ const ProcessView = (props) => {
     const ErrorView = DefaultErrorView_1.DefaultErrorView;
     // TODO: Translations.
     const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)));
-    return (react_1.default.createElement(core_1.TableContainer, null,
-        react_1.default.createElement(core_1.Table, { className: "ProcessTable", size: "small" },
-            react_1.default.createElement(core_1.TableHead, null,
-                react_1.default.createElement(core_1.TableRow, { style: { backgroundColor: theme.palette.secondary.main } },
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText } },
-                        react_1.default.createElement(core_1.IconButton, { onClick: () => onBack() },
-                            react_1.default.createElement(icons_1.ArrowBackOutlined, { style: { color: theme.palette.secondary.contrastText } })),
+    return (react_1.default.createElement(material_1.TableContainer, null,
+        react_1.default.createElement(material_1.Table, { className: "ProcessTable", size: "small" },
+            react_1.default.createElement(material_1.TableHead, null,
+                react_1.default.createElement(material_1.TableRow, { style: { backgroundColor: theme.palette.secondary.main } },
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText } },
+                        react_1.default.createElement(material_1.IconButton, { onClick: () => onBack() },
+                            react_1.default.createElement(icons_material_1.ArrowBackOutlined, { style: { color: theme.palette.secondary.contrastText } })),
                         "# ",
                         process.id),
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }),
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.created),
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.name),
-                    react_1.default.createElement(core_1.TableCell, { variant: "head", align: "right" },
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }),
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.created),
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.name),
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", align: "right" },
                         react_1.default.createElement(ProcessStatusIcon_1.ProcessStatusIcon, { status: process.status })))),
-            react_1.default.createElement(core_1.TableBody, null,
-                react_1.default.createElement(core_1.TableRow, null,
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 2 },
-                        react_1.default.createElement(core_1.Typography, null,
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep !== undefined ? currentStep - 1 : 0) },
-                                react_1.default.createElement(icons_1.NavigateBefore, null)),
-                            react_1.default.createElement(core_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
-                            react_1.default.createElement(core_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
-                                react_1.default.createElement(icons_1.NavigateNext, null)))),
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 3 },
-                        react_1.default.createElement(core_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(core_1.Step, { key: idx },
-                            react_1.default.createElement(core_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
-                react_1.default.createElement(core_1.TableRow, null,
-                    react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
+            react_1.default.createElement(material_1.TableBody, null,
+                react_1.default.createElement(material_1.TableRow, null,
+                    react_1.default.createElement(material_1.TableCell, { colSpan: 2 },
+                        react_1.default.createElement(material_1.Typography, null,
+                            react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep !== undefined ? currentStep - 1 : 0) },
+                                react_1.default.createElement(icons_material_1.NavigateBefore, null)),
+                            react_1.default.createElement(material_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
+                            react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
+                                react_1.default.createElement(icons_material_1.NavigateNext, null)))),
+                    react_1.default.createElement(material_1.TableCell, { colSpan: 3 },
+                        react_1.default.createElement(material_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(material_1.Step, { key: idx },
+                            react_1.default.createElement(material_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
+                react_1.default.createElement(material_1.TableRow, null,
+                    react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
-                            react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
+                            react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
                             react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: props.setup || { baseUrl: `${props.api}/${process.id}` } })))),
                 hasSteps &&
-                    react_1.default.createElement(core_1.TableRow, null,
-                        react_1.default.createElement(core_1.TableCell, { colSpan: 5, align: "left" },
+                    react_1.default.createElement(material_1.TableRow, null,
+                        react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },
                             react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView })))))));
 };
 exports.ProcessView = ProcessView;

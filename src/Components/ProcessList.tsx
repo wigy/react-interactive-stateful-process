@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody } from '@material-ui/core'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'

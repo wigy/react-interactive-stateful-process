@@ -1,6 +1,6 @@
 import React from 'react'
 import { encode } from 'base64-arraybuffer'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { Trans } from 'react-i18next'
 
 /**
@@ -19,7 +19,7 @@ export type FileUploadData = {
 export type FileUploaderProps = {
   onUpload: (files: FileUploadData[]) => void,
   multiple?: boolean,
-  color?: "inherit" | "primary" | "secondary" | "default",
+  color?: "inherit" | "error" | "success" | "primary" | "secondary" | "info" | "warning",
   variant?: "text" | "outlined" | "contained"
 }
 

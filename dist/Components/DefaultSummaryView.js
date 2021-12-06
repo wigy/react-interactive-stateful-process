@@ -20,10 +20,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultSummaryView = void 0;
-const core_1 = require("@material-ui/core");
+const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
-const icons_1 = require("@material-ui/icons");
+const icons_material_1 = require("@mui/icons-material");
 const _1 = require(".");
 /**
  * Default viewer for a process step summary information.
@@ -37,7 +37,7 @@ const DefaultSummaryView = (props) => {
     const started = new Date(step.started).getTime();
     const finished = new Date(step.finished).getTime();
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(core_1.Typography, { variant: "body2" },
+        react_1.default.createElement(material_1.Typography, { variant: "body2" },
             react_1.default.createElement(react_i18next_1.Trans, null,
                 react_1.default.createElement("strong", null, "Process ID")),
             ": ",
@@ -62,11 +62,11 @@ const DefaultSummaryView = (props) => {
                 react_1.default.createElement("strong", null, "Duration")),
             ": ",
             finished ? `${finished - started}ms ` : '— ',
-            react_1.default.createElement(core_1.IconButton, { size: "small", title: showConfig ? t('Hide configuration') : t('Show configuration'), onClick: () => setShowConfig(!showConfig) },
-                react_1.default.createElement(icons_1.Settings, null))),
+            react_1.default.createElement(material_1.IconButton, { size: "small", title: showConfig ? t('Hide configuration') : t('Show configuration'), onClick: () => setShowConfig(!showConfig) },
+                react_1.default.createElement(icons_material_1.Settings, null))),
         showConfig &&
-            react_1.default.createElement(core_1.Card, { style: { marginBottom: '0.5em' } },
-                react_1.default.createElement(core_1.CardContent, null,
+            react_1.default.createElement(material_1.Card, { style: { marginBottom: '0.5em' } },
+                react_1.default.createElement(material_1.CardContent, null,
                     react_1.default.createElement(_1.ConfigView, { title: t('Configuration'), config: props.process.config })))));
 };
 exports.DefaultSummaryView = DefaultSummaryView;

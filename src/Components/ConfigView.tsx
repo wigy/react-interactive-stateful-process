@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProcessConfig } from 'interactive-elements'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { Trans } from 'react-i18next'
 
 export type ConfigViewProps = {

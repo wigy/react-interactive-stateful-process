@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Typography, useTheme } from '@material-ui/core'
+import { Card, CardContent, CardHeader, Typography, useTheme } from '@mui/material'
 import React from 'react'
 import { Trans } from 'react-i18next'
 

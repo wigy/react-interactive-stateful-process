@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { TextField } from '@material-ui/core'
+import { TextField } from '@mui/material'
 import { Renderer, RenderingProps } from "../Rendering"
 import { isTextElement } from 'interactive-elements'
 
