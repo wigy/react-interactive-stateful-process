@@ -80,9 +80,11 @@ module.exports = {
   // Spin up a server for quick development
   devServer: {
     historyApiFallback: true,
-    contentBase: paths.build,
+    static: {
+      directory: paths.build,
+    },
     compress: true,
     hot: true,
-    disableHostCheck: true,
+    allowedHosts: 'all'
   },
 };

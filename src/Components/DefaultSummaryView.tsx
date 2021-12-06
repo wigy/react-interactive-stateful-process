@@ -1,5 +1,5 @@
 import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
-import { Card, CardContent, IconButton, Typography } from '@mui/material'
+import { Card, CardContent, IconButton, ToggleButton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Settings } from '@mui/icons-material'
@@ -35,13 +35,15 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
         <Trans><strong>Started</strong></Trans>: {step.started}
         &nbsp;
         <Trans><strong>Duration</strong></Trans>: {finished ? `${finished - started}ms ` : '— '}
-        <IconButton
+        <ToggleButton
           size="small"
+          value="showConfig"
+          selected={showConfig}
           title={showConfig ? t('Hide configuration') : t('Show configuration')}
           onClick={() => setShowConfig(!showConfig)}
         >
           <Settings/>
-        </IconButton>
+        </ToggleButton>
       </Typography>
       { showConfig &&
         <Card style={{ marginBottom: '0.5em' }}>

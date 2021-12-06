@@ -62,7 +62,7 @@ const DefaultSummaryView = (props) => {
                 react_1.default.createElement("strong", null, "Duration")),
             ": ",
             finished ? `${finished - started}ms ` : '— ',
-            react_1.default.createElement(material_1.IconButton, { size: "small", title: showConfig ? t('Hide configuration') : t('Show configuration'), onClick: () => setShowConfig(!showConfig) },
+            react_1.default.createElement(material_1.ToggleButton, { size: "small", value: "showConfig", selected: showConfig, title: showConfig ? t('Hide configuration') : t('Show configuration'), onClick: () => setShowConfig(!showConfig) },
                 react_1.default.createElement(icons_material_1.Settings, null))),
         showConfig &&
             react_1.default.createElement(material_1.Card, { style: { marginBottom: '0.5em' } },
