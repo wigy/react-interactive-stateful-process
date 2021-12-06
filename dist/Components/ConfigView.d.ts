@@ -1,5 +1,6 @@
 import { ProcessConfig } from 'interactive-elements';
-export declare type DefaultConfigViewProps = {
+export declare type ConfigViewProps = {
+    title?: string;
     config: ProcessConfig;
 };
 /**
@@ -7,4 +8,4 @@ export declare type DefaultConfigViewProps = {
  * @param props
  * @returns
  */
-export declare const DefaultConfigView: (props: DefaultConfigViewProps) => JSX.Element;
+export declare const ConfigView: (props: ConfigViewProps) => JSX.Element;

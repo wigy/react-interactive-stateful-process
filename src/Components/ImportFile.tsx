@@ -1,11 +1,14 @@
-import { ExpandMore} from '@material-ui/icons';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@material-ui/core'
+import { ExpandLess, ExpandMore} from '@material-ui/icons';
+import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@material-ui/core'
 import { TextFileLine } from 'interactive-elements'
-import React from 'react'
+import React, { useState } from 'react'
+import { ConfigView } from '.';
 
 export type ImportLineProps = {
-  line: number
+  lineNumber: number
+  columns: Record<string, string>
   text: string
+  segmentId?: string
   color?: string
 }
 
@@ -15,12 +18,34 @@ export type ImportLineProps = {
  * @returns
  */
 export const ImportLine = (props: ImportLineProps): JSX.Element => {
+  const { segmentId, lineNumber, color, text, columns } = props
+  const hasColumns = Object.keys(columns).length > 0
+  const [open, setOpen] = useState<boolean>(false)
+
   return (
-    <TableRow>
-      <TableCell>{props.line}</TableCell>
-      <TableCell style={{ backgroundColor: props.color }}></TableCell>
-      <TableCell><Box sx={{ fontFamily: 'Monospace' }}>{props.text}</Box></TableCell>
-    </TableRow>
+    <>
+      <TableRow onClick={() => setOpen(!open)}>
+        <TableCell>{lineNumber}</TableCell>
+        <TableCell style={{ backgroundColor: color }}></TableCell>
+        <TableCell><Box sx={{ fontFamily: 'Monospace' }}>{text}</Box></TableCell>
+        <TableCell>
+          { hasColumns && !open && <IconButton size="small" onClick={() => setOpen(true)}><ExpandMore/></IconButton> }
+          { hasColumns && open && <IconButton size="small" onClick={() => setOpen(false)}><ExpandLess/></IconButton> }
+        </TableCell>
+      </TableRow>
+      { open && hasColumns && (
+        <TableRow>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
+          <TableCell>
+            { segmentId && <Typography style={{ color }}>Segment ID: {segmentId}</Typography> }
+            <ConfigView config={columns}/>
+          </TableCell>
+          <TableCell></TableCell>
+        </TableRow>
+      )
+    }
+    </>
   )
 }
 
@@ -69,7 +94,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
                   }
                   color = colors[segementNumbers[line.segmentId] % colors.length]
                 }
-                return <ImportLine key={line.line} line={line.line + 1} color={color} text={line.text} />
+                return <ImportLine key={line.line} segmentId={line.segmentId} lineNumber={line.line + 1} columns={line.columns} color={color} text={line.text} />
               })}
             </TableBody>
           </Table>

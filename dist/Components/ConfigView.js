@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DefaultConfigView = void 0;
+exports.ConfigView = void 0;
 const react_1 = __importDefault(require("react"));
 const core_1 = require("@material-ui/core");
 const react_i18next_1 = require("react-i18next");
@@ -12,7 +12,7 @@ const react_i18next_1 = require("react-i18next");
  * @param props
  * @returns
  */
-const DefaultConfigView = (props) => {
+const ConfigView = (props) => {
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
@@ -30,12 +30,12 @@ const DefaultConfigView = (props) => {
                         render(v),
                         i < values.length - 1 ? ', ' : '')));
                 }
-                return react_1.default.createElement("dl", null, Object.keys(obj).map(k => react_1.default.createElement(react_1.default.Fragment, { key: k },
+                return react_1.default.createElement("dl", null, Object.keys(obj).sort().map(k => react_1.default.createElement(react_1.default.Fragment, { key: k },
                     react_1.default.createElement("dt", null,
                         react_1.default.createElement("strong", null, capitalize(k))),
                     react_1.default.createElement("dd", null, render(obj[k])))));
             case 'string':
-                return react_1.default.createElement(react_1.default.Fragment, null, obj);
+                return react_1.default.createElement(react_1.default.Fragment, null, obj === '' ? react_1.default.createElement("br", null) : obj);
             case 'boolean':
                 // TODO: Translate.
                 return obj ? react_1.default.createElement(react_1.default.Fragment, null, "Yes") : react_1.default.createElement(react_1.default.Fragment, null, "No");
@@ -44,8 +44,8 @@ const DefaultConfigView = (props) => {
         }
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
-            react_1.default.createElement(react_i18next_1.Trans, null, "Configuration")),
+        props.title && react_1.default.createElement(core_1.Typography, { variant: "subtitle1" },
+            react_1.default.createElement(react_i18next_1.Trans, null, props.title)),
         render(props.config)));
 };
-exports.DefaultConfigView = DefaultConfigView;
+exports.ConfigView = ConfigView;

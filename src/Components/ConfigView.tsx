@@ -3,7 +3,8 @@ import { ProcessConfig } from 'interactive-elements'
 import { Typography } from '@material-ui/core'
 import { Trans } from 'react-i18next'
 
-export type DefaultConfigViewProps = {
+export type ConfigViewProps = {
+  title?: string
   config: ProcessConfig
 }
 
@@ -12,7 +13,7 @@ export type DefaultConfigViewProps = {
  * @param props
  * @returns
  */
-export const DefaultConfigView = (props: DefaultConfigViewProps): JSX.Element => {
+export const ConfigView = (props: ConfigViewProps): JSX.Element => {
 
   const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1)
@@ -36,14 +37,14 @@ export const DefaultConfigView = (props: DefaultConfigViewProps): JSX.Element =>
           }</>
         }
         return <dl>
-          {Object.keys(obj).map(k => <React.Fragment key={k}>
+          {Object.keys(obj).sort().map(k => <React.Fragment key={k}>
             <dt><strong>{capitalize(k)}</strong></dt>
             <dd>{render(obj[k])}</dd>
           </React.Fragment>)}
         </dl>
 
       case 'string':
-        return <>{obj}</>
+        return <>{obj === '' ? <br/> : obj}</>
 
       case 'boolean':
         // TODO: Translate.
@@ -55,7 +56,7 @@ export const DefaultConfigView = (props: DefaultConfigViewProps): JSX.Element =>
   }
   return (
     <>
-      <Typography variant="subtitle1"><Trans>Configuration</Trans></Typography>
+      {props.title && <Typography variant="subtitle1"><Trans>{props.title}</Trans></Typography>}
       {render(props.config)}
     </>
   )

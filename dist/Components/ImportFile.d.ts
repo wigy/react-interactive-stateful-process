@@ -1,7 +1,9 @@
 import { TextFileLine } from 'interactive-elements';
 export declare type ImportLineProps = {
-    line: number;
+    lineNumber: number;
+    columns: Record<string, string>;
     text: string;
+    segmentId?: string;
     color?: string;
 };
 /**
