@@ -17,6 +17,6 @@ const DefaultStateView = (props) => {
     const ResultView = props.resultView;
     return react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("pre", null, JSON.stringify(props.state, null, 2)),
-        props.state.results && react_1.default.createElement(ResultView, { result: props.state.results }));
+        props.state.result && react_1.default.createElement(ResultView, { result: props.state.result }));
 };
 exports.DefaultStateView = DefaultStateView;

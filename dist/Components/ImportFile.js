@@ -101,9 +101,9 @@ const ImportFile = (props) => {
                             }
                             color = colors[segementNumbers[line.segmentId] % colors.length];
                         }
-                        // Add results if last of the segment.
+                        // Add result if last of the segment.
                         const isLast = (idx === props.lines.length - 1) || line.segmentId !== props.lines[idx + 1].segmentId;
-                        return react_1.default.createElement(exports.ImportLine, { key: line.line, segmentId: line.segmentId, result: isLast && line.segmentId && props.results ? props.results[line.segmentId] : undefined, resultView: props.resultView, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
+                        return react_1.default.createElement(exports.ImportLine, { key: line.line, segmentId: line.segmentId, result: isLast && line.segmentId && props.result ? props.result[line.segmentId] : undefined, resultView: props.resultView, lineNumber: line.line + 1, columns: line.columns, color: color, text: line.text });
                     })))))));
 };
 exports.ImportFile = ImportFile;

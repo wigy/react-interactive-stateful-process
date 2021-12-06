@@ -18,7 +18,7 @@ export declare const ImportLine: (props: ImportLineProps) => JSX.Element;
 export declare type ImportFileProps = {
     name: string;
     lines: TextFileLine[];
-    results?: Record<SegmentId, unknown>;
+    result?: Record<SegmentId, unknown>;
     resultView: (props: DefaultResultViewProps) => JSX.Element;
 };
 /**

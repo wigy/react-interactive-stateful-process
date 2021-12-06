@@ -69,7 +69,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
 export type ImportFileProps = {
   name: string
   lines: TextFileLine[]
-  results?: Record<SegmentId, unknown>
+  result?: Record<SegmentId, unknown>
   resultView: (props: DefaultResultViewProps) => JSX.Element
 }
 
@@ -114,13 +114,13 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
                   }
                   color = colors[segementNumbers[line.segmentId] % colors.length]
                 }
-                // Add results if last of the segment.
+                // Add result if last of the segment.
                 const isLast = (idx === props.lines.length - 1) || line.segmentId !== props.lines[idx + 1].segmentId
 
                 return <ImportLine
                   key={line.line}
                   segmentId={line.segmentId}
-                  result={isLast && line.segmentId && props.results ? props.results[line.segmentId] : undefined}
+                  result={isLast && line.segmentId && props.result ? props.result[line.segmentId] : undefined}
                   resultView={props.resultView}
                   lineNumber={line.line + 1}
                   columns={line.columns}
