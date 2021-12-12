@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-stateful-process",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -32,7 +32,7 @@
   "dependencies": {
     "@mui/icons-material": "^5.2.1",
     "base64-arraybuffer": "^1.0.1",
-    "interactive-elements": "^1.0.27"
+    "interactive-elements": "^1.0.29"
   },
   "devDependencies": {
     "@babel/core": "7.14.2",
