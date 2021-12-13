@@ -105,7 +105,7 @@ const ProcessView = (props) => {
                             react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
                                 react_1.default.createElement(icons_material_1.NavigateNext, null)))),
                     react_1.default.createElement(material_1.TableCell, { colSpan: 3 },
-                        react_1.default.createElement(material_1.Stepper, { activeStep: currentStep }, operations.map((label, idx) => (react_1.default.createElement(material_1.Step, { key: idx },
+                        react_1.default.createElement(material_1.Stepper, { activeStep: currentStep || 0 }, operations.map((label, idx) => (react_1.default.createElement(material_1.Step, { key: idx },
                             react_1.default.createElement(material_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },

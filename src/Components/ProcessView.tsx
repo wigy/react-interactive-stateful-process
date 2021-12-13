@@ -141,7 +141,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               </Typography>
             </TableCell>
             <TableCell colSpan={3}>
-              <Stepper activeStep={currentStep}>
+              <Stepper activeStep={currentStep || 0}>
                 {operations.map((label, idx) => (
                   <Step key={idx}>
                     <StepLabel onClick={() => onChangeStep(idx)}>{label}</StepLabel>

@@ -17,6 +17,7 @@ const react_1 = __importDefault(require("react"));
 const base64_arraybuffer_1 = require("base64-arraybuffer");
 const material_1 = require("@mui/material");
 const react_i18next_1 = require("react-i18next");
+const icons_material_1 = require("@mui/icons-material");
 /**
  * An file uploader utility.
  * @param props.onUpload A function handling the resulting file upload data.
@@ -72,7 +73,7 @@ const FileUploader = (props) => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("input", { id: "file-uploader-input", type: "file", multiple: !!props.multiple, hidden: true, onChange: (e) => onFileChange(e) }),
         react_1.default.createElement("label", { htmlFor: "file-uploader-input" },
-            react_1.default.createElement(material_1.Button, { component: "span", color: props.color, variant: props.variant },
+            react_1.default.createElement(material_1.Button, { component: "span", startIcon: react_1.default.createElement(icons_material_1.UploadFile, null), color: props.color, variant: props.variant },
                 react_1.default.createElement(react_i18next_1.Trans, null, "Upload")))));
 };
 exports.FileUploader = FileUploader;
