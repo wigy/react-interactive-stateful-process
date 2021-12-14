@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -38,7 +29,7 @@ exports.RISP = (0, mobx_react_1.observer)((props) => {
             }
         }
         // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
-        element.triggerHandler = (trigger, props) => __awaiter(void 0, void 0, void 0, function* () { return Triggering_1.TriggerEngine.handle(trigger, props); });
+        element.triggerHandler = async (trigger, props) => Triggering_1.TriggerEngine.handle(trigger, props);
         if ((0, interactive_elements_1.isContainerElement)(element)) {
             for (const e of element.elements) {
                 prepare(e);
