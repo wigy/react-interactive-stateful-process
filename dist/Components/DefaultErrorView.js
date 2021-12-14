@@ -16,7 +16,9 @@ const DefaultErrorView = (props) => {
     const { palette } = (0, material_1.useTheme)();
     return (react_1.default.createElement(material_1.Card, { style: { backgroundColor: 'rgba(0,0,0,0.05)' } },
         react_1.default.createElement(material_1.CardHeader, { style: { color: palette.error.main }, title: react_1.default.createElement(react_i18next_1.Trans, null, "Error") }),
-        react_1.default.createElement(material_1.CardContent, null,
-            react_1.default.createElement("pre", null, props.error))));
+        react_1.default.createElement(material_1.CardContent, { sx: { fontFamily: 'monospace' } },
+            react_1.default.createElement(material_1.Typography, null, props.error.split('\n').map((line, idx) => react_1.default.createElement(react_1.default.Fragment, { key: idx },
+                line,
+                react_1.default.createElement("br", null)))))));
 };
 exports.DefaultErrorView = DefaultErrorView;

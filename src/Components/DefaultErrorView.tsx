@@ -16,8 +16,10 @@ export const DefaultErrorView = (props: DefaultErrorViewProps): JSX.Element => {
   return (
     <Card style={{ backgroundColor: 'rgba(0,0,0,0.05)' }}>
       <CardHeader style={{color: palette.error.main }} title={<Trans>Error</Trans>}/>
-      <CardContent>
-        <pre>{props.error}</pre>
+      <CardContent sx={{ fontFamily: 'monospace' }}>
+        <Typography>
+          {props.error.split('\n').map((line, idx) => <React.Fragment key={idx}>{line}<br/></React.Fragment>)}
+        </Typography>
       </CardContent>
     </Card>
   )
