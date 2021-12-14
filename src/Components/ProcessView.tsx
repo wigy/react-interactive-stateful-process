@@ -107,7 +107,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
             <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
               {process.name}
             </TableCell>
-            <TableCell variant="head" align="right">
+            <TableCell variant="head" style={{backgroundColor: 'white'}} align="right">
               <ProcessStatusIcon status={process.status}/>
             </TableCell>
           </TableRow>
