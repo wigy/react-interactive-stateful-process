@@ -4,6 +4,7 @@ import { RenderingProps } from "./Rendering"
 import { ActionEngine } from "./ActionEngine"
 import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
 
+// TODO: Perhaps this is overkill. Remove whole triggering idea and replace with passthrough handler. Drop all trigger references.
 /**
  * Registry where all trigger handlers has been stored.
  */
