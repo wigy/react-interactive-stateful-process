@@ -1,6 +1,6 @@
 import { GetOneProcessResponse } from 'interactive-elements';
-import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
+import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type DefaultStepViewProps = {
     api: string;

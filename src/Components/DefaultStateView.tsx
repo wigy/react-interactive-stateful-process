@@ -19,7 +19,7 @@ export const DefaultStateView = (props: DefaultStateViewProps): JSX.Element => {
     return <></>
   }
 
-  const ResultView = props.resultView
+  const ResultView = props.resultView
   return <>
     <pre>
       {JSON.stringify(props.state, null, 2)}

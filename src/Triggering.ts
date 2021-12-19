@@ -1,8 +1,7 @@
 import { runInAction } from 'mobx'
-import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement } from "interactive-elements"
-import { RenderingProps } from "./Rendering"
-import { ActionEngine } from "./ActionEngine"
-import { InteractiveElement, Action, ActionResult } from 'interactive-elements'
+import { TriggerName, TriggerHandler, Trigger, OnChangeTrigger, Setup, isNamedElement, isActiveElement, InteractiveElement, Action, ActionResult } from 'interactive-elements'
+import { RenderingProps } from './Rendering'
+import { ActionEngine } from './ActionEngine'
 
 // TODO: Perhaps this is overkill. Remove whole triggering idea and replace with passthrough handler. Drop all trigger references.
 /**
@@ -12,7 +11,7 @@ export type TriggerHandlerRegistry = { [key: string]: TriggerHandler }
 declare global {
   var TriggerEngineHandlers: TriggerHandlerRegistry
 }
-declare var TriggerEngineHandlers
+declare let TriggerEngineHandlers
 global.TriggerEngineHandlers = {}
 
 /**

@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormControlLabel, Checkbox } from '@mui/material'
-import { Renderer, RenderingProps } from "../Rendering"
-import { isBooleanElement } from 'interactive-elements'
+import { Renderer, RenderingProps } from '../Rendering'
+import { isBooleanElement, isNamedElement, isTextElement } from 'interactive-elements'
 
 /**
  * Rendering for boolean toggle element.
  */
 export const BooleanRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
+
+  const { t } = useTranslation()
+  const label = isTextElement(element) && element.label ? element.label : (isNamedElement(element) ? t(`label-${element.name}`) : '')
+  const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] : null)
+
   if (!isBooleanElement(element)) {
     return <></>
   }
-
-  const { t } = useTranslation()
-  const label = element.label ? element.label : t(`label-${element.name}`)
-  const [value, setValue] = useState<boolean | null>(props.values[element.name] as boolean || null)
 
   return <FormControlLabel
     control={

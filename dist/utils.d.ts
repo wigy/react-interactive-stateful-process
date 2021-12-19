@@ -1,4 +1,4 @@
-import { InteractiveElement } from "interactive-elements";
+import { InteractiveElement } from 'interactive-elements';
 /**
  * Collect all names defined in the element structure.
  * @param element

@@ -19,7 +19,7 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
 
   const { step } = props
   const { t } = useTranslation()
-  const [ showConfig, setShowConfig ] = useState<boolean>(false)
+  const [showConfig, setShowConfig] = useState<boolean>(false)
   const started = new Date(step.started).getTime()
   const finished = new Date(step.finished).getTime()
 

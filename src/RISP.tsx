@@ -15,37 +15,37 @@ import { ActionEngine } from './ActionEngine'
  * @param props
  * @returns Completely controlled display section.
  */
- export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) => {
+export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) => {
 
   const { values, element } = props
 
   // Fill in appropriate fields for elements.
   const prepare = (element: InteractiveElement) => {
-      // Named components have values.
-      if (isNamedElement(element)) {
-        if (values[element.name] === undefined) {
-          values[element.name] = element.defaultValue || null
-        }
+    // Named components have values.
+    if (isNamedElement(element)) {
+      if (values[element.name] === undefined) {
+        values[element.name] = element.defaultValue || null
       }
-      // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().
-      (element as ActiveElement).triggerHandler = async (trigger, props) => {
+    }
+    // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().
+    (element as ActiveElement).triggerHandler = async (trigger, props) => {
 
-        if (isNamedElement(element) && 'value' in trigger) {
-          runInAction(() => (props.values[element.name] = trigger.value))
-        }
-
-        if (isActiveElement(element) && element.actions[trigger.type]) {
-          return ActionEngine.handle(element.actions[trigger.type], props)
-        }
-
-        return ActionEngine.success()
+      if (isNamedElement(element) && 'value' in trigger) {
+        runInAction(() => (props.values[element.name] = trigger.value))
       }
 
-      if (isContainerElement(element)) {
-        for (const e of element.elements) {
-          prepare(e)
-        }
+      if (isActiveElement(element) && element.actions[trigger.type]) {
+        return ActionEngine.handle(element.actions[trigger.type], props)
       }
+
+      return ActionEngine.success()
+    }
+
+    if (isContainerElement(element)) {
+      for (const e of element.elements) {
+        prepare(e)
+      }
+    }
   }
 
   prepare(element)

@@ -4,11 +4,11 @@ import { Typography } from '@mui/material'
 import { red, green, blue } from '@mui/material/colors'
 
 export enum ProcessStatus {
-  INCOMPLETE = "INCOMPLETE",
-  WAITING = "WAITING",
-  SUCCEEDED = "SUCCEEDED",
-  FAILED = "FAILED",
-  CRASHED = "CRASHED"
+  INCOMPLETE = 'INCOMPLETE',
+  WAITING = 'WAITING',
+  SUCCEEDED = 'SUCCEEDED',
+  FAILED = 'FAILED',
+  CRASHED = 'CRASHED'
 }
 
 export type ProcessStatusIconProps = {
@@ -36,7 +36,7 @@ export const ProcessStatusIcon = (props: ProcessStatusIconProps) => {
     case 'SUCCEEDED':
       return <Typography title={props.status} style={{ color: colors.green }}><CheckCircleOutline /></Typography>
     case 'CRASHED':
-     return <Typography title={props.status} style={{ color: colors.red }}><Warning /></Typography>
+      return <Typography title={props.status} style={{ color: colors.red }}><Warning /></Typography>
     case 'INCOMPLETE':
       return <Typography title={props.status} style={{ color: colors.blue }}><HourglassEmpty /></Typography>
   }

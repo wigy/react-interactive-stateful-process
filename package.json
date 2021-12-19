@@ -26,7 +26,7 @@
     "start": "npm run build",
     "build": "rm -rf dist/* && tsc",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint-fix": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "test": "echo \"\\033[0;31mNo testing system for react interactive stateful process yet.\\033[0m\"",
     "test:ci": "yarn install && yarn run lint && yarn test"
   },

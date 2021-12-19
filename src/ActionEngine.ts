@@ -1,5 +1,5 @@
 import { runInAction } from 'mobx'
-import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement, PatchAction, isPatchAction, PostAction, isPostAction } from 'interactive-elements'
+import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement, PatchAction, PostAction } from 'interactive-elements'
 import { RenderingProps } from './Rendering'
 import axios from 'axios'
 
@@ -8,9 +8,10 @@ import axios from 'axios'
  */
 export type ActionHandlerRegistry = { [key: string]: ActionHandler }
 declare global {
+  // eslint-disable-next-line no-var
   var ActionEngineHandlers: ActionHandlerRegistry
 }
-declare var ActionEngineHandlers
+declare let ActionEngineHandlers
 global.ActionEngineHandlers = {}
 
 /**
@@ -65,7 +66,7 @@ export class ActionEngine {
    */
   static async handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
     if (!action) {
-      throw new Error(`Action engine called without action.`)
+      throw new Error('Action engine called without action.')
     }
     // Helper to run action.
     const runAction = async (action, props) => {
@@ -139,7 +140,7 @@ async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostA
     }
 
     let error
-    axios(call).catch(err => error = err)
+    axios(call).catch(err => (error = err))
 
     if (error) {
       if (setup.errorMessage && action.errorMessage) {
@@ -172,6 +173,6 @@ export const patchActionHandler: ActionHandler = async (action: PatchAction, pro
  * @param props
  * @returns
  */
- export const postActionHandler: ActionHandler = async (action: PostAction, props: RenderingProps) => {
+export const postActionHandler: ActionHandler = async (action: PostAction, props: RenderingProps) => {
   return axiosRequst('POST', action, props)
 }

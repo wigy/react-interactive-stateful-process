@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingEngine, RenderingProps } from "../Rendering"
+import { Renderer, RenderingEngine, RenderingProps } from '../Rendering'
 import { InteractiveElement, isFlatElement } from 'interactive-elements'
 
 export const FlatRenderer: Renderer = (props: RenderingProps) => {

@@ -1,9 +1,9 @@
-import { ExpandLess, ExpandMore} from '@mui/icons-material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Link, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography, useTheme } from '@mui/material'
 import { ProcessConfig, SegmentId, TextFileLine } from 'interactive-elements'
 import React, { useState } from 'react'
-import { ConfigView } from '.';
-import { DefaultResultViewProps } from './DefaultResultView';
+import { ConfigView } from '.'
+import { DefaultResultViewProps } from './DefaultResultView'
 
 export type ImportLineProps = {
   config: ProcessConfig
@@ -82,7 +82,7 @@ export type ImportFileProps = {
  */
 export const ImportFile = (props: ImportFileProps): JSX.Element => {
 
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(true)
   const { palette } = useTheme()
   const colors = [
     palette.primary.dark,
@@ -107,7 +107,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
           <Table size="small">
             <TableBody>
               {props.lines.map((line, idx) => {
-                let color: string | undefined = undefined
+                let color: string | undefined
                 // Establish segment color.
                 if (line.segmentId) {
                   if (segementNumbers[line.segmentId] === undefined) {

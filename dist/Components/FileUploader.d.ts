@@ -13,8 +13,8 @@ export declare type FileUploadData = {
 export declare type FileUploaderProps = {
     onUpload: (files: FileUploadData[]) => void;
     multiple?: boolean;
-    color?: "inherit" | "error" | "success" | "primary" | "secondary" | "info" | "warning";
-    variant?: "text" | "outlined" | "contained";
+    color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning';
+    variant?: 'text' | 'outlined' | 'contained';
 };
 /**
  * An file uploader utility.

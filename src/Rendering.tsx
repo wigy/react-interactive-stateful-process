@@ -32,7 +32,7 @@ export type RendererRegistry = { [key: string]: Renderer}
 declare global {
   var RenderingEngineRenderers: RendererRegistry
 }
-declare var RenderingEngineRenderers
+declare let RenderingEngineRenderers
 global.RenderingEngineRenderers = {}
 
 /**

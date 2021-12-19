@@ -61,7 +61,7 @@ const ProcessView = (props) => {
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
-    let currentStep = undefined;
+    let currentStep;
     if (props.step !== undefined && props.step !== null) {
         currentStep = props.step;
     }

@@ -1,21 +1,22 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { TextField } from '@mui/material'
-import { Renderer, RenderingProps } from "../Rendering"
-import { isTextElement } from 'interactive-elements'
+import { Renderer, RenderingProps } from '../Rendering'
+import { isNamedElement, isTextElement } from 'interactive-elements'
 
 /**
  * Rendering for text editing element.
  */
 export const TextRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
+
+  const { t } = useTranslation()
+  const label = isTextElement(element) ? element.label : (isNamedElement(element) ? t(`label-${element.name}`) : '')
+  const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] : '')
+
   if (!isTextElement(element)) {
     return <></>
   }
-
-  const { t } = useTranslation()
-  const label = element.label ? element.label : t(`label-${element.name}`)
-  const [value, setValue] = React.useState(props.values[element.name] || '')
 
   return <TextField
     label={label}

@@ -32,7 +32,7 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           const values = Object.values(obj)
           return <>{
             values.map((v, i) =>
-              <React.Fragment key={i}>{render(v)}{i < values.length - 1 ? ', ': ''}</React.Fragment>
+              <React.Fragment key={i}>{render(v)}{i < values.length - 1 ? ', ' : ''}</React.Fragment>
             )
           }</>
         }

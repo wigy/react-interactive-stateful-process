@@ -1,6 +1,5 @@
-import { TriggerName, TriggerHandler, Trigger, Setup } from "interactive-elements";
-import { RenderingProps } from "./Rendering";
-import { InteractiveElement, Action, ActionResult } from 'interactive-elements';
+import { TriggerName, TriggerHandler, Trigger, Setup, InteractiveElement, Action, ActionResult } from 'interactive-elements';
+import { RenderingProps } from './Rendering';
 /**
  * Registry where all trigger handlers has been stored.
  */

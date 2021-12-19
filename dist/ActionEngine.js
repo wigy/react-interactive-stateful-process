@@ -56,7 +56,7 @@ class ActionEngine {
      */
     static async handle(action, props) {
         if (!action) {
-            throw new Error(`Action engine called without action.`);
+            throw new Error('Action engine called without action.');
         }
         // Helper to run action.
         const runAction = async (action, props) => {
@@ -128,7 +128,7 @@ async function axiosRequst(method, action, props) {
             };
         }
         let error;
-        (0, axios_1.default)(call).catch(err => error = err);
+        (0, axios_1.default)(call).catch(err => (error = err));
         if (error) {
             if (setup.errorMessage && action.errorMessage) {
                 setup.errorMessage(action.errorMessage);

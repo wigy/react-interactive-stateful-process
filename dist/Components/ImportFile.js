@@ -92,7 +92,7 @@ const ImportFile = (props) => {
             react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper },
                 react_1.default.createElement(material_1.Table, { size: "small" },
                     react_1.default.createElement(material_1.TableBody, null, props.lines.map((line, idx) => {
-                        let color = undefined;
+                        let color;
                         // Establish segment color.
                         if (line.segmentId) {
                             if (segementNumbers[line.segmentId] === undefined) {

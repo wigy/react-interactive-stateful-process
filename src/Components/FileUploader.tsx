@@ -20,8 +20,8 @@ export type FileUploadData = {
 export type FileUploaderProps = {
   onUpload: (files: FileUploadData[]) => void,
   multiple?: boolean,
-  color?: "inherit" | "error" | "success" | "primary" | "secondary" | "info" | "warning",
-  variant?: "text" | "outlined" | "contained"
+  color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning',
+  variant?: 'text' | 'outlined' | 'contained'
 }
 
 /**
@@ -39,10 +39,10 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
    */
   const readFileFromInput = async (file: File): Promise<ArrayBuffer> => {
     return new Promise(function (resolve, reject) {
-        const reader = new FileReader()
-        reader.onerror = reject
-        reader.onload = function () { resolve(reader.result as ArrayBuffer) }
-        reader.readAsArrayBuffer(file)
+      const reader = new FileReader()
+      reader.onerror = reject
+      reader.onload = function () { resolve(reader.result as ArrayBuffer) }
+      reader.readAsArrayBuffer(file)
     })
   }
 

@@ -1,4 +1,4 @@
-import { InteractiveElement, isContainerElement, isNamedElement } from "interactive-elements"
+import { InteractiveElement, isContainerElement, isNamedElement } from 'interactive-elements'
 
 /**
  * Collect all names defined in the element structure.
@@ -13,7 +13,7 @@ function elementNames(element: InteractiveElement) {
       }
     }
     return vars
-  } else if(isNamedElement(element)) {
+  } else if (isNamedElement(element)) {
     return new Set([element.name])
   }
   return new Set()

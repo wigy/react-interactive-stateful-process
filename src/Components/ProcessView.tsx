@@ -63,7 +63,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   if (!process) return <></>
 
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
-  let currentStep: number | undefined = undefined
+  let currentStep: number | undefined
   if (props.step !== undefined && props.step !== null) {
     currentStep = props.step
   }
@@ -93,21 +93,21 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
       <Table className="ProcessTable" size="small">
         <TableHead>
           <TableRow style={{ backgroundColor: theme.palette.secondary.main }}>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} >
+            <TableCell variant="head" style={{ color: theme.palette.secondary.contrastText }} >
               <IconButton onClick={() => onBack()}>
                 <ArrowBackOutlined style={{ color: theme.palette.secondary.contrastText }}/>
               </IconButton>
               # {process.id}
             </TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+            <TableCell variant="head" style={{ color: theme.palette.secondary.contrastText }} align="left">
             </TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+            <TableCell variant="head" style={{ color: theme.palette.secondary.contrastText }} align="left">
               {process.created}
             </TableCell>
-            <TableCell variant="head" style={{color: theme.palette.secondary.contrastText}} align="left">
+            <TableCell variant="head" style={{ color: theme.palette.secondary.contrastText }} align="left">
               {process.name}
             </TableCell>
-            <TableCell variant="head" style={{backgroundColor: 'white'}} align="right">
+            <TableCell variant="head" style={{ backgroundColor: 'white' }} align="right">
               <ProcessStatusIcon status={process.status}/>
             </TableCell>
           </TableRow>
@@ -126,7 +126,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                 </Fab>
                 <Fab
                   disabled
-                  style={{fontSize: '140%', color: 'black', fontWeight: 'bold'}}
+                  style={{ fontSize: '140%', color: 'black', fontWeight: 'bold' }}
                   >
                     {canChangeStep ? currentStep + 1 : <>—</>}
                 </Fab>
