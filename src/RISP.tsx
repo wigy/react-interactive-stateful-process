@@ -2,7 +2,9 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './Rendering'
 import { TriggerEngine } from './Triggering'
-import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement } from 'interactive-elements'
+import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement, isActiveElement } from 'interactive-elements'
+import { runInAction } from 'mobx'
+import { ActionEngine } from './ActionEngine'
 
 /**
  * This is the main entry point for dynamical rendereding.
@@ -25,8 +27,19 @@ import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement }
           values[element.name] = element.defaultValue || null
         }
       }
-      // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
-      (element as ActiveElement).triggerHandler = async (trigger, props) => TriggerEngine.handle(trigger, props)
+      // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().
+      (element as ActiveElement).triggerHandler = async (trigger, props) => {
+
+        if (isNamedElement(element) && 'value' in trigger) {
+          runInAction(() => (props.values[element.name] = trigger.value))
+        }
+
+        if (isActiveElement(element) && element.actions[trigger.type]) {
+          return ActionEngine.handle(element.actions[trigger.type], props)
+        }
+
+        return ActionEngine.success()
+      }
 
       if (isContainerElement(element)) {
         for (const e of element.elements) {
@@ -34,6 +47,7 @@ import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement }
         }
       }
   }
+
   prepare(element)
 
   const ret = RenderingEngine.render(props)

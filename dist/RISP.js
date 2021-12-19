@@ -7,8 +7,9 @@ exports.RISP = void 0;
 const react_1 = __importDefault(require("react"));
 const mobx_react_1 = require("mobx-react");
 const Rendering_1 = require("./Rendering");
-const Triggering_1 = require("./Triggering");
 const interactive_elements_1 = require("interactive-elements");
+const mobx_1 = require("mobx");
+const ActionEngine_1 = require("./ActionEngine");
 /**
  * This is the main entry point for dynamical rendereding.
  *
@@ -28,8 +29,16 @@ exports.RISP = (0, mobx_react_1.observer)((props) => {
                 values[element.name] = element.defaultValue || null;
             }
         }
-        // Connect action handlers. We need to put them to all since unknown future types may not hit isActiveElement().
-        element.triggerHandler = async (trigger, props) => Triggering_1.TriggerEngine.handle(trigger, props);
+        // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().
+        element.triggerHandler = async (trigger, props) => {
+            if ((0, interactive_elements_1.isNamedElement)(element) && 'value' in trigger) {
+                (0, mobx_1.runInAction)(() => (props.values[element.name] = trigger.value));
+            }
+            if ((0, interactive_elements_1.isActiveElement)(element) && element.actions[trigger.type]) {
+                return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+            }
+            return ActionEngine_1.ActionEngine.success();
+        };
         if ((0, interactive_elements_1.isContainerElement)(element)) {
             for (const e of element.elements) {
                 prepare(e);
