@@ -13,9 +13,6 @@ const RISPProvider = ({ children }) => {
     __1.ActionEngine.register('debug', __1.debugActionHandler);
     __1.ActionEngine.register('patch', __1.patchActionHandler);
     __1.ActionEngine.register('post', __1.postActionHandler);
-    __1.TriggerEngine.register('onChange', __1.onChangeTriggerHandler);
-    __1.TriggerEngine.register('onClick', __1.passThroughTriggerHandler);
-    __1.TriggerEngine.register('default', __1.passThroughTriggerHandler);
     return children;
 };
 exports.RISPProvider = RISPProvider;

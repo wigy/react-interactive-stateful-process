@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './Rendering'
-import { TriggerEngine } from './Triggering'
 import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement, isActiveElement } from 'interactive-elements'
 import { runInAction } from 'mobx'
 import { ActionEngine } from './ActionEngine'

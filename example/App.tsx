@@ -6,8 +6,7 @@ import { RISP } from '../src/RISP'
 import { observer } from 'mobx-react'
 import { FileUploader } from '../src/Components'
 import { InteractiveElement, FlatElement, TriggerValues, ID } from 'interactive-elements'
-import { customActionHandler, CustomElement, CustomRenderer, CustomSetup, OnCustomTrigger, onCustomTriggerHandler } from './Components'
-import { TriggerEngine } from '../src/Triggering'
+import { customActionHandler, CustomElement, CustomRenderer, CustomSetup } from './Components'
 import { ActionEngine } from '../src/ActionEngine'
 import { RenderingEngine } from '../src/Rendering'
 import { ProcessList } from '../src/Components/ProcessList'
@@ -16,7 +15,6 @@ import { ImportStateView } from '../src/Components/ImportStateView'
 
 const API = 'http://localhost:3302/api/isp'
 
-TriggerEngine.register<CustomSetup, InteractiveElement, OnCustomTrigger>('onCustom', onCustomTriggerHandler)
 RenderingEngine.register('custom', CustomRenderer)
 ActionEngine.register('custom', customActionHandler)
 
@@ -29,7 +27,7 @@ const App = observer(() => {
     sample: 999
   }
 
-  let values: TriggerValues = observable({
+  const values: TriggerValues = observable({
     a: '',
     b: ''
   })
@@ -55,22 +53,21 @@ const App = observer(() => {
           a: 1, b: 2, c: 3
         },
         actions: {
-          onCustom: { type: 'custom' }
         }
       }
     ]
   }
 
   const onUpload = async (files) => {
-    console.log('Uploading', files.map(f => f.name));
+    console.log('Uploading', files.map(f => f.name))
     const resp = await axios.post(API, { files }).catch(err => console.error(err))
     console.log('=>', resp)
   }
 
   // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
 
-  const [ processId, setProcessId ] = useState<ID>() // TODO: Drop debug value.
-  const [ step, setStep ] = useState<number>() // TODO: Drop debug value.
+  const [processId, setProcessId] = useState<ID>() // TODO: Drop debug value.
+  const [step, setStep] = useState<number>() // TODO: Drop debug value.
 
   return (
     <>
@@ -98,12 +95,12 @@ const App = observer(() => {
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Element Test Dashboard</Typography>
         <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
-        <Button variant="outlined" onClick={() => { runInAction(() => {values.a = ''; values.b = ''})}}>RESET</Button>
-        <Button variant="outlined" onClick={() => { runInAction(() => {values.a = 'ABCDE' })}}>CHANGE A</Button>
-        <Button variant="outlined" onClick={() => { runInAction(() => values.b = 'FGHIJ')}}>CHANGE B</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = ''; values.b = '' }) }}>RESET</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 'ABCDE' }) }}>CHANGE A</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => (values.b = 'FGHIJ')) }}>CHANGE B</Button>
       </Paper>
     </>
   )
 })
 
-export default App;
+export default App
