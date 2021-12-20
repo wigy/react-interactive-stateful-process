@@ -19,8 +19,8 @@ const ActionEngine_1 = require("./ActionEngine");
  * @param props
  * @returns Completely controlled display section.
  */
-exports.RISP = (0, mobx_react_1.observer)((props) => {
-    const { values, element } = props;
+exports.RISP = (0, mobx_react_1.observer)((rispProps) => {
+    const { values, element } = rispProps;
     // Fill in appropriate fields for elements.
     const prepare = (element) => {
         // Named components have values.
@@ -35,9 +35,13 @@ exports.RISP = (0, mobx_react_1.observer)((props) => {
                 (0, mobx_1.runInAction)(() => (props.values[element.name] = trigger.value));
             }
             if ((0, interactive_elements_1.isActiveElement)(element) && element.actions[trigger.type]) {
-                return ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+                const result = await ActionEngine_1.ActionEngine.handle(element.actions[trigger.type], props);
+                if (result.success && rispProps.onActionSuccess) {
+                    rispProps.onActionSuccess(result.result, trigger.type, props);
+                }
+                return result;
             }
-            return ActionEngine_1.ActionEngine.success();
+            return ActionEngine_1.ActionEngine.success(undefined);
         };
         if ((0, interactive_elements_1.isContainerElement)(element)) {
             for (const e of element.elements) {
@@ -46,7 +50,7 @@ exports.RISP = (0, mobx_react_1.observer)((props) => {
         }
     };
     prepare(element);
-    const ret = Rendering_1.RenderingEngine.render(props);
+    const ret = Rendering_1.RenderingEngine.render(rispProps);
     if (ret === null) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }

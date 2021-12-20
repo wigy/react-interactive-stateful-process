@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { TriggerValues, InteractiveElement, Setup } from 'interactive-elements'
 import { Typography } from '@mui/material'
 
@@ -30,6 +30,7 @@ export type Renderer<SetupType=Setup, ElementType=InteractiveElement> = React.FC
  */
 export type RendererRegistry = { [key: string]: Renderer}
 declare global {
+  // eslint-disable-next-line no-var
   var RenderingEngineRenderers: RendererRegistry
 }
 declare let RenderingEngineRenderers

@@ -1,5 +1,8 @@
 import React from 'react';
 import { RenderingProps } from './Rendering';
+export declare type RISPProps = RenderingProps & {
+    onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void;
+};
 /**
  * This is the main entry point for dynamical rendereding.
  *
@@ -9,4 +12,4 @@ import { RenderingProps } from './Rendering';
  * @param props
  * @returns Completely controlled display section.
  */
-export declare const RISP: React.FC<RenderingProps>;
+export declare const RISP: React.FC<RISPProps>;

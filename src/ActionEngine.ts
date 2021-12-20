@@ -37,7 +37,7 @@ export class ActionEngine {
    * @param message Reason for the failure.
    * @returns A result object.
    */
-  static async fail(message: string): ActionResult {
+  static async fail(message: string): Promise<ActionResult> {
     return {
       success: false,
       message
@@ -48,9 +48,10 @@ export class ActionEngine {
    * Return success result from action.
    * @returns
    */
-  static async success(): ActionResult {
+  static async success(result: unknown): Promise<ActionResult> {
     return {
-      success: true
+      success: true,
+      result
     }
   }
 
@@ -64,7 +65,7 @@ export class ActionEngine {
    * an array of actions, all of them are executed. If any of them fails, the
    * result is failure. Otherwise success.
    */
-  static async handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult {
+  static async handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): Promise<ActionResult> {
     if (!action) {
       throw new Error('Action engine called without action.')
     }
@@ -74,7 +75,7 @@ export class ActionEngine {
         throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`)
       }
       let ret
-      runInAction(async () => {
+      await runInAction(async () => {
         ret = await ActionEngineHandlers[action.type](action, props)
       })
       return ret
@@ -83,13 +84,16 @@ export class ActionEngine {
     // Find handler for the given type.
     if (Array.isArray(action)) {
       const messages: string[] = []
+      const results: unknown[] = []
       for (let i = 0; i < action.length; i++) {
         const result = await runAction(action[i], props)
-        if (!result.success) {
+        if (result.success) {
+          results.push(result.result)
+        } else {
           messages.push(result.message)
         }
       }
-      return messages.length ? { success: false, message: messages.join('\n') } : { success: true }
+      return messages.length ? { success: false, message: messages.join('\n') } : { success: true, result: results }
     } else {
       return runAction(action, props)
     }
@@ -109,7 +113,7 @@ export const debugActionHandler: ActionHandler = async (action: Action, props: R
     console.log('Element:', element)
     console.log('Values:', values)
   }
-  return { success: true }
+  return { success: true, result: undefined }
 }
 
 /**
@@ -119,7 +123,7 @@ export const debugActionHandler: ActionHandler = async (action: Action, props: R
  * @param props
  * @returns
  */
-async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostAction, props: RenderingProps): ActionResult {
+async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostAction, props: RenderingProps): Promise<ActionResult> {
   const { element, setup, values } = props
   if (isActiveElement(element)) {
     if (!setup.baseUrl) {
@@ -140,7 +144,7 @@ async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostA
     }
 
     let error
-    axios(call).catch(err => (error = err))
+    const result = await axios(call).catch(err => (error = err))
 
     if (error) {
       if (setup.errorMessage && action.errorMessage) {
@@ -151,10 +155,10 @@ async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostA
       if (setup.successMessage && action.successMessage) {
         setup.successMessage(action.successMessage)
       }
-      return { success: true }
+      return { success: true, result: result.data }
     }
   }
-  return { success: true }
+  return { success: true, result: undefined }
 }
 
 /**

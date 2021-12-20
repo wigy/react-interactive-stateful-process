@@ -1,5 +1,5 @@
 import { DefaultStepViewProps } from './DefaultStepView';
-import { Setup } from 'interactive-elements';
+import { RenderingProps, Setup } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 import { DefaultResultViewProps } from './DefaultResultView';
@@ -15,6 +15,7 @@ export declare type ProcessViewProps = {
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
     resultView?: (props: DefaultResultViewProps) => JSX.Element;
+    onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void;
 };
 /**
  * A viewer for process steps.

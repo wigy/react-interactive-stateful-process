@@ -25,12 +25,12 @@ export declare class ActionEngine {
      * @param message Reason for the failure.
      * @returns A result object.
      */
-    static fail(message: string): ActionResult;
+    static fail(message: string): Promise<ActionResult>;
     /**
      * Return success result from action.
      * @returns
      */
-    static success(): ActionResult;
+    static success(result: unknown): Promise<ActionResult>;
     /**
      * Processor for a triggered action on the given element.
      * @param trigger
@@ -41,7 +41,7 @@ export declare class ActionEngine {
      * an array of actions, all of them are executed. If any of them fails, the
      * result is failure. Otherwise success.
      */
-    static handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): ActionResult;
+    static handle<ActionType extends Action = Action>(action: ActionType | ActionType[], props: RenderingProps): Promise<ActionResult>;
 }
 /**
  * Handler that just prints the content of the trigger, the element and current values to the console.

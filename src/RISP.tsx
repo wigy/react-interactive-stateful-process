@@ -5,6 +5,10 @@ import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement, 
 import { runInAction } from 'mobx'
 import { ActionEngine } from './ActionEngine'
 
+export type RISPProps = RenderingProps & {
+  onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void
+}
+
 /**
  * This is the main entry point for dynamical rendereding.
  *
@@ -14,9 +18,9 @@ import { ActionEngine } from './ActionEngine'
  * @param props
  * @returns Completely controlled display section.
  */
-export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) => {
+export const RISP: React.FC<RISPProps> = observer((rispProps: RISPProps) => {
 
-  const { values, element } = props
+  const { values, element } = rispProps
 
   // Fill in appropriate fields for elements.
   const prepare = (element: InteractiveElement) => {
@@ -34,10 +38,14 @@ export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) =
       }
 
       if (isActiveElement(element) && element.actions[trigger.type]) {
-        return ActionEngine.handle(element.actions[trigger.type], props)
+        const result = await ActionEngine.handle(element.actions[trigger.type], props)
+        if (result.success && rispProps.onActionSuccess) {
+          rispProps.onActionSuccess(result.result, trigger.type, props)
+        }
+        return result
       }
 
-      return ActionEngine.success()
+      return ActionEngine.success(undefined)
     }
 
     if (isContainerElement(element)) {
@@ -49,7 +57,7 @@ export const RISP: React.FC<RenderingProps> = observer((props: RenderingProps) =
 
   prepare(element)
 
-  const ret = RenderingEngine.render(props)
+  const ret = RenderingEngine.render(rispProps)
   if (ret === null) {
     return <></>
   }

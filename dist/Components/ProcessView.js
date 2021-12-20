@@ -56,10 +56,11 @@ const ProcessView = (props) => {
     const { summaryView, stateView, resultView } = props;
     const theme = (0, material_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
-    const [step, setStep] = (0, react_1.useState)(null);
+    const [, setStep] = (0, react_1.useState)(null);
     (0, useAxios_1.useAxios)({ url: `${props.api}/${props.id}`, token: props.token, receiver: setProcess });
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
+    // Calculate some values for futher use.
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     let currentStep;
     if (props.step !== undefined && props.step !== null) {
@@ -70,12 +71,20 @@ const ProcessView = (props) => {
     }
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
     const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
+    // Handle step change.
     const onChangeStep = (n) => {
         props.onChangeStep && props.onChangeStep(n);
         setStep(n);
     };
+    // Handle back button.
     const onBack = () => {
         props.onBack && props.onBack();
+    };
+    // Handle action success.
+    const onActionSuccess = (result, trigger, actionProps) => {
+        if (props.onActionSuccess) {
+            props.onActionSuccess(result, trigger, actionProps);
+        }
     };
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
     const ErrorView = DefaultErrorView_1.DefaultErrorView;
@@ -113,7 +122,7 @@ const ProcessView = (props) => {
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
-                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: props.setup || { baseUrl: `${props.api}/${process.id}` } })))),
+                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: props.setup || { baseUrl: `${props.api}/${process.id}` }, onActionSuccess: onActionSuccess })))),
                 hasSteps &&
                     react_1.default.createElement(material_1.TableRow, null,
                         react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },

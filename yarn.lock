@@ -2986,9 +2986,9 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@^1.0.33:
+interactive-elements@^1.0.34:
   version "1.0.29"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.33.tgz"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.34.tgz"
   integrity sha512-6bgNwHEweRL5O6R+yPDJSWmfOPdlAekXj+G173Vi++voPefj3mkWD4PVFqflSwA/0vrtNoehj1SzjYZR3MVFIQ==
 
 internal-slot@^1.0.3:

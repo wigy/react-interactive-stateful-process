@@ -39,9 +39,10 @@ class ActionEngine {
      * Return success result from action.
      * @returns
      */
-    static async success() {
+    static async success(result) {
         return {
-            success: true
+            success: true,
+            result
         };
     }
     /**
@@ -64,7 +65,7 @@ class ActionEngine {
                 throw new Error(`There is no action handler for action '${JSON.stringify(action)}'.`);
             }
             let ret;
-            (0, mobx_1.runInAction)(async () => {
+            await (0, mobx_1.runInAction)(async () => {
                 ret = await ActionEngineHandlers[action.type](action, props);
             });
             return ret;
@@ -72,13 +73,17 @@ class ActionEngine {
         // Find handler for the given type.
         if (Array.isArray(action)) {
             const messages = [];
+            const results = [];
             for (let i = 0; i < action.length; i++) {
                 const result = await runAction(action[i], props);
-                if (!result.success) {
+                if (result.success) {
+                    results.push(result.result);
+                }
+                else {
                     messages.push(result.message);
                 }
             }
-            return messages.length ? { success: false, message: messages.join('\n') } : { success: true };
+            return messages.length ? { success: false, message: messages.join('\n') } : { success: true, result: results };
         }
         else {
             return runAction(action, props);
@@ -99,7 +104,7 @@ const debugActionHandler = async (action, props) => {
         console.log('Element:', element);
         console.log('Values:', values);
     }
-    return { success: true };
+    return { success: true, result: undefined };
 };
 exports.debugActionHandler = debugActionHandler;
 /**
@@ -128,7 +133,7 @@ async function axiosRequst(method, action, props) {
             };
         }
         let error;
-        (0, axios_1.default)(call).catch(err => (error = err));
+        const result = await (0, axios_1.default)(call).catch(err => (error = err));
         if (error) {
             if (setup.errorMessage && action.errorMessage) {
                 setup.errorMessage(action.errorMessage);
@@ -139,10 +144,10 @@ async function axiosRequst(method, action, props) {
             if (setup.successMessage && action.successMessage) {
                 setup.successMessage(action.successMessage);
             }
-            return { success: true };
+            return { success: true, result: result.data };
         }
     }
-    return { success: true };
+    return { success: true, result: undefined };
 }
 /**
  * A handler doing PATCH request with the selected or all values to the configured URL.
