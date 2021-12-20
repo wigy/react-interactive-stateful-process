@@ -61,6 +61,7 @@ const ProcessView = (props) => {
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     // Calculate some values for futher use.
+    // TODO: This does not yet work correctly when new UI questions are received.
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     let currentStep;
     if (props.step !== undefined && props.step !== null) {

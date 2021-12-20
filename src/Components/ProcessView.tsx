@@ -64,6 +64,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   if (!process) return <></>
 
   // Calculate some values for futher use.
+  // TODO: This does not yet work correctly when new UI questions are received.
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   let currentStep: number | undefined
   if (props.step !== undefined && props.step !== null) {
