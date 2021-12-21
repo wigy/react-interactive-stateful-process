@@ -11,7 +11,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
 
   const { t } = useTranslation()
-  const label = isTextElement(element) ? element.label : (isNamedElement(element) ? t(`label-${element.name}`) : '')
+  const label = (isTextElement(element) && element.label) ? element.label : ((isNamedElement(element) && element.name) ? t(`label-${element.name}`) : '')
   const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] : '')
 
   if (!isTextElement(element)) {

@@ -14,7 +14,7 @@ const interactive_elements_1 = require("interactive-elements");
 const TextRenderer = (props) => {
     const { element } = props;
     const { t } = (0, react_i18next_1.useTranslation)();
-    const label = (0, interactive_elements_1.isTextElement)(element) ? element.label : ((0, interactive_elements_1.isNamedElement)(element) ? t(`label-${element.name}`) : '');
+    const label = ((0, interactive_elements_1.isTextElement)(element) && element.label) ? element.label : (((0, interactive_elements_1.isNamedElement)(element) && element.name) ? t(`label-${element.name}`) : '');
     const [value, setValue] = react_1.default.useState((0, interactive_elements_1.isNamedElement)(element) ? props.values[element.name] : '');
     if (!(0, interactive_elements_1.isTextElement)(element)) {
         return react_1.default.createElement(react_1.default.Fragment, null);
