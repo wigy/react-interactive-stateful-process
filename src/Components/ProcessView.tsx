@@ -62,7 +62,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   useAxios({
     url: `${props.api}/${props.id}${props.step !== undefined && props.step !== null ? `step=${props.step}` : ''}`,
     token: props.token,
-    receiver: (data) => setProcess
+    receiver: setProcess
   })
 
   if (!process) return <></>
