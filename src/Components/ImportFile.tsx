@@ -27,6 +27,10 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
   const hasColumns = Object.keys(columns).length > 0
   const [open, setOpen] = useState<boolean>(false)
 
+  if (text.trim() === '') {
+    return <></>
+  }
+
   return (
     <>
       <TableRow onClick={() => setOpen(!open)}>

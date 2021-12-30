@@ -34,6 +34,9 @@ const ImportLine = (props) => {
     const ResultView = props.resultView;
     const hasColumns = Object.keys(columns).length > 0;
     const [open, setOpen] = (0, react_1.useState)(false);
+    if (text.trim() === '') {
+        return react_1.default.createElement(react_1.default.Fragment, null);
+    }
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(material_1.TableRow, { onClick: () => setOpen(!open) },
             react_1.default.createElement(material_1.TableCell, null, lineNumber),
