@@ -15,6 +15,7 @@ export declare type FileUploaderProps = {
     multiple?: boolean;
     color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning';
     variant?: 'text' | 'outlined' | 'contained';
+    disabled?: boolean;
 };
 /**
  * An file uploader utility.

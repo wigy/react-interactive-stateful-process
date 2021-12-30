@@ -62,9 +62,9 @@ const FileUploader = (props) => {
         props.onUpload(uploads);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("input", { id: "file-uploader-input", type: "file", multiple: !!props.multiple, hidden: true, onChange: (e) => onFileChange(e) }),
+        react_1.default.createElement("input", { id: "file-uploader-input", disabled: !!props.disabled, type: "file", multiple: !!props.multiple, hidden: true, onChange: (e) => onFileChange(e) }),
         react_1.default.createElement("label", { htmlFor: "file-uploader-input" },
-            react_1.default.createElement(material_1.Button, { component: "span", startIcon: react_1.default.createElement(icons_material_1.UploadFile, null), color: props.color, variant: props.variant },
+            react_1.default.createElement(material_1.Button, { component: "span", disabled: !!props.disabled, startIcon: react_1.default.createElement(icons_material_1.UploadFile, null), color: props.color, variant: props.variant },
                 react_1.default.createElement(react_i18next_1.Trans, null, "Upload")))));
 };
 exports.FileUploader = FileUploader;

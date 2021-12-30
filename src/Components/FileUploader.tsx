@@ -21,7 +21,8 @@ export type FileUploaderProps = {
   onUpload: (files: FileUploadData[]) => void,
   multiple?: boolean,
   color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning',
-  variant?: 'text' | 'outlined' | 'contained'
+  variant?: 'text' | 'outlined' | 'contained',
+  disabled?: boolean
 }
 
 /**
@@ -83,9 +84,9 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
 
   return (
     <>
-      <input id="file-uploader-input" type="file" multiple={!!props.multiple} hidden onChange={(e) => onFileChange(e)}/>
+      <input id="file-uploader-input" disabled={!!props.disabled} type="file" multiple={!!props.multiple} hidden onChange={(e) => onFileChange(e)}/>
       <label htmlFor="file-uploader-input">
-        <Button component="span" startIcon={<UploadFile />} color={props.color} variant={props.variant} >
+        <Button component="span" disabled={!!props.disabled} startIcon={<UploadFile />} color={props.color} variant={props.variant} >
           <Trans>Upload</Trans>
         </Button>
       </label>
