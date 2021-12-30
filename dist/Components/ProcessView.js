@@ -57,7 +57,11 @@ const ProcessView = (props) => {
     const theme = (0, material_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [, setStep] = (0, react_1.useState)(null);
-    (0, useAxios_1.useAxios)({ url: `${props.api}/${props.id}`, token: props.token, receiver: setProcess });
+    (0, useAxios_1.useAxios)({
+        url: `${props.api}/${props.id}${props.step !== undefined && props.step !== null ? `step=${props.step}` : ''}`,
+        token: props.token,
+        receiver: (data) => setProcess
+    });
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     // Calculate some values for futher use.
