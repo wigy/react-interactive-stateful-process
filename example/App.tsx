@@ -36,31 +36,27 @@ const App = observer(() => {
     type: 'flat',
     elements: [
       {
-        type: 'message',
-        severity: 'info',
-        text: 'Hello, this is an informative message.'
-      },
-      {
-        type: 'message',
-        severity: 'warning',
-        text: 'Hello, this is a warning message.'
-      },
-      {
-        type: 'message',
-        severity: 'error',
-        text: 'Hello, this is an error message.'
-      },
-      {
         type: 'text',
-        actions: {},
         label: 'First value',
+        actions: {},
         name: 'a'
       },
       {
         type: 'text',
-        actions: {},
         label: 'Second value',
+        actions: {},
         name: 'b'
+      },
+      {
+        type: 'radio',
+        label: 'Third value',
+        options: {
+          V1: 'Value 1',
+          V2: 'Value 2',
+          V3: 'Value 3'
+        },
+        actions: {},
+        name: 'c'
       },
       {
         type: 'custom',
@@ -69,6 +65,11 @@ const App = observer(() => {
         },
         actions: {
         }
+      },
+      {
+        type: 'message',
+        severity: 'error',
+        text: 'Hello, this is an error message.'
       },
       {
         type: 'message',
