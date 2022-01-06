@@ -9,5 +9,5 @@ export const MessageRenderer: Renderer = (props: RenderingProps) => {
     throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   const { severity, text } = element
-  return <Alert severity={severity}>{severity} {text}</Alert>
+  return <Alert severity={severity}>{text}</Alert>
 }
