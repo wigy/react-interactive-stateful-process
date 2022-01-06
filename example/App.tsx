@@ -51,9 +51,9 @@ const App = observer(() => {
         type: 'radio',
         label: 'Third value',
         options: {
-          V1: 'Value 1',
-          V2: 'Value 2',
-          V3: 'Value 3'
+          'Value 1': 'V1',
+          'Value 2': 'V2',
+          'Value 3': 'V3'
         },
         actions: {},
         name: 'c'

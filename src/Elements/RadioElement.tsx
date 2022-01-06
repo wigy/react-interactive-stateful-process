@@ -25,13 +25,13 @@ export const RadioRenderer: Renderer = (props: RenderingProps) => {
         {Object.entries(element.options).map(([k, v]) =>
           <FormControlLabel
             key={k}
-            value={k}
+            value={v}
             control={<Radio />}
-            label={v}
-            checked={value === k}
+            label={k}
+            checked={value === v}
             onChange={() => {
-              setValue(k)
-              element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: k }, props)
+              setValue(v)
+              element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: v }, props)
             }}/>
         )}
       </RadioGroup>

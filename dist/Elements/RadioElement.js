@@ -21,9 +21,9 @@ const RadioRenderer = (props) => {
     }
     return (react_1.default.createElement(material_1.FormControl, { component: "fieldset" },
         react_1.default.createElement(material_1.FormLabel, { component: "legend" }, label),
-        react_1.default.createElement(material_1.RadioGroup, null, Object.entries(element.options).map(([k, v]) => react_1.default.createElement(material_1.FormControlLabel, { key: k, value: k, control: react_1.default.createElement(material_1.Radio, null), label: v, checked: value === k, onChange: () => {
-                setValue(k);
-                element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: k }, props);
+        react_1.default.createElement(material_1.RadioGroup, null, Object.entries(element.options).map(([k, v]) => react_1.default.createElement(material_1.FormControlLabel, { key: k, value: v, control: react_1.default.createElement(material_1.Radio, null), label: k, checked: value === v, onChange: () => {
+                setValue(v);
+                element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: v }, props);
             } })))));
 };
 exports.RadioRenderer = RadioRenderer;
