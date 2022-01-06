@@ -17,7 +17,7 @@ const BooleanRenderer = (props) => {
     const label = 'label' in element ? element.label || '' : ((0, interactive_elements_1.isNamedElement)(element) ? t(`label-${element.name}`) : '');
     const [value, setValue] = react_1.default.useState((0, interactive_elements_1.isNamedElement)(element) ? props.values[element.name] : null);
     if (!(0, interactive_elements_1.isBooleanElement)(element)) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     return react_1.default.createElement(material_1.FormControlLabel, { control: react_1.default.createElement(material_1.Checkbox, { checked: !!value, onChange: (e) => {
                 setValue(e.target.checked);

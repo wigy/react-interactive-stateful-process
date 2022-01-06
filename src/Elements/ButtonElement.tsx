@@ -8,7 +8,7 @@ export const ButtonRenderer: Renderer = (props: RenderingProps) => {
   const { t } = useTranslation()
   const { element } = props
   if (!isButtonElement(element)) {
-    return <></>
+    throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   const label = t(`label-${element.label}`)
   return <Button

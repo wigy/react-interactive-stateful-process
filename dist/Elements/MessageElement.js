@@ -10,7 +10,7 @@ const material_1 = require("@mui/material");
 const MessageRenderer = (props) => {
     const { element } = props;
     if (!(0, interactive_elements_1.isMessageElement)(element)) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     const { severity, text } = element;
     return react_1.default.createElement(material_1.Alert, { severity: severity },

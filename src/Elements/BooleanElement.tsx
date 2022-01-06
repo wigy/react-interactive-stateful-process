@@ -15,7 +15,7 @@ export const BooleanRenderer: Renderer = (props: RenderingProps) => {
   const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] : null)
 
   if (!isBooleanElement(element)) {
-    return <></>
+    throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
 
   return <FormControlLabel

@@ -12,7 +12,7 @@ const ButtonRenderer = (props) => {
     const { t } = (0, react_i18next_1.useTranslation)();
     const { element } = props;
     if (!(0, interactive_elements_1.isButtonElement)(element)) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     const label = t(`label-${element.label}`);
     return react_1.default.createElement(material_1.Button, { variant: "outlined", onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } }, label);

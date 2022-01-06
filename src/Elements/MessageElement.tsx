@@ -6,7 +6,7 @@ import { Alert } from '@mui/material'
 export const MessageRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
   if (!isMessageElement(element)) {
-    return <></>
+    throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   const { severity, text } = element
   return <Alert severity={severity}>{severity} {text}</Alert>

@@ -15,7 +15,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
   const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] || '' : '')
 
   if (!isTextElement(element)) {
-    return <></>
+    throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
 
   return <TextField

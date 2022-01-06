@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 export const FlatRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props
   if (!isFlatElement(element)) {
-    return <></>
+    throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   return <>{
     element.elements.map((element: InteractiveElement, idx) => (

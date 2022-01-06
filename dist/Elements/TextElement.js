@@ -17,7 +17,7 @@ const TextRenderer = (props) => {
     const label = ((0, interactive_elements_1.isTextElement)(element) && element.label) ? element.label : (((0, interactive_elements_1.isNamedElement)(element) && element.name) ? t(`label-${element.name}`) : '');
     const [value, setValue] = react_1.default.useState((0, interactive_elements_1.isNamedElement)(element) ? props.values[element.name] || '' : '');
     if (!(0, interactive_elements_1.isTextElement)(element)) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+        throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     return react_1.default.createElement(material_1.TextField, { label: label, value: value, error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
             setValue(e.target.value);
