@@ -10,6 +10,7 @@ const RISPProvider = ({ children }) => {
     __1.RenderingEngine.register('text', __1.TextRenderer);
     __1.RenderingEngine.register('flat', __1.FlatRenderer);
     __1.RenderingEngine.register('button', __1.ButtonRenderer);
+    __1.RenderingEngine.register('message', __1.MessageRenderer);
     __1.ActionEngine.register('debug', __1.debugActionHandler);
     __1.ActionEngine.register('patch', __1.patchActionHandler);
     __1.ActionEngine.register('post', __1.postActionHandler);

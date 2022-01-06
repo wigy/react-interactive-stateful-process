@@ -13,4 +13,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./BooleanElement"), exports);
 __exportStar(require("./ButtonElement"), exports);
 __exportStar(require("./FlatElement"), exports);
+__exportStar(require("./MessageElement"), exports);
 __exportStar(require("./TextElement"), exports);

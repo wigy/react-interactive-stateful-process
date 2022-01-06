@@ -34,5 +34,5 @@ export interface CustomAction {
 export const customActionHandler: ActionHandler<CustomSetup, CustomElement, CustomAction> = async (action: CustomAction, props: RenderingProps<CustomSetup, CustomElement>) => {
   const { element } = props
   console.log('Custom action handled with data', element.data)
-  return { success: true }
+  return { success: true, result: null }
 }

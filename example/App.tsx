@@ -36,6 +36,21 @@ const App = observer(() => {
     type: 'flat',
     elements: [
       {
+        type: 'message',
+        severity: 'info',
+        text: 'Hello, this is an informative message.'
+      },
+      {
+        type: 'message',
+        severity: 'warning',
+        text: 'Hello, this is a warning message.'
+      },
+      {
+        type: 'message',
+        severity: 'error',
+        text: 'Hello, this is an error message.'
+      },
+      {
         type: 'text',
         actions: {},
         label: 'First value',
@@ -54,7 +69,12 @@ const App = observer(() => {
         },
         actions: {
         }
-      }
+      },
+      {
+        type: 'message',
+        severity: 'success',
+        text: 'Hello, this is a success message.'
+      },
     ]
   }
 
@@ -95,6 +115,7 @@ const App = observer(() => {
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Element Test Dashboard</Typography>
         <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
+        <br/>
         <Button variant="outlined" onClick={() => { runInAction(() => { values.a = ''; values.b = '' }) }}>RESET</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 'ABCDE' }) }}>CHANGE A</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => (values.b = 'FGHIJ')) }}>CHANGE B</Button>
