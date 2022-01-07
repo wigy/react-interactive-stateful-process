@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements';
 export declare type DefaultSummaryViewProps = {
     step: GetOneStepResponse;

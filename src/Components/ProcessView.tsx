@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, InteractiveElement, isImportActionConf, isImportActionOp, RenderingProps, Setup } from 'interactive-elements'
+import { GetOneProcessResponse, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -36,10 +36,10 @@ const actionStepLabel = (action: unknown): string => {
   if (action === null) {
     return ''
   }
-  if (isImportActionOp(action)) {
+  if (isImportOpAction(action)) {
     return action.op
   }
-  if (isImportActionConf(action)) {
+  if (isImportConfigureAction(action)) {
     return 'configuring'
   }
   return JSON.stringify(action)

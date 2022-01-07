@@ -39,10 +39,10 @@ const actionStepLabel = (action) => {
     if (action === null) {
         return '';
     }
-    if ((0, interactive_elements_1.isImportActionOp)(action)) {
+    if ((0, interactive_elements_1.isImportOpAction)(action)) {
         return action.op;
     }
-    if ((0, interactive_elements_1.isImportActionConf)(action)) {
+    if ((0, interactive_elements_1.isImportConfigureAction)(action)) {
         return 'configuring';
     }
     return JSON.stringify(action);
