@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ProcessConfig, SegmentId, TextFileLine } from 'interactive-elements';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type ImportLineProps = {

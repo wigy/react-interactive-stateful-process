@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ProcessConfig } from 'interactive-elements';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type DefaultStateViewProps = {

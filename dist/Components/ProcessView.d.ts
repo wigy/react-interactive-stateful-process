@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { DefaultStepViewProps } from './DefaultStepView';
 import { RenderingProps, Setup } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
