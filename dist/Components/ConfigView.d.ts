@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { ProcessConfig } from 'interactive-elements';
 export declare type ConfigViewProps = {
     title?: string;
