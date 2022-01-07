@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { GetOneProcessResponse } from 'interactive-elements';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 import { DefaultStateViewProps } from './DefaultStateView';

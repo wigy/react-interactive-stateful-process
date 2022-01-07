@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ProcessConfig } from 'interactive-elements';
 export declare type DefaultResultViewProps = {
     config: ProcessConfig;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ID } from 'interactive-elements';
 export declare type ProcessListProps = {
     api: string;
