@@ -70,3 +70,4 @@ const DefaultSummaryView = (props) => {
                     react_1.default.createElement(_1.ConfigView, { title: t('Configuration'), config: props.process.config })))));
 };
 exports.DefaultSummaryView = DefaultSummaryView;
+//# sourceMappingURL=DefaultSummaryView.js.map

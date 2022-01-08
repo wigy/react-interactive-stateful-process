@@ -16,3 +16,4 @@ const MessageRenderer = (props) => {
     return react_1.default.createElement(material_1.Alert, { severity: severity }, text);
 };
 exports.MessageRenderer = MessageRenderer;
+//# sourceMappingURL=MessageElement.js.map

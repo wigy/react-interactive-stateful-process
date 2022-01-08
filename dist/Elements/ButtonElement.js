@@ -18,3 +18,4 @@ const ButtonRenderer = (props) => {
     return react_1.default.createElement(material_1.Button, { variant: "outlined", onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } }, label);
 };
 exports.ButtonRenderer = ButtonRenderer;
+//# sourceMappingURL=ButtonElement.js.map

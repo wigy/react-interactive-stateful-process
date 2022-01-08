@@ -25,3 +25,4 @@ const BooleanRenderer = (props) => {
             }, name: element.name, indeterminate: value === undefined || value === null }), label: label });
 };
 exports.BooleanRenderer = BooleanRenderer;
+//# sourceMappingURL=BooleanElement.js.map

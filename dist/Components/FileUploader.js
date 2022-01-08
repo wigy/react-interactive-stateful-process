@@ -68,3 +68,4 @@ const FileUploader = (props) => {
                 react_1.default.createElement(react_i18next_1.Trans, null, "Upload")))));
 };
 exports.FileUploader = FileUploader;
+//# sourceMappingURL=FileUploader.js.map

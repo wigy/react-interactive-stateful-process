@@ -32,3 +32,4 @@ const ImportStateView = (props) => {
     return (react_1.default.createElement("div", null, files.map(file => react_1.default.createElement(ImportFile_1.ImportFile, { key: file.name, config: file.config, resultView: file.resultView, result: result, name: file.name, lines: file.lines }))));
 };
 exports.ImportStateView = ImportStateView;
+//# sourceMappingURL=ImportStateView.js.map

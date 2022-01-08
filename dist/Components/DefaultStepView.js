@@ -44,3 +44,4 @@ const DefaultStepView = (props) => {
         step.state && react_1.default.createElement(StateView, { config: props.process.config, state: step.state, resultView: ResultView })));
 };
 exports.DefaultStepView = DefaultStepView;
+//# sourceMappingURL=DefaultStepView.js.map

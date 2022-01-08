@@ -134,3 +134,4 @@ const ProcessView = (props) => {
                             react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView, resultView: resultView })))))));
 };
 exports.ProcessView = ProcessView;
+//# sourceMappingURL=ProcessView.js.map

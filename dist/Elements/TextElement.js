@@ -25,3 +25,4 @@ const TextRenderer = (props) => {
         }, onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null, onFocus: () => null });
 };
 exports.TextRenderer = TextRenderer;
+//# sourceMappingURL=TextElement.js.map

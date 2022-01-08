@@ -17,3 +17,4 @@ const DefaultResultView = (props) => {
     return (react_1.default.createElement("pre", null, JSON.stringify(props.result, null, 2)));
 };
 exports.DefaultResultView = DefaultResultView;
+//# sourceMappingURL=DefaultResultView.js.map

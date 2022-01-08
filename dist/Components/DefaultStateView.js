@@ -20,3 +20,4 @@ const DefaultStateView = (props) => {
         props.state.result && react_1.default.createElement(ResultView, { config: props.config, result: props.state.result }));
 };
 exports.DefaultStateView = DefaultStateView;
+//# sourceMappingURL=DefaultStateView.js.map

@@ -56,3 +56,4 @@ exports.RISP = (0, mobx_react_1.observer)((rispProps) => {
     }
     return ret;
 });
+//# sourceMappingURL=RISP.js.map

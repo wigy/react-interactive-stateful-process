@@ -49,3 +49,4 @@ const ConfigView = (props) => {
         render(props.config)));
 };
 exports.ConfigView = ConfigView;
+//# sourceMappingURL=ConfigView.js.map
