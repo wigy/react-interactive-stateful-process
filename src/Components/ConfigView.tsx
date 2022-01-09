@@ -43,8 +43,7 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
         }
 
         keys = Object.keys(obj).sort()
-        perColumn = Math.ceil(keys.length / COLUMNS) // + (Math.round(keys.length / COLUMNS) === keys.length / COLUMNS ? 0 : 1)
-        console.log(keys.length, ':', COLUMNS, perColumn);
+        perColumn = Math.ceil(keys.length / COLUMNS)
         idx = 0
         column = []
         for (let c = 0; c < COLUMNS; c++) {
