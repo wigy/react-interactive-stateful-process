@@ -51,13 +51,13 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           for (let r = 0; r < perColumn; r++) {
             if (idx < keys.length) {
               row.push(<>
-                <div><strong>{capitalize(keys[idx])}</strong></div>
-                <div>{render(obj[keys[idx]])}</div>
+                <div key={`key${idx}`}><strong>{capitalize(keys[idx])}</strong></div>
+                <div key={`value${idx}`}>{render(obj[keys[idx]])}</div>
               </>)
             }
             idx++
           }
-          column.push(<Grid item>{row}</Grid>)
+          column.push(<Grid key={`column${c}`} item>{row}</Grid>)
         }
 
         return <Box sx={{ flexGrow: 1 }}><Grid container justifyContent="space-evenly" spacing={4}>{column}</Grid></Box>

@@ -58,7 +58,7 @@ const ProcessView = (props) => {
     const [process, setProcess] = (0, react_1.useState)(null);
     const [, setStep] = (0, react_1.useState)(null);
     (0, useAxios_1.useAxios)({
-        url: `${props.api}/${props.id}${props.step !== undefined && props.step !== null ? `step=${props.step}` : ''}`,
+        url: `${props.api}/${props.id}${props.step !== undefined && props.step !== null ? `?step=${props.step}` : ''}`,
         token: props.token,
         receiver: setProcess
     });
