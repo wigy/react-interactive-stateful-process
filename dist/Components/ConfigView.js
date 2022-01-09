@@ -13,10 +13,12 @@ const react_i18next_1 = require("react-i18next");
  * @returns
  */
 const ConfigView = (props) => {
+    const COLUMNS = props.columns || 4;
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
     const render = (obj) => {
+        let keys, perColumn, idx, column;
         switch (typeof obj) {
             case 'undefined':
                 return react_1.default.createElement(react_1.default.Fragment, null, "\u2014");
@@ -30,10 +32,26 @@ const ConfigView = (props) => {
                         render(v),
                         i < values.length - 1 ? ', ' : '')));
                 }
-                return react_1.default.createElement("dl", null, Object.keys(obj).sort().map(k => react_1.default.createElement(react_1.default.Fragment, { key: k },
-                    react_1.default.createElement("dt", null,
-                        react_1.default.createElement("strong", null, capitalize(k))),
-                    react_1.default.createElement("dd", null, render(obj[k])))));
+                keys = Object.keys(obj).sort();
+                perColumn = Math.ceil(keys.length / COLUMNS); // + (Math.round(keys.length / COLUMNS) === keys.length / COLUMNS ? 0 : 1)
+                console.log(keys.length, ':', COLUMNS, perColumn);
+                idx = 0;
+                column = [];
+                for (let c = 0; c < COLUMNS; c++) {
+                    const row = [];
+                    for (let r = 0; r < perColumn; r++) {
+                        if (idx < keys.length) {
+                            row.push(react_1.default.createElement(react_1.default.Fragment, null,
+                                react_1.default.createElement("div", null,
+                                    react_1.default.createElement("strong", null, capitalize(keys[idx]))),
+                                react_1.default.createElement("div", null, render(obj[keys[idx]]))));
+                        }
+                        idx++;
+                    }
+                    column.push(react_1.default.createElement(material_1.Grid, { item: true }, row));
+                }
+                return react_1.default.createElement(material_1.Box, { sx: { flexGrow: 1 } },
+                    react_1.default.createElement(material_1.Grid, { container: true, justifyContent: "space-evenly", spacing: 4 }, column));
             case 'string':
                 return react_1.default.createElement(react_1.default.Fragment, null, obj === '' ? react_1.default.createElement("br", null) : obj);
             case 'boolean':

@@ -1,11 +1,12 @@
 import React from 'react'
 import { ProcessConfig } from 'interactive-elements'
-import { Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { Trans } from 'react-i18next'
 
 export type ConfigViewProps = {
   title?: string
   config: ProcessConfig
+  columns?: number
 }
 
 /**
@@ -15,11 +16,15 @@ export type ConfigViewProps = {
  */
 export const ConfigView = (props: ConfigViewProps): JSX.Element => {
 
+  const COLUMNS = props.columns || 4
+
   const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
 
   const render = (obj: unknown): JSX.Element => {
+    let keys, perColumn, idx, column
+
     switch (typeof obj) {
       case 'undefined':
         return <>—</>
@@ -36,12 +41,27 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
             )
           }</>
         }
-        return <dl>
-          {Object.keys(obj).sort().map(k => <React.Fragment key={k}>
-            <dt><strong>{capitalize(k)}</strong></dt>
-            <dd>{render(obj[k])}</dd>
-          </React.Fragment>)}
-        </dl>
+
+        keys = Object.keys(obj).sort()
+        perColumn = Math.ceil(keys.length / COLUMNS) // + (Math.round(keys.length / COLUMNS) === keys.length / COLUMNS ? 0 : 1)
+        console.log(keys.length, ':', COLUMNS, perColumn);
+        idx = 0
+        column = []
+        for (let c = 0; c < COLUMNS; c++) {
+          const row: JSX.Element[] = []
+          for (let r = 0; r < perColumn; r++) {
+            if (idx < keys.length) {
+              row.push(<>
+                <div><strong>{capitalize(keys[idx])}</strong></div>
+                <div>{render(obj[keys[idx]])}</div>
+              </>)
+            }
+            idx++
+          }
+          column.push(<Grid item>{row}</Grid>)
+        }
+
+        return <Box sx={{ flexGrow: 1 }}><Grid container justifyContent="space-evenly" spacing={4}>{column}</Grid></Box>
 
       case 'string':
         return <>{obj === '' ? <br/> : obj}</>
