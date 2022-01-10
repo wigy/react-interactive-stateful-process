@@ -23,7 +23,7 @@ function useAxios(props) {
         return () => {
             gone = true;
         };
-    }, [props.url]);
+    }, [props, props.url]);
 }
 exports.useAxios = useAxios;
 //# sourceMappingURL=useAxios.js.map

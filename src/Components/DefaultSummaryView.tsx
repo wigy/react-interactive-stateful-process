@@ -1,5 +1,5 @@
 import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
-import { Card, CardContent, IconButton, ToggleButton, Typography } from '@mui/material'
+import { Card, CardContent, ToggleButton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Settings } from '@mui/icons-material'

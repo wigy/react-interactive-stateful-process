@@ -25,5 +25,5 @@ export function useAxios<Type>(props: AxiosProps<Type>) {
     return () => {
       gone = true
     }
-  }, [props.url])
+  }, [props, props.url])
 }
