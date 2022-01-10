@@ -11,19 +11,20 @@ const axios_1 = __importDefault(require("axios"));
  * @param props
  */
 function useAxios(props) {
+    const { token, url, receiver } = props;
     (0, react_1.useEffect)(() => {
         let gone = false;
         const headers = {};
-        if (props.token) {
-            headers.Authorization = `Bearer ${props.token}`;
+        if (token) {
+            headers.Authorization = `Bearer ${token}`;
         }
-        (0, axios_1.default)({ method: 'GET', url: props.url, headers })
-            .then(resp => !gone && props.receiver(resp.data))
+        (0, axios_1.default)({ method: 'GET', url: url, headers })
+            .then(resp => !gone && receiver(resp.data))
             .catch(err => console.error('Axios:', err));
         return () => {
             gone = true;
         };
-    }, [props, props.url]);
+    }, [token, url, receiver]);
 }
 exports.useAxios = useAxios;
 //# sourceMappingURL=useAxios.js.map

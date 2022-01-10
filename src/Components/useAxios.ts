@@ -12,18 +12,19 @@ export type AxiosProps<Type> = {
  * @param props
  */
 export function useAxios<Type>(props: AxiosProps<Type>) {
+  const { token, url, receiver } = props
   useEffect(() => {
     let gone = false
     const headers: { Authorization?: string } = {}
-    if (props.token) {
-      headers.Authorization = `Bearer ${props.token}`
+    if (token) {
+      headers.Authorization = `Bearer ${token}`
     }
-    axios({ method: 'GET', url: props.url, headers })
-      .then(resp => !gone && props.receiver(resp.data as Type))
+    axios({ method: 'GET', url: url, headers })
+      .then(resp => !gone && receiver(resp.data as Type))
       .catch(err => console.error('Axios:', err))
 
     return () => {
       gone = true
     }
-  }, [props, props.url])
+  }, [token, url, receiver])
 }
