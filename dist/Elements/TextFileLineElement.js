@@ -15,7 +15,7 @@ const TextFileLineRenderer = (props) => {
         throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     const { line } = element;
-    const text = line.text.replace(/\t/g, '⭾');
+    const text = line.text.replace(/\t/g, ' ⎵ ');
     return (react_1.default.createElement(material_1.Box, null,
         react_1.default.createElement(material_1.Typography, { variant: "caption" },
             react_1.default.createElement(react_i18next_1.Trans, null, "Line:"),

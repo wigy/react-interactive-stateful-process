@@ -53,10 +53,10 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           for (let r = 0; r < perColumn; r++) {
             if (idx < keys.length) {
               // TODO: Make special marking for { ask: ... }
-              row.push(<>
-                <div key={`key${idx}`}><strong>{capitalize(keys[idx])}</strong></div>
-                <div key={`value${idx}`}>{render(obj[keys[idx]])}</div>
-              </>)
+              row.push(<React.Fragment key={idx}>
+                <div><strong>{capitalize(keys[idx])}</strong></div>
+                <div>{render(obj[keys[idx]])}</div>
+              </React.Fragment>)
             }
             idx++
           }

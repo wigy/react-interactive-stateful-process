@@ -42,10 +42,10 @@ const ConfigView = (props) => {
                     for (let r = 0; r < perColumn; r++) {
                         if (idx < keys.length) {
                             // TODO: Make special marking for { ask: ... }
-                            row.push(react_1.default.createElement(react_1.default.Fragment, null,
-                                react_1.default.createElement("div", { key: `key${idx}` },
+                            row.push(react_1.default.createElement(react_1.default.Fragment, { key: idx },
+                                react_1.default.createElement("div", null,
                                     react_1.default.createElement("strong", null, capitalize(keys[idx]))),
-                                react_1.default.createElement("div", { key: `value${idx}` }, render(obj[keys[idx]]))));
+                                react_1.default.createElement("div", null, render(obj[keys[idx]]))));
                         }
                         idx++;
                     }

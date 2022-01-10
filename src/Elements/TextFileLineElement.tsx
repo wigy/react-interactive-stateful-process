@@ -11,7 +11,7 @@ export const TextFileLineRenderer: Renderer = (props: RenderingProps) => {
     throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   const { line } = element
-  const text = line.text.replace(/\t/g, '⭾')
+  const text = line.text.replace(/\t/g, ' ⎵ ')
 
   return (
     <Box>
