@@ -36,16 +36,22 @@ const App = observer(() => {
     type: 'flat',
     elements: [
       {
-        type: 'text',
-        label: 'First value',
-        actions: {},
-        name: 'a'
-      },
-      {
-        type: 'text',
-        label: 'Second value',
-        actions: {},
-        name: 'b'
+        type: 'box',
+        title: 'This is a Box',
+        elements: [
+          {
+            type: 'text',
+            label: 'First value',
+            actions: {},
+            name: 'a'
+          },
+          {
+            type: 'text',
+            label: 'Second value',
+            actions: {},
+            name: 'b'
+          },
+        ]
       },
       {
         type: 'radio',

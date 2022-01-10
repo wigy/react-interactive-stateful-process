@@ -7,6 +7,7 @@ const __1 = require("..");
  */
 const RISPProvider = ({ children }) => {
     __1.RenderingEngine.register('boolean', __1.BooleanRenderer);
+    __1.RenderingEngine.register('box', __1.BoxRenderer);
     __1.RenderingEngine.register('text', __1.TextRenderer);
     __1.RenderingEngine.register('flat', __1.FlatRenderer);
     __1.RenderingEngine.register('button', __1.ButtonRenderer);
