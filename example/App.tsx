@@ -53,8 +53,23 @@ const App = observer(() => {
           },
           {
             type: 'html',
-            html: '<hr/><div style="color: blue"><b>Bold</b> <i>Italic</i></div>',
+            html: '<hr/><div style="color: blue"><b>Bold</b> <i>Italic</i></div><hr/>',
           },
+          {
+            type: 'textFileLine',
+            line: {
+              text: '04.01.2021\t02.01.2021\t02.01.2021\tSome random text\t10450 90360 02020 77839',
+              line: 4,
+              columns: {
+                'Field 1': '04.01.2021',
+                'Field 2': '02.01.2021',
+                'Field 3': '02.01.2021',
+                Text: 'Some random text',
+                'Some Ref': '10450 90360 02020 77839'
+              },
+              segmentId: 'abcde123456'
+            }
+          }
         ]
       },
       {

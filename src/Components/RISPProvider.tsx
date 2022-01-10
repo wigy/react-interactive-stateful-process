@@ -1,4 +1,4 @@
-import { ActionEngine, BooleanRenderer, BoxRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, HtmlRenderer, MessageRenderer, patchActionHandler, postActionHandler, RadioRenderer, RenderingEngine, TextRenderer } from '..'
+import { ActionEngine, BooleanRenderer, BoxRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, HtmlRenderer, MessageRenderer, patchActionHandler, postActionHandler, RadioRenderer, RenderingEngine, TextRenderer, TextFileLineRenderer } from '..'
 
 /**
  * Register all renderers and action handlers.
@@ -13,6 +13,7 @@ export const RISPProvider = ({ children }) => {
   RenderingEngine.register('message', MessageRenderer)
   RenderingEngine.register('radio', RadioRenderer)
   RenderingEngine.register('text', TextRenderer)
+  RenderingEngine.register('textFileLine', TextFileLineRenderer)
 
   ActionEngine.register('debug', debugActionHandler)
   ActionEngine.register('patch', patchActionHandler)

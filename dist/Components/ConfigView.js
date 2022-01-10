@@ -28,7 +28,7 @@ const ConfigView = (props) => {
                 }
                 if (obj instanceof Array) {
                     const values = Object.values(obj);
-                    return react_1.default.createElement(react_1.default.Fragment, null, values.map((v, i) => react_1.default.createElement(react_1.default.Fragment, { key: i },
+                    return react_1.default.createElement(react_1.default.Fragment, null, values.map((v, i) => react_1.default.createElement(react_1.default.Fragment, { key: `array${i}` },
                         render(v),
                         i < values.length - 1 ? ', ' : '')));
                 }

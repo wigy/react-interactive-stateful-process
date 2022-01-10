@@ -18,4 +18,5 @@ __exportStar(require("./HtmlElement"), exports);
 __exportStar(require("./MessageElement"), exports);
 __exportStar(require("./RadioElement"), exports);
 __exportStar(require("./TextElement"), exports);
+__exportStar(require("./TextFileLineElement"), exports);
 //# sourceMappingURL=index.js.map
