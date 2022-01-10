@@ -51,6 +51,10 @@ const App = observer(() => {
             actions: {},
             name: 'b'
           },
+          {
+            type: 'html',
+            html: '<hr/><div style="color: blue"><b>Bold</b> <i>Italic</i></div>',
+          },
         ]
       },
       {

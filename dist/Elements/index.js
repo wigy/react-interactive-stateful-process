@@ -14,7 +14,8 @@ __exportStar(require("./BooleanElement"), exports);
 __exportStar(require("./BoxElement"), exports);
 __exportStar(require("./ButtonElement"), exports);
 __exportStar(require("./FlatElement"), exports);
+__exportStar(require("./HtmlElement"), exports);
 __exportStar(require("./MessageElement"), exports);
-__exportStar(require("./TextElement"), exports);
 __exportStar(require("./RadioElement"), exports);
+__exportStar(require("./TextElement"), exports);
 //# sourceMappingURL=index.js.map
