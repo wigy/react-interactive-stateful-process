@@ -3,6 +3,8 @@ import { ProcessConfig } from 'interactive-elements'
 import { Box, Grid, Typography } from '@mui/material'
 import { Trans } from 'react-i18next'
 
+const IGNORE_FIELDS = /^(answer\..*|rules)$/
+
 export type ConfigViewProps = {
   title?: string
   config: ProcessConfig
@@ -42,7 +44,7 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           }</>
         }
 
-        keys = Object.keys(obj).sort()
+        keys = Object.keys(obj).filter(k => !IGNORE_FIELDS.test(k)).sort()
         perColumn = Math.ceil(keys.length / COLUMNS)
         idx = 0
         column = []
