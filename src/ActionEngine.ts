@@ -2,6 +2,8 @@ import { runInAction } from 'mobx'
 import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement, PatchAction, PostAction } from 'interactive-elements'
 import { RenderingProps } from './Rendering'
 import axios from 'axios'
+import setValue from 'set-value'
+import getValue from 'get-value'
 
 /**
  * Registry where all action handlers has been stored.
@@ -125,16 +127,43 @@ export const debugActionHandler: ActionHandler = async (action: Action, props: R
  */
 async function axiosRequst(method: 'PATCH' | 'POST', action: PatchAction | PostAction, props: RenderingProps): Promise<ActionResult> {
   const { element, setup, values } = props
+
   if (isActiveElement(element)) {
     if (!setup.baseUrl) {
       throw new Error(`Cannot use ${method} action when setup does not define 'baseUrl'.`)
+    }
+
+    const { objectWrapLevel } = action
+    let requestValues
+    if (objectWrapLevel) {
+      requestValues = {}
+      Object.keys(values).forEach(k => {
+        const v = values[k]
+        const parts = k.split('.')
+        let k1, k2
+        if (parts.length === 1) {
+          requestValues[k] = v
+          return
+        } else if (objectWrapLevel >= parts.length) {
+          k1 = parts.slice(0, parts.length - 1).join('.')
+          k2 = parts[parts.length - 1]
+        } else {
+          k1 = parts.slice(0, objectWrapLevel).join('.')
+          k2 = parts.slice(objectWrapLevel).join('.')
+        }
+        const old = getValue(requestValues, k1) || {}
+        old[k2] = v
+        setValue(requestValues, k1, old)
+      })
+    } else {
+      requestValues = values
     }
 
     const url = `${setup.baseUrl.replace(/\/$/, '')}/${action.url.replace(/^\//, '')}`
     const call = {
       method,
       url,
-      data: values,
+      data: requestValues,
       headers: {}
     }
     if (setup.token) {

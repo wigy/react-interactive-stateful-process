@@ -7,6 +7,8 @@ exports.postActionHandler = exports.patchActionHandler = exports.debugActionHand
 const mobx_1 = require("mobx");
 const interactive_elements_1 = require("interactive-elements");
 const axios_1 = __importDefault(require("axios"));
+const set_value_1 = __importDefault(require("set-value"));
+const get_value_1 = __importDefault(require("get-value"));
 global.ActionEngineHandlers = {};
 /**
  * Registry and call API for action handlers.
@@ -120,11 +122,39 @@ async function axiosRequst(method, action, props) {
         if (!setup.baseUrl) {
             throw new Error(`Cannot use ${method} action when setup does not define 'baseUrl'.`);
         }
+        const { objectWrapLevel } = action;
+        let requestValues;
+        if (objectWrapLevel) {
+            requestValues = {};
+            Object.keys(values).forEach(k => {
+                const v = values[k];
+                const parts = k.split('.');
+                let k1, k2;
+                if (parts.length === 1) {
+                    requestValues[k] = v;
+                    return;
+                }
+                else if (objectWrapLevel >= parts.length) {
+                    k1 = parts.slice(0, parts.length - 1).join('.');
+                    k2 = parts[parts.length - 1];
+                }
+                else {
+                    k1 = parts.slice(0, objectWrapLevel).join('.');
+                    k2 = parts.slice(objectWrapLevel).join('.');
+                }
+                const old = (0, get_value_1.default)(requestValues, k1) || {};
+                old[k2] = v;
+                (0, set_value_1.default)(requestValues, k1, old);
+            });
+        }
+        else {
+            requestValues = values;
+        }
         const url = `${setup.baseUrl.replace(/\/$/, '')}/${action.url.replace(/^\//, '')}`;
         const call = {
             method,
             url,
-            data: values,
+            data: requestValues,
             headers: {}
         };
         if (setup.token) {

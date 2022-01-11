@@ -33,7 +33,9 @@
   "dependencies": {
     "@mui/icons-material": "^5.2.1",
     "base64-arraybuffer": "^1.0.1",
-    "interactive-elements": "^1.0.50"
+    "get-value": "^3.0.1",
+    "interactive-elements": "1.0.51",
+    "set-value": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.14.2",
