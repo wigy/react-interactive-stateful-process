@@ -35,6 +35,7 @@
     "base64-arraybuffer": "^1.0.1",
     "get-value": "^3.0.1",
     "interactive-elements": "^1.0.51",
+    "jsoneditor": "^9.5.11",
     "set-value": "^4.1.0"
   },
   "devDependencies": {

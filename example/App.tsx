@@ -12,6 +12,7 @@ import { RenderingEngine } from '../src/Rendering'
 import { ProcessList } from '../src/Components/ProcessList'
 import { ProcessView } from '../src/Components/ProcessView'
 import { ImportStateView } from '../src/Components/ImportStateView'
+import { JsonEditor } from '../src/Components/JsonEditor'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -115,9 +116,13 @@ const App = observer(() => {
 
   const [processId, setProcessId] = useState<ID>()
   const [step, setStep] = useState<number>()
+  const [jsonEdit, setJsonEdit] = useState<boolean>(false)
 
   return (
     <>
+      <JsonEditor visible={jsonEdit} json={{ a: '1212' }} title="Sample JSON Editor" onSave={(json) => setJsonEdit(false)}/>
+      <Button variant="outlined" onClick={() => { setJsonEdit(true) }}>JSON EDIT</Button>
+
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Upload Tester</Typography>
         <FileUploader onUpload={(files) => onUpload(files)} color="primary" variant="contained"/>
