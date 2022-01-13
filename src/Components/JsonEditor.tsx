@@ -8,6 +8,7 @@ export type JsonEditorProps = {
   visible: boolean,
   title: string,
   json: Record<string, unknown>,
+  onCancel: () => void
   onSave: (any) => void
 }
 
@@ -26,6 +27,8 @@ export const JsonEditor = (props: JsonEditorProps): JSX.Element => {
   let editor
 
   const createEditor = (ref) => {
+    if (editor) return
+
     const options: JSONEditorOptions = {
       mode: 'code',
       mainMenuBar: false,
@@ -35,17 +38,22 @@ export const JsonEditor = (props: JsonEditorProps): JSX.Element => {
     editor = new JSONEditor(ref, options, value)
   }
 
-  const save = async () => {
+  const onSave = async () => {
     try {
       const errors = await editor.validate()
       if (Object.keys(errors).length === 0) {
         const json = editor.get()
         await editor.destroy()
-        setTimeout(() => props.onSave(json), 500)
+        props.onSave(json)
       }
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const onCancel = async () => {
+    await editor.destroy()
+    props.onCancel()
   }
 
   return <>
@@ -55,8 +63,8 @@ export const JsonEditor = (props: JsonEditorProps): JSX.Element => {
         <div className="RISPSONEditor" style={{ height: '75vh' }} ref={ref => createEditor(ref)} />
       </DialogContent>
       <DialogActions>
-        <Button id="Cancel" variant="outlined" onClick={() => {}}><Trans>Cancel</Trans></Button>
-        <Button id="Save" variant="outlined" onClick={() => save()} color="primary"><Trans>Save</Trans></Button>
+        <Button id="Cancel" variant="outlined" onClick={() => onCancel()}><Trans>Cancel</Trans></Button>
+        <Button id="Save" variant="outlined" onClick={() => onSave()} color="primary"><Trans>Save</Trans></Button>
       </DialogActions>
     </Dialog>
   </>

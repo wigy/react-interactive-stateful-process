@@ -120,7 +120,13 @@ const App = observer(() => {
 
   return (
     <>
-      <JsonEditor visible={jsonEdit} json={{ a: '1212' }} title="Sample JSON Editor" onSave={(json) => setJsonEdit(false)}/>
+      <JsonEditor
+        visible={jsonEdit}
+        json={{ a: '1212' }}
+        title="Sample JSON Editor"
+        onCancel={() => setJsonEdit(false)}
+        onSave={(json) => { console.log(json); setJsonEdit(false) } }
+      />
       <Button variant="outlined" onClick={() => { setJsonEdit(true) }}>JSON EDIT</Button>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
