@@ -8,6 +8,7 @@ export * from './DefaultErrorView';
 export * from './DefaultStepView';
 export * from './FileUploader';
 export * from './ImportStateView';
+export * from './JsonEditor';
 export * from './ProcessList';
 export * from './ProcessView';
 export * from './useAxios';
