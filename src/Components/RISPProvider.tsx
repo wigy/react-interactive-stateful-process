@@ -1,10 +1,13 @@
 import { ActionEngine, BooleanRenderer, BoxRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, HtmlRenderer, MessageRenderer, patchActionHandler, postActionHandler, RadioRenderer, RenderingEngine, TextRenderer, TextFileLineRenderer } from '..'
 
+let onBlurHook, onFocusHook
+
 /**
  * Register all renderers and action handlers.
  */
-export const RISPProvider = ({ children }) => {
-
+export const RISPProvider = ({ onBlur, onFocus, children }) => {
+  onBlurHook = onBlur
+  onFocusHook = onFocus
   RenderingEngine.register('boolean', BooleanRenderer)
   RenderingEngine.register('box', BoxRenderer)
   RenderingEngine.register('button', ButtonRenderer)
@@ -20,4 +23,12 @@ export const RISPProvider = ({ children }) => {
   ActionEngine.register('post', postActionHandler)
 
   return children
+}
+
+RISPProvider.onBlur = () => {
+  if (onBlurHook) onBlurHook()
+}
+
+RISPProvider.onFocus = () => {
+  if (onFocusHook) onFocusHook()
 }

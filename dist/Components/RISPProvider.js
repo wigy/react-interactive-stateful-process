@@ -2,10 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RISPProvider = void 0;
 const __1 = require("..");
+let onBlurHook, onFocusHook;
 /**
  * Register all renderers and action handlers.
  */
-const RISPProvider = ({ children }) => {
+const RISPProvider = ({ onBlur, onFocus, children }) => {
+    onBlurHook = onBlur;
+    onFocusHook = onFocus;
     __1.RenderingEngine.register('boolean', __1.BooleanRenderer);
     __1.RenderingEngine.register('box', __1.BoxRenderer);
     __1.RenderingEngine.register('button', __1.ButtonRenderer);
@@ -21,4 +24,12 @@ const RISPProvider = ({ children }) => {
     return children;
 };
 exports.RISPProvider = RISPProvider;
+exports.RISPProvider.onBlur = () => {
+    if (onBlurHook)
+        onBlurHook();
+};
+exports.RISPProvider.onFocus = () => {
+    if (onFocusHook)
+        onFocusHook();
+};
 //# sourceMappingURL=RISPProvider.js.map

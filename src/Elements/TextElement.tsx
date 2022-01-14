@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { TextField } from '@mui/material'
 import { Renderer, RenderingProps } from '../Rendering'
 import { isNamedElement, isTextElement } from 'interactive-elements'
+import { RISPProvider } from '../Components/RISPProvider'
 
 /**
  * Rendering for text editing element.
@@ -28,9 +29,10 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
       setValue(e.target.value)
       element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
     }}
+    onFocus={() => RISPProvider.onFocus()}
+    onBlur={() => RISPProvider.onBlur()}
     onKeyPress={() => null}
     onKeyUp={() => null}
     onKeyDown={() => null}
-    onFocus={() => null}
   />
 }

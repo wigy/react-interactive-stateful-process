@@ -8,6 +8,7 @@ const react_1 = __importDefault(require("react"));
 const react_i18next_1 = require("react-i18next");
 const material_1 = require("@mui/material");
 const interactive_elements_1 = require("interactive-elements");
+const RISPProvider_1 = require("../Components/RISPProvider");
 /**
  * Rendering for text editing element.
  */
@@ -22,7 +23,7 @@ const TextRenderer = (props) => {
     return react_1.default.createElement(material_1.TextField, { label: label, value: value, error: false, autoFocus: true, fullWidth: true, onChange: (e) => {
             setValue(e.target.value);
             element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
-        }, onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null, onFocus: () => null });
+        }, onFocus: () => RISPProvider_1.RISPProvider.onFocus(), onBlur: () => RISPProvider_1.RISPProvider.onBlur(), onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null });
 };
 exports.TextRenderer = TextRenderer;
 //# sourceMappingURL=TextElement.js.map
