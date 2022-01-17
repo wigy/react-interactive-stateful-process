@@ -2,7 +2,6 @@ export * from './DefaultStateView';
 export * from './DefaultSummaryView';
 export * from './ImportFile';
 export * from './ProcessStatusIcon';
-export * from './RISPProvider';
 export * from './ConfigView';
 export * from './DefaultErrorView';
 export * from './DefaultStepView';

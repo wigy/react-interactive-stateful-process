@@ -14,7 +14,6 @@ __exportStar(require("./DefaultStateView"), exports);
 __exportStar(require("./DefaultSummaryView"), exports);
 __exportStar(require("./ImportFile"), exports);
 __exportStar(require("./ProcessStatusIcon"), exports);
-__exportStar(require("./RISPProvider"), exports);
 __exportStar(require("./ConfigView"), exports);
 __exportStar(require("./DefaultErrorView"), exports);
 __exportStar(require("./DefaultStepView"), exports);
