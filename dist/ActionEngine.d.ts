@@ -1,5 +1,5 @@
 import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement } from 'interactive-elements';
-import { RenderingProps } from './Rendering';
+import { RenderingProps } from './RenderingEngine';
 /**
  * Registry where all action handlers has been stored.
  */

@@ -1,4 +1,6 @@
-import { ActionEngine, BooleanRenderer, BoxRenderer, ButtonRenderer, debugActionHandler, FlatRenderer, HtmlRenderer, MessageRenderer, patchActionHandler, postActionHandler, RadioRenderer, RenderingEngine, TextRenderer, TextFileLineRenderer } from '..'
+import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer } from './Elements'
+import { ActionEngine, debugActionHandler, patchActionHandler, postActionHandler } from './ActionEngine'
+import { RenderingEngine } from './RenderingEngine'
 
 let onBlurHook, onFocusHook
 

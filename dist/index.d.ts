@@ -1,5 +1,6 @@
 export * from './ActionEngine';
 export * from './Components';
 export * from './Elements';
-export * from './Rendering';
+export * from './RenderingEngine';
 export * from './RISP';
+export * from './RISPProvider';

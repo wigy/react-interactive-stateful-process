@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./ActionEngine"), exports);
 __exportStar(require("./Components"), exports);
 __exportStar(require("./Elements"), exports);
-__exportStar(require("./Rendering"), exports);
+__exportStar(require("./RenderingEngine"), exports);
 __exportStar(require("./RISP"), exports);
 __exportStar(require("./RISPProvider"), exports);
 //# sourceMappingURL=index.js.map

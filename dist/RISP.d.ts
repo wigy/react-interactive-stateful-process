@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderingProps } from './Rendering';
+import { RenderingProps } from './RenderingEngine';
 export declare type RISPProps = RenderingProps & {
     onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void;
 };

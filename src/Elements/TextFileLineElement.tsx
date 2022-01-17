@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingProps } from '../Rendering'
+import { Renderer, RenderingProps } from '../RenderingEngine'
 import { isTextFileLineElement } from 'interactive-elements'
 import { Box, Typography } from '@mui/material'
 import { Trans } from 'react-i18next'

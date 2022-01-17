@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingEngine, RenderingProps } from '../Rendering'
+import { Renderer, RenderingEngine, RenderingProps } from '../RenderingEngine'
 import { InteractiveElement, isFlatElement } from 'interactive-elements'
 import { Box } from '@mui/material'
 

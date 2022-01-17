@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingProps } from '../Rendering'
+import { Renderer, RenderingProps } from '../RenderingEngine'
 import { isMessageElement } from 'interactive-elements'
 import { Alert } from '@mui/material'
 

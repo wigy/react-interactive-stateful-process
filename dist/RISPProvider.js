@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RISPProvider = void 0;
-const __1 = require("..");
+const Elements_1 = require("./Elements");
+const ActionEngine_1 = require("./ActionEngine");
+const RenderingEngine_1 = require("./RenderingEngine");
 let onBlurHook, onFocusHook;
 /**
  * Register all renderers and action handlers.
@@ -10,18 +12,18 @@ const RISPProvider = (props) => {
     const { onBlur, onFocus, children } = props;
     onBlurHook = onBlur;
     onFocusHook = onFocus;
-    __1.RenderingEngine.register('boolean', __1.BooleanRenderer);
-    __1.RenderingEngine.register('box', __1.BoxRenderer);
-    __1.RenderingEngine.register('button', __1.ButtonRenderer);
-    __1.RenderingEngine.register('flat', __1.FlatRenderer);
-    __1.RenderingEngine.register('html', __1.HtmlRenderer);
-    __1.RenderingEngine.register('message', __1.MessageRenderer);
-    __1.RenderingEngine.register('radio', __1.RadioRenderer);
-    __1.RenderingEngine.register('text', __1.TextRenderer);
-    __1.RenderingEngine.register('textFileLine', __1.TextFileLineRenderer);
-    __1.ActionEngine.register('debug', __1.debugActionHandler);
-    __1.ActionEngine.register('patch', __1.patchActionHandler);
-    __1.ActionEngine.register('post', __1.postActionHandler);
+    RenderingEngine_1.RenderingEngine.register('boolean', Elements_1.BooleanRenderer);
+    RenderingEngine_1.RenderingEngine.register('box', Elements_1.BoxRenderer);
+    RenderingEngine_1.RenderingEngine.register('button', Elements_1.ButtonRenderer);
+    RenderingEngine_1.RenderingEngine.register('flat', Elements_1.FlatRenderer);
+    RenderingEngine_1.RenderingEngine.register('html', Elements_1.HtmlRenderer);
+    RenderingEngine_1.RenderingEngine.register('message', Elements_1.MessageRenderer);
+    RenderingEngine_1.RenderingEngine.register('radio', Elements_1.RadioRenderer);
+    RenderingEngine_1.RenderingEngine.register('text', Elements_1.TextRenderer);
+    RenderingEngine_1.RenderingEngine.register('textFileLine', Elements_1.TextFileLineRenderer);
+    ActionEngine_1.ActionEngine.register('debug', ActionEngine_1.debugActionHandler);
+    ActionEngine_1.ActionEngine.register('patch', ActionEngine_1.patchActionHandler);
+    ActionEngine_1.ActionEngine.register('post', ActionEngine_1.postActionHandler);
     return children;
 };
 exports.RISPProvider = RISPProvider;

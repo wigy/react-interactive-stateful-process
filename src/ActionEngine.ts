@@ -1,6 +1,6 @@
 import { runInAction } from 'mobx'
 import { ActionName, ActionResult, ActionHandler, Action, Setup, InteractiveElement, isActiveElement, PatchAction, PostAction } from 'interactive-elements'
-import { RenderingProps } from './Rendering'
+import { RenderingProps } from './RenderingEngine'
 import axios from 'axios'
 import setValue from 'set-value'
 import getValue from 'get-value'

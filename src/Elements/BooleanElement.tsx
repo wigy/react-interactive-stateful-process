@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FormControlLabel, Checkbox } from '@mui/material'
-import { Renderer, RenderingProps } from '../Rendering'
+import { Renderer, RenderingProps } from '../RenderingEngine'
 import { isBooleanElement, isNamedElement } from 'interactive-elements'
 
 /**

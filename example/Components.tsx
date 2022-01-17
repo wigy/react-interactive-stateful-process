@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
-import { Renderer, RenderingProps } from '../src/Rendering'
+import { Renderer, RenderingProps } from '../src/RenderingEngine'
 import { ActionHandler, ActiveElement, Setup, ViewElement } from 'interactive-elements'
 
 // Example of custom triggers, elements and action handlers.

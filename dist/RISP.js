@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RISP = void 0;
 const react_1 = __importDefault(require("react"));
 const mobx_react_1 = require("mobx-react");
-const Rendering_1 = require("./Rendering");
+const RenderingEngine_1 = require("./RenderingEngine");
 const interactive_elements_1 = require("interactive-elements");
 const mobx_1 = require("mobx");
 const ActionEngine_1 = require("./ActionEngine");
@@ -50,7 +50,7 @@ exports.RISP = (0, mobx_react_1.observer)((rispProps) => {
         }
     };
     prepare(element);
-    const ret = Rendering_1.RenderingEngine.render(rispProps);
+    const ret = RenderingEngine_1.RenderingEngine.render(rispProps);
     if (ret === null) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }

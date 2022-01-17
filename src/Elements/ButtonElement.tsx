@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
-import { Renderer, RenderingProps } from '../Rendering'
+import { Renderer, RenderingProps } from '../RenderingEngine'
 import { isButtonElement } from 'interactive-elements'
 
 export const ButtonRenderer: Renderer = (props: RenderingProps) => {

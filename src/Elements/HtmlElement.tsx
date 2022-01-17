@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingProps } from '../Rendering'
+import { Renderer, RenderingProps } from '../RenderingEngine'
 import { isHtmlElement } from 'interactive-elements'
 import { Typography } from '@mui/material'
 

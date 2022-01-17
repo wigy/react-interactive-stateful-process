@@ -8,7 +8,7 @@ const react_1 = __importDefault(require("react"));
 const react_i18next_1 = require("react-i18next");
 const material_1 = require("@mui/material");
 const interactive_elements_1 = require("interactive-elements");
-const RISPProvider_1 = require("../Components/RISPProvider");
+const RISPProvider_1 = require("../RISPProvider");
 /**
  * Rendering for text editing element.
  */

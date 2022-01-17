@@ -1,4 +1,4 @@
-import { Renderer } from '../Rendering';
+import { Renderer } from '../RenderingEngine';
 /**
  * Rendering for text editing element.
  */

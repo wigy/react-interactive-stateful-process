@@ -1,2 +1,2 @@
-import { Renderer } from '../Rendering';
+import { Renderer } from '../RenderingEngine';
 export declare const ButtonRenderer: Renderer;
