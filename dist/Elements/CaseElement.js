@@ -20,12 +20,7 @@ const CaseRenderer = (props) => {
     if (value === undefined) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
-    return react_1.default.createElement("div", null,
-        "CASE ",
-        caseValue,
-        " ",
-        JSON.stringify(value),
-        RenderingEngine_1.RenderingEngine.render({ values: props.values, setup: props.setup, element: value }));
+    return RenderingEngine_1.RenderingEngine.render({ values: props.values, setup: props.setup, element: value });
 };
 exports.CaseRenderer = CaseRenderer;
 //# sourceMappingURL=CaseElement.js.map

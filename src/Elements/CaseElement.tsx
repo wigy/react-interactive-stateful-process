@@ -16,8 +16,5 @@ export const CaseRenderer: Renderer = (props: RenderingProps) => {
   if (value === undefined) {
     return <></>
   }
-  return <div>
-    CASE {caseValue} {JSON.stringify(value)}
-    {RenderingEngine.render({ values: props.values, setup: props.setup, element: value })}
-  </div>
+  return RenderingEngine.render({ values: props.values, setup: props.setup, element: value })
 }
