@@ -10,11 +10,20 @@ export const CaseRenderer: Renderer = (props: RenderingProps) => {
   const { cases, condition } = element
   const noValue = values[condition] === undefined || values[condition] === null
   const defaultValue = element.default === undefined ? undefined : element.default
-  const caseValue = noValue ? defaultValue : values[condition]
-  const value = cases[`${caseValue}`]
+  const selectedCase = noValue ? defaultValue : values[condition]
 
-  if (value === undefined) {
-    return <></>
+  const rendering: Record<string, JSX.Element | null> = {}
+  for (const [value, element] of Object.entries(cases)) {
+    rendering[value] = RenderingEngine.render({ values: props.values, setup: props.setup, element })
   }
-  return RenderingEngine.render({ values: props.values, setup: props.setup, element: value })
+
+  return <>
+    {
+      Object.entries(rendering).map(([value, jsx]) => (
+        <div key={value} style={{ display: `${value}` === `${selectedCase}` ? 'block' : 'none' }}>
+          {jsx}
+        </div>)
+      )
+    }
+  </>
 }
