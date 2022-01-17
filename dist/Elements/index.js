@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./BooleanElement"), exports);
 __exportStar(require("./BoxElement"), exports);
 __exportStar(require("./ButtonElement"), exports);
+__exportStar(require("./CaseElement"), exports);
 __exportStar(require("./FlatElement"), exports);
 __exportStar(require("./HtmlElement"), exports);
 __exportStar(require("./MessageElement"), exports);

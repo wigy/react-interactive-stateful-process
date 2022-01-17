@@ -86,6 +86,16 @@ const App = observer(() => {
         name: 'c'
       },
       {
+        type: 'case',
+        condition: 'c',
+        default: 'V1',
+        cases: {
+          V1: { type: 'message', severity: 'info', text: 'First set of elements in case.' },
+          V2: { type: 'message', severity: 'warning', text: 'Second set of elements in case.' },
+          V3: { type: 'message', severity: 'error', text: 'Third set of elements in case.' },
+        }
+      },
+      {
         type: 'custom',
         data: {
           a: 1, b: 2, c: 3

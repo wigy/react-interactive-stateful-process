@@ -15,6 +15,7 @@ const RISPProvider = (props) => {
     RenderingEngine_1.RenderingEngine.register('boolean', Elements_1.BooleanRenderer);
     RenderingEngine_1.RenderingEngine.register('box', Elements_1.BoxRenderer);
     RenderingEngine_1.RenderingEngine.register('button', Elements_1.ButtonRenderer);
+    RenderingEngine_1.RenderingEngine.register('case', Elements_1.CaseRenderer);
     RenderingEngine_1.RenderingEngine.register('flat', Elements_1.FlatRenderer);
     RenderingEngine_1.RenderingEngine.register('html', Elements_1.HtmlRenderer);
     RenderingEngine_1.RenderingEngine.register('message', Elements_1.MessageRenderer);

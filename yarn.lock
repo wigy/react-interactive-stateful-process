@@ -3818,10 +3818,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@^1.0.51:
-  version "1.0.51"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.51.tgz#9d35910425cc75a66070ce2ce561cf09c30dbc5e"
-  integrity sha512-yh9dPa9NRqtlzxn+nDPJT54TvFqMwYgLvG8LtaJ1O+VXs6khaPIXfbhk15OglZjNIsll3wvq/iL9e0uGQXn0Qg==
+interactive-elements@1.0.52:
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.52.tgz#3d8d60cf686eafaf085371f8261c60d83606b0b5"
+  integrity sha512-JZpnWZEfzWbBSe1ixooBH8MMVhB88WhYLhmj4kAU/VWsQRSoYf7eV+fax9JIvmo+dTKQFyGkNAJInA+Z0QT2Rg==
 
 internal-slot@^1.0.3:
   version "1.0.3"

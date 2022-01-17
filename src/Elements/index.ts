@@ -1,6 +1,7 @@
 export * from './BooleanElement'
 export * from './BoxElement'
 export * from './ButtonElement'
+export * from './CaseElement'
 export * from './FlatElement'
 export * from './HtmlElement'
 export * from './MessageElement'
