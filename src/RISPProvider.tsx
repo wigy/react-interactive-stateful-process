@@ -2,10 +2,17 @@ import { ActionEngine, BooleanRenderer, BoxRenderer, ButtonRenderer, debugAction
 
 let onBlurHook, onFocusHook
 
+export type RISPProviderProps = {
+  children: JSX.Element
+  onBlur?: () => void | Promise<void>
+  onFocus?: () => void | Promise<void>
+}
+
 /**
  * Register all renderers and action handlers.
  */
-export const RISPProvider = ({ onBlur, onFocus, children }) => {
+export const RISPProvider = (props: RISPProviderProps) => {
+  const { onBlur, onFocus, children } = props
   onBlurHook = onBlur
   onFocusHook = onFocus
   RenderingEngine.register('boolean', BooleanRenderer)
@@ -25,6 +32,9 @@ export const RISPProvider = ({ onBlur, onFocus, children }) => {
   return children
 }
 
+/**
+ * Extrnal calling interface for hooks.
+ */
 RISPProvider.onBlur = () => {
   if (onBlurHook) onBlurHook()
 }

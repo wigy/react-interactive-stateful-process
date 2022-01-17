@@ -6,7 +6,8 @@ let onBlurHook, onFocusHook;
 /**
  * Register all renderers and action handlers.
  */
-const RISPProvider = ({ onBlur, onFocus, children }) => {
+const RISPProvider = (props) => {
+    const { onBlur, onFocus, children } = props;
     onBlurHook = onBlur;
     onFocusHook = onFocus;
     __1.RenderingEngine.register('boolean', __1.BooleanRenderer);
@@ -24,6 +25,9 @@ const RISPProvider = ({ onBlur, onFocus, children }) => {
     return children;
 };
 exports.RISPProvider = RISPProvider;
+/**
+ * Extrnal calling interface for hooks.
+ */
 exports.RISPProvider.onBlur = () => {
     if (onBlurHook)
         onBlurHook();
