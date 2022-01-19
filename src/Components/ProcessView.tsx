@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup } from 'interactive-elements'
+import { GetOneProcessResponse, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -104,6 +104,12 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   // TODO: Translations.
   const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)))
 
+  // Extract values from the process config.
+  const values: TriggerValues = {}
+  Object.keys(process.config).forEach(key => {
+    values[`configure.${key}`] = process.config[key] as TriggerValue
+  })
+
   return (
     <TableContainer>
       <Table className="ProcessTable" size="small">
@@ -174,7 +180,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                 <RISP
                   key="directions"
                   element={process.steps[currentStep].directions.element as InteractiveElement}
-                  values={{}}
+                  values={values}
                   setup={props.setup || { baseUrl: `${props.api}/${process.id}` }}
                   onActionSuccess={onActionSuccess}
                 />

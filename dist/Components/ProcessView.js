@@ -95,6 +95,11 @@ const ProcessView = (props) => {
     const ErrorView = DefaultErrorView_1.DefaultErrorView;
     // TODO: Translations.
     const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)));
+    // Extract values from the process config.
+    const values = {};
+    Object.keys(process.config).forEach(key => {
+        values[`configure.${key}`] = process.config[key];
+    });
     return (react_1.default.createElement(material_1.TableContainer, null,
         react_1.default.createElement(material_1.Table, { className: "ProcessTable", size: "small" },
             react_1.default.createElement(material_1.TableHead, null,
@@ -127,7 +132,7 @@ const ProcessView = (props) => {
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
-                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: {}, setup: props.setup || { baseUrl: `${props.api}/${process.id}` }, onActionSuccess: onActionSuccess })))),
+                            react_1.default.createElement(RISP_1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: values, setup: props.setup || { baseUrl: `${props.api}/${process.id}` }, onActionSuccess: onActionSuccess })))),
                 hasSteps &&
                     react_1.default.createElement(material_1.TableRow, null,
                         react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },
