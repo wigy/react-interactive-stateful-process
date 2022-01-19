@@ -15,12 +15,12 @@ const CaseRenderer = (props) => {
     const { cases, condition } = element;
     const noValue = values[condition] === undefined || values[condition] === null;
     const defaultValue = element.default === undefined ? undefined : element.default;
-    const caseValue = noValue ? defaultValue : values[condition];
-    const value = cases[`${caseValue}`];
-    if (value === undefined) {
-        return react_1.default.createElement(react_1.default.Fragment, null);
+    const selectedCase = noValue ? defaultValue : values[condition];
+    const rendering = {};
+    for (const [value, element] of Object.entries(cases)) {
+        rendering[value] = RenderingEngine_1.RenderingEngine.render({ values: props.values, setup: props.setup, element });
     }
-    return RenderingEngine_1.RenderingEngine.render({ values: props.values, setup: props.setup, element: value });
+    return react_1.default.createElement(react_1.default.Fragment, null, Object.entries(rendering).map(([value, jsx]) => (react_1.default.createElement("div", { key: value, style: { display: `${value}` === `${selectedCase}` ? 'block' : 'none' } }, jsx))));
 };
 exports.CaseRenderer = CaseRenderer;
 //# sourceMappingURL=CaseElement.js.map
