@@ -3905,7 +3905,7 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@1.0.54:
+interactive-elements@^1.0.54:
   version "1.0.54"
   resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.54.tgz#314c4c4c08d20225562289544b2f33446790ef85"
   integrity sha512-ztddBvVy1Aa0Y3AFnfLjAcipvwBLXVdxetO3Z233hXPKc+s26GuHbPwahD4m/ToUwQy2yVTlkSxahgSnD88TMw==
