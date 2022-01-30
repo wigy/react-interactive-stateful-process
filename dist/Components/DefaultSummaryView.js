@@ -24,7 +24,7 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const react_i18next_1 = require("react-i18next");
 const icons_material_1 = require("@mui/icons-material");
-const _1 = require(".");
+const ConfigView_1 = require("./ConfigView");
 /**
  * Default viewer for a process step summary information.
  * @param props
@@ -36,6 +36,7 @@ const DefaultSummaryView = (props) => {
     const [showConfig, setShowConfig] = (0, react_1.useState)(false);
     const started = new Date(step.started).getTime();
     const finished = new Date(step.finished).getTime();
+    const UsedConfigView = props.configView || ConfigView_1.ConfigView;
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(material_1.Typography, { variant: "body2" },
             react_1.default.createElement(react_i18next_1.Trans, null,
@@ -67,7 +68,7 @@ const DefaultSummaryView = (props) => {
         showConfig &&
             react_1.default.createElement(material_1.Card, { style: { marginBottom: '0.5em' } },
                 react_1.default.createElement(material_1.CardContent, null,
-                    react_1.default.createElement(_1.ConfigView, { title: t('Configuration'), config: props.process.config })))));
+                    react_1.default.createElement(UsedConfigView, { title: t('Configuration'), config: props.process.config })))));
 };
 exports.DefaultSummaryView = DefaultSummaryView;
 //# sourceMappingURL=DefaultSummaryView.js.map

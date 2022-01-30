@@ -1,4 +1,5 @@
 import { ProcessConfig } from 'interactive-elements';
+export declare const IGNORE_FIELDS: RegExp;
 export declare type ConfigViewProps = {
     title?: string;
     config: ProcessConfig;

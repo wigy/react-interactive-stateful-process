@@ -13,6 +13,7 @@ import { ProcessList } from '../src/Components/ProcessList'
 import { ProcessView } from '../src/Components/ProcessView'
 import { ImportStateView } from '../src/Components/ImportStateView'
 import { JsonEditor } from '../src/Components/JsonEditor'
+import { ConfigJSONView } from '../src/Components/ConfigJSONView'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -149,6 +150,7 @@ const App = observer(() => {
         {processId && <ProcessView
           api={API}
           id={processId}
+          configView={ConfigJSONView}
           stateView={ImportStateView}
           step={step}
           onBack={() => setProcessId(null)}

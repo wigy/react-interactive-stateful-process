@@ -53,7 +53,7 @@ const actionStepLabel = (action) => {
  * @returns
  */
 const ProcessView = (props) => {
-    const { summaryView, stateView, resultView } = props;
+    const { summaryView, stateView, resultView, configView } = props;
     const theme = (0, material_1.useTheme)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [, setStep] = (0, react_1.useState)(null);
@@ -136,7 +136,7 @@ const ProcessView = (props) => {
                 hasSteps &&
                     react_1.default.createElement(material_1.TableRow, null,
                         react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },
-                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView, resultView: resultView })))))));
+                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView, resultView: resultView, configView: configView })))))));
 };
 exports.ProcessView = ProcessView;
 //# sourceMappingURL=ProcessView.js.map

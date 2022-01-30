@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConfigView = void 0;
+exports.ConfigView = exports.IGNORE_FIELDS = void 0;
 const react_1 = __importDefault(require("react"));
 const material_1 = require("@mui/material");
 const react_i18next_1 = require("react-i18next");
-const IGNORE_FIELDS = /^(answer\..*|rules)$/;
+exports.IGNORE_FIELDS = /^(answer\..*|rules)$/;
 /**
  * Default viewer for a process configuration displaying names and values as is on one single line.
  * @param props
@@ -33,7 +33,7 @@ const ConfigView = (props) => {
                         render(v),
                         i < values.length - 1 ? ', ' : '')));
                 }
-                keys = Object.keys(obj).filter(k => !IGNORE_FIELDS.test(k)).sort();
+                keys = Object.keys(obj).filter(k => !exports.IGNORE_FIELDS.test(k)).sort();
                 perColumn = Math.ceil(keys.length / COLUMNS);
                 idx = 0;
                 column = [];

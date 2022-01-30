@@ -1,11 +1,13 @@
 import { ProcessConfig } from 'interactive-elements'
 import React from 'react'
+import { ConfigViewProps } from './ConfigView'
 import { DefaultResultViewProps } from './DefaultResultView'
 
 export type DefaultStateViewProps = {
   state: Record<string, unknown> | null
   config: ProcessConfig
   resultView: (props: DefaultResultViewProps) => JSX.Element
+  configView?: (props: ConfigViewProps) => JSX.Element
 }
 
 /**

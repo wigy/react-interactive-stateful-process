@@ -3,6 +3,7 @@ import { RenderingProps, Setup } from 'interactive-elements';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 import { DefaultResultViewProps } from './DefaultResultView';
+import { ConfigViewProps } from './ConfigView';
 export declare type ProcessViewProps = {
     api: string;
     token?: string;
@@ -15,6 +16,7 @@ export declare type ProcessViewProps = {
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;
     resultView?: (props: DefaultResultViewProps) => JSX.Element;
+    configView?: (props: ConfigViewProps) => JSX.Element;
     onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void;
 };
 /**
