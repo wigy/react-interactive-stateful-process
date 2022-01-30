@@ -31,7 +31,6 @@ const App = observer(() => {
   }
 
   const values: TriggerValues = observable({
-    a: '',
     b: ''
   })
 
@@ -46,6 +45,7 @@ const App = observer(() => {
             type: 'text',
             label: 'First value',
             actions: {},
+            defaultValue: 'This is default',
             name: 'a'
           },
           {
@@ -53,6 +53,13 @@ const App = observer(() => {
             label: 'Second value',
             actions: {},
             name: 'b'
+          },
+          {
+            type: 'boolean',
+            label: 'Boolean',
+            actions: {},
+            defaultValue: false,
+            name: 'c'
           },
           {
             type: 'html',

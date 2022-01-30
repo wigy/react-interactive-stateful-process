@@ -25,8 +25,8 @@ exports.RISP = (0, mobx_react_1.observer)((rispProps) => {
     const prepare = (element) => {
         // Named components have values.
         if ((0, interactive_elements_1.isNamedElement)(element)) {
-            if (values[element.name] === undefined) {
-                values[element.name] = element.defaultValue || null;
+            if (values[element.name] === undefined && element.defaultValue !== undefined) {
+                values[element.name] = element.defaultValue;
             }
         }
         // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().
