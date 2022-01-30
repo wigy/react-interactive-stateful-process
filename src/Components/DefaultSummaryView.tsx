@@ -3,11 +3,12 @@ import { Card, CardContent, ToggleButton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Settings } from '@mui/icons-material'
-import { ConfigView } from '.'
+import { ConfigView, ConfigViewProps } from './ConfigView'
 
 export type DefaultSummaryViewProps = {
   step: GetOneStepResponse
   process: GetOneProcessResponse
+  configView?: (props: ConfigViewProps) => JSX.Element
 }
 
 /**
@@ -22,6 +23,7 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
   const [showConfig, setShowConfig] = useState<boolean>(false)
   const started = new Date(step.started).getTime()
   const finished = new Date(step.finished).getTime()
+  const UsedConfigView = props.configView || ConfigView
 
   return (
     <>
@@ -48,7 +50,7 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
       { showConfig &&
         <Card style={{ marginBottom: '0.5em' }}>
           <CardContent>
-            <ConfigView title={t('Configuration')} config={props.process.config}/>
+            <UsedConfigView title={t('Configuration')} config={props.process.config}/>
           </CardContent>
         </Card>}
     </>

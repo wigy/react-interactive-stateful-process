@@ -11,6 +11,7 @@ import { DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultErrorView } from './DefaultErrorView'
 import { DefaultResultViewProps } from './DefaultResultView'
 import { RISP } from '../RISP'
+import { ConfigViewProps } from './ConfigView'
 
 export type ProcessViewProps = {
   api: string
@@ -24,6 +25,7 @@ export type ProcessViewProps = {
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
   resultView?: (props: DefaultResultViewProps) => JSX.Element
+  configView?: (props: ConfigViewProps) => JSX.Element
   onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void
 }
 
@@ -52,7 +54,7 @@ const actionStepLabel = (action: unknown): string => {
  */
 export const ProcessView = (props: ProcessViewProps): JSX.Element => {
 
-  const { summaryView, stateView, resultView } = props
+  const { summaryView, stateView, resultView, configView } = props
 
   const theme = useTheme()
 
@@ -199,6 +201,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   summaryView={summaryView}
                   stateView={stateView}
                   resultView={resultView}
+                  configView={configView}
                 />
               </TableCell>
             </TableRow>

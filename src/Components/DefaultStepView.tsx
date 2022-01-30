@@ -4,6 +4,7 @@ import { useAxios } from './useAxios'
 import { DefaultSummaryView, DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultStateView, DefaultStateViewProps } from './DefaultStateView'
 import { DefaultResultView, DefaultResultViewProps } from './DefaultResultView'
+import { ConfigView, ConfigViewProps } from './ConfigView'
 
 export type DefaultStepViewProps = {
   api: string
@@ -13,6 +14,7 @@ export type DefaultStepViewProps = {
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
   resultView?: (props: DefaultResultViewProps) => JSX.Element
+  configView?: (props: ConfigViewProps) => JSX.Element
 }
 
 /**
@@ -33,10 +35,11 @@ export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
   const SummaryView = props.summaryView || DefaultSummaryView
   const StateView = props.stateView || DefaultStateView
   const ResultView = props.resultView || DefaultResultView
+  const configView = props.configView || ConfigView
 
   return (
     <div>
-      <SummaryView step={step} process={props.process} />
+      <SummaryView step={step} process={props.process} configView={configView} />
       {step.state && <StateView config={props.process.config} state={step.state} resultView={ResultView}/>}
     </div>
   )

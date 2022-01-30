@@ -13,10 +13,14 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
 
   const { t } = useTranslation()
   const label = (isTextElement(element) && element.label) ? element.label : ((isNamedElement(element) && element.name) ? t(`label-${element.name}`) : '')
-  const [value, setValue] = React.useState(isNamedElement(element) ? props.values[element.name] || '' : '')
+  const [value, setValue] = React.useState<string>(isNamedElement(element) ? props.values[element.name] as string || '' : '')
 
   if (!isTextElement(element)) {
     throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
+  }
+
+  if (props.values[element.name] !== value) {
+    setValue(props.values[element.name] as string)
   }
 
   return <TextField

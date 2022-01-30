@@ -13,6 +13,7 @@ import { ProcessList } from '../src/Components/ProcessList'
 import { ProcessView } from '../src/Components/ProcessView'
 import { ImportStateView } from '../src/Components/ImportStateView'
 import { JsonEditor } from '../src/Components/JsonEditor'
+import { ConfigJSONView } from '../src/Components/ConfigJSONView'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -30,7 +31,6 @@ const App = observer(() => {
   }
 
   const values: TriggerValues = observable({
-    a: '',
     b: ''
   })
 
@@ -45,6 +45,7 @@ const App = observer(() => {
             type: 'text',
             label: 'First value',
             actions: {},
+            defaultValue: 'This is default',
             name: 'a'
           },
           {
@@ -52,6 +53,13 @@ const App = observer(() => {
             label: 'Second value',
             actions: {},
             name: 'b'
+          },
+          {
+            type: 'boolean',
+            label: 'Boolean',
+            actions: {},
+            defaultValue: false,
+            name: 'c'
           },
           {
             type: 'html',
@@ -122,8 +130,6 @@ const App = observer(() => {
     console.log('=>', resp)
   }
 
-  // TODO: Update of RISP text fields has stopped working. Is it due to messed up node_module cross-project linking in dev machine?
-
   const [processId, setProcessId] = useState<ID>()
   const [step, setStep] = useState<number>()
   const [jsonEdit, setJsonEdit] = useState<boolean>(false)
@@ -149,6 +155,7 @@ const App = observer(() => {
         {processId && <ProcessView
           api={API}
           id={processId}
+          configView={ConfigJSONView}
           stateView={ImportStateView}
           step={step}
           onBack={() => setProcessId(null)}

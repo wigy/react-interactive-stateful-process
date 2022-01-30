@@ -11,3 +11,4 @@ can be launched
 ```
 yarn demo
 ```
+It works also partially without demo server.

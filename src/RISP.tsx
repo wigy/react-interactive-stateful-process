@@ -26,8 +26,8 @@ export const RISP: React.FC<RISPProps> = observer((rispProps: RISPProps) => {
   const prepare = (element: InteractiveElement) => {
     // Named components have values.
     if (isNamedElement(element)) {
-      if (values[element.name] === undefined) {
-        values[element.name] = element.defaultValue || null
+      if (values[element.name] === undefined && element.defaultValue !== undefined) {
+        values[element.name] = element.defaultValue
       }
     }
     // Connect action handlers. We need to put handler every element since unknown future types may not hit isActiveElement().

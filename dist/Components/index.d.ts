@@ -1,3 +1,4 @@
+export * from './ConfigJSONView';
 export * from './DefaultStateView';
 export * from './DefaultSummaryView';
 export * from './ImportFile';

@@ -1,9 +1,11 @@
 import { ProcessConfig } from 'interactive-elements';
+import { ConfigViewProps } from './ConfigView';
 import { DefaultResultViewProps } from './DefaultResultView';
 export declare type DefaultStateViewProps = {
     state: Record<string, unknown> | null;
     config: ProcessConfig;
     resultView: (props: DefaultResultViewProps) => JSX.Element;
+    configView?: (props: ConfigViewProps) => JSX.Element;
 };
 /**
  * Simple JSON display for state.
