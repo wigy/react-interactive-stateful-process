@@ -75,7 +75,7 @@ exports.ImportLine = ImportLine;
  * @returns
  */
 const ImportFile = (props) => {
-    const [expanded, setExpanded] = react_1.default.useState(true);
+    const [expanded, setExpanded] = react_1.default.useState(false);
     const { palette } = (0, material_1.useTheme)();
     const colors = [
         palette.primary.dark,

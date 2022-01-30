@@ -86,7 +86,7 @@ export type ImportFileProps = {
  */
 export const ImportFile = (props: ImportFileProps): JSX.Element => {
 
-  const [expanded, setExpanded] = React.useState(true)
+  const [expanded, setExpanded] = React.useState(false)
   const { palette } = useTheme()
   const colors = [
     palette.primary.dark,
