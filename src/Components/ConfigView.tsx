@@ -3,7 +3,7 @@ import { ProcessConfig } from 'interactive-elements'
 import { Box, Grid, Typography } from '@mui/material'
 import { Trans } from 'react-i18next'
 
-export const IGNORE_FIELDS = /^(answer\..*|rules)$/
+export const IGNORE_FIELDS = /^(answers|rules)$/
 
 export type ConfigViewProps = {
   title?: string

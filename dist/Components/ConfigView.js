@@ -7,7 +7,7 @@ exports.ConfigView = exports.IGNORE_FIELDS = void 0;
 const react_1 = __importDefault(require("react"));
 const material_1 = require("@mui/material");
 const react_i18next_1 = require("react-i18next");
-exports.IGNORE_FIELDS = /^(answer\..*|rules)$/;
+exports.IGNORE_FIELDS = /^(answers|rules)$/;
 /**
  * Default viewer for a process configuration displaying names and values as is on one single line.
  * @param props
