@@ -26,15 +26,13 @@
     "start": "npm run build",
     "build": "rm -rf dist/* && tsc",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
-    "test": "echo \"\\033[0;31mNo testing system for react interactive stateful process yet.\\033[0m\"",
-    "test:ci": "yarn install && yarn run lint && yarn test"
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@mui/icons-material": "^5.2.1",
     "base64-arraybuffer": "^1.0.1",
     "get-value": "^3.0.1",
-    "interactive-elements": "^1.0.54",
+    "interactive-elements": "1.0.55",
     "jsoneditor": "^9.5.11",
     "set-value": "^4.1.0"
   },
