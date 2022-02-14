@@ -17,9 +17,7 @@ const ButtonRenderer = (props) => {
     const label = t(`label-${element.label}`);
     const requirements = element.requires ? (typeof element.requires === 'string' ? [element.requires] : element.requires) : [];
     const allGood = requirements.filter(r => !values[r]).length === 0;
-    return react_1.default.createElement(material_1.Button, { variant: "outlined", disabled: !allGood, onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } },
-        label,
-        JSON.stringify(values));
+    return react_1.default.createElement(material_1.Button, { variant: "outlined", disabled: !allGood, onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } }, label);
 };
 exports.ButtonRenderer = ButtonRenderer;
 //# sourceMappingURL=ButtonElement.js.map
