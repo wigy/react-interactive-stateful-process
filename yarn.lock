@@ -3929,10 +3929,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-interactive-elements@1.0.56:
-  version "1.0.56"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.56.tgz#56c88f0348c1bbf3b9dd6bba872e2aba3d250753"
-  integrity sha512-knKpYst2mTnHbNrlTEQumyDn5vO/dftbNUYbzkvPL9lGDlQjCwpN9ZQHrmM/v2gtBoFD9W9IA11QGq325wY5ag==
+interactive-elements@1.0.58:
+  version "1.0.58"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.58.tgz#9a47ab3e8102af66da2d1d20d265e216b1c15e98"
+  integrity sha512-qm9SQqoenqFGyw5k+HrJGZCqhqC+9Vn8gPY4wh76Qmbh7vEjH8o/saXMT1WepH0JLuK3rJlZVPj3C4rVENxIGA==
 
 internal-slot@^1.0.3:
   version "1.0.3"

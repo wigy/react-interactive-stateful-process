@@ -1,4 +1,4 @@
-import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer, YesNoRenderer } from './Elements'
+import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer, YesNoRenderer, NumberRenderer } from './Elements'
 import { ActionEngine, debugActionHandler, patchActionHandler, postActionHandler } from './ActionEngine'
 import { RenderingEngine } from './RenderingEngine'
 
@@ -26,6 +26,7 @@ export const RISPProvider = (props: RISPProviderProps) => {
   RenderingEngine.register('flat', FlatRenderer)
   RenderingEngine.register('html', HtmlRenderer)
   RenderingEngine.register('message', MessageRenderer)
+  RenderingEngine.register('number', NumberRenderer)
   RenderingEngine.register('radio', RadioRenderer)
   RenderingEngine.register('text', TextRenderer)
   RenderingEngine.register('textFileLine', TextFileLineRenderer)
