@@ -63,6 +63,12 @@ const App = observer(() => {
             name: 'c'
           },
           {
+            type: 'button',
+            label: 'No Action (needs values)',
+            requires: ['a', 'b', 'c'],
+            actions: {}
+          },
+          {
             type: 'html',
             html: '<hr/><div style="color: blue"><b>Bold</b> <i>Italic</i></div><hr/>',
           },

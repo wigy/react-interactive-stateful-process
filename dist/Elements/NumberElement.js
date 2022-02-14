@@ -16,7 +16,7 @@ const NumberRenderer = (props) => {
     const { element } = props;
     const { t } = (0, react_i18next_1.useTranslation)();
     const label = ((0, interactive_elements_1.isNumberElement)(element) && element.label) ? element.label : (((0, interactive_elements_1.isNamedElement)(element) && element.name) ? t(`label-${element.name}`) : '');
-    const [value, setValue] = react_1.default.useState((0, interactive_elements_1.isNamedElement)(element) ? props.values[element.name] || '' : '');
+    const [value, setValue] = react_1.default.useState((0, interactive_elements_1.isNamedElement)(element) ? props.values[element.name] || null : null);
     if (!(0, interactive_elements_1.isNumberElement)(element)) {
         throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
@@ -26,8 +26,9 @@ const NumberRenderer = (props) => {
     return react_1.default.createElement(material_1.TextField, { label: label, value: value, type: "number", error: false, autoFocus: true, InputProps: {
             endAdornment: react_1.default.createElement(material_1.InputAdornment, { position: "end" }, element.unit || ''),
         }, onChange: (e) => {
-            setValue(e.target.value);
-            element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props);
+            const value = e.target.value === '' ? null : parseFloat(e.target.value);
+            setValue(value);
+            element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value }, props);
         }, onFocus: () => RISPProvider_1.RISPProvider.onFocus(), onBlur: () => RISPProvider_1.RISPProvider.onBlur(), onKeyPress: () => null, onKeyUp: () => null, onKeyDown: () => null });
 };
 exports.NumberRenderer = NumberRenderer;

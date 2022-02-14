@@ -10,12 +10,16 @@ const material_1 = require("@mui/material");
 const interactive_elements_1 = require("interactive-elements");
 const ButtonRenderer = (props) => {
     const { t } = (0, react_i18next_1.useTranslation)();
-    const { element } = props;
+    const { element, values } = props;
     if (!(0, interactive_elements_1.isButtonElement)(element)) {
         throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     const label = t(`label-${element.label}`);
-    return react_1.default.createElement(material_1.Button, { variant: "outlined", onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } }, label);
+    const requirements = element.requires ? (typeof element.requires === 'string' ? [element.requires] : element.requires) : [];
+    const allGood = requirements.filter(r => !values[r]).length === 0;
+    return react_1.default.createElement(material_1.Button, { variant: "outlined", disabled: !allGood, onClick: () => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props); } },
+        label,
+        JSON.stringify(values));
 };
 exports.ButtonRenderer = ButtonRenderer;
 //# sourceMappingURL=ButtonElement.js.map

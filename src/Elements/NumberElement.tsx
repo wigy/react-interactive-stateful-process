@@ -13,14 +13,14 @@ export const NumberRenderer: Renderer = (props: RenderingProps) => {
 
   const { t } = useTranslation()
   const label = (isNumberElement(element) && element.label) ? element.label : ((isNamedElement(element) && element.name) ? t(`label-${element.name}`) : '')
-  const [value, setValue] = React.useState<string>(isNamedElement(element) ? props.values[element.name] as string || '' : '')
+  const [value, setValue] = React.useState<number|null>(isNamedElement(element) ? props.values[element.name] as number || null : null)
 
   if (!isNumberElement(element)) {
     throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
 
   if (props.values[element.name] !== value) {
-    setValue(props.values[element.name] as string)
+    setValue(props.values[element.name] as number)
   }
 
   return <TextField
@@ -33,8 +33,9 @@ export const NumberRenderer: Renderer = (props: RenderingProps) => {
       endAdornment: <InputAdornment position="end">{element.unit || ''}</InputAdornment>,
     }}
     onChange={(e) => {
-      setValue(e.target.value)
-      element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value: e.target.value }, props)
+      const value = e.target.value === '' ? null : parseFloat(e.target.value)
+      setValue(value)
+      element.triggerHandler && element.triggerHandler({ type: 'onChange', name: element.name, value }, props)
     }}
     onFocus={() => RISPProvider.onFocus()}
     onBlur={() => RISPProvider.onBlur()}
