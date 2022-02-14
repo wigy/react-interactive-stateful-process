@@ -42,15 +42,16 @@ const App = observer(() => {
         title: 'This is a Box',
         elements: [
           {
-            type: 'text',
-            label: 'First value',
+            type: 'number',
+            label: 'First number value',
             actions: {},
-            defaultValue: 'This is default',
+            unit: 'kg / s',
+            defaultValue: 12,
             name: 'a'
           },
           {
             type: 'text',
-            label: 'Second value',
+            label: 'Second text value',
             actions: {},
             name: 'b'
           },
@@ -60,6 +61,12 @@ const App = observer(() => {
             actions: {},
             defaultValue: false,
             name: 'c'
+          },
+          {
+            type: 'button',
+            label: 'No Action (needs values)',
+            requires: ['a', 'b', 'c'],
+            actions: {}
           },
           {
             type: 'html',
@@ -171,8 +178,8 @@ const App = observer(() => {
         <Typography className="text" variant="h3">Element Test Dashboard</Typography>
         <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
         <br/>
-        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = ''; values.b = '' }) }}>RESET</Button>
-        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 'ABCDE' }) }}>CHANGE A</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 6; values.b = '' }) }}>RESET</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 12345 }) }}>CHANGE A</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => (values.b = 'FGHIJ')) }}>CHANGE B</Button>
       </Paper>
     </>

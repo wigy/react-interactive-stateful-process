@@ -19,6 +19,7 @@ const RISPProvider = (props) => {
     RenderingEngine_1.RenderingEngine.register('flat', Elements_1.FlatRenderer);
     RenderingEngine_1.RenderingEngine.register('html', Elements_1.HtmlRenderer);
     RenderingEngine_1.RenderingEngine.register('message', Elements_1.MessageRenderer);
+    RenderingEngine_1.RenderingEngine.register('number', Elements_1.NumberRenderer);
     RenderingEngine_1.RenderingEngine.register('radio', Elements_1.RadioRenderer);
     RenderingEngine_1.RenderingEngine.register('text', Elements_1.TextRenderer);
     RenderingEngine_1.RenderingEngine.register('textFileLine', Elements_1.TextFileLineRenderer);
