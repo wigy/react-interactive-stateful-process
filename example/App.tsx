@@ -55,8 +55,8 @@ const App = observer(() => {
             name: 'b'
           },
           {
-            type: 'boolean',
-            label: 'Boolean',
+            type: 'yesno',
+            label: 'Radio Boolean',
             actions: {},
             defaultValue: false,
             name: 'c'

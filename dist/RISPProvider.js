@@ -22,9 +22,13 @@ const RISPProvider = (props) => {
     RenderingEngine_1.RenderingEngine.register('radio', Elements_1.RadioRenderer);
     RenderingEngine_1.RenderingEngine.register('text', Elements_1.TextRenderer);
     RenderingEngine_1.RenderingEngine.register('textFileLine', Elements_1.TextFileLineRenderer);
+    RenderingEngine_1.RenderingEngine.register('yesno', Elements_1.YesNoRenderer);
     ActionEngine_1.ActionEngine.register('debug', ActionEngine_1.debugActionHandler);
     ActionEngine_1.ActionEngine.register('patch', ActionEngine_1.patchActionHandler);
     ActionEngine_1.ActionEngine.register('post', ActionEngine_1.postActionHandler);
+    if (props.onInit) {
+        props.onInit();
+    }
     return children;
 };
 exports.RISPProvider = RISPProvider;

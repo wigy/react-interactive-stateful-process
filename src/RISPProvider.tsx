@@ -1,4 +1,4 @@
-import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer } from './Elements'
+import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer, YesNoRenderer } from './Elements'
 import { ActionEngine, debugActionHandler, patchActionHandler, postActionHandler } from './ActionEngine'
 import { RenderingEngine } from './RenderingEngine'
 
@@ -6,6 +6,7 @@ let onBlurHook, onFocusHook
 
 export type RISPProviderProps = {
   children: JSX.Element
+  onInit?: () => void
   onBlur?: () => void | Promise<void>
   onFocus?: () => void | Promise<void>
 }
@@ -17,6 +18,7 @@ export const RISPProvider = (props: RISPProviderProps) => {
   const { onBlur, onFocus, children } = props
   onBlurHook = onBlur
   onFocusHook = onFocus
+
   RenderingEngine.register('boolean', BooleanRenderer)
   RenderingEngine.register('box', BoxRenderer)
   RenderingEngine.register('button', ButtonRenderer)
@@ -27,10 +29,15 @@ export const RISPProvider = (props: RISPProviderProps) => {
   RenderingEngine.register('radio', RadioRenderer)
   RenderingEngine.register('text', TextRenderer)
   RenderingEngine.register('textFileLine', TextFileLineRenderer)
+  RenderingEngine.register('yesno', YesNoRenderer)
 
   ActionEngine.register('debug', debugActionHandler)
   ActionEngine.register('patch', patchActionHandler)
   ActionEngine.register('post', postActionHandler)
+
+  if (props.onInit) {
+    props.onInit()
+  }
 
   return children
 }

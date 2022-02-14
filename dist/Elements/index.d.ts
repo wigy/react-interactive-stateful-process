@@ -8,3 +8,4 @@ export * from './MessageElement';
 export * from './RadioElement';
 export * from './TextElement';
 export * from './TextFileLineElement';
+export * from './YesNoElement';
