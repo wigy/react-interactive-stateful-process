@@ -25,6 +25,9 @@ const RISPProvider = (props) => {
     ActionEngine_1.ActionEngine.register('debug', ActionEngine_1.debugActionHandler);
     ActionEngine_1.ActionEngine.register('patch', ActionEngine_1.patchActionHandler);
     ActionEngine_1.ActionEngine.register('post', ActionEngine_1.postActionHandler);
+    if (props.onInit) {
+        props.onInit();
+    }
     return children;
 };
 exports.RISPProvider = RISPProvider;

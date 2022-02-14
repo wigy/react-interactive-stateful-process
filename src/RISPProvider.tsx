@@ -6,6 +6,7 @@ let onBlurHook, onFocusHook
 
 export type RISPProviderProps = {
   children: JSX.Element
+  onInit?: () => void | Promise<void>
   onBlur?: () => void | Promise<void>
   onFocus?: () => void | Promise<void>
 }
@@ -17,6 +18,7 @@ export const RISPProvider = (props: RISPProviderProps) => {
   const { onBlur, onFocus, children } = props
   onBlurHook = onBlur
   onFocusHook = onFocus
+
   RenderingEngine.register('boolean', BooleanRenderer)
   RenderingEngine.register('box', BoxRenderer)
   RenderingEngine.register('button', ButtonRenderer)
@@ -31,6 +33,10 @@ export const RISPProvider = (props: RISPProviderProps) => {
   ActionEngine.register('debug', debugActionHandler)
   ActionEngine.register('patch', patchActionHandler)
   ActionEngine.register('post', postActionHandler)
+
+  if (props.onInit) {
+    props.onInit()
+  }
 
   return children
 }
