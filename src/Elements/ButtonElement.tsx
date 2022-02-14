@@ -19,6 +19,5 @@ export const ButtonRenderer: Renderer = (props: RenderingProps) => {
       onClick={() => { element.triggerHandler && element.triggerHandler({ type: 'onClick' }, props) } }
     >
       {label}
-      {JSON.stringify(values)}
     </Button>
 }
