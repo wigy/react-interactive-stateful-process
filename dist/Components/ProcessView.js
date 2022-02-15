@@ -29,6 +29,7 @@ const DefaultStepView_1 = require("./DefaultStepView");
 const interactive_elements_1 = require("interactive-elements");
 const icons_material_1 = require("@mui/icons-material");
 const DefaultErrorView_1 = require("./DefaultErrorView");
+const DefaultSuccessView_1 = require("./DefaultSuccessView");
 const RISP_1 = require("../RISP");
 /**
  * Construct a text for action taken.
@@ -65,7 +66,6 @@ const ProcessView = (props) => {
     if (!process)
         return react_1.default.createElement(react_1.default.Fragment, null);
     // Calculate some values for futher use.
-    // TODO: This does not yet work correctly when new UI questions are received.
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     let currentStep;
     if (props.step !== undefined && props.step !== null) {
@@ -92,7 +92,8 @@ const ProcessView = (props) => {
         }
     };
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
-    const ErrorView = DefaultErrorView_1.DefaultErrorView;
+    const ErrorView = props.errorView || DefaultErrorView_1.DefaultErrorView;
+    const SuccessView = props.successView || DefaultSuccessView_1.DefaultSuccessView;
     // TODO: Translations.
     const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)));
     // Extract values from the process config.
@@ -128,6 +129,7 @@ const ProcessView = (props) => {
                             react_1.default.createElement(material_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
+                        process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
                         process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
