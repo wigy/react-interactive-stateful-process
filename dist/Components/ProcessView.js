@@ -31,6 +31,7 @@ const icons_material_1 = require("@mui/icons-material");
 const DefaultErrorView_1 = require("./DefaultErrorView");
 const DefaultSuccessView_1 = require("./DefaultSuccessView");
 const RISP_1 = require("../RISP");
+const StepList_1 = require("./StepList");
 /**
  * Construct a text for action taken.
  * @param action
@@ -56,6 +57,7 @@ const actionStepLabel = (action) => {
 const ProcessView = (props) => {
     const { summaryView, stateView, resultView, configView } = props;
     const theme = (0, material_1.useTheme)();
+    const { t } = (0, react_i18next_1.useTranslation)();
     const [process, setProcess] = (0, react_1.useState)(null);
     const [, setStep] = (0, react_1.useState)(null);
     (0, useAxios_1.useAxios)({
@@ -94,8 +96,7 @@ const ProcessView = (props) => {
     const StepView = props.stepView || DefaultStepView_1.DefaultStepView;
     const ErrorView = props.errorView || DefaultErrorView_1.DefaultErrorView;
     const SuccessView = props.successView || DefaultSuccessView_1.DefaultSuccessView;
-    // TODO: Translations.
-    const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)));
+    const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action))).map(label => t(`step-${label}`));
     // Extract values from the process config.
     const values = {};
     Object.keys(process.config).forEach(key => {
@@ -125,8 +126,7 @@ const ProcessView = (props) => {
                             react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
                                 react_1.default.createElement(icons_material_1.NavigateNext, null)))),
                     react_1.default.createElement(material_1.TableCell, { colSpan: 3 },
-                        react_1.default.createElement(material_1.Stepper, { activeStep: currentStep || 0 }, operations.map((label, idx) => (react_1.default.createElement(material_1.Step, { key: idx },
-                            react_1.default.createElement(material_1.StepLabel, { onClick: () => onChangeStep(idx) }, label))))))),
+                        react_1.default.createElement(StepList_1.StepList, { onChangeStep: (step) => onChangeStep(step), operations: operations, currentStep: currentStep }))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
