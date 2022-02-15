@@ -77,6 +77,7 @@ const ProcessView = (props) => {
         currentStep = process.currentStep !== undefined ? process.currentStep : 0;
     }
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
+    const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1;
     const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
     // Handle step change.
     const onChangeStep = (n) => {
@@ -130,7 +131,7 @@ const ProcessView = (props) => {
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
-                        process.error && react_1.default.createElement(ErrorView, { error: process.error }),
+                        lastStep && process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),

@@ -84,6 +84,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     currentStep = process.currentStep !== undefined ? process.currentStep : 0
   }
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
+  const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
   const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
 
   // Handle step change.
@@ -177,7 +178,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
               {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
-              {process.error && <ErrorView error={process.error}/>}
+              {lastStep && process.error && <ErrorView error={process.error}/>}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
                 <RISP
