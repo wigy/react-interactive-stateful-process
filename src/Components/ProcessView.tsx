@@ -1,6 +1,6 @@
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, useTheme, Fab, IconButton, Stepper, Step, StepLabel } from '@mui/material'
+import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Typography, useTheme, Fab, IconButton } from '@mui/material'
 import React, { useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios } from './useAxios'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
@@ -13,6 +13,8 @@ import { DefaultSuccessView, DefaultSuccessViewProps } from './DefaultSuccessVie
 import { DefaultResultViewProps } from './DefaultResultView'
 import { RISP } from '../RISP'
 import { ConfigViewProps } from './ConfigView'
+import { StepList } from './StepList'
+import { ConfigChangeView } from './ConfigChangeView'
 
 export type ProcessViewProps = {
   api: string
@@ -60,6 +62,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const { summaryView, stateView, resultView, configView } = props
 
   const theme = useTheme()
+  const { t } = useTranslation()
 
   const [process, setProcess] = useState<GetOneProcessResponse | null>(null)
   const [, setStep] = useState<number | null>(null)
@@ -82,7 +85,9 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
     currentStep = process.currentStep !== undefined ? process.currentStep : 0
   }
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
+  const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
   const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
+  const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1].directions.type === 'ui'
 
   // Handle step change.
   const onChangeStep = (n: number) => {
@@ -106,8 +111,9 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const ErrorView = props.errorView || DefaultErrorView
   const SuccessView = props.successView || DefaultSuccessView
 
-  // TODO: Translations.
-  const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)))
+  const operations = ['start'].concat(
+    process.steps.filter(step => step.action).map(step => actionStepLabel(step.action))
+  ).map(label => t(`step-${label}`))
 
   // Extract values from the process config.
   const values: TriggerValues = {}
@@ -168,19 +174,14 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               </Typography>
             </TableCell>
             <TableCell colSpan={3}>
-              <Stepper activeStep={currentStep || 0}>
-                {operations.map((label, idx) => (
-                  <Step key={idx}>
-                    <StepLabel onClick={() => onChangeStep(idx)}>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
+              <StepList onChangeStep={(step) => onChangeStep(step)} operations={operations} currentStep={currentStep}/>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
               {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
-              {process.error && <ErrorView error={process.error}/>}
+              {lastStep && process.error && <ErrorView error={process.error}/>}
+              {wasConfigured && <ConfigChangeView step={process.steps[currentStep - 1]} />}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
                 <RISP
