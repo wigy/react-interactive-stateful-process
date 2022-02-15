@@ -14,6 +14,7 @@ import { DefaultResultViewProps } from './DefaultResultView'
 import { RISP } from '../RISP'
 import { ConfigViewProps } from './ConfigView'
 import { StepList } from './StepList'
+import { ConfigChangeView } from './ConfigChangeView'
 
 export type ProcessViewProps = {
   api: string
@@ -86,6 +87,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
   const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
   const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
+  const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1].directions.type === 'ui'
 
   // Handle step change.
   const onChangeStep = (n: number) => {
@@ -179,6 +181,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
               {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
               {lastStep && process.error && <ErrorView error={process.error}/>}
+              {wasConfigured && <ConfigChangeView step={process.steps[currentStep - 1]} />}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
                 <RISP

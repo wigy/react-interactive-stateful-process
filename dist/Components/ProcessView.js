@@ -32,6 +32,7 @@ const DefaultErrorView_1 = require("./DefaultErrorView");
 const DefaultSuccessView_1 = require("./DefaultSuccessView");
 const RISP_1 = require("../RISP");
 const StepList_1 = require("./StepList");
+const ConfigChangeView_1 = require("./ConfigChangeView");
 /**
  * Construct a text for action taken.
  * @param action
@@ -79,6 +80,7 @@ const ProcessView = (props) => {
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
     const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1;
     const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
+    const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1].directions.type === 'ui';
     // Handle step change.
     const onChangeStep = (n) => {
         props.onChangeStep && props.onChangeStep(n);
@@ -132,6 +134,7 @@ const ProcessView = (props) => {
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
                         lastStep && process.error && react_1.default.createElement(ErrorView, { error: process.error }),
+                        wasConfigured && react_1.default.createElement(ConfigChangeView_1.ConfigChangeView, { step: process.steps[currentStep - 1] }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
