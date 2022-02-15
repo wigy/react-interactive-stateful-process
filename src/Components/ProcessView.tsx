@@ -8,7 +8,8 @@ import { GetOneProcessResponse, InteractiveElement, isImportConfigureAction, isI
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
-import { DefaultErrorView } from './DefaultErrorView'
+import { DefaultErrorView, DefaultErrorViewProps } from './DefaultErrorView'
+import { DefaultSuccessView, DefaultSuccessViewProps } from './DefaultSuccessView'
 import { DefaultResultViewProps } from './DefaultResultView'
 import { RISP } from '../RISP'
 import { ConfigViewProps } from './ConfigView'
@@ -26,6 +27,8 @@ export type ProcessViewProps = {
   stateView?: (props: DefaultStateViewProps) => JSX.Element
   resultView?: (props: DefaultResultViewProps) => JSX.Element
   configView?: (props: ConfigViewProps) => JSX.Element
+  errorView?: (props: DefaultErrorViewProps) => JSX.Element
+  successView?: (props: DefaultSuccessViewProps) => JSX.Element
   onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void
 }
 
@@ -70,7 +73,6 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   if (!process) return <></>
 
   // Calculate some values for futher use.
-  // TODO: This does not yet work correctly when new UI questions are received.
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   let currentStep: number | undefined
   if (props.step !== undefined && props.step !== null) {
@@ -101,7 +103,8 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   }
 
   const StepView = props.stepView || DefaultStepView
-  const ErrorView = DefaultErrorView
+  const ErrorView = props.errorView || DefaultErrorView
+  const SuccessView = props.successView || DefaultSuccessView
 
   // TODO: Translations.
   const operations = ['start'].concat(process.steps.filter(step => step.action).map(step => actionStepLabel(step.action)))
@@ -176,6 +179,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
+              {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
               {process.error && <ErrorView error={process.error}/>}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>

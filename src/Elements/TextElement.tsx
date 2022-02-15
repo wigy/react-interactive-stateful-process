@@ -25,7 +25,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
 
   return <TextField
     label={label}
-    value={value}
+    value={value || ''}
     error={false}
     autoFocus
     fullWidth
