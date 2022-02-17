@@ -23,7 +23,10 @@ export type ConfigChangeViewProps = {
  */
 export const ConfigChangeView = (props: ConfigChangeViewProps): JSX.Element => {
   const { t } = useTranslation()
-  if (props.step.directions.type !== 'ui') {
+  if (!props.step.directions || props.step.directions.type !== 'ui') {
+    return <></>
+  }
+  if (!props.step.action || !props.step.action.configure) {
     return <></>
   }
   const names = [...elementNames(props.step.directions.element)].sort()
