@@ -16,7 +16,10 @@ exports.IGNORE_FIELDS = /^(answers|rules)$/;
  */
 const ConfigChangeView = (props) => {
     const { t } = (0, react_i18next_1.useTranslation)();
-    if (props.step.directions.type !== 'ui') {
+    if (!props.step.directions || props.step.directions.type !== 'ui') {
+        return react_1.default.createElement(react_1.default.Fragment, null);
+    }
+    if (!props.step.action || !props.step.action.configure) {
         return react_1.default.createElement(react_1.default.Fragment, null);
     }
     const names = [...(0, interactive_elements_1.elementNames)(props.step.directions.element)].sort();
