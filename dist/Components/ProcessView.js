@@ -80,7 +80,7 @@ const ProcessView = (props) => {
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
     const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1;
     const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
-    const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1].directions.type === 'ui';
+    const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1] && process.steps[currentStep - 1].directions && process.steps[currentStep - 1].directions.type === 'ui';
     // Handle step change.
     const onChangeStep = (n) => {
         props.onChangeStep && props.onChangeStep(n);
