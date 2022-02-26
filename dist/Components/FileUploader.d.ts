@@ -22,6 +22,7 @@ export declare type FileUploaderProps = {
     disabled?: boolean;
     text?: string;
     icon?: JSX.Element | '';
+    iconSize?: number;
 };
 /**
  * An file uploader utility.

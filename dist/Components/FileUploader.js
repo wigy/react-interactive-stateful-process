@@ -111,7 +111,8 @@ const FileUploader = (props) => {
     const noIcon = props.icon !== undefined && !props.icon;
     const noText = props.text !== undefined && !props.text;
     const text = props.text || react_1.default.createElement(react_i18next_1.Trans, null, "Upload");
-    const icon = noIcon ? undefined : (props.icon || react_1.default.createElement(icons_material_1.UploadFile, null));
+    const iconSx = props.iconSize ? { width: props.iconSize, height: props.iconSize } : {};
+    const icon = noIcon ? undefined : (props.icon || react_1.default.createElement(icons_material_1.UploadFile, { sx: iconSx }));
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("input", { id: "file-uploader-input", disabled: !!props.disabled, type: "file", multiple: !!props.multiple, hidden: true, onChange: (e) => onFileChange(e) }),
         react_1.default.createElement("label", { htmlFor: "file-uploader-input" },
