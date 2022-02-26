@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios, { AxiosResponse } from 'axios'
 import { encode } from 'base64-arraybuffer'
-import { Button, IconButton } from '@mui/material'
+import { Button } from '@mui/material'
 import { Trans } from 'react-i18next'
 import { UploadFile } from '@mui/icons-material'
 
@@ -18,7 +19,10 @@ export type FileUploadData = {
  * Props for the fileuploader.
  */
 export type FileUploaderProps = {
-  onUpload: (files: FileUploadData[]) => void,
+  onUpload?: (files: FileUploadData[]) => void,
+  uploadUrl?: string,
+  onSuccess?: (resp: AxiosResponse) => void,
+  onError?: (err: Error) => void,
   multiple?: boolean,
   color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning',
   variant?: 'text' | 'outlined' | 'contained',
@@ -32,6 +36,8 @@ export type FileUploaderProps = {
  * @param props.onUpload A function handling the resulting file upload data.
  */
 export const FileUploader = (props: FileUploaderProps): JSX.Element => {
+
+  const [uploading, setUploading] = useState(false)
 
   let uploads: FileUploadData[] = []
 
@@ -63,6 +69,24 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
     })
   }
 
+  const onUpload = async () => {
+    if (props.onUpload) {
+      props.onUpload(uploads)
+    } else {
+      if (!props.uploadUrl) {
+        throw new Error('Upload URL is compulsory if no onUpload() callback defined.')
+      }
+      setUploading(true)
+      await axios.post(props.uploadUrl, { files: uploads }).then(resp => {
+        setUploading(false)
+        props.onSuccess && props.onSuccess(resp)
+      }).catch(err => {
+        setUploading(false)
+        props.onError && props.onError(err)
+      })
+    }
+  }
+
   /**
    * Handler of the file selection event for the file input component.
    * @param event
@@ -81,7 +105,7 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
         event.target.value = ''
       }
     }
-    props.onUpload(uploads)
+    onUpload()
   }
 
   const noIcon = props.icon !== undefined && !props.icon
@@ -94,10 +118,10 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
       <input id="file-uploader-input" disabled={!!props.disabled} type="file" multiple={!!props.multiple} hidden onChange={(e) => onFileChange(e)}/>
       <label htmlFor="file-uploader-input">
         { noText &&
-          <Button component="span" disabled={!!props.disabled} color={props.color}>{icon}</Button>
+          <Button component="span" disabled={uploading || !!props.disabled} color={props.color}>{icon}</Button>
         }
         { !noText &&
-          <Button component="span" disabled={!!props.disabled} startIcon={icon} color={props.color} variant={props.variant} >
+          <Button component="span" disabled={uploading || !!props.disabled} startIcon={icon} color={props.color} variant={props.variant} >
             {text}
           </Button>
         }

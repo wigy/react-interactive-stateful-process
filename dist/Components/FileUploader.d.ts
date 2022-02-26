@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 /**
  * Format of the returned file data from the file uploader component.
  */
@@ -11,7 +12,10 @@ export declare type FileUploadData = {
  * Props for the fileuploader.
  */
 export declare type FileUploaderProps = {
-    onUpload: (files: FileUploadData[]) => void;
+    onUpload?: (files: FileUploadData[]) => void;
+    uploadUrl?: string;
+    onSuccess?: (resp: AxiosResponse) => void;
+    onError?: (err: Error) => void;
     multiple?: boolean;
     color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning';
     variant?: 'text' | 'outlined' | 'contained';
