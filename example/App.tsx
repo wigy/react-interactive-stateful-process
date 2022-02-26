@@ -14,6 +14,7 @@ import { ProcessView } from '../src/Components/ProcessView'
 import { ImportStateView } from '../src/Components/ImportStateView'
 import { JsonEditor } from '../src/Components/JsonEditor'
 import { ConfigJSONView } from '../src/Components/ConfigJSONView'
+import { AccountCircle } from '@mui/icons-material'
 
 const API = 'http://localhost:3302/api/isp'
 
@@ -154,7 +155,7 @@ const App = observer(() => {
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
         <Typography className="text" variant="h3">Upload Tester</Typography>
-        <FileUploader onUpload={(files) => onUpload(files)} color="primary" variant="contained"/>
+        <FileUploader text="" icon={<AccountCircle/>} onUpload={(files) => onUpload(files)} color="error" variant="contained"/>
       </Paper>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>

@@ -61,11 +61,17 @@ const FileUploader = (props) => {
         }
         props.onUpload(uploads);
     };
+    const noIcon = props.icon !== undefined && !props.icon;
+    const noText = props.text !== undefined && !props.text;
+    const text = props.text || react_1.default.createElement(react_i18next_1.Trans, null, "Upload");
+    const icon = noIcon ? undefined : (props.icon || react_1.default.createElement(icons_material_1.UploadFile, null));
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("input", { id: "file-uploader-input", disabled: !!props.disabled, type: "file", multiple: !!props.multiple, hidden: true, onChange: (e) => onFileChange(e) }),
         react_1.default.createElement("label", { htmlFor: "file-uploader-input" },
-            react_1.default.createElement(material_1.Button, { component: "span", disabled: !!props.disabled, startIcon: react_1.default.createElement(icons_material_1.UploadFile, null), color: props.color, variant: props.variant },
-                react_1.default.createElement(react_i18next_1.Trans, null, "Upload")))));
+            noText &&
+                react_1.default.createElement(material_1.Button, { component: "span", disabled: !!props.disabled, color: props.color }, icon),
+            !noText &&
+                react_1.default.createElement(material_1.Button, { component: "span", disabled: !!props.disabled, startIcon: icon, color: props.color, variant: props.variant }, text))));
 };
 exports.FileUploader = FileUploader;
 //# sourceMappingURL=FileUploader.js.map

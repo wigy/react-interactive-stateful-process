@@ -1,6 +1,6 @@
 import React from 'react'
 import { encode } from 'base64-arraybuffer'
-import { Button } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
 import { Trans } from 'react-i18next'
 import { UploadFile } from '@mui/icons-material'
 
@@ -23,6 +23,8 @@ export type FileUploaderProps = {
   color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning',
   variant?: 'text' | 'outlined' | 'contained',
   disabled?: boolean
+  text?: string
+  icon?: JSX.Element | ''
 }
 
 /**
@@ -82,13 +84,23 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
     props.onUpload(uploads)
   }
 
+  const noIcon = props.icon !== undefined && !props.icon
+  const noText = props.text !== undefined && !props.text
+  const text = props.text || <Trans>Upload</Trans>
+  const icon = noIcon ? undefined : (props.icon || <UploadFile />)
+
   return (
     <>
       <input id="file-uploader-input" disabled={!!props.disabled} type="file" multiple={!!props.multiple} hidden onChange={(e) => onFileChange(e)}/>
       <label htmlFor="file-uploader-input">
-        <Button component="span" disabled={!!props.disabled} startIcon={<UploadFile />} color={props.color} variant={props.variant} >
-          <Trans>Upload</Trans>
-        </Button>
+        { noText &&
+          <Button component="span" disabled={!!props.disabled} color={props.color}>{icon}</Button>
+        }
+        { !noText &&
+          <Button component="span" disabled={!!props.disabled} startIcon={icon} color={props.color} variant={props.variant} >
+            {text}
+          </Button>
+        }
       </label>
     </>
   )

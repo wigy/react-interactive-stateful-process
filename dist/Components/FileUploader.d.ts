@@ -16,6 +16,8 @@ export declare type FileUploaderProps = {
     color?: 'inherit' | 'error' | 'success' | 'primary' | 'secondary' | 'info' | 'warning';
     variant?: 'text' | 'outlined' | 'contained';
     disabled?: boolean;
+    text?: string;
+    icon?: JSX.Element | '';
 };
 /**
  * An file uploader utility.
