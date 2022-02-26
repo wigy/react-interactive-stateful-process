@@ -69,6 +69,9 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
     })
   }
 
+  /**
+   * Upload handler.
+   */
   const onUpload = async () => {
     if (props.onUpload) {
       props.onUpload(uploads)
@@ -82,7 +85,11 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
         props.onSuccess && props.onSuccess(resp)
       }).catch(err => {
         setUploading(false)
-        props.onError && props.onError(err)
+        if (props.onError) {
+          props.onError(err)
+        } else {
+          console.error(err)
+        }
       })
     }
   }

@@ -62,6 +62,9 @@ const FileUploader = (props) => {
             data: (0, base64_arraybuffer_1.encode)(binary)
         });
     };
+    /**
+     * Upload handler.
+     */
     const onUpload = async () => {
         if (props.onUpload) {
             props.onUpload(uploads);
@@ -76,7 +79,12 @@ const FileUploader = (props) => {
                 props.onSuccess && props.onSuccess(resp);
             }).catch(err => {
                 setUploading(false);
-                props.onError && props.onError(err);
+                if (props.onError) {
+                    props.onError(err);
+                }
+                else {
+                    console.error(err);
+                }
             });
         }
     };
