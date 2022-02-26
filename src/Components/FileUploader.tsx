@@ -29,6 +29,7 @@ export type FileUploaderProps = {
   disabled?: boolean
   text?: string
   icon?: JSX.Element | ''
+  iconSize?: number
 }
 
 /**
@@ -118,7 +119,8 @@ export const FileUploader = (props: FileUploaderProps): JSX.Element => {
   const noIcon = props.icon !== undefined && !props.icon
   const noText = props.text !== undefined && !props.text
   const text = props.text || <Trans>Upload</Trans>
-  const icon = noIcon ? undefined : (props.icon || <UploadFile />)
+  const iconSx = props.iconSize ? { width: props.iconSize, height: props.iconSize } : {}
+  const icon = noIcon ? undefined : (props.icon || <UploadFile sx={iconSx}/>)
 
   return (
     <>
