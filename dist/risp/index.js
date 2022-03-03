@@ -10,8 +10,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./elements"), exports);
-__exportStar(require("./misc"), exports);
-__exportStar(require("./process"), exports);
-__exportStar(require("./risp"), exports);
+/**
+ * Core classes for UI parts for interactive stateful processes.
+ *
+ * @module react-interactive-stateful-process/src/risp
+ */
+__exportStar(require("./ActionEngine"), exports);
+__exportStar(require("./RISP"), exports);
+__exportStar(require("./RISPProvider"), exports);
+__exportStar(require("./RenderingEngine"), exports);
 //# sourceMappingURL=index.js.map
