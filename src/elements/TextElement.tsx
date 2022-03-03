@@ -1,9 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { TextField } from '@mui/material'
-import { Renderer, RenderingProps } from '../RenderingEngine'
+import { Renderer, RenderingProps, RISPProvider } from '..'
 import { isNamedElement, isTextElement } from 'interactive-elements'
-import { RISPProvider } from '../RISPProvider'
 
 /**
  * Rendering for text editing element.

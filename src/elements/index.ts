@@ -1,3 +1,8 @@
+/**
+ * Interactive stateful process element implementations.
+ *
+ * @module react-interactive-stateful-process/src/elements
+ */
 export * from './BooleanElement'
 export * from './BoxElement'
 export * from './ButtonElement'

@@ -2,7 +2,7 @@ import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody } from
 import React, { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
-import { useAxios } from './useAxios'
+import { useAxios } from '..'
 import { GetAllProcessesApiResponse, ID } from 'interactive-elements'
 
 export type ProcessListProps = {

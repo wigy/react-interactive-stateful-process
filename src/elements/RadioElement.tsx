@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Renderer, RenderingProps } from '../RenderingEngine'
+import { Renderer, RenderingProps } from '..'
 import { isNamedElement, isRadioElement } from 'interactive-elements'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
 

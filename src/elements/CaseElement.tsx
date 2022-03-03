@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingEngine, RenderingProps } from '../RenderingEngine'
+import { Renderer, RenderingEngine, RenderingProps } from '..'
 import { isCaseElement } from 'interactive-elements'
 
 export const CaseRenderer: Renderer = (props: RenderingProps) => {

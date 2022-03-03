@@ -36,5 +36,3 @@ export const ConfigJSONView = (props: ConfigJSONViewProps): JSX.Element => {
     </>
   )
 }
-
-ConfigJSONView.foo = 2112

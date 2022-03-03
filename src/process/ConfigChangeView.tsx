@@ -3,8 +3,6 @@ import { elementNames, ID } from 'interactive-elements'
 import { ConfigView } from '.'
 import { useTranslation } from 'react-i18next'
 
-export const IGNORE_FIELDS = /^(answers|rules)$/
-
 export type ConfigChangeViewProps = {
   step: {
     id: ID

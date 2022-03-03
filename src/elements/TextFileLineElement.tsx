@@ -1,9 +1,8 @@
 import React from 'react'
-import { Renderer, RenderingProps } from '../RenderingEngine'
+import { ConfigView, Renderer, RenderingProps } from '..'
 import { isTextFileLineElement } from 'interactive-elements'
 import { Box, Typography } from '@mui/material'
 import { Trans } from 'react-i18next'
-import { ConfigView } from '..'
 
 export const TextFileLineRenderer: Renderer = (props: RenderingProps) => {
   const { element } = props

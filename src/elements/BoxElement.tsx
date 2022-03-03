@@ -1,5 +1,5 @@
 import React from 'react'
-import { Renderer, RenderingEngine, RenderingProps } from '../RenderingEngine'
+import { Renderer, RenderingEngine, RenderingProps } from '..'
 import { InteractiveElement, isBoxElement } from 'interactive-elements'
 import { Box, Card, CardContent, CardHeader } from '@mui/material'
 

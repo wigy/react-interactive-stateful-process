@@ -1,4 +1,4 @@
-import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer, YesNoRenderer, NumberRenderer } from './Elements'
+import { BooleanRenderer, BoxRenderer, ButtonRenderer, FlatRenderer, HtmlRenderer, MessageRenderer, RadioRenderer, TextRenderer, TextFileLineRenderer, CaseRenderer, YesNoRenderer, NumberRenderer } from '..'
 import { ActionEngine, debugActionHandler, patchActionHandler, postActionHandler } from './ActionEngine'
 import { RenderingEngine } from './RenderingEngine'
 

@@ -1,6 +1,6 @@
 import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
 import React, { useState } from 'react'
-import { useAxios } from './useAxios'
+import { useAxios } from '..'
 import { DefaultSummaryView, DefaultSummaryViewProps } from './DefaultSummaryView'
 import { DefaultStateView, DefaultStateViewProps } from './DefaultStateView'
 import { DefaultResultView, DefaultResultViewProps } from './DefaultResultView'
