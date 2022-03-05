@@ -42,7 +42,6 @@
     "@babel/preset-env": "7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/runtime": "7.14.0",
-    "@mui/material": "^5.2.3",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "5.9.1",
     "@typescript-eslint/parser": "5.9.1",
@@ -63,13 +62,8 @@
     "eslint-plugin-standard": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "1.6.0",
-    "mobx": "^6.3.0",
-    "mobx-react": "^7.1.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
-    "react-i18next": "11.11.3",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",
@@ -81,11 +75,11 @@
     "webpack-dev-server": "^4.7.4"
   },
   "peerDependencies": {
-    "@mui/material": "^5.2.3",
-    "mobx": "^6.3.0",
-    "mobx-react": "^7.1.0",
+    "@mui/material": "^5.4.3",
+    "mobx": "^6.4.1",
+    "mobx-react": "^7.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-i18next": "11.11.3"
+    "react-i18next": "11.15.5"
   }
 }
