@@ -124,16 +124,16 @@ const ProcessView = (props) => {
                         react_1.default.createElement(material_1.Typography, null,
                             react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === 0, color: "secondary", "aria-label": "previous", onClick: () => onChangeStep(currentStep !== undefined ? currentStep - 1 : 0) },
                                 react_1.default.createElement(icons_material_1.NavigateBefore, null)),
-                            react_1.default.createElement(material_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? currentStep + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
+                            react_1.default.createElement(material_1.Fab, { disabled: true, style: { fontSize: '140%', color: 'black', fontWeight: 'bold' } }, canChangeStep ? (currentStep || 0) + 1 : react_1.default.createElement(react_1.default.Fragment, null, "\u2014")),
                             react_1.default.createElement(material_1.Fab, { disabled: !canChangeStep || currentStep === process.steps.length - 1, color: "secondary", "aria-label": "next", onClick: () => onChangeStep(currentStep !== undefined ? currentStep + 1 : 0) },
                                 react_1.default.createElement(icons_material_1.NavigateNext, null)))),
                     react_1.default.createElement(material_1.TableCell, { colSpan: 3 },
-                        react_1.default.createElement(StepList_1.StepList, { onChangeStep: (step) => onChangeStep(step), operations: operations, currentStep: currentStep }))),
+                        react_1.default.createElement(StepList_1.StepList, { onChangeStep: (step) => onChangeStep(step), operations: operations, currentStep: currentStep || 0 }))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
                         process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
                         lastStep && process.error && react_1.default.createElement(ErrorView, { error: process.error }),
-                        wasConfigured && react_1.default.createElement(ConfigChangeView_1.ConfigChangeView, { step: process.steps[currentStep - 1] }),
+                        wasConfigured && react_1.default.createElement(ConfigChangeView_1.ConfigChangeView, { step: process.steps[(currentStep || 0) - 1] }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
@@ -141,7 +141,7 @@ const ProcessView = (props) => {
                 hasSteps &&
                     react_1.default.createElement(material_1.TableRow, null,
                         react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },
-                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep, process: process, summaryView: summaryView, stateView: stateView, resultView: resultView, configView: configView })))))));
+                            react_1.default.createElement(StepView, { api: `${props.api}/${props.id}/step`, token: props.token, step: currentStep || 0, process: process, summaryView: summaryView, stateView: stateView, resultView: resultView, configView: configView })))))));
 };
 exports.ProcessView = ProcessView;
 //# sourceMappingURL=ProcessView.js.map

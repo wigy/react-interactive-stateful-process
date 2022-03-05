@@ -160,7 +160,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                   disabled
                   style={{ fontSize: '140%', color: 'black', fontWeight: 'bold' }}
                   >
-                    {canChangeStep ? currentStep + 1 : <>—</>}
+                    {canChangeStep ? (currentStep || 0) + 1 : <>—</>}
                 </Fab>
                 <Fab
                   disabled={!canChangeStep || currentStep === process.steps.length - 1}
@@ -173,14 +173,14 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
               </Typography>
             </TableCell>
             <TableCell colSpan={3}>
-              <StepList onChangeStep={(step) => onChangeStep(step)} operations={operations} currentStep={currentStep}/>
+              <StepList onChangeStep={(step) => onChangeStep(step)} operations={operations} currentStep={currentStep || 0}/>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
               {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
               {lastStep && process.error && <ErrorView error={process.error}/>}
-              {wasConfigured && <ConfigChangeView step={process.steps[currentStep - 1]} />}
+              {wasConfigured && <ConfigChangeView step={process.steps[(currentStep || 0) - 1]} />}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
                 <RISP
@@ -200,7 +200,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                 <StepView
                   api={`${props.api}/${props.id}/step`}
                   token={props.token}
-                  step={currentStep}
+                  step={currentStep || 0}
                   process={process}
                   summaryView={summaryView}
                   stateView={stateView}
