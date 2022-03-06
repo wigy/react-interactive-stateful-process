@@ -38,6 +38,16 @@ export const ImportStateView = (props: ImportStateViewProps): JSX.Element => {
   const result = state.result ? state.result as Record<SegmentId, unknown> : undefined
   return (
     <div>
+      {Object.entries(state.files).map(([name, file]) => (
+        <ImportFile
+          key={name}
+          name={name}
+          config={props.config}
+          resultView={props.resultView}
+          result={result}
+          lines={file.lines}
+        />
+      ))}
       {files.map(file => <ImportFile key={file.name} config={file.config} resultView={file.resultView} result={result} name={file.name} lines={file.lines} />)}
     </div>
   )

@@ -41,7 +41,6 @@ const ConfigView = (props) => {
                     const row = [];
                     for (let r = 0; r < perColumn; r++) {
                         if (idx < keys.length) {
-                            // TODO: Make special marking for { ask: ... }
                             row.push(react_1.default.createElement(react_1.default.Fragment, { key: idx },
                                 react_1.default.createElement("div", null,
                                     react_1.default.createElement("strong", null, capitalize(keys[idx]))),
@@ -56,8 +55,7 @@ const ConfigView = (props) => {
             case 'string':
                 return react_1.default.createElement(react_1.default.Fragment, null, obj === '' ? react_1.default.createElement("br", null) : obj);
             case 'boolean':
-                // TODO: Translate.
-                return obj ? react_1.default.createElement(react_1.default.Fragment, null, "Yes") : react_1.default.createElement(react_1.default.Fragment, null, "No");
+                return obj ? react_1.default.createElement(react_i18next_1.Trans, null, "Yes") : react_1.default.createElement(react_i18next_1.Trans, null, "No");
             default:
                 return react_1.default.createElement(react_1.default.Fragment, null, JSON.stringify(obj));
         }

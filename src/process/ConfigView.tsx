@@ -52,7 +52,6 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           const row: JSX.Element[] = []
           for (let r = 0; r < perColumn; r++) {
             if (idx < keys.length) {
-              // TODO: Make special marking for { ask: ... }
               row.push(<React.Fragment key={idx}>
                 <div><strong>{capitalize(keys[idx])}</strong></div>
                 <div>{render(obj[keys[idx]])}</div>
@@ -69,8 +68,7 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
         return <>{obj === '' ? <br/> : obj}</>
 
       case 'boolean':
-        // TODO: Translate.
-        return obj ? <>Yes</> : <>No</>
+        return obj ? <Trans>Yes</Trans> : <Trans>No</Trans>
 
       default:
         return <>{JSON.stringify(obj)}</>
