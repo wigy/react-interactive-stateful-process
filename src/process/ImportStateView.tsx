@@ -25,15 +25,6 @@ export const ImportStateView = (props: ImportStateViewProps): JSX.Element => {
   }
 
   const state: ImportState = props.state
-  const files: ImportFileProps[] = []
-
-  // TODO: Silly. Move into single loop below.
-  Object.keys(state.files).forEach(name => files.push({
-    config: props.config,
-    name,
-    lines: state.files[name].lines,
-    resultView: props.resultView
-  }))
 
   const result = state.result ? state.result as Record<SegmentId, unknown> : undefined
   return (
@@ -48,7 +39,6 @@ export const ImportStateView = (props: ImportStateViewProps): JSX.Element => {
           lines={file.lines}
         />
       ))}
-      {files.map(file => <ImportFile key={file.name} config={file.config} resultView={file.resultView} result={result} name={file.name} lines={file.lines} />)}
     </div>
   )
 }
