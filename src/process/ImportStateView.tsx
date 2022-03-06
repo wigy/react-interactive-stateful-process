@@ -1,6 +1,6 @@
 import React from 'react'
 import { ImportState, isImportState, ProcessConfig, SegmentId } from 'interactive-elements'
-import { ImportFile, ImportFileProps } from './ImportFile'
+import { ImportFile } from './ImportFile'
 import { DefaultResultViewProps } from './DefaultResultView'
 
 export type ImportStateViewProps = {
