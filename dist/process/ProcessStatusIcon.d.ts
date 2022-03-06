@@ -13,4 +13,4 @@ export declare type ProcessStatusIconProps = {
  * @param props
  * @returns
  */
-export declare const ProcessStatusIcon: (props: ProcessStatusIconProps) => any;
+export declare const ProcessStatusIcon: (props: ProcessStatusIconProps) => JSX.Element;
