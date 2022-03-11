@@ -178,7 +178,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
-              {process.status === 'SUCCEEDED' && <SuccessView process={process}/>}
+              {lastStep && process.status === 'SUCCEEDED' && <SuccessView step={process.steps[process.steps.length - 1]} process={process}/>}
               {lastStep && process.error && <ErrorView error={process.error}/>}
               {wasConfigured && <ConfigChangeView step={process.steps[(currentStep || 0) - 1]} />}
               {needAnswers && <>

@@ -1,12 +1,13 @@
 import { Card, CardContent, Typography } from '@mui/material'
 import { green } from '@mui/material/colors'
-import { ProcessModelDetailedData, ProcessStatus } from 'interactive-elements'
+import { ProcessModelDetailedData, ProcessStepModelData, ProcessStatus } from 'interactive-elements'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { ProcessStatusIcon } from '.'
 
 export type DefaultSuccessViewProps = {
   process: ProcessModelDetailedData
+  step: ProcessStepModelData
 }
 
 /**
