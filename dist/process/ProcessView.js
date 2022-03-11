@@ -131,7 +131,7 @@ const ProcessView = (props) => {
                         react_1.default.createElement(StepList_1.StepList, { onChangeStep: (step) => onChangeStep(step), operations: operations, currentStep: currentStep || 0 }))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
-                        process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { process: process }),
+                        lastStep && process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { step: process.steps[process.steps.length - 1], process: process }),
                         lastStep && process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         wasConfigured && react_1.default.createElement(ConfigChangeView_1.ConfigChangeView, { step: process.steps[(currentStep || 0) - 1] }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
