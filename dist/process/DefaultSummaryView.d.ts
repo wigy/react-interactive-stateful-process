@@ -1,8 +1,8 @@
-import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements';
+import { ProcessModelDetailedData, ProcessStepModelData } from 'interactive-elements';
 import { ConfigViewProps } from './ConfigView';
 export declare type DefaultSummaryViewProps = {
-    step: GetOneStepResponse;
-    process: GetOneProcessResponse;
+    step: ProcessStepModelData;
+    process: ProcessModelDetailedData;
     configView?: (props: ConfigViewProps) => JSX.Element;
 };
 /**

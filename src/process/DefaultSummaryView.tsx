@@ -1,4 +1,4 @@
-import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
+import { ProcessModelDetailedData, ProcessStepModelData } from 'interactive-elements'
 import { Card, CardContent, ToggleButton, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -6,8 +6,8 @@ import { Settings } from '@mui/icons-material'
 import { ConfigView, ConfigViewProps } from './ConfigView'
 
 export type DefaultSummaryViewProps = {
-  step: GetOneStepResponse
-  process: GetOneProcessResponse
+  step: ProcessStepModelData
+  process: ProcessModelDetailedData
   configView?: (props: ConfigViewProps) => JSX.Element
 }
 

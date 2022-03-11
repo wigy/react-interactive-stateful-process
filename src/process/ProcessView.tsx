@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios, RISP } from '..'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { GetOneProcessResponse, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues } from 'interactive-elements'
+import { ProcessModelDetailedData, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -63,7 +63,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const theme = useTheme()
   const { t } = useTranslation()
 
-  const [process, setProcess] = useState<GetOneProcessResponse | null>(null)
+  const [process, setProcess] = useState<ProcessModelDetailedData | null>(null)
   const [, setStep] = useState<number | null>(null)
 
   useAxios({
