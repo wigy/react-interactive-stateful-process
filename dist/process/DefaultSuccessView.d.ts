@@ -1,6 +1,6 @@
-import { GetOneProcessResponse } from 'interactive-elements';
+import { ProcessModelDetailedData } from 'interactive-elements';
 export declare type DefaultSuccessViewProps = {
-    process: GetOneProcessResponse;
+    process: ProcessModelDetailedData;
 };
 /**
  * Simple state display showing a success mark if state is success.

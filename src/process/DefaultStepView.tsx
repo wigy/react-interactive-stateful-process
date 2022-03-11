@@ -1,4 +1,4 @@
-import { GetOneProcessResponse, GetOneStepResponse } from 'interactive-elements'
+import { ProcessModelDetailedData, ProcessStepModelData } from 'interactive-elements'
 import React, { useState } from 'react'
 import { useAxios } from '..'
 import { DefaultSummaryView, DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -10,7 +10,7 @@ export type DefaultStepViewProps = {
   api: string
   token?: string
   step: number
-  process: GetOneProcessResponse
+  process: ProcessModelDetailedData
   summaryView?: (props: DefaultSummaryViewProps) => JSX.Element
   stateView?: (props: DefaultStateViewProps) => JSX.Element
   resultView?: (props: DefaultResultViewProps) => JSX.Element
@@ -24,7 +24,7 @@ export type DefaultStepViewProps = {
  */
 export const DefaultStepView = (props: DefaultStepViewProps): JSX.Element => {
 
-  const [step, setStep] = useState<GetOneStepResponse | null>(null)
+  const [step, setStep] = useState<ProcessStepModelData | null>(null)
 
   useAxios({ url: `${props.api}/${props.step}`, token: props.token, receiver: setStep })
 
