@@ -64,25 +64,35 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const { t } = useTranslation()
 
   const [process, setProcess] = useState<ProcessModelDetailedData | null>(null)
-  const [, setStep] = useState<number | null>(null)
+  const [step, setStep] = useState<number | null>(null)
+
+  // Resolve step.
+  let currentStep: number | undefined
+  if (props.step !== undefined && props.step !== null) {
+    currentStep = props.step
+  }
+  if (process && (currentStep === null || currentStep === undefined)) {
+    currentStep = process.currentStep !== undefined ? process.currentStep : 0
+  }
 
   useAxios({
-    url: `${props.api}/${props.id}${props.step !== undefined && props.step !== null ? `?step=${props.step}` : ''}`,
+    // Note, step argument does not do anything except triggers URL refetch.
+    url: `${props.api}/${props.id}${currentStep !== undefined ? `?step=${currentStep}` : ''}`,
     token: props.token,
     receiver: setProcess
+  })
+
+  useAxios({
+    // Note, step argument does not do anything except triggers URL refetch.
+    url: currentStep === undefined ? null : `${props.api}/${props.id}/step/${currentStep}`,
+    token: props.token,
+    receiver: setStep
   })
 
   if (!process) return <></>
 
   // Calculate some values for futher use.
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
-  let currentStep: number | undefined
-  if (props.step !== undefined && props.step !== null) {
-    currentStep = props.step
-  }
-  if (currentStep === null || currentStep === undefined) {
-    currentStep = process.currentStep !== undefined ? process.currentStep : 0
-  }
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
   const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
   const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
@@ -91,7 +101,6 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   // Handle step change.
   const onChangeStep = (n: number) => {
     props.onChangeStep && props.onChangeStep(n)
-    setStep(n)
   }
 
   // Handle back button.
@@ -178,7 +187,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
-              {lastStep && process.status === 'SUCCEEDED' && <SuccessView step={process.steps[process.steps.length - 1]} process={process}/>}
+              {lastStep && process.status === 'SUCCEEDED' && <SuccessView step={step} process={process}/>}
               {lastStep && process.error && <ErrorView error={process.error}/>}
               {wasConfigured && <ConfigChangeView step={process.steps[(currentStep || 0) - 1]} />}
               {needAnswers && <>
@@ -200,7 +209,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
                 <StepView
                   api={`${props.api}/${props.id}/step`}
                   token={props.token}
-                  step={currentStep || 0}
+                  step={step}
                   process={process}
                   summaryView={summaryView}
                   stateView={stateView}

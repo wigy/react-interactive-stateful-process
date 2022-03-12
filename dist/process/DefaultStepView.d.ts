@@ -1,4 +1,4 @@
-import { ProcessModelDetailedData } from 'interactive-elements';
+import { ProcessModelDetailedData, ProcessStepModelData } from 'interactive-elements';
 import { DefaultSummaryViewProps } from './DefaultSummaryView';
 import { DefaultStateViewProps } from './DefaultStateView';
 import { DefaultResultViewProps } from './DefaultResultView';
@@ -6,7 +6,7 @@ import { ConfigViewProps } from './ConfigView';
 export declare type DefaultStepViewProps = {
     api: string;
     token?: string;
-    step: number;
+    step: ProcessStepModelData | null;
     process: ProcessModelDetailedData;
     summaryView?: (props: DefaultSummaryViewProps) => JSX.Element;
     stateView?: (props: DefaultStateViewProps) => JSX.Element;

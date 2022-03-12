@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 import axios from 'axios'
 
 export type AxiosProps<Type> = {
-  url: string,
+  url: string | null,
   token?: string,
   receiver: Dispatch<SetStateAction<Type>>
 }
@@ -14,6 +14,10 @@ export type AxiosProps<Type> = {
 export function useAxios<Type>(props: AxiosProps<Type>) {
   const { token, url, receiver } = props
   useEffect(() => {
+    if (url === null) {
+      receiver(null)
+      return
+    }
     let gone = false
     const headers: { Authorization?: string } = {}
     if (token) {
