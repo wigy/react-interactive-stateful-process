@@ -13,6 +13,10 @@ const axios_1 = __importDefault(require("axios"));
 function useAxios(props) {
     const { token, url, receiver } = props;
     (0, react_1.useEffect)(() => {
+        if (url === null) {
+            receiver(null);
+            return;
+        }
         let gone = false;
         const headers = {};
         if (token) {
