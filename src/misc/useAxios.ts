@@ -4,7 +4,7 @@ import axios from 'axios'
 export type AxiosProps<Type> = {
   url: string | null,
   token?: string,
-  receiver: Dispatch<SetStateAction<Type>>
+  receiver: Dispatch<SetStateAction<Type>|null>
 }
 
 /**

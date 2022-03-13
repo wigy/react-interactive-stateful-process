@@ -1,17 +1,10 @@
 import React from 'react'
-import { elementNames, ID } from 'interactive-elements'
+import { elementNames, ProcessStepModelData } from 'interactive-elements'
 import { ConfigView } from '.'
 import { useTranslation } from 'react-i18next'
 
 export type ConfigChangeViewProps = {
-  step: {
-    id: ID
-    action: Record<string, unknown>
-    directions: Record<string, unknown>
-    number: number
-    started: Date
-    finished: Date
-  }
+  step: ProcessStepModelData
 }
 
 /**
