@@ -1,13 +1,6 @@
-import { ID } from 'interactive-elements';
+import { ProcessStepModelData } from 'interactive-elements';
 export declare type ConfigChangeViewProps = {
-    step: {
-        id: ID;
-        action: Record<string, unknown>;
-        directions: Record<string, unknown>;
-        number: number;
-        started: Date;
-        finished: Date;
-    };
+    step: ProcessStepModelData;
 };
 /**
  * A viewer for changes made during the interactive step.

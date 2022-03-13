@@ -86,8 +86,17 @@ const ProcessView = (props) => {
     const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1;
     const hasSteps = process.currentStep !== undefined && process.steps.length > 0;
     const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1;
-    const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui';
-    const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1] && process.steps[currentStep - 1].directions && process.steps[currentStep - 1].directions.type === 'ui';
+    const directions = currentStep !== undefined ? process.steps[currentStep].directions || {} : {};
+    const needAnswers = (hasSteps &&
+        process.status === 'WAITING' &&
+        !process.error &&
+        currentStep === process.steps.length - 1 &&
+        directions.type === 'ui');
+    const wasConfigured = (currentStep !== undefined &&
+        currentStep > 0 &&
+        process.steps[currentStep - 1] &&
+        process.steps[currentStep - 1].directions &&
+        directions.type === 'ui');
     // Handle step change.
     const onChangeStep = (n) => {
         props.onChangeStep && props.onChangeStep(n);
@@ -138,13 +147,13 @@ const ProcessView = (props) => {
                         react_1.default.createElement(StepList_1.StepList, { onChangeStep: (step) => onChangeStep(step), operations: operations, currentStep: currentStep || 0 }))),
                 react_1.default.createElement(material_1.TableRow, null,
                     react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left", style: { verticalAlign: 'top' } },
-                        lastStep && process.status === 'SUCCEEDED' && react_1.default.createElement(SuccessView, { step: step, process: process }),
+                        lastStep && process.status === 'SUCCEEDED' && step !== null && react_1.default.createElement(SuccessView, { step: step, process: process }),
                         lastStep && process.error && react_1.default.createElement(ErrorView, { error: process.error }),
                         wasConfigured && react_1.default.createElement(ConfigChangeView_1.ConfigChangeView, { step: process.steps[(currentStep || 0) - 1] }),
                         needAnswers && react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                                 react_1.default.createElement(react_i18next_1.Trans, null, "Additional information needed")),
-                            react_1.default.createElement(__1.RISP, { key: "directions", element: process.steps[currentStep].directions.element, values: values, setup: props.setup || { baseUrl: `${props.api}/${process.id}` }, onActionSuccess: onActionSuccess })))),
+                            react_1.default.createElement(__1.RISP, { key: "directions", element: directions.element, values: values, setup: props.setup || { baseUrl: `${props.api}/${process.id}` }, onActionSuccess: onActionSuccess })))),
                 hasSteps &&
                     react_1.default.createElement(material_1.TableRow, null,
                         react_1.default.createElement(material_1.TableCell, { colSpan: 5, align: "left" },
