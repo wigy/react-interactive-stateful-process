@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios, RISP } from '..'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { ProcessModelDetailedData, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues } from 'interactive-elements'
+import { ProcessModelDetailedData, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues, ProcessStepModelData } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -64,7 +64,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const { t } = useTranslation()
 
   const [process, setProcess] = useState<ProcessModelDetailedData | null>(null)
-  const [step, setStep] = useState<number | null>(null)
+  const [step, setStep] = useState<ProcessStepModelData | null>(null)
 
   // Resolve step.
   let currentStep: number | undefined
@@ -95,8 +95,22 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
   const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
-  const needAnswers = hasSteps && process.status === 'WAITING' && !process.error && currentStep === process.steps.length - 1 && process.steps[currentStep].directions && process.steps[currentStep].directions.type === 'ui'
-  const wasConfigured = currentStep !== undefined && currentStep > 0 && process.steps[currentStep - 1] && process.steps[currentStep - 1].directions && process.steps[currentStep - 1].directions.type === 'ui'
+  const directions = currentStep !== undefined ? process.steps[currentStep].directions || {} : {}
+  const needAnswers = (
+    hasSteps &&
+    process.status === 'WAITING' &&
+    !process.error &&
+    currentStep === process.steps.length - 1 &&
+    directions.type === 'ui'
+  )
+
+  const wasConfigured = (
+    currentStep !== undefined &&
+    currentStep > 0 &&
+    process.steps[currentStep - 1] &&
+    process.steps[currentStep - 1].directions &&
+    directions.type === 'ui'
+  )
 
   // Handle step change.
   const onChangeStep = (n: number) => {
@@ -187,14 +201,14 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
           </TableRow>
           <TableRow>
             <TableCell colSpan={5} align="left" style={{ verticalAlign: 'top' }}>
-              {lastStep && process.status === 'SUCCEEDED' && <SuccessView step={step} process={process}/>}
+              {lastStep && process.status === 'SUCCEEDED' && step !== null && <SuccessView step={step} process={process}/>}
               {lastStep && process.error && <ErrorView error={process.error}/>}
               {wasConfigured && <ConfigChangeView step={process.steps[(currentStep || 0) - 1]} />}
               {needAnswers && <>
                 <Typography variant="subtitle1"><Trans>Additional information needed</Trans></Typography>
                 <RISP
                   key="directions"
-                  element={process.steps[currentStep].directions.element as InteractiveElement}
+                  element={directions.element as InteractiveElement}
                   values={values}
                   setup={props.setup || { baseUrl: `${props.api}/${process.id}` }}
                   onActionSuccess={onActionSuccess}
