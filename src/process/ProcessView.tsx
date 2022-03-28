@@ -95,7 +95,7 @@ export const ProcessView = (props: ProcessViewProps): JSX.Element => {
   const canChangeStep = process.currentStep !== undefined && process.currentStep !== null && process.steps && process.steps.length > 1
   const hasSteps = process.currentStep !== undefined && process.steps.length > 0
   const lastStep = currentStep !== undefined && process.steps.length > 0 && currentStep === process.steps.length - 1
-  const directions = currentStep !== undefined ? process.steps[currentStep].directions || {} : {}
+  const directions = currentStep !== undefined && process.steps[currentStep] ? process.steps[currentStep].directions || {} : {}
   const needAnswers = (
     hasSteps &&
     process.status === 'WAITING' &&
