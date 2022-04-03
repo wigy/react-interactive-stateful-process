@@ -101,7 +101,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
   const segementNumbers: Record<string, number> = {}
 
   return (
-    <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+    <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)} TransitionProps={{ timeout: 50 }}>
 
       <AccordionSummary expandIcon={<ExpandMore />} id={`File ${props.name}`}>
         <Typography variant="subtitle1"><strong>{props.name}</strong></Typography>

@@ -87,7 +87,7 @@ const ImportFile = (props) => {
     ];
     const segmentIds = new Set();
     const segementNumbers = {};
-    return (react_1.default.createElement(material_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded) },
+    return (react_1.default.createElement(material_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded), TransitionProps: { timeout: 50 } },
         react_1.default.createElement(material_1.AccordionSummary, { expandIcon: react_1.default.createElement(icons_material_1.ExpandMore, null), id: `File ${props.name}` },
             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                 react_1.default.createElement("strong", null, props.name))),
