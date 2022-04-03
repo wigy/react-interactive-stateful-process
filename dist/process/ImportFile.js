@@ -42,14 +42,14 @@ const ImportLine = (props) => {
             react_1.default.createElement(material_1.TableCell, null, lineNumber),
             react_1.default.createElement(material_1.TableCell, { style: { backgroundColor: color } }),
             react_1.default.createElement(material_1.TableCell, null,
-                react_1.default.createElement(material_1.Box, { sx: { fontFamily: 'Monospace' } }, text)),
+                react_1.default.createElement(material_1.Typography, { sx: { fontFamily: 'Monospace', overflow: 'hidden', textOverflow: 'hidden', fontSize: '80%' } }, text)),
             react_1.default.createElement(material_1.TableCell, null,
                 hasColumns && !open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(true) },
                     react_1.default.createElement(icons_material_1.ExpandMore, null)),
                 hasColumns && open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(false) },
                     react_1.default.createElement(icons_material_1.ExpandLess, null)))),
         open && hasColumns &&
-            react_1.default.createElement(material_1.TableRow, null,
+            react_1.default.createElement(material_1.TableRow, { sx: { width: '65vw' } },
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, null,
@@ -61,7 +61,7 @@ const ImportLine = (props) => {
                     react_1.default.createElement(_1.ConfigView, { config: columns })),
                 react_1.default.createElement(material_1.TableCell, null)),
         props.result &&
-            react_1.default.createElement(material_1.TableRow, null,
+            react_1.default.createElement(material_1.TableRow, { sx: { width: '65vw' } },
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, null),
                 react_1.default.createElement(material_1.TableCell, { id: props.result ? `segment-${segmentId}` : undefined },
@@ -87,12 +87,12 @@ const ImportFile = (props) => {
     ];
     const segmentIds = new Set();
     const segementNumbers = {};
-    return (react_1.default.createElement(material_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded) },
+    return (react_1.default.createElement(material_1.Accordion, { expanded: expanded, onChange: () => setExpanded(!expanded), TransitionProps: { timeout: 50 } },
         react_1.default.createElement(material_1.AccordionSummary, { expandIcon: react_1.default.createElement(icons_material_1.ExpandMore, null), id: `File ${props.name}` },
             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                 react_1.default.createElement("strong", null, props.name))),
         react_1.default.createElement(material_1.AccordionDetails, null,
-            react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper },
+            react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper, sx: { width: '70vw' } },
                 react_1.default.createElement(material_1.Table, { size: "small" },
                     react_1.default.createElement(material_1.TableBody, null, props.lines.map((line, idx) => {
                         let color;

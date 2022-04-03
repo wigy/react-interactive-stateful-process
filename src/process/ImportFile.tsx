@@ -30,20 +30,21 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
   if (text.trim() === '') {
     return <></>
   }
-
   return (
     <>
       <TableRow onClick={() => setOpen(!open)}>
         <TableCell>{lineNumber}</TableCell>
         <TableCell style={{ backgroundColor: color }}></TableCell>
-        <TableCell><Box sx={{ fontFamily: 'Monospace' }}>{text}</Box></TableCell>
+        <TableCell>
+          <Typography sx={{ fontFamily: 'Monospace', overflow: 'hidden', textOverflow: 'hidden', fontSize: '80%' }}>{text}</Typography>
+        </TableCell>
         <TableCell>
           { hasColumns && !open && <IconButton size="small" onClick={() => setOpen(true)}><ExpandMore/></IconButton> }
           { hasColumns && open && <IconButton size="small" onClick={() => setOpen(false)}><ExpandLess/></IconButton> }
         </TableCell>
       </TableRow>
       { open && hasColumns &&
-        <TableRow>
+        <TableRow sx={{ width: '65vw' }}>
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell>
@@ -58,7 +59,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
         </TableRow>
       }
       { props.result &&
-        <TableRow>
+        <TableRow sx={{ width: '65vw' }}>
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell id={props.result ? `segment-${segmentId}` : undefined}>
@@ -100,14 +101,14 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
   const segementNumbers: Record<string, number> = {}
 
   return (
-    <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+    <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)} TransitionProps={{ timeout: 50 }}>
 
       <AccordionSummary expandIcon={<ExpandMore />} id={`File ${props.name}`}>
         <Typography variant="subtitle1"><strong>{props.name}</strong></Typography>
       </AccordionSummary>
 
       <AccordionDetails>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ width: '70vw' }}>
           <Table size="small">
             <TableBody>
               {props.lines.map((line, idx) => {
