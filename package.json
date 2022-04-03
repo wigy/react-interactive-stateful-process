@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-stateful-process",
-  "version": "1.0.118",
+  "version": "1.0.119",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -45,7 +45,7 @@
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "5.9.1",
     "@typescript-eslint/parser": "5.9.1",
-    "axios": "^0.24.0",
+    "axios": "0.26.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "4.0.0-alpha.0",
