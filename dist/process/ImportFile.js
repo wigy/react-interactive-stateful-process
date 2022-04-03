@@ -42,7 +42,7 @@ const ImportLine = (props) => {
             react_1.default.createElement(material_1.TableCell, null, lineNumber),
             react_1.default.createElement(material_1.TableCell, { style: { backgroundColor: color } }),
             react_1.default.createElement(material_1.TableCell, null,
-                react_1.default.createElement(material_1.Box, { sx: { fontFamily: 'Monospace' } }, text)),
+                react_1.default.createElement(material_1.Box, { sx: { fontFamily: 'Monospace', overflow: 'wrap-word', fontSize: '80%' } }, text)),
             react_1.default.createElement(material_1.TableCell, null,
                 hasColumns && !open && react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setOpen(true) },
                     react_1.default.createElement(icons_material_1.ExpandMore, null)),
@@ -92,7 +92,7 @@ const ImportFile = (props) => {
             react_1.default.createElement(material_1.Typography, { variant: "subtitle1" },
                 react_1.default.createElement("strong", null, props.name))),
         react_1.default.createElement(material_1.AccordionDetails, null,
-            react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper },
+            react_1.default.createElement(material_1.TableContainer, { component: material_1.Paper, sx: { width: '70vw' } },
                 react_1.default.createElement(material_1.Table, { size: "small" },
                     react_1.default.createElement(material_1.TableBody, null, props.lines.map((line, idx) => {
                         let color;

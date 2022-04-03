@@ -36,7 +36,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
       <TableRow onClick={() => setOpen(!open)}>
         <TableCell>{lineNumber}</TableCell>
         <TableCell style={{ backgroundColor: color }}></TableCell>
-        <TableCell><Box sx={{ fontFamily: 'Monospace' }}>{text}</Box></TableCell>
+        <TableCell><Box sx={{ fontFamily: 'Monospace', overflow: 'wrap-word', fontSize: '80%' }}>{text}</Box></TableCell>
         <TableCell>
           { hasColumns && !open && <IconButton size="small" onClick={() => setOpen(true)}><ExpandMore/></IconButton> }
           { hasColumns && open && <IconButton size="small" onClick={() => setOpen(false)}><ExpandLess/></IconButton> }
@@ -107,7 +107,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
       </AccordionSummary>
 
       <AccordionDetails>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ width: '70vw' }}>
           <Table size="small">
             <TableBody>
               {props.lines.map((line, idx) => {
