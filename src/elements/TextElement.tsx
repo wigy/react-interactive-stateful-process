@@ -24,6 +24,7 @@ export const TextRenderer: Renderer = (props: RenderingProps) => {
 
   return <TextField
     label={label}
+    name={element.name}
     value={value || ''}
     error={false}
     autoFocus
