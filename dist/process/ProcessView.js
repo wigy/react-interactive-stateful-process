@@ -130,7 +130,7 @@ const ProcessView = (props) => {
                         "# ",
                         process.id),
                     react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }),
-                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.created),
+                    react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, `${process.created}`),
                     react_1.default.createElement(material_1.TableCell, { variant: "head", style: { color: theme.palette.secondary.contrastText }, align: "left" }, process.name),
                     react_1.default.createElement(material_1.TableCell, { variant: "head", style: { backgroundColor: 'white' }, align: "right" },
                         react_1.default.createElement(ProcessStatusIcon_1.ProcessStatusIcon, { status: process.status })))),
