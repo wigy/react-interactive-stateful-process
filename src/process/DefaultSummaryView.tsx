@@ -28,24 +28,26 @@ export const DefaultSummaryView = (props: DefaultSummaryViewProps): JSX.Element 
   return (
     <>
       <Typography variant="body2">
-        <Trans><strong>Process ID</strong></Trans>: {step.processId}
-        &nbsp;
-        <Trans><strong>Step</strong></Trans>: {step.number + 1}
-        &nbsp;
-        <Trans><strong>Handler</strong></Trans>: {step.handler}
-        &nbsp;
-        <Trans><strong>Started</strong></Trans>: {step.started}
-        &nbsp;
-        <Trans><strong>Duration</strong></Trans>: {finished ? `${finished - started}ms ` : '— '}
-        <ToggleButton
-          size="small"
-          value="showConfig"
-          selected={showConfig}
-          title={showConfig ? t('Hide configuration') : t('Show configuration')}
-          onClick={() => setShowConfig(!showConfig)}
-        >
-          <Settings/>
-        </ToggleButton>
+        <>
+          <Trans><strong>Process ID</strong></Trans>: {step.processId}
+          &nbsp;
+          <Trans><strong>Step</strong></Trans>: {step.number + 1}
+          &nbsp;
+          <Trans><strong>Handler</strong></Trans>: {step.handler}
+          &nbsp;
+          <Trans><strong>Started</strong></Trans>: {step.started}
+          &nbsp;
+          <Trans><strong>Duration</strong></Trans>: {finished ? `${finished - started}ms ` : '— '}
+          <ToggleButton
+            size="small"
+            value="showConfig"
+            selected={showConfig}
+            title={showConfig ? t('Hide configuration') : t('Show configuration')}
+            onClick={() => setShowConfig(!showConfig)}
+          >
+            <Settings/>
+          </ToggleButton>
+        </>
       </Typography>
       { showConfig &&
         <Card style={{ marginBottom: '0.5em' }}>

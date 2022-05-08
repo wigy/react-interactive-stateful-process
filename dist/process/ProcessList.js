@@ -47,7 +47,7 @@ const ProcessList = (props) => {
                         react_1.default.createElement(react_i18next_1.Trans, null, "Status")))),
             react_1.default.createElement(material_1.TableBody, null, processes.map(process => (react_1.default.createElement(material_1.TableRow, { key: process.id, onClick: () => { props.onClick && props.onClick(process.id); } },
                 react_1.default.createElement(material_1.TableCell, null, process.id),
-                react_1.default.createElement(material_1.TableCell, null, process.created),
+                react_1.default.createElement(material_1.TableCell, null, `${process.created}`),
                 react_1.default.createElement(material_1.TableCell, null, process.name),
                 react_1.default.createElement(material_1.TableCell, null,
                     react_1.default.createElement(ProcessStatusIcon_1.ProcessStatusIcon, { status: process.status })))))))));
