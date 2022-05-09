@@ -12,13 +12,22 @@ const downloadUrl = (url, token, fileName) => {
         method: 'GET',
         headers: new Headers(headers)
     })
-        .then(response => response.blob())
+        .then(response => {
+        const disposition = response.headers.get('Content-Disposition');
+        if (disposition && !fileName) {
+            const match = /^.*?filename="(.*)"$/.exec(disposition);
+            if (match) {
+                fileName = match[1];
+            }
+        }
+        return response.blob();
+    })
         .then(blob => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.target = '_blank';
-        a.download = fileName || 'file.bin';
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
         a.remove();
