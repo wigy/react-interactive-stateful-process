@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *
  * @module react-interactive-stateful-process/src/misc
  */
+__exportStar(require("./downloader"), exports);
 __exportStar(require("./FileUploader"), exports);
 __exportStar(require("./JsonEditor"), exports);
 __exportStar(require("./useAxios"), exports);
