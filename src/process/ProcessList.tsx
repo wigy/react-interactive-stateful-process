@@ -18,7 +18,7 @@ export type ProcessListProps = {
  */
 export const ProcessList = (props: ProcessListProps): JSX.Element => {
 
-  const [processes, setProcesses] = useState<ProcessModelData>([])
+  const [processes, setProcesses] = useState<ProcessModelData[]>([])
   useAxios({ url: `${props.api}`, token: props.token, receiver: setProcesses })
 
   return (

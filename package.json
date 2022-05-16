@@ -32,7 +32,7 @@
     "@mui/icons-material": "^5.2.1",
     "base64-arraybuffer": "1.0.2",
     "get-value": "^3.0.1",
-    "interactive-elements": "^1.0.77",
+    "interactive-elements": "1.0.78",
     "jsoneditor": "^9.5.11",
     "set-value": "^4.1.0"
   },
