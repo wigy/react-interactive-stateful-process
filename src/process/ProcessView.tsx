@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ProcessStatusIcon } from './ProcessStatusIcon'
 import { useAxios, RISP } from '..'
 import { DefaultStepView, DefaultStepViewProps } from './DefaultStepView'
-import { ProcessModelDetailedData, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues, ProcessStepModelData } from 'interactive-elements'
+import { ProcessModelDetailedData, InteractiveElement, isImportConfigureAction, isImportOpAction, RenderingProps, Setup, TriggerValue, TriggerValues, ProcessStepModelData, isImportAnswerAction } from 'interactive-elements'
 import { ArrowBackOutlined, NavigateBefore, NavigateNext } from '@mui/icons-material'
 import { DefaultStateViewProps } from './DefaultStateView'
 import { DefaultSummaryViewProps } from './DefaultSummaryView'
@@ -47,6 +47,9 @@ const actionStepLabel = (action: unknown): string => {
   }
   if (isImportConfigureAction(action)) {
     return 'configuring'
+  }
+  if (isImportAnswerAction(action)) {
+    return 'answer'
   }
   return JSON.stringify(action)
 }

@@ -47,6 +47,9 @@ const actionStepLabel = (action) => {
     if ((0, interactive_elements_1.isImportConfigureAction)(action)) {
         return 'configuring';
     }
+    if ((0, interactive_elements_1.isImportAnswerAction)(action)) {
+        return 'answer';
+    }
     return JSON.stringify(action);
 };
 /**
