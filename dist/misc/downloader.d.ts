@@ -3,4 +3,4 @@
  * @param url
  * @param token
  */
-export declare const downloadUrl: (url: string, token?: string | undefined, fileName?: string | undefined) => void;
+export declare const downloadUrl: (url: string, token?: string, fileName?: string) => void;
