@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { RenderingEngine, RenderingProps } from './RenderingEngine'
-import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement, isActiveElement } from 'interactive-elements'
+import { InteractiveElement, ActiveElement, isContainerElement, isNamedElement, isActiveElement, isCaseElement } from 'interactive-elements'
 import { runInAction } from 'mobx'
 import { ActionEngine } from './ActionEngine'
 
@@ -50,6 +50,11 @@ export const RISP: React.FC<RISPProps> = observer((rispProps: RISPProps) => {
 
     if (isContainerElement(element)) {
       for (const e of element.elements) {
+        prepare(e)
+      }
+    }
+    if (isCaseElement(element)) {
+      for (const e of Object.values(element.cases)) {
         prepare(e)
       }
     }

@@ -48,6 +48,11 @@ exports.RISP = (0, mobx_react_1.observer)((rispProps) => {
                 prepare(e);
             }
         }
+        if ((0, interactive_elements_1.isCaseElement)(element)) {
+            for (const e of Object.values(element.cases)) {
+                prepare(e);
+            }
+        }
     };
     prepare(element);
     const ret = RenderingEngine_1.RenderingEngine.render(rispProps);
