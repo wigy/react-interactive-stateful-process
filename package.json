@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-stateful-process",
-  "version": "1.0.132",
+  "version": "1.0.133",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
