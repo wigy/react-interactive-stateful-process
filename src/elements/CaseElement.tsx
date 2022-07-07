@@ -9,8 +9,7 @@ export const CaseRenderer: Renderer = (props: RenderingProps) => {
   }
   const { cases, condition } = element
   const noValue = values[condition] === undefined || values[condition] === null
-  // TODO: Should be renamed as defaultValue.
-  const defaultValue = element.default === undefined ? undefined : element.default
+  const defaultValue = element.defaultValue === undefined ? undefined : element.defaultValue
   const selectedCase = noValue ? defaultValue : values[condition]
 
   const rendering: Record<string, JSX.Element | null> = {}
