@@ -22,7 +22,7 @@ function useAxios(props) {
         if (token) {
             headers.Authorization = `Bearer ${token}`;
         }
-        (0, axios_1.default)({ method: 'GET', url: url, headers })
+        (0, axios_1.default)({ method: 'GET', url, headers })
             .then(resp => !gone && receiver(resp.data))
             .catch(err => console.error('Axios:', err));
         return () => {

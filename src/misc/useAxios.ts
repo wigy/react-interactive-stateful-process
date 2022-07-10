@@ -23,7 +23,7 @@ export function useAxios<Type>(props: AxiosProps<Type>) {
     if (token) {
       headers.Authorization = `Bearer ${token}`
     }
-    axios({ method: 'GET', url: url, headers })
+    axios({ method: 'GET', url, headers })
       .then(resp => !gone && receiver(resp.data as Type))
       .catch(err => console.error('Axios:', err))
 
