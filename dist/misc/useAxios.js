@@ -28,7 +28,8 @@ function useAxios(props) {
         return () => {
             gone = true;
         };
-    }, [token, url, receiver]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token, url]);
 }
 exports.useAxios = useAxios;
 //# sourceMappingURL=useAxios.js.map

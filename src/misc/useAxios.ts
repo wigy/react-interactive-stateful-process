@@ -30,5 +30,6 @@ export function useAxios<Type>(props: AxiosProps<Type>) {
     return () => {
       gone = true
     }
-  }, [token, url, receiver])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, url])
 }
