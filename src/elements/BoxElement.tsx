@@ -9,8 +9,8 @@ export const BoxRenderer: Renderer = (props: RenderingProps) => {
     throw new Error(`Wrong renderer ${JSON.stringify(element)}.`)
   }
   return <Card variant="outlined">
+    { ('title' in element) && <CardHeader title={element.title}/>}
     <CardContent>
-      { ('title' in element) && <CardHeader title={element.title}/>}
       {
         element.elements.map((element: InteractiveElement, idx) => (
           <Box key={idx} sx={{ mt: idx > 0 ? 1.5 : 0 }}>

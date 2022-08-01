@@ -17,7 +17,7 @@ export const TextFileLineRenderer: Renderer = (props: RenderingProps) => {
       <Typography variant="caption"><Trans>Line:</Trans> {line.line}</Typography>
       <Typography sx={{ fontFamily: 'monospace' }}>{text}</Typography>
       {
-        line.columns && <>
+        line.columns && Object.keys(line.columns).length > 0 && <>
           <Typography variant="caption"><Trans>Values:</Trans></Typography>
           <ConfigView config={line.columns} />
         </>

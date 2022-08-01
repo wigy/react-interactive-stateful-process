@@ -14,9 +14,8 @@ const BoxRenderer = (props) => {
         throw new Error(`Wrong renderer ${JSON.stringify(element)}.`);
     }
     return react_1.default.createElement(material_1.Card, { variant: "outlined" },
-        react_1.default.createElement(material_1.CardContent, null,
-            ('title' in element) && react_1.default.createElement(material_1.CardHeader, { title: element.title }),
-            element.elements.map((element, idx) => (react_1.default.createElement(material_1.Box, { key: idx, sx: { mt: idx > 0 ? 1.5 : 0 } }, __1.RenderingEngine.render({ values: props.values, setup: props.setup, element }))))));
+        ('title' in element) && react_1.default.createElement(material_1.CardHeader, { title: element.title }),
+        react_1.default.createElement(material_1.CardContent, null, element.elements.map((element, idx) => (react_1.default.createElement(material_1.Box, { key: idx, sx: { mt: idx > 0 ? 1.5 : 0 } }, __1.RenderingEngine.render({ values: props.values, setup: props.setup, element }))))));
 };
 exports.BoxRenderer = BoxRenderer;
 //# sourceMappingURL=BoxElement.js.map

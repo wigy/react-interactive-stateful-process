@@ -22,7 +22,7 @@ const TextFileLineRenderer = (props) => {
             " ",
             line.line),
         react_1.default.createElement(material_1.Typography, { sx: { fontFamily: 'monospace' } }, text),
-        line.columns && react_1.default.createElement(react_1.default.Fragment, null,
+        line.columns && Object.keys(line.columns).length > 0 && react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(material_1.Typography, { variant: "caption" },
                 react_1.default.createElement(react_i18next_1.Trans, null, "Values:")),
             react_1.default.createElement(__1.ConfigView, { config: line.columns }))));
