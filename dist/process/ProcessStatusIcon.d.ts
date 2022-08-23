@@ -1,10 +1,4 @@
-export declare enum ProcessStatus {
-    INCOMPLETE = "INCOMPLETE",
-    WAITING = "WAITING",
-    SUCCEEDED = "SUCCEEDED",
-    FAILED = "FAILED",
-    CRASHED = "CRASHED"
-}
+import { ProcessStatus } from 'interactive-elements';
 export declare type ProcessStatusIconProps = {
     status: ProcessStatus;
 };

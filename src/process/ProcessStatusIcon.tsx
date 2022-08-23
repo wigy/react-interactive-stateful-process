@@ -2,14 +2,7 @@ import React from 'react'
 import { Warning, CheckCircleOutline, Timer, ErrorOutline, HourglassEmpty, Help } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { red, green, blue } from '@mui/material/colors'
-
-export enum ProcessStatus {
-  INCOMPLETE = 'INCOMPLETE',
-  WAITING = 'WAITING',
-  SUCCEEDED = 'SUCCEEDED',
-  FAILED = 'FAILED',
-  CRASHED = 'CRASHED'
-}
+import { ProcessStatus } from 'interactive-elements'
 
 export type ProcessStatusIconProps = {
   status: ProcessStatus

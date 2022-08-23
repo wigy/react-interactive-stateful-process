@@ -3,19 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessStatusIcon = exports.ProcessStatus = void 0;
+exports.ProcessStatusIcon = void 0;
 const react_1 = __importDefault(require("react"));
 const icons_material_1 = require("@mui/icons-material");
 const material_1 = require("@mui/material");
 const colors_1 = require("@mui/material/colors");
-var ProcessStatus;
-(function (ProcessStatus) {
-    ProcessStatus["INCOMPLETE"] = "INCOMPLETE";
-    ProcessStatus["WAITING"] = "WAITING";
-    ProcessStatus["SUCCEEDED"] = "SUCCEEDED";
-    ProcessStatus["FAILED"] = "FAILED";
-    ProcessStatus["CRASHED"] = "CRASHED";
-})(ProcessStatus = exports.ProcessStatus || (exports.ProcessStatus = {}));
 /**
  * Display icon for process status.
  * @param props
