@@ -3759,10 +3759,10 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==
 
-interactive-elements@1.0.89:
-  version "1.0.89"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.89.tgz#0ddcfae43a8b50d03ffded6d1dec35e0c984d1fe"
-  integrity sha512-gFd83bN1Byz8oKriOv0LydgDPG6aDUwPp9a6VMMnx+hi0GtSC/vJNtaMaq9QZpH5QIWBRCa5P9JpZUwibpCLuw==
+interactive-elements@1.0.90:
+  version "1.0.90"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.90.tgz#d6e3bdeb031d40171a746f5e196e9b05056f7e1a"
+  integrity sha512-hmVJngE/TIBVUyVuXxmvTEY0L5zjzEUtfwrPeHnbtJt+KG6b9sfLVSfMnNmK/m+9YeA4BZvH6sRtjE/ivWU1Yg==
 
 internal-slot@^1.0.3:
   version "1.0.3"
@@ -5730,10 +5730,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@4.7.3:
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.3.tgz#8364b502d5257b540f9de4c40be84c98e23a129d"
-  integrity sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==
+typescript@4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
