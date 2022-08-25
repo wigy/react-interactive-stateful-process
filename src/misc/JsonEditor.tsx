@@ -2,7 +2,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/
 import React from 'react'
 import { Trans } from 'react-i18next'
 import JSONEditor, { JSONEditorOptions } from 'jsoneditor'
-import 'jsoneditor/dist/jsoneditor.min.css'
+// TODO: JSON editor is broken since esbuild cannot load .svg in this css.
+// import 'jsoneditor/dist/jsoneditor.min.css'
 
 export type JsonEditorProps = {
   visible: boolean,

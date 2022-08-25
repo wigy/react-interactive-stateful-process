@@ -96,7 +96,7 @@ const App = observer(() => {
       {
         type: 'case',
         condition: 'c',
-        default: 'V1',
+        defaultValue: 'V1',
         cases: {
           V1: { type: 'message', severity: 'info', text: 'First set of elements in case.' },
           V2: { type: 'message', severity: 'warning', text: 'Second set of elements in case.' },
@@ -130,9 +130,9 @@ const App = observer(() => {
     console.log('=>', resp)
   }
 
-  const [processId, setProcessId] = useState<ID>()
-  const [step, setStep] = useState<number>()
-  const [jsonEdit, setJsonEdit] = useState<boolean>(false)
+  const [processId, setProcessId] = useState()
+  const [step, setStep] = useState()
+  const [jsonEdit, setJsonEdit] = useState(false)
 
   return (
     <>
@@ -168,7 +168,7 @@ const App = observer(() => {
       </Paper>
 
       <Paper style={{ margin: '1rem', padding: '1rem' }} elevation={4}>
-        <Typography className="text" variant="h3">Element Test Dashboard</Typography>
+        <Typography className="text" variant="h3">Element Dashboard</Typography>
         <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
         <br/>
         <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 6; values.b = '' }) }}>RESET</Button>

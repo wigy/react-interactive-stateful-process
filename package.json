@@ -19,7 +19,7 @@
     ]
   },
   "scripts": {
-    "demo": "NODE_ENV=development webpack serve --host 0.0.0.0 --port ${PORT:=3301} --config ./config/webpack.dev.js",
+    "demo": "cd example && NODE_ENV=development esbuild --bundle index.tsx --define:global=window --outfile=public/index.js --servedir=./public/",
     "dev": "./make.js --dev --browser",
     "doc": "rm -fr doc/* && typedoc --out doc src/*.ts src/*/*.ts src/*.tsx src/*/*.tsx",
     "doc:watch": "rm -fr doc/* && typedoc --out doc --watch src/*.ts src/*/*.ts src/*.tsx src/*/*.tsx",
@@ -32,8 +32,8 @@
     "base64-arraybuffer": "1.0.2",
     "esbuild": "^0.15.5",
     "get-value": "^3.0.1",
-    "interactive-elements": "1.0.90",
-    "jsoneditor": "^9.5.11",
+    "interactive-elements": "1.0.91",
+    "jsoneditor": "^9.9.0",
     "set-value": "^4.1.0"
   },
   "devDependencies": {
@@ -50,6 +50,7 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "4.0.0-alpha.0",
     "css-loader": "^6.6.0",
+    "esbuild-plugin-svgr": "^1.0.1",
     "eslint": "8.19.0",
     "eslint-config-react-app": "7.0.0",
     "eslint-config-semistandard": "16.0.0",

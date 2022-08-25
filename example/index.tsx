@@ -13,5 +13,4 @@ ReactDOM.render(
   </RISPProvider>,
   document.getElementById('root')
 )
-
 module && module.hot && module.hot.accept()
