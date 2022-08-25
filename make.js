@@ -7,6 +7,9 @@ const pkg = JSON.parse(require('fs').readFileSync('./package.json'))
 async function run() {
   await require('esbuild').build({
     bundle: true,
+    define: {
+      global: 'window'
+    },
     entryPoints: ['src/index.ts'],
     external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
     incremental: isDev,
