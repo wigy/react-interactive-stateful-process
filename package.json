@@ -33,7 +33,7 @@
     "base64-arraybuffer": "1.0.2",
     "esbuild": "^0.15.5",
     "get-value": "^3.0.1",
-    "interactive-elements": "1.0.93",
+    "interactive-elements": "1.0.94",
     "jsoneditor": "^9.9.0",
     "set-value": "^4.1.0"
   },
