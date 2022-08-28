@@ -3250,10 +3250,12 @@ inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@^2.0.4, inherits@~2.0.4:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
-interactive-elements@1.0.92:
-  version "1.0.92"
-  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.92.tgz#f2d159e3998b526ec26c4deb42fb4aa0f211c091"
-  integrity sha512-EEwVzrWUsAraKFmtoisPVxlx+FV43aOJbikCF07cxmCpEMcGXJpkI8iJab5+gfr5t8SknjMmBkP8juPlDJagrw==
+interactive-elements@1.0.93:
+  version "1.0.93"
+  resolved "https://registry.yarnpkg.com/interactive-elements/-/interactive-elements-1.0.93.tgz#67015c715175157808fba3b0e8102ad0fd60158b"
+  integrity sha512-rgMTMT03sdLtQXhDydNuDrIOwYhb+I6DXPD47DSrXXo93cJJu8vph3OqyhnOz6NOlKI27o1TBY3CSgrr+Dw/9A==
+  dependencies:
+    node-stdlib-browser "^1.2.0"
 
 internal-slot@^1.0.3:
   version "1.0.3"
