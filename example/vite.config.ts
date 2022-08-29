@@ -8,10 +8,6 @@ module.exports = async () => {
     },
     optimizeDeps: {
       include: ['buffer', 'process'],
-      esbuildOptions: {
-        entryPoints: ['./indexx.tsx'],
-
-      }
     },
     root: './public',
     plugins: [
