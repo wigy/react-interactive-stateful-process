@@ -172,7 +172,7 @@ const App = observer(() => {
         <RISP key="demo1" element={element as InteractiveElement} values={values} setup={setup}/>
         <br/>
         <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 6; values.b = '' }) }}>RESET</Button>
-        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 12345 }) }}>CHANGE A</Button>
+        <Button variant="outlined" onClick={() => { runInAction(() => { values.a = 12345 }) }}>CHANGE AHA</Button>
         <Button variant="outlined" onClick={() => { runInAction(() => (values.b = 'FGHIJ')) }}>CHANGE B</Button>
       </Paper>
     </>
