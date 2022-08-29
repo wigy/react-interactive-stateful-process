@@ -1,11 +1,20 @@
 {
   "name": "react-interactive-stateful-process",
-  "version": "1.0.155",
+  "version": "1.0.156",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
+  "browser": {
+    "crypto": "crypto-browserify",
+    "os": "os-browserify",
+    "tty": "tty-browserify",
+    "http": "stream-http",
+    "https": "https-browserify",
+    "stream": "stream-browserify",
+    "zlib": "browserify-zlib"
+  },
   "repository": "git@github.com:wigy/react-interactive-stateful-process.git",
   "author": "Tommi Ronkainen <tommi.ronkainen@gmail.com>",
   "license": "GPL-3.0-only",
@@ -34,7 +43,6 @@
     "esbuild": "^0.15.5",
     "get-value": "^3.0.1",
     "interactive-elements": "^1.0.94",
-    "jsoneditor": "^9.9.0",
     "set-value": "^4.1.0"
   },
   "devDependencies": {
