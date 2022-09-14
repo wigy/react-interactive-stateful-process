@@ -9,6 +9,7 @@ export type ConfigViewProps = {
   title?: string
   config: ProcessConfig
   columns?: number
+  ignore?: RegExp
 }
 
 /**
@@ -19,6 +20,7 @@ export type ConfigViewProps = {
 export const ConfigView = (props: ConfigViewProps): JSX.Element => {
 
   const COLUMNS = props.columns || 4
+  const ignore = props.ignore || /^$/
 
   const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1)
@@ -44,7 +46,7 @@ export const ConfigView = (props: ConfigViewProps): JSX.Element => {
           }</>
         }
 
-        keys = Object.keys(obj).filter(k => !IGNORE_FIELDS.test(k)).sort()
+        keys = Object.keys(obj).filter(k => !IGNORE_FIELDS.test(k) && !ignore.test(k)).sort()
         perColumn = Math.ceil(keys.length / COLUMNS)
         idx = 0
         column = []

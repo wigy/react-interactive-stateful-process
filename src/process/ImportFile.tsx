@@ -44,7 +44,7 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
         </TableCell>
       </TableRow>
       { open && hasColumns &&
-        <TableRow sx={{ width: '65vw' }}>
+        <TableRow>
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell>
@@ -53,13 +53,13 @@ export const ImportLine = (props: ImportLineProps): JSX.Element => {
                 <Typography style={{ color: 'white', backgroundColor: color }}>Segment ID: {segmentId}</Typography>
               </Link>
             }
-            <ConfigView config={columns}/>
+            <ConfigView ignore={/^_/} config={columns}/>
           </TableCell>
           <TableCell></TableCell>
         </TableRow>
       }
       { props.result &&
-        <TableRow sx={{ width: '65vw' }}>
+        <TableRow>
           <TableCell></TableCell>
           <TableCell></TableCell>
           <TableCell id={props.result ? `segment-${segmentId}` : undefined}>
@@ -108,7 +108,7 @@ export const ImportFile = (props: ImportFileProps): JSX.Element => {
       </AccordionSummary>
 
       <AccordionDetails>
-        <TableContainer component={Paper} sx={{ width: '70vw' }}>
+        <TableContainer component={Paper} sx={{ width: '60vw' }}>
           <Table size="small">
             <TableBody>
               {props.lines.map((line, idx) => {

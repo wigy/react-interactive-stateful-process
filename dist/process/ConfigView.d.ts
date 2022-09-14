@@ -4,6 +4,7 @@ export declare type ConfigViewProps = {
     title?: string;
     config: ProcessConfig;
     columns?: number;
+    ignore?: RegExp;
 };
 /**
  * Default viewer for a process configuration displaying names and values as is on one single line.
