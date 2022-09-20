@@ -29,10 +29,10 @@
   },
   "scripts": {
     "demo": "cd example && NODE_ENV=development esbuild --bundle index.tsx --define:global=window --outfile=public/index.js --servedir=./public/",
-    "dev": "./make.js --dev --browser --minify",
+    "dev": "./make.js --dev --browser",
     "doc": "rm -fr doc/* && typedoc --out doc src/*.ts src/*/*.ts src/*.tsx src/*/*.tsx",
     "doc:watch": "rm -fr doc/* && typedoc --out doc --watch src/*.ts src/*/*.ts src/*.tsx src/*/*.tsx",
-    "build": "rm -rf dist/* && ./make.js --minify && tsc --emitDeclarationOnly",
+    "build": "rm -rf dist/* && ./make.js && tsc --emitDeclarationOnly",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'"
   },
@@ -42,7 +42,7 @@
     "base64-arraybuffer": "1.0.2",
     "esbuild": "^0.15.5",
     "get-value": "^3.0.1",
-    "interactive-elements": "^1.0.94",
+    "interactive-elements": "1.0.95",
     "set-value": "^4.1.0"
   },
   "devDependencies": {
