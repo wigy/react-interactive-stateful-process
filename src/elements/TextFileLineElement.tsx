@@ -19,7 +19,7 @@ export const TextFileLineRenderer: Renderer = (props: RenderingProps) => {
       {
         line.columns && Object.keys(line.columns).length > 0 && <>
           <Typography variant="caption"><Trans>Values:</Trans></Typography>
-          <ConfigView config={line.columns} />
+          <ConfigView ignore={/^_/} config={line.columns} />
         </>
       }
 

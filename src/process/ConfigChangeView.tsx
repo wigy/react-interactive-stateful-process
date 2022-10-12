@@ -28,5 +28,5 @@ export const ConfigChangeView = (props: ConfigChangeViewProps): JSX.Element => {
       changes[name] = (props.step.action.configure as Record<string, unknown>)[name]
     }
   }
-  return <ConfigView title={t('Configured the Following')} config={changes} />
+  return <ConfigView ignore={/^_/} title={t('Configured the Following')} config={changes} />
 }

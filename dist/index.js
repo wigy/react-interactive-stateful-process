@@ -3233,6 +3233,7 @@ var TextFileLineRenderer = (props) => {
   }, text), line.columns && Object.keys(line.columns).length > 0 && /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement(import_material10.Typography, {
     variant: "caption"
   }, /* @__PURE__ */ import_react11.default.createElement(import_react_i18next6.Trans, null, "Values:")), /* @__PURE__ */ import_react11.default.createElement(ConfigView, {
+    ignore: /^_/,
     config: line.columns
   })));
 };
@@ -3505,6 +3506,7 @@ var ConfigChangeView = (props) => {
     }
   }
   return /* @__PURE__ */ import_react16.default.createElement(ConfigView, {
+    ignore: /^_/,
     title: t("Configured the Following"),
     config: changes
   });
