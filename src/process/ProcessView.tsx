@@ -30,6 +30,7 @@ export type ProcessViewProps = {
   configView?: (props: ConfigViewProps) => JSX.Element
   errorView?: (props: DefaultErrorViewProps) => JSX.Element
   successView?: (props: DefaultSuccessViewProps) => JSX.Element
+  // TODO: We should also pass onActionFail and let it handle errors.
   onActionSuccess?: (result: unknown, trigger: string, props: RenderingProps) => void
 }
 
