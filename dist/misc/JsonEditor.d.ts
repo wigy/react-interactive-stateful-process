@@ -1,3 +1,4 @@
+import 'jsoneditor/dist/jsoneditor.min.css';
 export declare type JsonEditorProps = {
     visible: boolean;
     title: string;
